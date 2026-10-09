@@ -218,12 +218,14 @@ header{padding:4px 0 14px;border-bottom:1px solid #1d2432}
 
 <section class="xWallModule newsWallModule" id="newsWallModule">
   <div class="xWallHead">
-    <div><h2>🦋 Muro social de cine y series</h2><p>Publicaciones públicas recientes de Bluesky sobre películas, series, tráileres y entretenimiento.</p></div>
-    <div class="xWallActions"><span class="xWallStatus" id="bsWallStatus">Preparado para conectar</span><button type="button" class="xWallBtn" id="bsWallRefresh">↻ Actualizar muro</button></div>
+    <div><h2>𝕏 Muro social de cine y series</h2><p>Cronología pública de <strong>@DiscussingFilm</strong>, una cuenta especializada en noticias de películas, series y entretenimiento.</p></div>
+    <div class="xWallActions"><span class="xWallStatus" id="xProfileStatus">Cronología oficial de X</span><a class="xWallBtn" href="https://x.com/DiscussingFilm" target="_blank" rel="noopener noreferrer">Abrir perfil ↗</a></div>
   </div>
-  <div class="bsWallMessage" id="bsWallMessage">Conectando con el servicio público de Bluesky…</div>
-  <div class="bsWallGrid" id="bsWallGrid" aria-live="polite"></div>
-  <div class="xWallFoot"><span>Actualización automática cada 5 minutos mientras CINEWATCH esté abierto.</span><span>Feed público de Bluesky; no es una copia de la lista de X.</span></div>
+  <div class="xWallFrame" id="xProfileFrame">
+    <a class="twitter-timeline" data-theme="dark" data-chrome="noheader nofooter noborders transparent" data-height="620" data-dnt="true" href="https://x.com/DiscussingFilm">Publicaciones de @DiscussingFilm en X</a>
+    <div class="xWallLoading" id="xProfileLoading">Cargando cronología de X…<small>Si no aparece, usa «Abrir perfil» para consultar las publicaciones directamente en X.</small></div>
+  </div>
+  <div class="xWallFoot"><span>Fuente: cronología pública de X.</span><span>La visualización depende de que X permita cargar sus widgets en este navegador y sitio.</span></div>
 </section>
 
 <section class="statsModule" id="statsModule">
@@ -1490,55 +1492,34 @@ setTimeout(refresh,150);
 setInterval(refresh,15*60*1000);
 setupXAccounts();
 
-// Muro social de Bluesky: API pública, sin clave ni buscadores/filtros en la interfaz.
-(function setupBlueskyWall(){
- const grid=document.getElementById('bsWallGrid'); if(!grid)return;
- const status=document.getElementById('bsWallStatus');
- const message=document.getElementById('bsWallMessage');
- const refresh=document.getElementById('bsWallRefresh');
- let loading=false;
- const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const fmtDate=d=>{const date=new Date(d);return Number.isNaN(date.getTime())?'':date.toLocaleString('es-GT',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});};
- const postLink=p=>{const uri=p?.uri||'';const rkey=uri.split('/').pop();const handle=p?.author?.handle||'';return handle&&rkey?`https://bsky.app/profile/${encodeURIComponent(handle)}/post/${encodeURIComponent(rkey)}`:'https://bsky.app';};
- const linkify=t=>esc(t).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
- async function query(q){
-  const url='https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q='+encodeURIComponent(q)+'&limit=15&sort=latest';
-  const controller=new AbortController(); const timer=setTimeout(()=>controller.abort(),12000);
-  try{const r=await fetch(url,{signal:controller.signal,cache:'no-store',headers:{'Accept':'application/json'}});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json();}
-  finally{clearTimeout(timer);}
- }
- function render(posts){
-  grid.innerHTML=posts.map(p=>{
-   const a=p.author||{}, rec=p.record||{}, text=rec.text||'';const embed=p.embed||{};
-   const images=(embed.images||embed.media?.images||[]).map(im=>im.fullsize||im.thumb||im.image?.ref?.$link).filter(Boolean);
-   const ext=embed.external||embed.media?.external;const thumb=ext?.thumb;
-   const media=images.length?`<div class="bsPostMedia">${images.slice(0,4).map(src=>`<img loading="lazy" src="${esc(src)}" alt="Imagen adjunta a la publicación">`).join('')}</div>`:'';
-   const external=ext?.uri?`<a class="bsPostExternal" href="${esc(ext.uri)}" target="_blank" rel="noopener noreferrer">${thumb?`<img loading="lazy" src="${esc(thumb)}" alt="">`:''}<span><b>${esc(ext.title||'Enlace compartido')}</b>${ext.description?`<br>${esc(ext.description.slice(0,130))}`:''}</span></a>`:'';
-   return `<article class="bsPost"><div class="bsPostTop">${a.avatar?`<img class="bsAvatar" src="${esc(a.avatar)}" alt="">`:'<div class="bsAvatar"></div>'}<div class="bsIdentity"><div class="bsDisplay">${esc(a.displayName||a.handle||'Usuario de Bluesky')}</div><div class="bsHandle">@${esc(a.handle||'usuario')}</div></div><span class="bsPostDate">${esc(fmtDate(rec.createdAt||p.indexedAt))}</span></div><p class="bsPostText">${linkify(text)}</p>${media}${external}<div class="bsPostActions"><span>♡ ${Number(p.likeCount||0).toLocaleString('es-GT')}</span><span>↻ ${Number(p.repostCount||0).toLocaleString('es-GT')}</span><span>▢ ${Number(p.replyCount||0).toLocaleString('es-GT')}</span><a href="${esc(postLink(p))}" target="_blank" rel="noopener noreferrer">Ver publicación ↗</a></div></article>`;
-  }).join('')||'<div class="bsWallEmpty">No se encontraron publicaciones recientes en estas búsquedas. Intenta actualizar más tarde.</div>';
- }
- async function load(){
-  if(loading)return;loading=true;if(refresh)refresh.disabled=true;
-  if(status)status.textContent='Consultando Bluesky…';if(message)message.textContent='Buscando publicaciones públicas recientes de cine, películas, tráileres y series…';
-  grid.innerHTML='<div class="bsWallEmpty">Cargando publicaciones…</div>';
-  const queries=['cine','película','movie trailer','film','TV series'];
-  const results=await Promise.allSettled(queries.map(query));
-  const posts=new Map();let ok=0;const errors=[];
-  for(let i=0;i<results.length;i++){
-   const r=results[i];if(r.status==='fulfilled'){
-    ok++;for(const p of (r.value.posts||[])){if(p?.uri&&!posts.has(p.uri))posts.set(p.uri,p);}
-   }else errors.push(queries[i]);
-  }
-  const sorted=[...posts.values()].sort((a,b)=>new Date(b.record?.createdAt||b.indexedAt||0)-new Date(a.record?.createdAt||a.indexedAt||0)).slice(0,40);
-  render(sorted);
-  if(status)status.textContent=ok+' de '+queries.length+' consultas disponibles';
-  if(message){
-   if(!ok)message.innerHTML='No se pudo conectar con la API pública de Bluesky desde este navegador. Revisa la conexión o abre <a href="https://bsky.app" target="_blank" rel="noopener noreferrer" style="color:#ff656b">Bluesky</a> directamente. Si abriste el HTML como archivo local y la red lo bloquea, publícalo en un alojamiento HTTPS gratuito.';
-   else message.textContent=`Se muestran ${sorted.length} publicaciones públicas recientes. ${errors.length?'Algunas consultas no respondieron: '+errors.join(', ')+'.':'Feed actualizado correctamente.'}`;
-  }
-  loading=false;if(refresh)refresh.disabled=false;
- }
- refresh?.addEventListener('click',load);load();setInterval(load,5*60*1000);
+// Cronología oficial de perfil individual de X (método alternativo a la lista).
+(function setupXProfileTimeline(){
+ const loading=document.getElementById('xProfileLoading');
+ const frame=document.getElementById('xProfileFrame');
+ if(!frame)return;
+ let widgetLoaded=false;
+ const showFallback=()=>{
+   if(loading && !widgetLoaded){
+     loading.innerHTML='X no terminó de cargar la cronología incrustada.<small>Prueba a abrir el perfil directamente o publica CINEWATCH en HTTPS. Si X bloquea los widgets, el muro puede quedar vacío aunque el perfil sí sea visible en X.</small>';
+   }
+ };
+ const script=document.createElement('script');
+ script.src='https://platform.twitter.com/widgets.js';
+ script.async=true;
+ script.charset='utf-8';
+ script.onload=()=>{
+   try{
+     if(window.twttr && window.twttr.widgets){
+       window.twttr.widgets.load(frame).then(()=>{
+         widgetLoaded=true;
+         if(loading)loading.remove();
+       }).catch(showFallback);
+     }else setTimeout(showFallback,5000);
+   }catch(e){showFallback();}
+ };
+ script.onerror=showFallback;
+ document.head.appendChild(script);
+ setTimeout(showFallback,10000);
 })();
 </script>
 </body>
