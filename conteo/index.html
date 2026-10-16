@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#c9c9c9">
+<title>Conteo en quetzales</title>
+<style>
+:root{--green:#00f33b;--bg:#c9c9c9;--ink:#080808;--muted:#aaa}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;display:flex;align-items:center;justify-content:center;padding:28px;color:#eee}
+.dashboard{width:min(100%,700px);min-height:600px;background:linear-gradient(145deg,#101010,#050505 75%);border-radius:78px 78px 62px 62px;padding:36px 34px 28px;position:relative;overflow:hidden;box-shadow:0 32px 45px rgba(0,0,0,.18)}
+.dashboard:before{content:"";position:absolute;top:0;right:75px;width:160px;height:45px;background:var(--bg);border-radius:0 0 34px 34px}
+.topline{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;position:relative;z-index:1}
+.date{font-size:clamp(22px,4vw,32px);font-weight:650;letter-spacing:-1.3px;color:#bcbcbc}
+.date small{font-size:.55em;vertical-align:top;margin-left:4px}
+.time{font-size:clamp(62px,12vw,112px);font-weight:300;line-height:1.12;letter-spacing:-5px;color:#d0d0d0;font-variant-numeric:tabular-nums}
+.time small{font-size:.35em;vertical-align:top;letter-spacing:-1px;margin-left:4px}
+.total-label{margin-top:46px;font-size:15px;font-weight:750;letter-spacing:.8px;color:#aaa}
+.total{width:100%;font-size:clamp(40px,13vw,86px);font-weight:800;letter-spacing:-2.8px;color:var(--green);margin:8px 0 0;font-variant-numeric:tabular-nums;text-shadow:0 0 25px #00f33b18;line-height:1.12;min-height:1.25em;display:flex;align-items:center;white-space:nowrap}
+.subtitle{color:#858585;font-size:13px;margin-top:4px}
+.green-panel{margin-top:28px;background:var(--green);color:#050505;border-radius:30px;padding:19px 22px 18px;box-shadow:0 0 35px #00f33b26;position:relative}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:800;font-size:14px}
+.panel-head strong{font-size:21px;letter-spacing:-.6px}
+.timeline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;margin-top:17px;max-height:230px;overflow-y:auto;overflow-x:hidden;padding:2px 8px 8px 0;scrollbar-width:thin;scrollbar-color:#111 transparent}.timeline::-webkit-scrollbar{width:7px}.timeline::-webkit-scrollbar-track{background:transparent}.timeline::-webkit-scrollbar-thumb{background:#111;border-radius:8px}
+.month{min-width:0;border-top:4px dotted #111;padding-top:9px;padding-bottom:5px}
+.month b{display:block;font-size:12px;white-space:nowrap}
+.month span{display:block;font-size:11px;margin-top:5px;opacity:.78;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.month.latest{border-top-style:solid}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.stat{border:1px solid #292929;background:#151515;border-radius:18px;padding:15px 16px}
+.stat .label{font-size:11px;color:#999;font-weight:750;letter-spacing:.7px}
+.stat .value{font-size:clamp(22px,4vw,30px);font-weight:750;margin-top:6px;letter-spacing:-.8px;font-variant-numeric:tabular-nums}
+.stat .note{font-size:11px;color:#777;margin-top:4px}
+.stat.green .value{color:var(--green)}
+.projection{margin-top:22px;border:1px solid #292929;background:linear-gradient(145deg,#151515,#0d0d0d);border-radius:24px;padding:20px 22px 22px}
+.projection-head{font-size:14px;font-weight:800;letter-spacing:.7px;color:#aaa;margin-bottom:7px}
+.projection-help{font-size:12px;color:#777;line-height:1.5;margin-bottom:16px}
+.projection-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end}
+.projection label{display:block;color:#999;font-size:11px;font-weight:750;letter-spacing:.5px;margin-bottom:7px}
+.projection input{width:100%;min-width:0;background:#222;color:#eee;border:1px solid #383838;border-radius:12px;padding:12px 13px;font:inherit;color-scheme:dark}
+.projection button{background:var(--green);color:#050505;border:0;border-radius:12px;padding:13px 16px;font:inherit;font-size:13px;font-weight:800;cursor:pointer}
+.projection-result{margin-top:18px;padding-top:16px;border-top:1px solid #292929}
+.projection-result .result-label{font-size:11px;color:#999;font-weight:750;letter-spacing:.7px}
+.projection-result .result-value{font-size:clamp(30px,7vw,48px);font-weight:800;letter-spacing:-1.5px;color:var(--green);line-height:1.2;margin-top:5px;overflow-wrap:anywhere}
+.projection-result .result-note{font-size:12px;color:#858585;margin-top:5px;line-height:1.5}
+.bottom{display:flex;justify-content:space-between;align-items:center;margin:20px 4px 0;color:#aaa;font-weight:650}
+.weather{display:flex;align-items:center;gap:9px}.weather i{width:18px;height:18px;background:var(--green);border-radius:50%;display:inline-block;box-shadow:0 0 15px #00f33b66}
+.footer-note{font-size:11px;color:#666;text-align:right;font-weight:400}
+@media(max-width:520px){body{padding:12px}.dashboard{padding:27px 19px 22px;border-radius:48px 48px 40px 40px;min-height:0}.dashboard:before{right:54px;width:100px;height:28px;border-radius:0 0 20px 20px}.total-label{margin-top:35px}.total{width:100%;font-size:clamp(34px,13.5vw,72px);letter-spacing:-2px;min-height:1.35em}.green-panel{padding:16px 14px;border-radius:23px}.timeline{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:13px;max-height:210px}.stats{gap:8px}.stat{padding:13px 11px}.projection{padding:17px 14px;border-radius:20px}.projection-controls{grid-template-columns:1fr}.projection button{width:100%}.bottom{align-items:flex-start;gap:10px;flex-direction:column}.footer-note{text-align:left}}
+</style>
+</head>
+<body>
+<main class="dashboard" aria-label="Contador automático de quetzales">
+  <div class="topline">
+    <div>
+      <div class="date" id="dateLabel">Viernes <small>16</small></div>
+      <div class="time" id="clock">12:52<small>00</small></div>
+    </div>
+  </div>
+
+  <div class="total-label">TOTAL ACUMULADO</div>
+  <div class="total" id="total">Q400,000.00</div>
+  <div class="subtitle"><span id="months">32</span> meses contabilizados · Q12,500.00 por mes</div>
+
+  <section class="green-panel" aria-label="Historial mensual">
+    <div class="panel-head"><span>HISTORIAL MENSUAL</span><strong id="panelTotal">32 MESES</strong></div>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <section class="stats" aria-label="Cálculo del 25 por ciento">
+    <div class="stat green">
+      <div class="label">25% DEL TOTAL</div>
+      <div class="value" id="quarter">Q100,000.00</div>
+      <div class="note">Una cuarta parte del acumulado</div>
+    </div>
+    <div class="stat">
+      <div class="label">TOTAL MENOS 25%</div>
+      <div class="value" id="remaining">Q300,000.00</div>
+      <div class="note">Saldo después de descontarlo</div>
+    </div>
+  </section>
+  <section class="projection" aria-label="Proyección de monto por fecha">
+    <div class="projection-head">PROYECCIÓN POR FECHA</div>
+    <div class="projection-help">Consulta cuánto llevarías acumulado en una fecha determinada, considerando un incremento de Q12,500 cada mes desde marzo de 2024.</div>
+    <div class="projection-controls">
+      <div><label for="projectionDate">FECHA DE CONSULTA</label><input id="projectionDate" type="date"></div>
+      <button type="button" id="calculateProjection">CALCULAR</button>
+    </div>
+    <div class="projection-result" aria-live="polite">
+      <div class="result-label">MONTO PROYECTADO</div>
+      <div class="result-value" id="projectionAmount">Q400,000.00</div>
+      <div class="result-note" id="projectionDetails">32 meses contabilizados</div>
+    </div>
+  </section>
+
+  <div class="bottom">
+    <div class="weather"><i></i><span id="nextUpdate">Próximo aumento: 1 nov 2026</span></div>
+    <div class="footer-note">Actualización automática<br>sin ingresar datos</div>
+  </div>
+</main>
+<script>
+(() => {
+  const MONTHLY = 12500;
+  const INITIAL_MONTHS = 32;
+  // El conteo inicia en marzo de 2024: 32 meses contabilizados hasta octubre de 2026.
+  const START_YEAR = 2024, START_MONTH = 2; // 0 = enero
+  const money = n => 'Q' + n.toLocaleString('es-GT',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const dateFmt = new Intl.DateTimeFormat('es-GT',{day:'numeric',month:'short',year:'numeric'});
+  const monthFmt = new Intl.DateTimeFormat('es-GT',{month:'long',year:'numeric'});
+  const weekdayFmt = new Intl.DateTimeFormat('es-GT',{weekday:'long'});
+  const capitalize = s => s.charAt(0).toLocaleUpperCase('es-GT') + s.slice(1);
+
+  function getMonthsCount(now) {
+    const elapsed = (now.getFullYear()-START_YEAR)*12 + now.getMonth()-START_MONTH + 1;
+    return Math.max(INITIAL_MONTHS, elapsed);
+  }
+  function render() {
+    const now = new Date();
+    const count = getMonthsCount(now);
+    const total = count * MONTHLY;
+    document.getElementById('dateLabel').innerHTML =
+      `${capitalize(weekdayFmt.format(now))} <small>${now.getDate()}</small>`;
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    const ss = String(now.getSeconds()).padStart(2,'0');
+    document.getElementById('clock').innerHTML = `${hh}:${mm}<small>${ss}</small>`;
+    document.getElementById('total').textContent = money(total);
+    document.getElementById('months').textContent = count;
+    document.getElementById('panelTotal').textContent = `${count} MESES`;
+    document.getElementById('quarter').textContent = money(total * .25);
+    document.getElementById('remaining').textContent = money(total * .75);
+
+    const timeline = document.getElementById('timeline');
+    timeline.innerHTML = '';
+    // Mostrar todos los meses desde marzo de 2024; el contenedor tiene scroll para conservar el diseño compacto.
+    for (let i = 0; i < count; i++) {
+      const d = new Date(START_YEAR, START_MONTH + i, 1);
+      const item = document.createElement('div');
+      item.className = 'month' + (i === count - 1 ? ' latest' : '');
+      item.innerHTML = `<b>${dateFmt.format(d)}</b><span>${capitalize(monthFmt.format(d))}</span><span>+${money(MONTHLY)}</span>`;
+      timeline.appendChild(item);
+    }
+    const next = new Date(now.getFullYear(), now.getMonth()+1, 1);
+    document.getElementById('nextUpdate').textContent = 'Próximo aumento: ' + dateFmt.format(next);
+  }
+  function calculateProjection() {
+    const input = document.getElementById('projectionDate');
+    if (!input.value) return;
+    const [year, month] = input.value.split('-').map(Number);
+    const count = Math.max(0, (year - START_YEAR) * 12 + (month - 1) - START_MONTH + 1);
+    const amount = count * MONTHLY;
+    document.getElementById('projectionAmount').textContent = money(amount);
+    const monthText = count === 1 ? '1 mes contabilizado' : `${count} meses contabilizados`;
+    const monthName = new Intl.DateTimeFormat('es-GT',{month:'long',year:'numeric'}).format(new Date(year, month - 1, 1));
+    document.getElementById('projectionDetails').textContent = count === 0
+      ? 'Antes del inicio del conteo (marzo de 2024).'
+      : `${monthText} hasta ${capitalize(monthName)} · incremento mensual de ${money(MONTHLY)}.`;
+  }
+  const projectionInput = document.getElementById('projectionDate');
+  const today = new Date();
+  projectionInput.value = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+  document.getElementById('calculateProjection').addEventListener('click', calculateProjection);
+  projectionInput.addEventListener('change', calculateProjection);
+  render();
+  calculateProjection();
+  setInterval(render,1000);
+})();
+</script>
+</body>
+</html>
