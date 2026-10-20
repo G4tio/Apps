@@ -192,6 +192,136 @@ header{padding:4px 0 14px;border-bottom:1px solid #1d2432}
 @media(max-width:1100px){.cwCartGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:700px){.cwCartModal{padding:6px}.cwCartPanel{margin:0 auto}.cwCartMain{padding:13px}.cwCartTools{grid-template-columns:1fr}.cwCartGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.cwCartHead{padding:13px}.cwCartGrid .cwCartBody{padding:8px}}
 
+
+/* VISUAL REDESIGN ONLY — Prime Vision-inspired light streaming dashboard */
+:root{
+  --bg:#eef0f2;--panel:#ffffff;--panel2:#f7f8fa;--line:#e1e4e8;
+  --text:#17191d;--muted:#777d86;--accent:#ed101b;--blue:#273b88;
+  --white:#ffffff;--shadow:0 8px 24px rgba(25,31,40,.07);
+  color-scheme:light;
+}
+html{background:#eef0f2}
+body{background:#eef0f2!important;color:#17191d!important;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important}
+.app{max-width:1580px;padding:18px 22px 28px}
+.app::before{margin:-18px 0 15px;height:4px;border-radius:99px;background:linear-gradient(90deg,#ed101b 0 35%,#e5e7eb 35% 100%)}
+header{background:rgba(255,255,255,.94);border:1px solid #e5e7eb;border-radius:24px;padding:12px 16px;margin-bottom:20px;box-shadow:0 3px 14px rgba(30,35,45,.035);gap:14px}
+.brand{min-width:190px}.brand strong{color:#17191d;letter-spacing:.08em}.brand small{color:#7b818a}
+.logo{border-color:#e7e9ed;box-shadow:none;background:#fff}
+.search input{background:#f6f7f8;border:1px solid #e6e8eb;color:#222;border-radius:999px;padding:13px 44px 13px 17px}
+.search input::placeholder{color:#9298a1}.search input:focus{border-color:#ed101b;box-shadow:0 0 0 3px rgba(237,16,27,.08)}
+.search span{color:#7e848d}
+.btn{background:#fff;color:#30343a;border-color:#e0e3e7;border-radius:999px;box-shadow:none}
+.btn:hover{border-color:#c5c9d0;background:#fafafa}.btn.primary{background:#ed101b;color:#fff;border-color:#ed101b;box-shadow:0 5px 13px rgba(237,16,27,.14)}
+.translateBtn{background:#f0f3ff!important;border-color:#d8def8!important;color:#273b88!important}.translateBtn:hover,.translateBtn.active{background:#273b88!important;color:#fff!important}
+.hero{margin:22px 0 16px;align-items:center}
+h1{color:#17191d;letter-spacing:-.04em}.subtitle{color:#747b85}
+.status{color:#747b85}.dot{box-shadow:none}
+.toolbar{gap:8px;margin:16px 0 20px}
+.chip{background:#fff;border:1px solid #e0e3e7;color:#535963;border-radius:999px;padding:9px 15px}.chip:hover{border-color:#c5cad2}.chip.active{background:#ed101b;color:#fff;border-color:#ed101b}
+.layout{gap:18px}.grid{gap:16px}
+.card,.panel,.secondaryModule,.statsModule,.xWallModule{background:#fff!important;border:1px solid #e4e6e9!important;border-radius:20px!important;box-shadow:0 6px 22px rgba(25,31,40,.055)!important;color:#17191d}
+.card:hover{border-color:#d1d5db!important;box-shadow:0 10px 28px rgba(25,31,40,.09)!important}
+.card.lead{background:#fff!important}
+.media{background:#e4e7eb}.media .fallback{background:linear-gradient(135deg,#f2f3f5,#e3e6eb);color:#7d8490}
+.badge{background:rgba(25,28,34,.78);border-color:rgba(255,255,255,.25);color:#fff;border-radius:999px}
+.rank{background:#ed101b}
+.body{color:#17191d}.card h2,.secondaryHead h2,.statsHead h2,.xWallHead h2{color:#17191d}.meta{color:#777e88}.source{color:#373c44}.summary{color:#646b75}
+.mediaBox{background:#101114;border-radius:14px}.relatedSources{color:#7d838c}.relatedSources b{color:#4d535c}
+.linkBtn{background:#fff;border-color:#e1e4e8;color:#424750;border-radius:999px}.linkBtn:hover{border-color:#c6cbd2}.linkBtn.accent,.secondarySource{color:#ed101b;border-color:#f3c8cb}
+.cardActions .linkBtn[data-write],.secondaryWrite{background:#ed101b!important;color:#fff!important;border-color:#ed101b!important;box-shadow:none!important;border-radius:999px}
+.cardActions .postBtn,.secondaryPost{background:#222832!important;color:#fff!important;border-color:#222832!important;box-shadow:none!important;border-radius:999px}
+.panel{padding:18px}.panel h3{color:#303640}.sourceRow{border-color:#edf0f2;color:#424750}.sourceRow span:last-child{color:#8a9099}.info{color:#777e88}.xListBox{border-color:#edf0f2}.xListBox b{color:#686f79}.xListBox a{color:#ed101b}
+.secondaryModule{padding:20px}.secondaryItem{border-color:#eceef1}.secondaryNum{background:#f1f2f4;color:#626873}.secondaryTitle{color:#242830}.secondaryMeta{color:#818792}.secondarySource{background:#fff}.empty,.loading{color:#777e88;border-color:#d9dde2;background:#fff}
+.statsModule,.xWallModule{padding:20px}.statsHead p,.xWallHead p{color:#737a84}.statsControls button,.statsExport,.xWallBtn{background:#fff;color:#454b55;border-color:#dfe3e8;border-radius:999px}.statsControls button.active,.xWallBtn.primary{background:#ed101b;color:#fff;border-color:#ed101b}.statsKpi,.statsCard{background:#f8f9fa;border-color:#e7e9ed}.statsKpi span,.statsEmpty{color:#7b828c}.statsKpi b{color:#17191d}.statTrack{background:#e7e9ed}.statBarLabel{color:#4e545e}.statBarValue{color:#242830}.statsHistory summary{color:#4c535d}.statsTable th,.statsTable td{border-color:#e8eaee}.statsTable th{color:#777e88}.statsTable td{color:#353a43}.statsFoot{color:#7a818b}
+.xWallFrame{background:#f8f9fa;border-color:#e3e6ea}.xWallLoading{color:#737a84}.xWallUnavailable{background:#f8f9fa}.xWallNoticeIcon{background:#fff;border-color:#e1e5ea;color:#222}.xWallNotice h3{color:#20242b}.xWallNotice p{color:#6e7580}.xWallNoticeActions a.secondary{background:#fff;border-color:#dfe3e8;color:#424852}
+.bsWallMessage,.bsPost{background:#fff;border-color:#e4e7eb;color:#343a43}.bsDisplay{color:#22262d}.bsHandle,.bsPostDate{color:#858b95}.bsPostText{color:#444a54}.bsPostExternal{border-color:#e4e7eb}.bsPostActions{color:#858b95}
+footer{color:#858b95}
+.toast{background:#fff;color:#252a32;border-color:#e0e4e9;box-shadow:0 8px 28px rgba(20,25,35,.12)}
+/* Existing editor and social modules retain their DOM and behavior; only their presentation changes. */
+.writerPanel,.postPanel,.waPanel{background:#fff!important;border-color:#e1e5ea!important;color:#20242b;box-shadow:0 25px 80px rgba(20,25,35,.18)!important}
+.writerHead,.postHead,.waHead{border-color:#e7e9ed}.writerHead h2,.postHead h2,.waHead h2{color:#20242b}.writerHead small,.postHead small,.waHead small{color:#7c838e}
+.writerBody,.postBody,.waBody{color:#252a32}.writerSourceBox,.postStoryBox,.waPreview{background:#f7f8fa;border-color:#e3e6eb}.writerSourceBox b,.postStoryBox b,.waPreview b{color:#69717d}.postStoryText,.waPreviewTitle{color:#252a32}
+.writerField label,.writerConfig summary,.waField label,.postImageField>label{color:#707782}
+.writerField textarea,.writerField input,.writerConfig input,.opinionEntry input,.opinionEntry textarea,.waField input{background:#fff;color:#222831;border-color:#dfe3e8}
+.writerConfig,.writerConfig details,.opinionEntry{border-color:#e5e8ec}.writerConfig p,.writerNote,.writerImageNote,.postImageNote,.waHelp{color:#7b828d}.writerContext{background:#f7f8fa;border-color:#e1e5ea;color:#59616c}
+.writerBtn,.writerClose{background:#fff;color:#343a44;border-color:#dfe3e8}.writerBtn.primary{background:#ed101b;color:#fff;border-color:#ed101b}.writerStatus,.postStatus,.waStatus{color:#737a84}
+.writerImagesBox,.writerAsset{background:#f8f9fa;border-color:#e1e5ea}.writerAssetPreview,.postImageWrap,.waImage{background:#eef0f3;border-color:#e1e5ea}.writerAssetInfo b{color:#292e36}.writerAssetInfo small{color:#777f8a}.writerAssetBtn{background:#fff;color:#343a44;border-color:#dce1e7}.writerAssetBtn.download{background:#ed101b;color:#fff;border-color:#ed101b}.writerImagePosition{background:#f8f9fa;border-color:#e1e5ea}.writerImagePosition legend{color:#737a84}.writerImagePositionOptions label{background:#fff;color:#3e444d;border-color:#dfe3e8}.writerImagePositionOptions label:has(input:checked){background:#fff0f1;border-color:#ed101b}
+.waNote{background:#f0faf3;border-color:#cde8d5;color:#416c4d}.waBtn{background:#f5faf6;color:#2f6241;border-color:#cfe4d5}.waBtn.primary{background:#168a49;color:#fff}
+.postModule,.writerModule{background:rgba(30,35,44,.42)!important}
+/* Cartelera overlay */
+.cwCartHead,.cwCartPanel,.cwCartModal,.cwCartWrap{color:#20242b}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.app{padding:12px}.app::before{margin:-12px 0 12px}header{border-radius:18px;padding:11px;flex-wrap:wrap}.brand{min-width:0}.brand strong{font-size:17px}.search{order:3;flex-basis:100%;max-width:none}.headerActions{align-items:stretch}.hero{grid-template-columns:1fr}.sidebar{display:block}.panel{margin-bottom:12px}.card.lead{display:block}.statsModule,.xWallModule,.secondaryModule{padding:14px}}
+
+
+
+/* VISUAL POLISH — modular monochrome UI with signal-red accents
+   Presentation-only overrides: existing markup, IDs, events and JavaScript stay intact. */
+:root{--bg:#e2e5e9;--panel:#fff;--panel2:#f7f8fb;--line:#d7dbe1;--text:#191b1f;--muted:#737983;--accent:#df1723;--shadow:0 8px 24px rgba(18,22,29,.055)}
+html,body{background:#e2e5e9!important;color:#191b1f!important}
+.app{max-width:1640px}
+.app::before{height:0;margin:0}
+header{background:transparent;border:0;box-shadow:none;border-radius:0;padding:8px 2px 14px}
+.brand{padding:8px 12px;background:#fff;border-radius:20px}
+.logo{background:#df1723!important;color:#fff!important;border:0!important;border-radius:50%!important;box-shadow:none!important}
+.search input{background:#fff;border:1px solid transparent;border-radius:999px;box-shadow:0 2px 8px #20263008}
+.btn,.linkBtn,.writerBtn,.writerClose,.statsControls button,.statsExport,.xWallBtn,.chip,.secondarySource,.secondaryWrite,.secondaryPost{border-radius:999px!important;transition:transform .16s ease,background .16s ease,border-color .16s ease,box-shadow .16s ease}
+.btn{background:#fff;color:#22262c;border-color:#fff;box-shadow:0 2px 8px rgba(20,24,30,.04)}
+.btn:hover,.linkBtn:hover,.writerBtn:hover,.statsControls button:hover,.xWallBtn:hover{transform:translateY(-1px);box-shadow:0 5px 13px rgba(20,24,30,.08)}
+.btn.primary,.writerBtn.primary,.statsControls button.active,.xWallBtn.primary,.secondaryWrite,.cardActions .linkBtn[data-write]{background:#df1723!important;color:#fff!important;border-color:#df1723!important}
+.cardActions .postBtn,.secondaryPost{background:#191b1f!important;color:#fff!important;border-color:#191b1f!important}
+.chip{background:#fff;border-color:#fff;color:#333840;box-shadow:0 2px 8px rgba(20,24,30,.035)}
+.chip.active{background:#df1723!important;color:#fff!important;border-color:#df1723!important}
+.card,.panel,.secondaryModule,.statsModule,.xWallModule{border-radius:24px!important;box-shadow:0 6px 18px rgba(20,24,30,.035)!important;border-color:transparent!important}
+.card{overflow:hidden}
+.card .media{border-radius:0;background:#17191d}
+.card:not(.lead) .media{height:220px}
+.card.lead{border-radius:26px!important;overflow:hidden}
+.card h2,.secondaryHead h2,.statsHead h2,.xWallHead h2{letter-spacing:-.035em}
+.badge{border-radius:999px;background:#191b1f;color:#fff;border-color:transparent;padding:7px 11px}
+.rank{background:#df1723;box-shadow:0 3px 12px #df172333}
+.panel h3,.statsCard h3{letter-spacing:.06em}
+.sourceRow{padding:10px 0}
+.secondaryItem{padding:14px 0}
+.secondaryNum{border-radius:50%;background:#191b1f;color:#fff;width:30px;height:30px}
+.statsKpi,.statsCard{border:0!important;border-radius:20px!important;background:#f0f2f5!important}
+.statsKpi b{font-size:28px}
+.statTrack{height:8px;border-radius:99px;background:#d9dde3}
+.statFill{background:#191b1f!important;border-radius:99px;position:relative}
+.statFill:after{content:"";display:block;float:right;width:8px;height:8px;border-radius:50%;background:#df1723}
+.xWallFrame{border-radius:20px!important;border-color:#e6e8ed!important;background:#f4f5f7!important}
+.bsPost,.bsWallMessage{border:0!important;border-radius:20px!important;box-shadow:0 3px 12px rgba(20,24,30,.04)}
+.writerPanel,.postPanel,.waPanel{border-radius:26px!important;border-color:transparent!important}
+.writerHead,.postHead,.waHead{padding:20px 22px}
+.writerField input,.writerField textarea,.writerConfig input,.opinionEntry input,.opinionEntry textarea,.waField input,.cwCartField{border-radius:14px!important;background:#f5f6f8!important;border-color:#e6e8ed!important}
+.writerImagesBox,.writerAsset,.writerSourceBox,.postStoryBox,.waPreview,.opinionEntry{border-radius:18px!important}
+.writerAssetBtn,.waBtn{border-radius:999px!important}
+.writerAssetBtn.download,.waBtn.primary{background:#df1723!important;border-color:#df1723!important;color:#fff!important}
+.toast{border-radius:999px!important}
+/* Cartelera modal receives the same visual language without changing its behavior. */
+.cwCartModal{background:rgba(17,19,23,.45)!important;backdrop-filter:blur(10px)}
+.cwCartPanel{background:#f5f6f8!important;color:#191b1f!important;border:0!important;border-radius:28px!important;box-shadow:0 28px 90px rgba(15,18,24,.22)!important}
+.cwCartHead{background:#fff!important;border-color:#eceef1!important;padding:20px 24px!important}
+.cwCartLogo{background:#df1723!important;color:#fff!important;border-radius:50%!important}
+.cwCartHead h2,.cwCartIntro h3,.cwCartSection h4,.cwCartBody h5{color:#191b1f!important}
+.cwCartHead p,.cwCartIntro p,.cwCartMuted,.cwCartOriginal{color:#747a84!important}
+.cwCartClose{background:#191b1f!important;color:#fff!important;border-color:#191b1f!important;border-radius:999px!important}
+.cwCartLive,.cwCartDownload{background:#df1723!important;color:#fff!important;border-color:#df1723!important;border-radius:999px!important}
+.cwCartLiveStatus{background:#fff!important;color:#565d67!important;border-color:#e4e7ec!important;border-radius:16px!important}
+.cwCartLiveStatus.ok{color:#167a45!important;background:#f0faf4!important;border-color:#d2eddd!important}
+.cwCartLiveStatus.warn{color:#8b6411!important;background:#fff9e9!important;border-color:#f0e1b8!important}
+.cwCartNote{background:#fff8e8!important;color:#765a1d!important;border-color:#f1dfb5!important;border-radius:16px!important}
+.cwCartField{color:#22262c!important}
+.cwCartSources a{background:#fff!important;color:#414750!important;border-color:#e7e9ed!important;border-radius:999px!important}
+.cwCartCard{background:#fff!important;border:0!important;border-radius:18px!important;overflow:hidden;box-shadow:0 4px 14px rgba(20,24,30,.05)}
+.cwCartPoster{background:#e6e8ec!important}
+.cwCartTag{background:#191b1f!important;border-radius:999px!important}
+.cwTrailerPreview{border:0!important;border-radius:14px!important}
+.cwTrailerPlay{border-radius:50%!important;width:38px;height:38px;background:#df1723!important}
+.cwCartEmpty{border-color:#d9dde3!important;border-radius:18px!important;color:#747a84!important}
+.cwCartFoot{border-color:#e5e7eb!important;color:#777e88!important}
+@media(max-width:760px){header{gap:10px}.brand{border-radius:18px}.card:not(.lead) .media{height:200px}.cwCartHead{padding:14px!important}.cwCartPanel{border-radius:20px!important}}
+
 </style>
 </head>
 <body>
@@ -300,7 +430,7 @@ header{padding:4px 0 14px;border-bottom:1px solid #1d2432}
       <div class="writerNote" id="writerEditorialNote">La redacción contrastará las fuentes agrupadas: los datos coincidentes tendrán prioridad y los datos exclusivos se tratarán con cautela.</div>
       <div class="writerGrid">
         <div class="writerField full"><label>Titular</label><input id="writerHeadline" placeholder="Se generará después de la nota…"></div>
-        <div class="writerField full"><label>Nota periodística · 150 palabras</label><textarea id="writerArticle" placeholder="Aquí aparecerá la nota…"></textarea></div>
+        <div class="writerField full"><label>Nota periodística · 250 palabras</label><textarea id="writerArticle" placeholder="Aquí aparecerá la nota…"></textarea></div>
         <div class="writerField full"><label>Meta description · 19 palabras</label><textarea id="writerMeta" rows="2" placeholder="Aquí aparecerá la meta description…"></textarea></div>
         <div class="writerField full"><label>Etiquetas · 5, separadas solamente por comas</label><input id="writerTags" placeholder="Etiqueta 1, Etiqueta 2, Etiqueta 3, Etiqueta 4, Etiqueta 5"></div>
       </div>
@@ -849,7 +979,7 @@ async function generateOpinion(){
   document.getElementById("writerSources").innerHTML=`<span>Aportaciones del usuario</span><span>${esc(research.source)}</span>`;
   const endpoint=document.getElementById("writerEndpoint").value.trim()||`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(document.getElementById("writerModel").value.trim()||"gemini-3.5-flash-lite")}:generateContent`;
   const prompt=`Eres crítico y periodista cultural especializado en cine y series. Escribe una NOTA PERIODÍSTICA DE OPINIÓN original en español latino. El punto de vista debe surgir principalmente de las notas personales del usuario; ordénalas y mejóralas sin borrar su postura. Usa la información de referencia solo para contextualizar datos verificables y no afirmes como hechos datos que no estén respaldados. No finjas haber visto la obra ni inventes escenas, personajes, fechas, reparto o datos de producción. Si la referencia no basta, céntrate en las observaciones del usuario y evita afirmaciones externas dudosas. Diferencia claramente hechos y valoración crítica. No copies textos de la fuente.
-REQUISITOS: headline = título atractivo; article = exactamente 150 palabras; meta = exactamente 19 palabras; tags = exactamente 5 etiquetas en una cadena separada por comas. Español latino, sin Markdown. Devuelve solo JSON válido con headline, article, meta, tags.
+REQUISITOS: headline = título atractivo; article = exactamente 250 palabras; meta = exactamente 19 palabras; tags = exactamente 5 etiquetas en una cadena separada por comas. Español latino, sin Markdown. Devuelve solo JSON válido con headline, article, meta, tags.
 OBRA INGRESADA POR EL USUARIO: ${title}
 TÍTULOS ALTERNATIVOS RECONOCIDOS (inglés/español): ${(research.titleAliases||[title]).join(" / ")}
 Usa estos títulos como nombres de la misma obra; no los confundas con producciones distintas. Conserva el título ingresado por el usuario como referencia principal, salvo que sea necesario mencionar el título oficial alternativo.
@@ -859,13 +989,13 @@ INFORMACIÓN DE REFERENCIA (usar con cautela):
 ${research.source} — ${research.title}
 ${research.content}
 URL: ${research.link}`;
-  const r=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},body:JSON.stringify({systemInstruction:{parts:[{text:"Devuelve exclusivamente JSON válido. No añadas Markdown ni texto fuera del JSON."}]},contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{temperature:.6,maxOutputTokens:1300,responseMimeType:"application/json"}})});
+  const r=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},body:JSON.stringify({systemInstruction:{parts:[{text:"Devuelve exclusivamente JSON válido. No añadas Markdown ni texto fuera del JSON."}]},contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{temperature:.6,maxOutputTokens:1800,responseMimeType:"application/json"}})});
   if(!r.ok){let detail="";try{detail=(await r.json()).error?.message||""}catch{}throw Error("Gemini respondió "+r.status+(detail?": "+detail:""))}
   const j=await r.json(),txt=j.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("")||"",data=JSON.parse(txt.replace(/^```json\s*/i,"").replace(/```$/i,"").trim()),result=data.result||data.output||data;
   const headline=String(result.headline||"").trim(),article=String(result.article||"").trim(),meta=String(result.meta||"").trim(),tags=exactTags(String(result.tags||""));
   document.getElementById("writerHeadline").value=headline;document.getElementById("writerArticle").value=article;document.getElementById("writerMeta").value=meta;document.getElementById("writerTags").value=tags;
   const wc=wordCount(article),mw=wordCount(meta),tc=tags.split(",").filter(Boolean).length;
-  if(wc!==150||mw!==19||tc!==5)writerSetStatus(`Opinión generada, pero revisa los límites: ${wc} palabras en la nota · ${mw} en meta · ${tc} etiquetas. Puedes editar o regenerar.`,"writerError");else writerSetStatus("✓ Opinión validada: 150 palabras · meta de 19 palabras · 5 etiquetas. Buscando imágenes…","writerOk");
+  if(wc!==250||mw!==19||tc!==5)writerSetStatus(`Opinión generada, pero revisa los límites: ${wc} palabras en la nota · ${mw} en meta · ${tc} etiquetas. Puedes editar o regenerar.`,"writerError");else writerSetStatus("✓ Opinión validada: 250 palabras · meta de 19 palabras · 5 etiquetas. Buscando imágenes…","writerOk");
   await findWriterImages();
  }catch(e){writerSetStatus("No se pudo generar la opinión: "+e.message,"writerError")}finally{document.getElementById("generateOpinion").disabled=false}
 }
@@ -883,12 +1013,12 @@ async function generateWithAI(){
  const apiKey=document.getElementById("writerApiKey").value.trim();
  const model=document.getElementById("writerModel").value.trim()||"gemini-3.5-flash-lite";
  if(!apiKey){writerSetStatus("Introduce tu clave API de Gemini en ⚙️ Configuración de IA y pulsa Guardar configuración.","writerError");return}
- const prompt=`Eres editor de un medio digital especializado en cine y series. Redacta una nota periodística ORIGINAL en español latino, basada únicamente en los datos proporcionados por las fuentes. No inventes datos. Trata como hechos especialmente sólidos los datos que coinciden entre dos o más fuentes independientes. Si un dato aparece solo en una fuente, atribúyelo con prudencia o exclúyelo si no es necesario. Si existen contradicciones, no las presentes como hechos confirmados. No copies frases textuales extensas. No atribuyas a una fuente información que solo aparece en otra.\n\nREQUISITOS ESTRICTOS:\n1) article: exactamente 150 palabras, ni una más ni una menos.\n2) headline: titular periodístico claro y atractivo, basado en la nota.\n3) meta: exactamente 19 palabras.\n4) tags: exactamente 5 etiquetas, como una sola cadena separada exclusivamente por comas.\n5) No uses Markdown dentro de los campos.\n6) Devuelve SOLO JSON válido con las claves headline, article, meta, tags.\n\nFUENTES CONSULTADAS:\n${contexts.map((c,i)=>`FUENTE ${i+1}: ${c.source}\nTÍTULO: ${c.title}\nESTADO: ${c.fetched?"Artículo original consultado":"Información disponible en el feed"}\nCONTENIDO: ${c.content}\nURL: ${c.link}`).join("\n\n")}\n\nREGLA EDITORIAL: identifica qué datos están respaldados por varias fuentes y cuáles son exclusivos de una sola. Prioriza los datos coincidentes.`;
+ const prompt=`Eres editor de un medio digital especializado en cine y series. Redacta una nota periodística ORIGINAL en español latino, basada únicamente en los datos proporcionados por las fuentes. No inventes datos. Trata como hechos especialmente sólidos los datos que coinciden entre dos o más fuentes independientes. Si un dato aparece solo en una fuente, atribúyelo con prudencia o exclúyelo si no es necesario. Si existen contradicciones, no las presentes como hechos confirmados. No copies frases textuales extensas. No atribuyas a una fuente información que solo aparece en otra.\n\nREQUISITOS ESTRICTOS:\n1) article: exactamente 250 palabras, ni una más ni una menos.\n2) headline: titular periodístico claro y atractivo, basado en la nota.\n3) meta: exactamente 19 palabras.\n4) tags: exactamente 5 etiquetas, como una sola cadena separada exclusivamente por comas.\n5) No uses Markdown dentro de los campos.\n6) Devuelve SOLO JSON válido con las claves headline, article, meta, tags.\n\nFUENTES CONSULTADAS:\n${contexts.map((c,i)=>`FUENTE ${i+1}: ${c.source}\nTÍTULO: ${c.title}\nESTADO: ${c.fetched?"Artículo original consultado":"Información disponible en el feed"}\nCONTENIDO: ${c.content}\nURL: ${c.link}`).join("\n\n")}\n\nREGLA EDITORIAL: identifica qué datos están respaldados por varias fuentes y cuáles son exclusivos de una sola. Prioriza los datos coincidentes.`;
  writerSetStatus("La IA está redactando y verificando las cantidades…");
  document.getElementById("writerGenerate").disabled=true;document.getElementById("writerRegenerate").disabled=true;
  try{
    const geminiEndpoint=endpoint||`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
-   const r=await fetch(geminiEndpoint,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":apiKey},body:JSON.stringify({systemInstruction:{parts:[{text:"Devuelve exclusivamente JSON válido. No añadas Markdown ni texto fuera del JSON."}]},contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{temperature:0.55,maxOutputTokens:1200,responseMimeType:"application/json"}})});
+   const r=await fetch(geminiEndpoint,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":apiKey},body:JSON.stringify({systemInstruction:{parts:[{text:"Devuelve exclusivamente JSON válido. No añadas Markdown ni texto fuera del JSON."}]},contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{temperature:0.55,maxOutputTokens:1800,responseMimeType:"application/json"}})});
    if(!r.ok){let detail="";try{detail=(await r.json()).error?.message||""}catch{} throw Error("Gemini respondió "+r.status+(detail?": "+detail:""));}
    const j=await r.json();
    const txt=j.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("")||"";
@@ -901,8 +1031,8 @@ async function generateWithAI(){
    document.getElementById("writerMeta").value=meta;
    document.getElementById("writerTags").value=tags;
    const wc=wordCount(article), mw=wordCount(meta), tc=tags.split(",").filter(Boolean).length;
-   if(wc!==150||mw!==19||tc!==5){writerSetStatus(`Generado, pero requiere ajuste: ${wc} palabras en la nota · ${mw} en meta · ${tc} etiquetas. Pulsa Regenerar.`,"writerError");}
-   else {writerSetStatus("✓ Redacción validada: 150 palabras · meta de 19 palabras · 5 etiquetas.","writerOk");setTimeout(findWriterImages,120);}
+   if(wc!==250||mw!==19||tc!==5){writerSetStatus(`Generado, pero requiere ajuste: ${wc} palabras en la nota · ${mw} en meta · ${tc} etiquetas. Pulsa Regenerar.`,"writerError");}
+   else {writerSetStatus("✓ Redacción validada: 250 palabras · meta de 19 palabras · 5 etiquetas.","writerOk");setTimeout(findWriterImages,120);}
  }catch(e){writerSetStatus("No se pudo generar: "+e.message,"writerError")}finally{document.getElementById("writerGenerate").disabled=false;document.getElementById("writerRegenerate").disabled=false}
 }
 function imageCategoryLabel(story){
