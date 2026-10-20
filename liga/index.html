@@ -604,33 +604,42 @@ function teamLogoFromStandings(teamName){
 }
 
 function localPlayerPhoto(name){
- const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+ // Única fuente de fotos: archivos estáticos publicados en Apps/liga/fotos/.
+ // Normaliza nombres completos, acentos, apodos y sufijos del equipo.
+ const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\([^)]*\)/g,' ').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
  const n=norm(name);
- const photos={
-  'raphinha':'raphinha.jpg','raphinha dias':'raphinha.jpg','raphael dias belloli':'raphinha.jpg',
-  'lamine yamal':'lamine-yamal.jpg','lamine yamal nasraoui ebana':'lamine-yamal.jpg',
-  'sergio camello':'sergio-camello.jpg','sergio camello perez':'sergio-camello.jpg',
-  'yassir zabiri':'yassir-zabiri.jpg','zabiri':'yassir-zabiri.jpg','yassir zabiri (racing santander)':'yassir-zabiri.jpg',
-  'kylian mbappe':'kylian-mbappe.jpg','kylian mbappe lottin':'kylian-mbappe.jpg',
-  'roberto fernandez':'roberto-fernandez.jpg','roberto fernandez jaen':'roberto-fernandez.jpg',
-  'ante budimir':'ante-budimir.jpg',
-  'pierre emerick aubameyang':'pierre-emerick-aubameyang.jpg','aubameyang':'pierre-emerick-aubameyang.jpg',
-  'fernando nino':'fernando-nino.jpg','fernando nino rodriguez':'fernando-nino.jpg',
-  'alex baena':'alex-baena.jpg','alexander baena':'alex-baena.jpg','alex b':'alex-baena.jpg',
-  'lucas boye':'lucas-boye.jpg',
-  'fermin lopez':'fermin-lopez.jpg','fermin lopez marin':'fermin-lopez.jpg',
-  'mariano diaz':'mariano-diaz.jpg','mariano diaz mejia':'mariano-diaz.jpg',
-  'maguette gueye':'maguette-gueye.jpg','gueye':'maguette-gueye.jpg',
-  'luka sucic':'luka-sucic.jpg',
-  'jude bellingham':'jude-bellingham.jpg',
-  'roger brugue':'roger-brugue.jpg','roger brugue ayguade':'roger-brugue.jpg',
-  'jonathan david':'jonathan-david.jpg','jonathan christian david':'jonathan-david.jpg',
-  'miguel sierra':'miguel-sierra.jpg','miguel sierra garcia':'miguel-sierra.jpg',
-  'alvaro garcia':'alvaro-garcia.jpg','alvaro garcia rivera':'alvaro-garcia.jpg','alvaro garcia (rayo vallecano)':'alvaro-garcia.jpg'
- };
- if(photos[n])return 'https://g4tio.github.io/Apps/liga/fotos/'+photos[n];
- for(const [alias,file] of Object.entries(photos)){
-  if(alias.length>=7&&(n.includes(alias)||alias.includes(n)))return 'https://g4tio.github.io/Apps/liga/fotos/'+file;
+ const base='https://g4tio.github.io/Apps/liga/fotos/';
+ const entries=[
+  [['raphinha','raphael dias belloli','raphinha dias','rafael dias belloli'],'raphinha.jpg'],
+  [['lamine yamal','lamine yamal nasraoui ebana','yamal'],'lamine-yamal.jpg'],
+  [['kylian mbappe','kylian mbappe lottin','mbappe'],'kylian-mbappe.jpg'],
+  [['ante budimir','budimir'],'ante-budimir.jpg'],
+  [['sergio camello','sergio camello perez','camello'],'sergio-camello.jpg'],
+  [['yassir zabiri','zabiri'],'yassir-zabiri.jpg'],
+  [['roberto fernandez','roberto fernandez jaen'],'roberto-fernandez.jpg'],
+  [['pierre emerick aubameyang','pierre emerick aubameyang','aubameyang'],'pierre-emerick-aubameyang.jpg'],
+  [['fernando nino','fernando nino rodriguez','nino'],'fernando-nino.jpg'],
+  [['alex baena','alexander baena','alex b'],'alex-baena.jpg'],
+  [['lucas boye','boye'],'lucas-boye.jpg'],
+  [['fermin lopez','fermin lopez marin','fermin'],'fermin-lopez.jpg'],
+  [['mariano diaz','mariano diaz mejia'],'mariano-diaz.jpg'],
+  [['maguette gueye','gueye'],'maguette-gueye.jpg'],
+  [['luka sucic','sucic'],'luka-sucic.jpg'],
+  [['jude bellingham','bellingham'],'jude-bellingham.jpg'],
+  [['roger brugue','roger brugue ayguade','brugue'],'roger-brugue.jpg'],
+  [['jonathan david','jonathan christian david'],'jonathan-david.jpg'],
+  [['miguel sierra','miguel sierra garcia'],'miguel-sierra.jpg'],
+  [['alvaro garcia','alvaro garcia rivera'],'alvaro-garcia.jpg']
+ ];
+ // Preferencia por coincidencia exacta o de nombre completo normalizado.
+ for(const [aliases,file] of entries){
+  const normalized=aliases.map(norm);
+  if(normalized.includes(n)||normalized.some(a=>n.startsWith(a+' ')||n.endsWith(' '+a)))return base+file;
+ }
+ // Si el proveedor agrega el nombre del equipo o un segundo apellido, intenta
+ // reconocer una de las variantes explícitas sin usar servicios externos.
+ for(const [aliases,file] of entries){
+  if(aliases.some(alias=>{const a=norm(alias);return a.length>=6&&(n.includes(a)||a.includes(n));}))return base+file;
  }
  return '';
 }
@@ -786,7 +795,7 @@ async function loadScorers(){
  }
  window.scorersDataSource=source||'sin fuente disponible';
  renderScorers(players);
- if(players.length)$('scorersSource').textContent='Fuente: '+source+'. Se muestran los seis primeros; las fotos dependen de los datos disponibles en la fuente.';
+ if(players.length)$('scorersSource').textContent='Fuente de estadísticas: '+source+'. Fotografías: exclusivamente archivos de https://g4tio.github.io/Apps/liga/fotos/. Si no existe una coincidencia local, no se consulta ninguna fuente externa de imágenes.';
  else $('scorersSource').textContent='No fue posible obtener un ranking válido de LaLiga ni de ESPN. No se muestran datos inventados. Pulsa Actualizar para reintentar.';
 }
 
