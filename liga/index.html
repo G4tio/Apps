@@ -675,6 +675,38 @@ function teamLogoFromStandings(teamName){
  return '';
 }
 
+function localPlayerPhoto(name){
+ const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+ const n=norm(name);
+ const photos={
+  'raphinha':'raphinha.jpg','raphinha dias':'raphinha.jpg','raphael dias belloli':'raphinha.jpg',
+  'lamine yamal':'lamine-yamal.jpg','lamine yamal nasraoui ebana':'lamine-yamal.jpg',
+  'sergio camello':'sergio-camello.jpg','sergio camello perez':'sergio-camello.jpg',
+  'yassir zabiri':'yassir-zabiri.jpg','zabiri':'yassir-zabiri.jpg',
+  'kylian mbappe':'kylian-mbappe.jpg','kylian mbappe lottin':'kylian-mbappe.jpg',
+  'roberto fernandez':'roberto-fernandez.jpg','roberto fernandez jaen':'roberto-fernandez.jpg',
+  'ante budimir':'ante-budimir.jpg',
+  'pierre emerick aubameyang':'pierre-emerick-aubameyang.jpg','aubameyang':'pierre-emerick-aubameyang.jpg',
+  'fernando nino':'fernando-nino.jpg','fernando nino rodriguez':'fernando-nino.jpg',
+  'alex baena':'alex-baena.jpg','alexander baena':'alex-baena.jpg','alex b':'alex-baena.jpg',
+  'lucas boye':'lucas-boye.jpg',
+  'fermin lopez':'fermin-lopez.jpg','fermin lopez marin':'fermin-lopez.jpg',
+  'mariano diaz':'mariano-diaz.jpg','mariano diaz mejia':'mariano-diaz.jpg',
+  'maguette gueye':'maguette-gueye.jpg','gueye':'maguette-gueye.jpg',
+  'luka sucic':'luka-sucic.jpg',
+  'jude bellingham':'jude-bellingham.jpg',
+  'roger brugue':'roger-brugue.jpg','roger brugue ayguade':'roger-brugue.jpg',
+  'jonathan david':'jonathan-david.jpg','jonathan christian david':'jonathan-david.jpg',
+  'miguel sierra':'miguel-sierra.jpg',
+  'alvaro garcia':'alvaro-garcia.jpg','alvaro garcia rivera':'alvaro-garcia.jpg'
+ };
+ if(photos[n])return './fotos/'+photos[n];
+ for(const [alias,file] of Object.entries(photos)){
+  if(alias.length>=7&&(n.includes(alias)||alias.includes(n)))return './fotos/'+file;
+ }
+ return '';
+}
+
 function renderScorers(players){
  const featured=$('scorersFeatured'),list=$('scorersNextFive');featured.innerHTML='';if(list)list.innerHTML='';
  if(!players.length){featured.innerHTML='<div class="scorers-status">No se pudo obtener un ranking de goleadores válido. Intenta actualizar más tarde.</div>';$('scorersSource').textContent='LaLiga Pulse no recibió datos verificables. No se muestran cifras inventadas.';return}
@@ -685,6 +717,10 @@ function renderScorers(players){
   let photoCandidates=[];let photoIndex=0;
   const tryNextPhoto=()=>{if(photoIndex<photoCandidates.length){img.classList.remove('photo-missing');img.alt='Fotografía de '+p.name;img.src=photoCandidates[photoIndex++]}else{img.removeAttribute('src');img.alt='';img.classList.add('photo-missing')}};
   img.onload=()=>img.classList.remove('photo-missing');img.onerror=()=>tryNextPhoto();
+  // Las fotos locales de ./fotos/ tienen prioridad: ya están guardadas en el repositorio
+  // y no dependen de servicios externos ni de permisos de otras webs.
+  const localPhoto=localPlayerPhoto(p.name);
+  if(localPhoto)photoCandidates.push(localPhoto);
   const suppliedPhoto=typeof p.photo==='string'?p.photo:(p.photo?.href||'');
   if(suppliedPhoto)photoCandidates.push(suppliedPhoto);
   findPlayerPhotos(p.name).then(urls=>{if(!card.isConnected)return;photoCandidates=[...new Set([...urls,...photoCandidates])];if(!img.getAttribute('src'))tryNextPhoto()}).catch(()=>{});
