@@ -1,1 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ff5b24">
+<title>LaLiga Pulse | Todo el fútbol español</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+:root{--bg:#0c0c0c;--panel:#101010;--cream:#ffd1bd;--red:#e62f40;--orange:#ff8737;--line:#8e4b2c;--muted:#929090;--blue:#1c2030}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 0 7%,#572313 0,transparent 30%),radial-gradient(ellipse at 100% 70%,#5a2413 0,transparent 28%),#0b0b0b;color:var(--cream);font-family:'Share Tech Mono',monospace;min-height:100vh}
+.app{width:min(100%,900px);margin:auto;padding:24px clamp(14px,5vw,44px) 30px}
+header{height:176px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;justify-content:center;gap:18px;min-width:0}
+.brand img{width:88px;height:96px;object-fit:contain}
+.brandname{font-size:clamp(21px,4.5vw,43px);letter-spacing:1px;white-space:nowrap}
+.card{position:relative;background:rgba(12,12,12,.96);border:3px solid var(--line);border-radius:34px;margin:14px 0 16px;padding:21px 30px;box-shadow:0 0 17px #8b3d1d40,inset 0 0 0 1px #3b251c;overflow:hidden}
+.cardhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}
+h2{font-size:clamp(22px,4vw,36px);font-weight:500;line-height:1.05;margin:0}
+.index{font-size:20px;white-space:nowrap;color:var(--orange)}
+.dot{display:inline-block;width:15px;height:15px;border-radius:50%;background:var(--red);margin-right:8px;box-shadow:0 0 12px currentColor}
+.scoreline{display:grid;grid-template-columns:1fr 1.45fr 1fr;align-items:center;text-align:center;gap:8px}
+.team{display:flex;align-items:center;flex-direction:column;min-width:0}
+.team img{width:clamp(64px,12vw,110px);height:clamp(64px,12vw,110px);object-fit:contain}
+.teamname{font-family:Rajdhani,sans-serif;font-size:clamp(20px,4vw,32px);font-weight:600;margin-top:8px;color:var(--cream)}
+.score{font-size:clamp(65px,12vw,110px);display:flex;justify-content:center;align-items:center;gap:12px;line-height:1}
+.score .home{color:var(--red)}.score .away{color:var(--orange)}.score .dash{color:var(--cream);font-size:.5em}
+.scorers{display:flex;justify-content:space-between;gap:16px;margin-top:12px;color:#e84a55;font-family:Rajdhani,sans-serif;font-size:clamp(16px,3vw,24px);line-height:1.15}
+.scorers span{max-width:48%}
+.goal-scorers{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:17px;padding-top:14px;border-top:1px solid #5c3527}
+.goal-team{min-width:0}
+.goal-team-title{font-size:14px;color:var(--orange);letter-spacing:1px;margin-bottom:7px}
+.goal-team ul{list-style:none;padding:0;margin:0;color:var(--cream);font-family:Rajdhani,sans-serif;font-size:19px;line-height:1.35}
+.goal-team li{margin:2px 0}
+.goal-team li span{color:var(--red);font-family:'Share Tech Mono',monospace;font-size:15px;margin-left:5px}
+.goal-empty{color:#999;font-size:15px}
+@media(max-width:520px){.status{padding:15px;gap:12px}.status button{width:100%;min-width:0}.goal-scorers{gap:10px}.goal-team-title{font-size:12px}.goal-team ul{font-size:16px}.goal-team li span{font-size:13px}}
 
+.news-source small{color:#a89a91;font-size:11px}
+
+.video{padding:0;background:#191b25}
+.videoart{height:auto;aspect-ratio:16/9;position:relative;background:#000;display:block;overflow:hidden}
+.videoart iframe{display:block;width:100%;height:100%;border:0;min-height:200px}
+.videoart:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#111 0%,transparent 36%),#1114}
+.play{z-index:1;border:2px solid var(--red);background:#171313e8;color:var(--red);width:94px;height:94px;border-radius:50%;font-size:42px;cursor:pointer;box-shadow:0 0 20px #e62f4050}
+.playlabel{position:absolute;z-index:1;top:calc(50% + 48px);font-size:22px;color:var(--orange)}
+.videocaption{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 28px;font-size:clamp(15px,2.7vw,25px);color:#fff}
+.videocaption a{color:#fff;text-decoration:none;white-space:nowrap;font-family:Arial,sans-serif;font-weight:bold}
+.nextinfo{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.kickoff{font-size:clamp(23px,5vw,42px);color:var(--orange);white-space:nowrap}
+.kickoff span{color:var(--cream)}
+.fixtureteams{display:flex;gap:16px;align-items:center;justify-content:flex-end}
+.fixtureteams img{width:64px;height:64px;object-fit:contain}
+.week{display:flex;gap:8px;margin-top:18px;text-align:center;color:#aaa;font-size:clamp(16px,3vw,24px);overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#ff5b24 #eee;padding-bottom:7px;max-width:100%;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.day{flex:0 0 88px;min-width:88px;padding:8px 3px;border-radius:16px;cursor:pointer;line-height:1.45}
+.day strong{display:block;color:var(--cream);font-weight:500;font-size:1.12em}
+.day.active{background:#532714;color:var(--orange);box-shadow:0 0 18px #f47c2830}
+.day.active strong{color:var(--orange)}
+.tablecard{padding-top:15px;padding-bottom:15px}
+.league-card{padding-top:15px;padding-bottom:14px}
+.league-summary{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:7px 0 12px;font-family:Rajdhani,sans-serif;font-size:20px;color:var(--red);font-weight:700}
+.league-summary .points{margin-left:auto}
+.league-scroll{max-height:280px;overflow:auto;border-top:1px solid #573523;scrollbar-width:thin;scrollbar-color:#9c5732 #17100d;overscroll-behavior:contain}
+.league-table{width:100%;border-collapse:collapse;min-width:410px;font-family:Rajdhani,sans-serif;font-size:17px}
+.league-table th{position:sticky;top:0;background:#17110e;color:var(--orange);font-family:'Share Tech Mono',monospace;font-weight:400;font-size:13px;text-align:right;padding:9px 8px;border-bottom:1px solid #71432c;z-index:1}
+.league-table th:nth-child(2),.league-table td:nth-child(2){text-align:left}
+.league-table td{text-align:right;padding:8px;border-bottom:1px solid #302018;color:#e7d0c7;white-space:nowrap}
+.league-table tbody tr:last-child td{border-bottom:0}
+.league-table tbody tr.barca-row{background:#382019}
+.league-table tbody tr.barca-row td{color:#ff4b5b;font-weight:700}
+.league-table .club{display:flex;align-items:center;gap:8px;min-width:155px}
+.league-table .club img{width:24px;height:24px;object-fit:contain}
+.league-table .pos{text-align:center;color:#aaa}
+.league-table td[colspan]{text-align:center;color:#aaa;padding:18px}
+
+.tablecard .cardhead{margin-bottom:4px}
+.standing{display:flex;align-items:center;gap:12px;font-family:Rajdhani,sans-serif;font-size:clamp(21px,4vw,34px);color:var(--red);font-weight:700;line-height:1.2}
+.standing img{width:48px;height:48px;object-fit:contain}
+.points{margin-left:auto;color:var(--orange);white-space:nowrap;font-family:'Share Tech Mono',monospace;font-size:clamp(24px,4.5vw,38px)}
+.status{font-size:13px;color:#aaa;text-align:center;margin:22px 0 0}
+.error{color:#ffb6a6}
+.video-modal{display:none;position:fixed;inset:0;z-index:1000;background:#000e;align-items:center;justify-content:center;padding:16px}
+.video-modal.open{display:flex}
+.video-dialog{width:min(920px,100%);background:#111;border:2px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 0 35px #000}
+.video-close{display:block;margin-left:auto;background:transparent;border:0;color:var(--cream);font-size:34px;cursor:pointer}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000}
+.video-frame iframe{width:100%;height:100%;border:0}
+.video-dialog p{color:#aaa;font-size:13px;margin:10px 2px 0}
+@media(max-width:520px){.app{padding:8px 12px 20px}header{height:125px}.brand{gap:8px}.brand img{width:58px;height:66px}.brandname{font-size:clamp(17px,4vw,23px)}.iconbtn{font-size:25px}.card{border-radius:25px;padding:16px 16px;margin:11px 0 13px;border-width:2px}.cardhead{margin-bottom:15px} .team img{width:61px;height:61px}.teamname{font-size:19px}.score{font-size:65px;gap:7px}.scorers{font-size:16px}.fixtureteams img{width:44px;height:44px}.nextinfo{grid-template-columns:1fr}.fixtureteams{position:absolute;right:15px;top:55px}.kickoff{margin-top:12px}.week{gap:5px;font-size:16px}.day{flex-basis:72px;min-width:72px}.videocaption{padding:10px 15px}.standing{gap:7px;font-size:22px}.standing img{width:35px;height:35px}.points{font-size:23px}.index{font-size:15px}.dot{width:11px;height:11px}}
+
+.news-media-link{display:block;min-width:0;overflow:hidden;border-radius:10px;background:#101a2a}
+.news-thumb,.news-video-preview{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border:0;background:#101a2a}
+.news-video-preview{pointer-events:auto}
+
+/* ===== Barça Pulse · rediseño editorial blaugrana ===== */
+:root{
+ --bg:#080b16;--panel:#111626;--cream:#f6f4f5;--red:#a50044;--orange:#ed1c5b;
+ --line:#164a9a;--muted:#a7adbd;--blue:#004d98;--blau:#004d98;--claret:#a50044;
+}
+html{scroll-behavior:smooth}
+body{
+ background:
+  linear-gradient(135deg,transparent 0 17%,#004d9818 17.1% 19%,transparent 19.1% 74%,#a5004417 74.1% 76%,transparent 76.1%),
+  radial-gradient(ellipse at 4% 2%,#a5004438 0,transparent 28%),
+  radial-gradient(ellipse at 100% 35%,#004d9838 0,transparent 33%),#080b16;
+ color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-size:18px;
+}
+body:before,body:after{content:"";position:fixed;pointer-events:none;z-index:-1;width:190px;height:430px;opacity:.55;transform:skewY(-35deg);
+ background:repeating-linear-gradient(135deg,transparent 0 17px,#004d9840 18px 27px,transparent 28px 44px)}
+body:before{left:-125px;top:18vh}
+body:after{right:-135px;bottom:3vh;background:repeating-linear-gradient(135deg,transparent 0 17px,#a5004445 18px 27px,transparent 28px 44px)}
+.app{width:min(100%,1120px);padding:24px clamp(16px,5vw,58px) 48px;position:relative}
+header{height:auto;min-height:122px;padding:18px 0 25px;border-bottom:1px solid #ffffff18;margin-bottom:24px;position:relative}
+header:after{content:"";position:absolute;bottom:-2px;left:0;width:110px;height:4px;background:linear-gradient(90deg,var(--claret),var(--blue))}
+.iconbtn{color:#fff;font-family:'Oswald',sans-serif;font-size:24px;transition:color .2s}
+.brand{gap:15px;justify-content:flex-start}
+.brand img{width:66px;height:74px;filter:drop-shadow(0 8px 12px #0008)}
+.brand-copy{display:flex;flex-direction:column;gap:3px}
+.brandname{font-family:'Oswald',sans-serif;font-size:clamp(23px,4.2vw,42px);font-weight:700;letter-spacing:2px;line-height:1;text-transform:uppercase}
+.brand-tagline{font-family:'Space Mono',monospace;font-size:clamp(8px,1.4vw,11px);letter-spacing:1.5px;color:#aebbd3}
+.card{
+ border:1px solid #2a3654;border-radius:2px;background:linear-gradient(145deg,#111626f5,#0d1120f8);
+ margin:22px 0 30px;padding:clamp(20px,3.5vw,36px);box-shadow:0 22px 45px #0005,inset 4px 0 0 #a50044;overflow:hidden;
+}
+.card:before{content:"";position:absolute;top:0;right:0;width:90px;height:6px;background:linear-gradient(90deg,var(--claret),var(--blue))}
+.cardhead{align-items:flex-start;margin-bottom:26px;gap:14px}
+h2{font-family:'Oswald',sans-serif;font-size:clamp(27px,4.2vw,48px);font-weight:600;letter-spacing:1px;line-height:.98;text-transform:uppercase;max-width:65%}
+.index{font-family:'Space Mono',monospace;font-size:14px;color:#b7c5e4;display:flex;align-items:center;gap:8px;padding-top:5px}
+.dot{background:#ed1c5b!important;box-shadow:0 0 14px #ed1c5b80;width:11px;height:11px;margin-right:0}
+.news-card{background:linear-gradient(145deg,#101525f5,#0b0f1cfa);box-shadow:0 22px 55px #0008,inset 4px 0 0 #004d98}
+.news-source{flex-wrap:wrap;justify-content:flex-end}
+.news-source small{font-family:'Space Mono',monospace;color:#9eaed0;font-size:10px;letter-spacing:1px}
+.news-refresh{font-family:'Oswald',sans-serif;letter-spacing:1.3px;text-transform:uppercase;background:var(--claret);color:white;border:1px solid #d52866;border-radius:0;padding:10px 16px;transition:background .2s,transform .2s}
+.news-refresh:hover{background:#004d98;transform:translateY(-2px)}
+.news-list{grid-template-columns:1fr;gap:0}
+.news-item{grid-template-columns:minmax(120px,30%) 1fr;gap:clamp(14px,2.8vw,26px);padding:18px 0;border-bottom:1px solid #28334d;align-items:center}
+.news-item:first-child{padding-top:0}
+.news-item:last-child{padding-bottom:0}
+.news-media-link{border-radius:0;position:relative;box-shadow:8px 8px 0 #004d9838}
+.news-media-link:after{content:"";position:absolute;inset:0;border:1px solid #ffffff20;pointer-events:none}
+.news-thumb,.news-video-preview{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:0;min-height:100px;transition:transform .3s}
+.news-item:hover .news-title{font-family:'Oswald',sans-serif;font-size:clamp(20px,2.8vw,30px);font-weight:600;line-height:1.12;letter-spacing:.1px;color:#f5f3f6;margin:5px 0 9px}
+.news-meta{font-family:'Space Mono',monospace;font-size:clamp(9px,1.3vw,11px);letter-spacing:1.1px;color:#f04c80;margin-bottom:6px}
+.news-desc{font-family:'Barlow Condensed',sans-serif;font-size:clamp(16px,2vw,21px);line-height:1.25;color:#b9c0d0}
+.news-item a:hover .news-title{color:#ff4c82}
+.status{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1px;line-height:1.7;color:#9aa6c0;margin:24px 0 0;padding:18px 20px;background:linear-gradient(120deg,#111827 0%,#0b0e19 72%);border:1px solid #29344d;border-left:4px solid #a50044;border-radius:12px;box-shadow:0 12px 30px #0003}
+.status-copy{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}
+.status-label{display:flex;align-items:center;gap:8px;color:#f4dce7;font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:1.2px;text-transform:uppercase}
+.status-dot{width:7px;height:7px;display:inline-block;border-radius:50%;background:#20c997;box-shadow:0 0 10px #20c99788}
+.status-detail{color:#8f9ab2}
+.status button{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:180px;background:linear-gradient(135deg,#b0004a,#850039);color:#fff;border:1px solid #ed2b73;border-radius:7px;padding:13px 20px;font-family:'Oswald',sans-serif;font-size:17px;letter-spacing:1.4px;text-transform:uppercase;cursor:pointer;box-shadow:0 7px 18px #a5004433;transition:transform .2s,box-shadow .2s,filter .2s}
+.status button:hover{transform:translateY(-2px);box-shadow:0 10px 24px #a5004455;filter:brightness(1.12)}
+.status button:disabled{opacity:.65;cursor:wait;transform:none}
+.scoreline{gap:12px}
+.team img{filter:drop-shadow(0 8px 12px #0006)}
+.teamname{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.5px}
+.score{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:-2px}
+.score .home{color:#f04c80}.score .away{color:#4d8ee8}
+.scorers{font-family:'Barlow Condensed',sans-serif;color:#f04c80}
+.goal-scorers{border-top:1px solid #293653}
+.goal-team-title{font-family:'Space Mono',monospace;color:#4d8ee8;letter-spacing:1.2px}
+.goal-team ul{font-family:'Barlow Condensed',sans-serif}
+.goal-team li span{font-family:'Space Mono',monospace;color:#f04c80}
+.video{padding:0;background:#0b1020;box-shadow:0 22px 45px #0005,inset 4px 0 0 #a50044}
+.videoart{background:#050711}
+.videoart:after{background:linear-gradient(0deg,#080b16 0%,transparent 36%),#004d9814}
+.videocaption{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.8px}
+.videocaption a{font-family:'Space Mono',monospace;font-size:12px;color:#f04c80}
+.kickoff{font-family:'Oswald',sans-serif;color:#4d8ee8}
+.week{font-family:'Barlow Condensed',sans-serif}
+.day{border-radius:0; font:inherit; text-align:center; width:100%; background:#fff; cursor:pointer}
+.day:focus-visible{outline:2px solid #ff5b24;outline-offset:2px}
+.day.active{background:#a5004430;color:#ff4c82;box-shadow:inset 0 -3px #ed1c5b}
+.day.active strong{color:#ff4c82}
+.league-summary,.standing{font-family:'Oswald',sans-serif;color:#ff4c82;text-transform:uppercase}
+.points{font-family:'Space Mono',monospace;color:#4d8ee8}
+.league-scroll{border-top:1px solid #283653;scrollbar-color:#a50044 #101626}
+.league-table{font-family:'Barlow Condensed',sans-serif;font-size:18px}
+.league-table th{background:#111626;color:#8eb8f0;font-family:'Space Mono',monospace;border-bottom:1px solid #31486f}
+.league-table td{border-bottom:1px solid #202b42;color:#d7dce8}
+.league-table tbody tr.barca-row{background:#a5004426}
+.league-table tbody tr.barca-row td{color:#ff4c82}
+.video-modal{background:#050711ed}
+.video-dialog{background:#101626;border:1px solid #2d4672;border-radius:2px}
+.video-close{color:#ff4c82}
+.error{color:#ff9bbd}
+@media(min-width:760px){
+ .news-list{grid-template-columns:1fr}
+ .news-item{min-height:160px}
+ .news-card .cardhead{margin-bottom:28px}
+}
+@media(max-width:600px){
+ .app{padding:8px 14px 26px}
+ header{min-height:94px;padding:12px 0 18px}
+ .brand{gap:9px}.brand img{width:48px;height:55px}
+ .brandname{font-size:22px;letter-spacing:1px}
+ .brand-tagline{font-size:8px;letter-spacing:.7px}
+ .card{padding:19px 16px;margin:16px 0 21px;border-radius:0}
+ .cardhead{align-items:flex-start;flex-wrap:wrap;margin-bottom:20px}
+ h2{font-size:clamp(26px,7vw,36px);max-width:100%}
+ .news-source{width:100%;justify-content:space-between}
+ .news-item{grid-template-columns:112px minmax(0,1fr);gap:12px;padding:15px 0}
+ .news-thumb,.news-video-preview{min-height:86px;aspect-ratio:4/3}
+ .news-title{font-size:20px}
+ .news-desc{font-size:16px}
+ .news-meta{font-size:9px;letter-spacing:.3px}
+ .news-refresh{padding:8px 10px;font-size:12px}
+ .status{font-size:9px}
+ .score{font-size:clamp(50px,15vw,70px)}
+ .team img{width:58px;height:58px}
+ .teamname{font-size:17px}
+ .goal-team ul{font-size:16px}
+ .fixtureteams img{width:43px;height:43px}
+}
+@media(max-width:380px){
+ .news-item{grid-template-columns:92px minmax(0,1fr);gap:10px}
+ .news-title{font-size:18px}
+ .news-desc{font-size:15px}
+ .news-source small{font-size:8px}
+}
+
+.highlight-stage{position:relative;aspect-ratio:16/9;height:auto;min-height:0;background:#070b16}
+.highlight-cover{display:block;position:absolute;inset:0;color:white;text-decoration:none;overflow:hidden;background:linear-gradient(135deg,#a50044,#004d98)}
+.highlight-cover img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s,opacity .35s}
+.highlight-cover:hover img{transform:scale(1.025);opacity:.9}
+.highlight-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;display:grid;place-items:center;border-radius:50%;background:#a50044e8;border:2px solid #fff;color:#fff;font:32px Arial,sans-serif;padding-left:5px;box-shadow:0 5px 25px #0008}
+.highlight-runtime{position:absolute;right:12px;bottom:12px;background:#000c;border-radius:4px;padding:5px 8px;color:white;font:13px 'Space Mono',monospace}
+@media(max-width:600px){.highlight-play{width:58px;height:58px;font-size:24px}}
+
+ .hub-panel .cardhead h2{font-size:clamp(22px,7vw,34px)}
+}
+
+.news-thumb{display:block;min-height:78px;content-visibility:auto}
+.news-item{contain:content}
+.news-loading{min-height:72px}
+
+.highlight-stage{position:relative;overflow:hidden;aspect-ratio:16/9;width:100%;background:#050812;border-radius:8px}
+.highlight-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.highlight-stage.is-playing{aspect-ratio:16/9}
+.highlight-stage.is-playing .highlight-cover{display:none}
+.highlight-fallback{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:8px 12px;background:linear-gradient(transparent,#000d);color:#fff;font-size:12px;pointer-events:none;opacity:.9}
+.highlight-fallback a{color:#fff;font-weight:700;pointer-events:auto;text-decoration:underline;margin-left:5px}
+.highlight-cover{cursor:pointer}
+
+.official-footer{margin:28px 0 0;border-top:1px solid #653821;padding:25px 12px 18px;background:linear-gradient(135deg,#120b11,#0c101b);text-align:center}
+.footer-inner{max-width:820px;margin:0 auto}
+.footer-heading{font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:3px;color:#f7e5dc;font-size:clamp(21px,4vw,29px)}
+.official-site{display:inline-block;margin:14px 0 17px;padding:10px 16px;border:1px solid #e62f40;border-radius:3px;color:#fff;text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.6px}
+.official-site:hover{background:#e62f4022}
+.official-socials{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:9px 20px}
+.official-socials a{font-family:'Space Mono',monospace;font-size:12px;color:#d7c6c1;text-decoration:none}
+.official-socials a:hover{color:#ff8737}
+.footer-note{margin-top:20px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#88818a}
+@media(max-width:480px){.official-footer{padding:22px 8px 16px}.official-socials{gap:12px 16px}.official-socials a{font-size:11px}}
+
+.x-highlights-panel{margin:0 14px 15px}.x-embed-wrap{height:360px}.highlight-kicker{font-size:8px}}
+
+@media(max-width:520px){.barca-play-panel{margin:0 14px 15px}.barca-play-frame-wrap{height:360px}.highlight-sources{flex-wrap:wrap}.highlight-source{min-width:30%}}
+
+
+#highlightPlayer{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
+
+
+.highlight-status{padding:8px 24px 0;color:var(--muted,#8b93a7);font-size:11px;letter-spacing:.04em}
+
+
+.api-config-wrap{padding:0 24px 12px}
+.api-config-toggle,.api-config-fields button,.api-clear{font:inherit;cursor:pointer}
+.api-config-toggle{border:1px solid rgba(255,255,255,.18);background:transparent;color:inherit;border-radius:8px;padding:8px 11px;font-size:10px;font-weight:800;letter-spacing:.06em}
+.api-config-panel{margin-top:10px;padding:14px;border:1px solid rgba(255,255,255,.13);border-radius:10px;background:rgba(0,0,0,.18)}
+.api-config-panel[hidden]{display:none}
+.api-config-panel label{display:block;font-size:12px;margin-bottom:7px;color:inherit}
+.api-config-fields{display:flex;gap:8px;flex-wrap:wrap}
+.api-config-fields input{flex:1;min-width:180px;max-width:100%;padding:11px;border-radius:7px;border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.25);color:inherit;font-size:13px}
+.api-config-fields button{border:0;border-radius:7px;padding:10px 12px;background:#a8c400;color:#101010;font-size:10px;font-weight:900}
+.api-config-panel p{font-size:11px;line-height:1.5;opacity:.75;margin:10px 0}
+.api-clear{border:0;background:none;color:inherit;text-decoration:underline;font-size:11px;padding:3px 0}
+#apiConfigMessage{display:block;font-size:11px;margin-top:8px;color:#a8c400}
+@media(max-width:480px){.api-config-wrap{padding-left:14px;padding-right:14px}.api-config-fields button{width:100%}}
+
+
+.highlight-stage{touch-action:manipulation}
+.highlight-play-fallback{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);border:0;border-radius:14px;background:#f0003c;color:#fff;font-weight:800;font-size:13px;padding:14px 18px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.3)}
+.highlight-play-fallback:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+
+.brand .league-mark{width:66px;height:74px;display:grid;place-items:center;flex:0 0 auto;border-radius:12px;background:linear-gradient(145deg,#a50044,#ed1c5b 48%,#004d98);font:700 25px 'Oswald',sans-serif;color:#fff;box-shadow:0 8px 18px #0008}.brand .league-mark span{color:#f7d447}.brandname span{color:#4d8ee8}.results-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 20px 20px}.result-item{min-width:0;padding:14px;border:1px solid #ffffff14;border-radius:14px;background:linear-gradient(135deg,#141b2d,#0b1020)}.result-meta{display:flex;justify-content:space-between;gap:8px;color:#9da8bf;font:11px 'Space Mono',monospace;text-transform:uppercase;margin-bottom:12px}.result-teams{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center}.result-team{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;min-width:0;font-size:15px;line-height:1.15}.result-team img{width:42px;height:42px;object-fit:contain}.result-team span{overflow-wrap:anywhere}.result-score{font:700 27px 'Oswald',sans-serif;white-space:nowrap}.results-note{padding:0 20px 18px;color:#9da8bf;font-size:13px}@media(max-width:600px){.results-grid{grid-template-columns:1fr;padding:0 12px 12px}.result-item{padding:12px}.result-team{font-size:14px}.result-team img{width:36px;height:36px}.result-score{font-size:25px}.brand .league-mark{width:54px;height:60px}.brand-tagline{font-size:9px}}
+[hidden]{display:none!important}
+
+/* Encabezado simplificado: solo el logotipo de LaLiga */
+.brand{justify-content:center!important;align-items:center!important;gap:0!important;width:100%;min-height:150px}
+.brand-copy{display:flex!important;align-items:center!important;justify-content:center!important;width:100%;margin:0!important}
+.laliga-main-logo{display:block;width:min(360px,82vw);height:auto;max-height:170px;object-fit:contain;margin:0 auto;filter:drop-shadow(0 8px 18px #0005)}
+.brand-tagline,.brandname,.league-mark{display:none!important}
+@media(max-width:520px){header{height:auto!important;min-height:150px!important;padding:14px 0 22px!important}.brand{min-height:120px}.laliga-main-logo{width:min(320px,84vw);max-height:145px}}
+
+
+/* Encabezado: logotipo oficial centrado y visible en móvil y escritorio */
+.logo-header{width:100%;min-height:180px;display:flex;align-items:center;justify-content:center;padding:24px 18px!important;box-sizing:border-box}
+.logo-header .logo-link{display:flex;width:100%;align-items:center;justify-content:center;text-decoration:none}
+.logo-header .laliga-main-logo{display:block;width:min(390px,78vw);height:auto;max-height:150px;object-fit:contain;margin:0 auto;filter:drop-shadow(0 6px 18px #0004)}
+.laliga-text-fallback{font-family:'Oswald',sans-serif;font-size:clamp(44px,12vw,82px);font-weight:700;letter-spacing:.04em;color:#ff4b44;text-align:center}
+@media(max-width:600px){.logo-header{min-height:140px;padding:20px 14px!important}.logo-header .laliga-main-logo{width:min(300px,78vw);max-height:110px}}
+
+
+/* Listado de la próxima jornada */
+.jornada-heading{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;color:#9da8bf;padding:14px 0 9px;border-top:1px solid #ffffff14;margin-top:18px}
+.jornada-list{display:flex;flex-direction:column;gap:8px}
+.jornada-match{display:grid;grid-template-columns:76px minmax(0,1fr) 56px;align-items:center;gap:10px;padding:11px 12px;border:1px solid #ffffff12;border-radius:12px;background:#0b1020}
+.jornada-time{font-family:'Space Mono',monospace;color:#4d8ee8;font-size:12px;line-height:1.5}
+.jornada-teams{display:flex;flex-direction:column;gap:5px;min-width:0}
+.jornada-team{display:flex;align-items:center;gap:7px;min-width:0;font-size:15px;line-height:1.15}
+.jornada-team img{width:21px;height:21px;object-fit:contain;flex:0 0 21px}
+.jornada-team span{overflow-wrap:anywhere}
+.jornada-date{font-size:10px;color:#9da8bf;text-align:right;line-height:1.4}
+.jornada-empty{padding:14px;border-radius:12px;background:#0b1020;color:#a7adbd;font-size:14px}
+@media(max-width:520px){.jornada-match{grid-template-columns:65px minmax(0,1fr) 45px;gap:7px;padding:10px 8px}.jornada-team{font-size:14px}.jornada-time{font-size:11px}}
+
+
+/* Goleadores de LaLiga */
+.scorers-featured{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.scorer-card{min-width:0;display:grid;grid-template-columns:clamp(76px,32%,112px) minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:12px;align-items:center;text-align:left;padding:14px 12px;border:1px solid #d5d5d5;border-radius:20px;background:#fff;min-height:190px}
+.scorer-photo{grid-column:1;grid-row:1 / span 3;width:100%;aspect-ratio:1/1;height:auto;max-width:112px;object-fit:cover;object-position:center top;border-radius:50%;background:#eee;border:3px solid #ff5b24;padding:2px;display:block;margin:0 auto;box-shadow:0 0 0 2px #fff,0 0 0 4px #ff5b24}
+.scorer-name{grid-column:2;grid-row:2;font-size:clamp(20px,3.4vw,26px);font-weight:800;line-height:1.15;overflow-wrap:anywhere;min-height:0;color:#111;margin:5px 0}
+.scorer-team{grid-column:2;grid-row:3;display:flex;justify-content:flex-start;align-items:center;gap:6px;margin-top:4px;color:#444;font-size:clamp(15px,2.6vw,18px);line-height:1.2;overflow-wrap:anywhere}
+.scorer-team img{width:30px;height:30px;object-fit:contain;flex:0 0 30px}.scorer-team{min-height:32px}.scorer-goals{grid-column:2;grid-row:1 / span 4;align-self:end;justify-self:end;width:auto;min-width:112px;border-top:0;border-left:1px solid #ddd;padding:8px 0 8px 14px;margin-left:10px;display:flex;align-items:baseline;justify-content:flex-end;gap:5px}.scorer-name,.scorer-team,.scorer-card [style*='grid-column:2']{max-width:100%;padding-right:8px}.scorer-name{grid-column:2;grid-row:2}.scorer-team{grid-column:2;grid-row:3}.scorer-card{grid-template-columns:clamp(76px,32%,112px) minmax(0,1fr) auto}
+.scorer-goals{grid-column:2;grid-row:4;justify-self:end;width:min(100%,180px);text-align:right;font-family:'Oswald',sans-serif;font-size:clamp(42px,7vw,54px);font-weight:800;color:#d94313;margin-top:8px;border-top:1px solid #ddd;padding-top:7px;line-height:1.05}
+.scorer-goals small{display:inline-block;margin-left:8px;font:12px 'Space Mono',monospace;color:#77839b;letter-spacing:1.5px}
+.scorers-list{margin-top:18px;border-top:1px solid #ffffff16;padding-top:14px}
+.scorers-list h3{font-size:15px;margin:0 0 8px;color:#9da8bf;font-weight:500;letter-spacing:1px}
+.scorers-list ol{list-style:none;counter-reset:scorer;display:grid;grid-template-columns:1fr 1fr;gap:7px 18px;padding:0;margin:0}
+.scorers-list li{counter-increment:scorer;display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;background:#0b1020;font-size:14px}
+.scorers-list li:before{content:counter(scorer);color:#4d8ee8;font-family:'Space Mono',monospace;font-size:12px;min-width:18px}
+.scorers-list .list-goals{margin-left:auto;color:#ff4b72;font-weight:700;white-space:nowrap}
+.scorers-status{color:#9da8bf;font-size:13px;padding:12px;border-radius:10px;background:#0b1020}
+@media(max-width:650px){.scorers-featured{grid-template-columns:1fr;gap:10px}.scorer-card{grid-template-columns:82px minmax(0,1fr) auto;min-height:150px;padding:12px;column-gap:9px}.scorer-photo{width:78px;height:78px;aspect-ratio:1/1}.scorer-name{font-size:clamp(19px,4.8vw,24px)}.scorer-team{font-size:15px}.scorer-team img{width:25px;height:25px;flex-basis:25px}.scorer-goals{grid-column:3;grid-row:1 / span 4;font-size:clamp(28px,8vw,42px);min-width:70px;padding-left:8px;margin-left:0;gap:3px}.scorer-goals small{font-size:10px;letter-spacing:1px}.scorer-name{min-height:0}.scorers-list ol{grid-template-columns:1fr}}
+
+
+
+/* ===== Identidad visual inspirada en LaLiga: naranja, blanco y negro ===== */
+:root{
+ --bg:#ff5b24; --panel:#ffffff; --cream:#111111; --red:#111111; --orange:#ff5b24;
+ --line:#111111; --muted:#555555; --blue:#111111; --blau:#111111; --claret:#111111;
+}
+html,body{background:#ff5b24!important;color:#111!important}
+body{background:linear-gradient(135deg,#ff6a2a 0%,#ff5b24 55%,#f24b18 100%)!important;color:#111!important;font-family:'Barlow Condensed',Arial,sans-serif}
+body:before,body:after{opacity:.12;background:repeating-linear-gradient(135deg,transparent 0 17px,#111 18px 22px,transparent 23px 44px)!important}
+header{border-bottom:2px solid #111!important}
+header:after{background:#111!important}
+.brandname,.brand-tagline{color:#111!important}
+.card,.news-card,.video{background:#fff!important;color:#111!important;border:2px solid #111!important;border-radius:18px!important;box-shadow:0 8px 0 #111!important;inset:initial}
+.card:before{background:#111!important;height:5px!important}
+.cardhead h2,h2,h3,.standing,.league-summary{color:#111!important}
+.index,.dot,.goal-team-title,.points,.kickoff,.day.active,.day.active strong,.scorer-goals,.scorers-list .list-goals{color:#ff5b24!important}
+.dot{background:#111!important;box-shadow:none!important}
+.teamname,.scorers,.goal-team ul,.goal-team li span,.scorer-name,.scorer-team,.scorers-list h3,.scorers-list li,.scorers-status,.jornada-team,.jornada-date,.jornada-empty,.league-summary,.standing,.points,.kickoff,.week,.day,.day strong,.results-note,.result-item,.jornada-time{color:#111!important}
+.score .home,.score .away{color:#ff5b24!important}
+.goal-scorers,.scorers-list{border-color:#dddddd!important}
+.scorer-card,.scorers-list li,.scorers-status,.jornada-empty{background:#f5f5f5!important;border:1px solid #dedede!important}
+.scorer-photo{border:2px solid #111!important;background:#eee!important}.scorer-photo.photo-missing{object-fit:contain;background:#f1f1f1!important;padding:22px;opacity:.8}
+.league-scroll{border-top:1px solid #ddd!important;scrollbar-color:#ff5b24 #eee!important}
+.league-table th{background:#111!important;color:#fff!important;border-bottom:2px solid #ff5b24!important}
+.league-table td{color:#111!important;border-bottom:1px solid #e4e4e4!important}
+.league-table tbody tr:nth-child(even){background:#f5f5f5!important}
+.league-table tbody tr.barca-row{background:#ffe2d7!important}
+.league-table tbody tr.barca-row td{color:#111!important;font-weight:800!important}
+.league-table .pos{color:#555!important}
+.day{border:1px solid #ddd!important}
+.day.active{background:#111!important;color:#fff!important;box-shadow:inset 0 -4px #ff5b24!important}
+.day.active strong{color:#fff!important}
+.jornada-match{background:#fff!important;border:1px solid #ddd!important}
+.jornada-time{color:#ff5b24!important}
+.status{background:#fff!important;color:#111!important;border:2px solid #111!important;border-left:8px solid #111!important;border-radius:14px!important;box-shadow:0 8px 0 #111!important}
+.status-label,.status-detail{color:#333!important}
+.status button,.news-refresh{background:#111!important;color:#fff!important;border:2px solid #111!important;border-radius:6px!important;box-shadow:none!important}
+.status button:hover,.news-refresh:hover{background:#ff5b24!important;color:#111!important}
+.error{color:#a11!important}
+.video-modal{background:#111d!important}
+.video-dialog{background:#fff!important;color:#111!important;border:2px solid #111!important}
+.video-close{color:#111!important}
+@media(max-width:520px){.card{border-radius:14px!important}.status{border-left-width:6px!important}}
+
+
+/* Corrección de contraste: superficies claras y texto oscuro en todos los módulos */
+.result-item,.jornada-match,.scorer-card,.scorers-list li,.scorers-status,.jornada-empty,
+.news-card .result-item,.news-card .scorer-card{background:#fff!important;color:#111!important;border:1px solid #d5d5d5!important;box-shadow:none!important}
+.result-meta,.result-team,.result-team span,.result-score,.teamname,.scorers,.goal-team ul,
+.scorer-name,.scorer-team,.scorers-list h3,.scorers-list li,.jornada-team,.jornada-date,
+.results-note,.scorers-status,.jornada-empty{color:#111!important}
+.result-meta{color:#555!important}
+.score,.score .home,.score .away,.result-score{color:#111!important}
+.score .dash{color:#ff5b24!important}
+.scorers,.goal-team li span,.scorer-goals,.scorers-list .list-goals,.jornada-time{color:#d94313!important}
+.goal-team-title{color:#b73510!important}
+.news-card,.card,.video{background:#fff!important;color:#111!important}
+.news-card .news-title,.news-card .news-desc,.news-card .news-meta,.news-card .news-source,
+.news-card p,.news-card label{color:#111!important}
+.news-card .news-meta,.news-card .news-source small{color:#555!important}
+.jornada-heading,.scorers-list h3{color:#333!important;border-color:#ddd!important}
+.status-label,.status-detail{color:#222!important}
+.api-config-panel{background:#f7f7f7!important;color:#111!important;border-color:#ccc!important}
+.api-config-fields input{background:#fff!important;color:#111!important;border-color:#aaa!important}
+.api-config-toggle{background:#111!important;color:#fff!important}
+::placeholder{color:#666!important;opacity:1}
+
+
+/* Correcciones de layout del módulo de goleadores */
+.scorer-card{grid-template-columns:112px minmax(0,1fr) 88px!important;grid-template-rows:auto auto auto!important;align-items:center;min-height:174px}
+.scorer-photo{grid-column:1!important;grid-row:1 / span 3!important;align-self:center;justify-self:center;width:104px!important;height:104px!important;min-width:104px;max-width:104px;aspect-ratio:1/1;object-fit:cover;object-position:center top;border-radius:50%;overflow:hidden}
+.scorer-card [style*="grid-column:2"]{grid-column:2!important;grid-row:1!important;max-width:100%;padding-right:5px}
+.scorer-name{grid-column:2!important;grid-row:2!important;font-size:clamp(22px,4vw,30px)!important;line-height:1.12;margin:4px 0 8px!important;padding-right:5px}
+.scorer-team{grid-column:2!important;grid-row:3!important;display:flex;align-items:center;gap:6px;min-width:0;margin:0!important;padding-right:5px;font-size:clamp(15px,2.7vw,19px)!important}
+.scorer-team span{overflow-wrap:anywhere}
+.scorer-team img{width:28px;height:28px;flex:0 0 28px;object-fit:contain}.scorer-team img[src]{max-width:28px}
+.scorer-goals{grid-column:3!important;grid-row:1 / span 3!important;align-self:stretch!important;justify-self:stretch!important;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;width:auto!important;min-width:0!important;max-width:none!important;margin:0 0 0 4px!important;padding:8px 0 8px 12px!important;border-top:0!important;border-left:1px solid #ddd!important;text-align:right;font-size:clamp(38px,6vw,56px)!important;line-height:1.0}
+.scorer-goals small{display:block;margin:5px 0 0!important;font-size:10px!important;letter-spacing:1px}
+.scorer-photo.photo-missing{visibility:visible!important;object-fit:contain;background:#f1f1f1!important;padding:20px!important;opacity:1!important;border-color:#ff8737!important;box-shadow:0 0 0 2px #fff,0 0 0 4px #ff8737!important;content:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2234%22 r=%2218%22 fill=%22%2399a1ad%22/%3E%3Cpath d=%22M15 91c2-22 16-34 35-34s33 12 35 34%22 fill=%22%2399a1ad%22/%3E%3C/svg%3E')}
+@media(max-width:650px){.scorer-card{grid-template-columns:84px minmax(0,1fr) 64px!important;min-height:142px;padding:12px!important;column-gap:9px!important}.scorer-photo{width:78px!important;height:78px!important;min-width:78px;max-width:78px;aspect-ratio:1/1}.scorer-name{font-size:clamp(19px,4.8vw,25px)!important}.scorer-team{font-size:14px!important}.scorer-team img{width:23px;height:23px;flex-basis:23px}.scorer-goals{font-size:clamp(32px,8vw,43px)!important;padding-left:8px!important}.scorer-goals small{font-size:9px!important;letter-spacing:.7px}}
+
+</style>
+
+<style id="laliga-logo-white-fix">
+/* Logotipo de LaLiga completamente blanco sobre el fondo naranja */
+.logo-header .laliga-main-logo { filter: brightness(0) invert(1) !important; }
+.logo-header .laliga-text-fallback { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+</style>
+</head>
+<body>
+<div class="app">
+<header class="logo-header">
+  <a class="logo-link" href="https://www.laliga.com/" target="_blank" rel="noopener noreferrer" aria-label="Sitio oficial de LaLiga">
+    <img class="laliga-main-logo" src="https://assets.laliga.com/assets/logos/LALIGA_RGB_h_color/LALIGA_RGB_h_color.png" alt="LALIGA">
+  </a>
+</header>
+<script>
+document.querySelector('.laliga-main-logo')?.addEventListener('error',function(){
+ this.style.display='none'; const fallback=document.createElement('div');
+ fallback.className='laliga-text-fallback'; fallback.textContent='LALIGA';
+ fallback.setAttribute('aria-label','LALIGA'); this.parentElement.appendChild(fallback);
+});
+</script>
+
+<section class="card results-card"><div class="cardhead"><h2>LOS 5 RESULTADOS MÁS DESTACADOS</h2></div><div class="results-grid" id="resultsGrid"><div class="result-item">Consultando resultados de todos los equipos…</div></div><div class="results-note" id="resultsNote">Partidos finalizados de LaLiga · actualización automática.</div></section>
+
+
+
+<section class="card tablecard league-card">
+<div class="cardhead"><h2>LALIGA EA SPORTS</h2></div>
+<div class="league-summary"><span id="laligaSummary">Consultando clasificación…</span><span class="points" id="laligaPoints">— PTS</span></div>
+<div class="league-scroll" role="region" aria-label="Clasificación completa de LaLiga" tabindex="0">
+<table class="league-table"><thead><tr><th>#</th><th>Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>DG</th><th>PTS</th></tr></thead><tbody id="laligaTable"><tr><td colspan="8">Cargando clasificación…</td></tr></tbody></table>
+</div>
+</section>
+
+
+<section class="card scorers-card">
+  <div class="cardhead"><h2>GOLEADORES</h2><span class="index">TOP 6</span></div>
+  <div id="scorersFeatured" class="scorers-featured"><div class="scorers-status">Consultando goleadores de LaLiga…</div></div>
+  <div class="scorers-list" id="scorersListWrap" hidden><h3>OTROS GOLEADORES</h3><ol id="scorersNextFive"></ol></div>
+  <div class="scorers-status" id="scorersSource" style="margin-top:12px">Estadísticas sujetas a disponibilidad de la fuente.</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center"><button type="button" id="marcaProxyBtn" style="border:1px solid #ff5b24;border-radius:8px;background:#fff;color:#111;padding:8px 12px;font:inherit;cursor:pointer">Consultar MARCA</button><span style="font-size:11px;color:inherit">Alternativa: intenta leer la tabla pública de MARCA.</span></div>
+</section>
+
+
+
+
+<section class="card">
+<div class="cardhead"><h2>PRÓXIMA JORNADA</h2></div>
+<div class="nextinfo">
+<div><div class="kickoff" id="nextDate">Buscando calendario…</div><div id="nextCompetition" style="color:#999;margin-top:5px;font-size:14px"></div></div>
+<div class="fixtureteams" id="nextFixtureTeams" hidden><img id="nextHomeLogo" alt=""><img id="nextAwayLogo" alt=""></div>
+</div>
+<div class="week" id="weekStrip">
+<div class="day">—<strong>—</strong></div><div class="day">—<strong>—</strong></div><div class="day">—<strong>—</strong></div><div class="day active">—<strong>—</strong></div><div class="day">—<strong>—</strong></div>
+</div>
+<div class="jornada-heading">PARTIDOS Y HORARIOS · HORA DE GUATEMALA</div>
+<div class="jornada-list" id="jornadaList"><div class="jornada-empty">Consultando los próximos encuentros…</div></div>
+</section>
+</div>
+
+<footer class="official-footer">
+  <div class="footer-inner">
+    <div class="footer-heading">LALIGA PULSE</div>
+    <a class="official-site" href="https://www.laliga.com/" target="_blank" rel="noopener noreferrer">SITIO OFICIAL DE LALIGA <span aria-hidden="true">↗</span></a>
+    <nav class="official-socials" aria-label="Enlaces oficiales de LaLiga"><a href="https://www.laliga.com/" target="_blank" rel="noopener noreferrer">LaLiga</a><a href="https://x.com/LaLiga" target="_blank" rel="noopener noreferrer">X</a><a href="https://www.instagram.com/laliga/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/user/laliga" target="_blank" rel="noopener noreferrer">YouTube</a></nav>
+    <div class="footer-note">RESULTADOS · CLASIFICACIÓN · PRÓXIMOS PARTIDOS</div>
+  </div>
+</footer>
+
+<script>
+const API='https://site.api.espn.com/apis/site/v2/sports/soccer/';const $=id=>document.getElementById(id);let allUpcomingMatches=[];let selectedJornadaDate='';
+async function json(url){const ctl=new AbortController();const timer=setTimeout(()=>ctl.abort(),12000);try{const r=await fetch(url,{cache:'no-store',mode:'cors',signal:ctl.signal});if(!r.ok)throw Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(timer)}}
+async function firstWorking(urls){let lastError;for(const url of urls){try{const data=await json(url);if(data&&typeof data==='object'&&Object.keys(data).length>0)return data;lastError=Error('Respuesta vacía: '+url)}catch(error){lastError=error;console.warn('Fuente no disponible:',url,error)}}throw lastError||Error('Ninguna fuente respondió')}
+function dateGT(s,opts={day:'2-digit',month:'short',year:'numeric'}){try{return new Intl.DateTimeFormat('es-GT',{timeZone:'America/Guatemala',...opts}).format(new Date(s)).toUpperCase()}catch{return 'POR CONFIRMAR'}}
+function timeGT(s){try{return new Intl.DateTimeFormat('es-GT',{timeZone:'America/Guatemala',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(s))}catch{return '--:--'}}
+function logo(t){return t?.logos?.[0]?.href||t?.logo||''}
+function unpack(e){let c=e.competitions?.[0],a=c?.competitors||[];return {e,c,home:a.find(x=>x.homeAway==='home')||a[0],away:a.find(x=>x.homeAway==='away')||a[1]}}
+function isFinal(m){return !!(m.e?.status?.type?.completed||m.e?.status?.type?.state==='post')&&m.home?.score!=null&&m.away?.score!=null}
+function renderResults(ms){let g=$('resultsGrid');g.innerHTML='';if(!ms.length){g.innerHTML='<div class="result-item">No hay resultados recientes disponibles. Prueba actualizar en unos minutos.</div>';return}ms.forEach(m=>{let h=m.home,a=m.away,hn=h.team?.displayName||h.team?.name||'Local',an=a.team?.displayName||a.team?.name||'Visitante';let card=document.createElement('article');card.className='result-item';let meta=document.createElement('div');meta.className='result-meta';let comp=document.createElement('span');comp.textContent=m.c?.name||'LaLiga EA Sports';let dt=document.createElement('span');dt.textContent=m.e?.date?dateGT(m.e.date,{day:'2-digit',month:'short'}):'FINAL';meta.append(comp,dt);let teams=document.createElement('div');teams.className='result-teams';function team(t,name){let d=document.createElement('div');d.className='result-team';let im=document.createElement('img');im.loading='lazy';im.alt='';im.src=logo(t.team);im.onerror=()=>im.style.visibility='hidden';let s=document.createElement('span');s.textContent=name;d.append(im,s);return d}let score=document.createElement('div');score.className='result-score';score.textContent=`${h.score} - ${a.score}`;teams.append(team(h,hn),score,team(a,an));card.append(meta,teams);g.append(card)});$('resultsNote').textContent=ms.length===5?'Los cinco encuentros finalizados más recientes de LaLiga.':'Se encontraron '+ms.length+' encuentros recientes en la fuente de datos; puede que la fuente aún no haya publicado todos los resultados.'}
+function renderNext(m){let h=m.home,a=m.away,d=m.e?.date;$('nextDate').textContent=d?`${dateGT(d,{day:'2-digit',month:'short'})} · ${timeGT(d)} (hora de Guatemala)`:'Próximo encuentro por confirmar';$('nextCompetition').textContent=m.c?.name||'LaLiga EA Sports';$('nextHomeLogo').src=logo(h.team);$('nextAwayLogo').src=logo(a.team);$('nextHomeLogo').alt=h.team?.displayName||h.team?.name||'Local';$('nextAwayLogo').alt=a.team?.displayName||a.team?.name||'Visitante';$('nextHomeLogo').onerror=()=>{$('nextHomeLogo').style.visibility='hidden'};$('nextAwayLogo').onerror=()=>{$('nextAwayLogo').style.visibility='hidden'};$('nextHomeLogo').style.visibility='visible';$('nextAwayLogo').style.visibility='visible';let strip=$('weekStrip');strip.innerHTML='';let days=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],sel=new Date(d||Date.now());for(let i=-3;i<=10;i++){let x=new Date(sel);x.setDate(x.getDate()+i);const key=localDateKey(x);let el=document.createElement('button');el.type='button';el.className='day'+(key===(selectedJornadaDate||localDateKey(sel))?' active':'');el.setAttribute('aria-label','Mostrar partidos del '+dateGT(x.toISOString(),{weekday:'long',day:'numeric',month:'long'}));el.innerHTML='';el.textContent=days[x.getDay()];let strong=document.createElement('strong');strong.textContent=x.getDate();el.append(strong);el.addEventListener('click',()=>{selectedJornadaDate=key;[...strip.children].forEach(node=>node.classList.toggle('active',node===el));const dayMatches=allUpcomingMatches.filter(m=>m.e?.date&&localDateKey(new Date(m.e.date))===key);renderJornada(dayMatches);$('jornadaList').scrollIntoView({behavior:'smooth',block:'nearest'});});strip.append(el)}}
+function localDateKey(date){return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Guatemala',year:'numeric',month:'2-digit',day:'2-digit'}).format(date)}
+function renderJornada(matches){
+ const box=$('jornadaList');box.innerHTML='';
+ if(!matches.length){box.innerHTML='<div class="jornada-empty">No hay horarios publicados para la próxima jornada en este momento.</div>';return}
+ const byDay=new Map();
+ matches.forEach(m=>{const d=m.e?.date||'';const key=d?dateGT(d,{weekday:'long',day:'2-digit',month:'short'}):'Horario por confirmar';if(!byDay.has(key))byDay.set(key,[]);byDay.get(key).push(m)});
+ byDay.forEach((items,day)=>{const heading=document.createElement('div');heading.className='jornada-heading';heading.style.borderTop='0';heading.style.marginTop='4px';heading.textContent=day;box.append(heading);items.forEach(m=>{const h=m.home,a=m.away;const row=document.createElement('div');row.className='jornada-match';const time=document.createElement('div');time.className='jornada-time';time.textContent=m.e?.date?timeGT(m.e.date):'Por definir';const teams=document.createElement('div');teams.className='jornada-teams';[[h.team,h.team?.displayName||h.team?.name||'Local'],[a.team,a.team?.displayName||a.team?.name||'Visitante']].forEach(([t,n])=>{const line=document.createElement('div');line.className='jornada-team';const img=document.createElement('img');img.alt='';img.loading='lazy';img.src=logo(t);img.onerror=()=>img.style.visibility='hidden';const name=document.createElement('span');name.textContent=n;line.append(img,name);teams.append(line)});const label=document.createElement('div');label.className='jornada-date';label.textContent='LALIGA';row.append(time,teams,label);box.append(row)})});
+}
+async function loadScores(){
+ try {
+ const today=new Date();
+ const shift=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+ const fmt=d=>`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+ const start=fmt(shift(today,-14)), end=fmt(shift(today,14));
+ let eventsRaw=[];
+ const rangeUrls=[
+  `https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard?dates=${start}-${end}&limit=500`,
+  `https://site.web.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard?dates=${start}-${end}&limit=500`,
+  `https://cdn.espn.com/core/esp.1/scoreboard?xhr=1&date=${fmt(today)}`
+ ];
+ try {
+   const d=await firstWorking(rangeUrls);
+   eventsRaw=d.events||d.content?.events||[];
+   if(!eventsRaw.length)throw Error('La fuente no devolvió eventos en el rango');
+ } catch (rangeError) {
+   const dates=Array.from({length:29},(_,i)=>fmt(shift(today,i-14)));
+   const responses=await Promise.allSettled(dates.map(date=>firstWorking([
+    `https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard?dates=${date}&limit=100`,
+    `https://site.web.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard?dates=${date}&limit=100`,
+    `https://cdn.espn.com/core/esp.1/scoreboard?xhr=1&date=${date}`
+   ])));
+   const seen=new Map();
+   responses.forEach(r=>{if(r.status==='fulfilled'){const d=r.value;for(const e of (d.events||d.content?.events||[]))seen.set(e.id||`${e.date}-${e.name}`,e)}});
+   eventsRaw=[...seen.values()];
+ }
+ const events=eventsRaw.map(unpack).filter(x=>x.home&&x.away);
+ const finals=events.filter(isFinal).sort((a,b)=>new Date(b.e.date)-new Date(a.e.date));
+ // Mantener el orden cronológico real; no confundir partidos de otras competiciones con LaLiga.
+ renderResults(finals.slice(0,5));
+ const upcoming=events.filter(x=>!isFinal(x)&&new Date(x.e.date)>Date.now()).sort((a,b)=>new Date(a.e.date)-new Date(b.e.date));
+ const next=upcoming[0];
+ const fixture=$('nextFixtureTeams');
+ if(next){renderNext(next);fixture.hidden=false;$('nextDate').textContent='Primero: '+(next.home.team?.shortDisplayName||next.home.team?.displayName||next.home.team?.name||'Local')+' vs. '+(next.away.team?.shortDisplayName||next.away.team?.displayName||next.away.team?.name||'Visitante');$('nextCompetition').textContent=next.e?.date?dateGT(next.e.date,{weekday:'long',day:'2-digit',month:'long'})+' · '+timeGT(next.e.date)+' (hora de Guatemala)':'Horario por confirmar'}
+ else{$('nextDate').textContent='Próxima jornada por confirmar';$('nextCompetition').textContent='La fuente aún no publicó los próximos encuentros.';fixture.hidden=true;$('weekStrip').innerHTML='';}
+ allUpcomingMatches=upcoming;selectedJornadaDate=selectedJornadaDate||localDateKey(new Date(next?.e?.date||Date.now()));renderJornada(upcoming.filter(m=>m.e?.date&&localDateKey(new Date(m.e.date))===selectedJornadaDate));
+ } catch(err) { $('resultsGrid').innerHTML='<div class="result-item">No se pudieron consultar los resultados. Revisa tu conexión y pulsa Actualizar.</div>'; $('nextDate').textContent='Calendario no disponible'; $('nextCompetition').textContent='La fuente de datos no respondió.'; $('nextFixtureTeams').hidden=true; $('jornadaList').innerHTML='<div class="jornada-empty">No se pudo consultar el calendario. Revisa la conexión y pulsa Actualizar.</div>'; console.warn('ESPN scores unavailable',err); }
+}
+function renderTable(entries){window.teamLogoByName=new Map();const teamKey=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');for(const entry of (entries||[])){const t=entry.team||{},src=logo(t);if(src){[t.displayName,t.name,t.shortDisplayName,t.abbreviation,t.nickname].filter(Boolean).forEach(n=>window.teamLogoByName.set(teamKey(n),src));}}let body=$('laligaTable');body.innerHTML='';if(!entries?.length){body.innerHTML='<tr><td colspan="8">Clasificación no disponible desde la fuente.</td></tr>';$('laligaSummary').textContent='Datos no disponibles';$('laligaPoints').textContent='—';return}entries.sort((a,b)=>Number(a.position??a.rank??999)-Number(b.position??b.rank??999));$('laligaSummary').textContent=`${entries.length} clubes · clasificación completa`; $('laligaPoints').textContent='LALIGA';entries.forEach((r,i)=>{let t=r.team||{},name=t.displayName||t.name||'Equipo',s=Object.fromEntries((r.stats||[]).map(x=>[String(x.name||x.displayName||'').toLowerCase().replace(/[^a-z]/g,''),x.value])),get=ks=>{for(let k of ks)if(s[k]!=null)return s[k];return '—'},tr=document.createElement('tr'),pos=document.createElement('td');pos.className='pos';pos.textContent=r.position??r.rank??i+1;tr.append(pos);let club=document.createElement('td'),wrap=document.createElement('div');wrap.className='club';let im=document.createElement('img');im.alt='';im.loading='lazy';im.src=logo(t);im.onerror=()=>im.style.display='none';let label=document.createElement('span');label.textContent=name;wrap.append(im,label);club.append(wrap);tr.append(club);[get(['gamesplayed','played','gp','matchesplayed']),get(['wins','won','w']),get(['ties','draws','drawn','d']),get(['losses','lost','l']),get(['pointdifferential','goaldifference','gd']),get(['points','pt'])].forEach(v=>{let td=document.createElement('td');td.textContent=v;tr.append(td)});body.append(tr)})}
+async function loadStandings(){try{const d=await firstWorking(['https://site.api.espn.com/apis/v2/sports/soccer/esp.1/standings','https://site.web.api.espn.com/apis/v2/sports/soccer/esp.1/standings','https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/standings']);let entries=d.children?.flatMap(c=>c.standings?.entries||[])||d.standings?.entries||[];if(!entries.length)throw Error('Empty standings');renderTable(entries)}catch(err){$('laligaTable').innerHTML='<tr><td colspan="8">No se pudo cargar la clasificación desde las fuentes disponibles.</td></tr>'; $('laligaSummary').textContent='Clasificación no disponible';$('laligaPoints').textContent='—';throw err}}
+
+function normalizeLeaders(data){
+ const found=[];
+ const num=v=>{if(typeof v==='number')return v;const n=Number(String(v??'').replace(/[^0-9.-]/g,''));return Number.isFinite(n)?n:NaN};
+ const add=(entry,label='')=>{
+  if(!entry||typeof entry!=='object')return;
+  const athlete=entry.athlete||entry.player||entry.participant||entry;
+  const team=entry.team||athlete.team||{};
+  let raw=entry.value??entry.displayValue??entry.statValue??entry.goals??entry.total;
+  const stats=[...(Array.isArray(entry.stats)?entry.stats:[]),...(Array.isArray(entry.statistics)?entry.statistics:[])];
+  if(raw==null&&stats.length){
+   let st=stats.find(x=>/goal|gol|score/i.test(String(x.name||x.displayName||x.abbreviation||x.shortDisplayName||'')));
+   if(!st&&stats.length===1)st=stats[0];
+   if(st)raw=st.value??st.displayValue??st.total;
+  }
+  const goals=num(raw),name=athlete.displayName||athlete.fullName||athlete.name||entry.name;
+  if(name&&Number.isFinite(goals)&&goals>=0){
+   const head=athlete.headshot?.href||athlete.headshot||athlete.photo||athlete.image||'';
+   const photo=typeof head==='string'?head:'';
+   const teamLogo=team.logos?.[0]?.href||team.logo||'';
+   const key=String(name).trim().toLowerCase();
+   const prior=found.find(p=>p.name.trim().toLowerCase()===key);
+   if(!prior)found.push({name,goals,photo,teamName:team.displayName||team.name||team.shortDisplayName||'',teamLogo});
+   else if(goals>prior.goals){prior.goals=goals;if(photo)prior.photo=photo;if(teamLogo)prior.teamLogo=teamLogo;if(team.displayName||team.name)prior.teamName=team.displayName||team.name}
+  }
+ };
+ const visited=new Set();
+ const visit=(node,key='')=>{
+  if(!node||typeof node!=='object'||visited.has(node))return;
+  visited.add(node);
+  if(Array.isArray(node)){node.forEach(x=>visit(x,key));return}
+  const label=String(node.name||node.displayName||node.abbreviation||node.shortDisplayName||key).toLowerCase();
+  const lists=['leaders','athletes','entries','items','leaderboard','results'];
+  if(/goal|gol|scoring|score/.test(label)){
+   for(const k of lists)if(Array.isArray(node[k]))node[k].forEach(x=>add(x,label));
+  }
+  if((node.athlete||node.player)&&(/goal|gol|scoring|score/.test(label)||node.value!=null||node.displayValue!=null))add(node,label);
+  for(const [k,v] of Object.entries(node))if(!['headshot','logos','images','links','$ref'].includes(k))visit(v,k);
+ };
+ visit(data);
+ return found.sort((a,b)=>b.goals-a.goals).slice(0,50)
+}
+const playerPhotoCache=new Map();
+// Fuentes revisadas para goleadores y/o fotografías. No todas ofrecen una API pública:
+// LaLiga, ESPN, MARCA, FotMob, BeSoccer, BBC Sport, Transfermarkt, Soccerway, AS y Mundo Deportivo.
+async function findPlayerPhotos(name){
+ const cacheKey=String(name||'').trim();
+ if(playerPhotoCache.has(cacheKey))return playerPhotoCache.get(cacheKey);
+ const norm=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+ const target=norm(name), words=target.split(' ').filter(w=>w.length>2), candidates=[];
+ // Fotografías directas verificadas/manuales de perfiles oficiales. Se priorizan antes de APIs externas.
+ const officialPhotos={
+  'raphinha':'https://www.fcbarcelona.com/photo-resources/2022/07/24/4089f82c-191e-499f-ac63-84eadeeb853e/raphinha.png?height=790&width=670',
+  'raphael dias belloli':'https://www.fcbarcelona.com/photo-resources/2022/07/24/4089f82c-191e-499f-ac63-84eadeeb853e/raphinha.png?height=790&width=670',
+  'raphinha (fc barcelona)':'https://www.fcbarcelona.com/photo-resources/2022/07/24/4089f82c-191e-499f-ac63-84eadeeb853e/raphinha.png?height=790&width=670'
+ };
+ const manual=officialPhotos[target];
+ if(manual){playerPhotoCache.set(cacheKey,[manual]);return [manual]}
+ const addPhoto=(url,score=50)=>{if(typeof url==='string'&&/^https?:\/\//i.test(url)&&!/(logo|crest|badge|flag|team|club|default|placeholder)/i.test(url))candidates.push({url,score})};
+ // 1) TheSportsDB: API pública de jugadores. Busca por nombre y acepta solo coincidencias sólidas.
+ try{
+  const api='https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p='+encodeURIComponent(name);
+  const r=await fetch(api,{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(6500)});
+  if(r.ok){const data=await r.json();for(const player of (data.player||[])){
+   const n=player.strPlayer||'',nn=norm(n),exact=nn===target;
+   const hit=words.filter(w=>nn.split(' ').includes(w)).length;
+   if(!exact&&!(words.length>=2&&hit===words.length&&Math.abs(nn.length-target.length)<=12))continue;
+   const image=player.strCutout||player.strThumb||player.strRender||'';
+   if(image)addPhoto(image,exact?120:90);
+  }}
+ }catch(e){}
+ // 2) ESPN: búsqueda de fichas de atletas, igual que la clasificación utiliza ESPN para escudos.
+ for(const endpoint of [
+  'https://site.api.espn.com/apis/site/v2/sports/search?query='+encodeURIComponent(name)+'&limit=15',
+  'https://site.web.api.espn.com/apis/site/v2/sports/search?query='+encodeURIComponent(name)+'&limit=15'
+ ]){
+  try{
+   const r=await fetch(endpoint,{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(6500)});if(!r.ok)continue;
+   const data=await r.json();
+   const walk=o=>{if(!o)return;if(Array.isArray(o)){o.forEach(walk);return}if(typeof o!=='object')return;
+    const athlete=o.athlete||o.player||o;
+    const n=athlete.displayName||athlete.fullName||athlete.name||o.displayName||o.fullName||o.name;
+    const h=athlete.headshot?.href||o.headshot?.href||athlete.photo||o.photo||athlete.image?.href||o.image?.href||'';
+    if(n&&typeof h==='string'){const nn=norm(n),exact=nn===target,hit=words.filter(w=>nn.split(' ').includes(w)).length;if(exact)addPhoto(h,100);else if(words.length>=2&&hit===words.length&&Math.abs(nn.length-target.length)<=8)addPhoto(h,80)}
+    for(const [k,v] of Object.entries(o))if(!['links','$ref'].includes(k))walk(v);
+   };walk(data);if(candidates.some(c=>c.score===100))break;
+  }catch(e){}
+ }
+ // 3) FotMob: API pública no oficial de sugerencias y ficha del jugador.
+ try{
+  const r=await fetch('https://www.fotmob.com/api/data/search/suggest?term='+encodeURIComponent(name),{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(6500)});
+  if(r.ok){const data=await r.json();const list=Array.isArray(data)?data:(data.suggestedPlayers||data.players||data.results||[]);
+   for(const item of list){const n=item.name||item.title||item.playerName||'',id=item.id||item.playerId;if(!id)continue;const nn=norm(n),exact=nn===target,hit=words.filter(w=>nn.split(' ').includes(w)).length;if(!exact&&!(words.length>=2&&hit===words.length))continue;
+    const direct=item.imageUrl||item.image||item.photo||item.playerImage;if(typeof direct==='string')addPhoto(direct,exact?98:75);
+    try{const pr=await fetch('https://www.fotmob.com/api/data/player?id='+encodeURIComponent(id),{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(5000)});if(pr.ok){const pd=await pr.json();const im=pd.imageUrl||pd.player?.imageUrl||pd.player?.image||pd.image;if(typeof im==='string')addPhoto(im,exact?97:74)}}catch(e){}
+   }
+  }
+ }catch(e){}
+ // 4) Wikimedia Commons API: respaldo fotográfico con comprobación del nombre en el título.
+ try{
+  const api='https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrsearch='+encodeURIComponent('"'+name+'" football player portrait')+'&gsrnamespace=6&gsrlimit=12&prop=imageinfo&iiprop=url&iiurlwidth=320';
+  const res=await fetch(api,{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(7000)});
+  if(res.ok){const data=await res.json();for(const page of Object.values(data.query?.pages||{})){
+   const title=norm((page.title||'').replace(/^File:/i,'').replace(/\.[^.]+$/,''));const hits=words.filter(w=>title.includes(w)).length;
+   const unwanted=/logo|crest|badge|flag|icon|shirt|kit|stadium|squad|team photo/i.test(title);const info=page.imageinfo?.[0],url=info?.thumburl||info?.url||'';
+   if(url&&words.length&&hits===words.length&&!unwanted&&/\.(jpe?g|png|webp)(\?|$)/i.test(url))addPhoto(url,70);
+  }}
+ }catch(e){}
+ // 5-10) MARCA, BeSoccer, BBC Sport, Transfermarkt, Soccerway, AS y Mundo Deportivo
+ // se registran como fuentes editoriales de referencia, pero no se fuerza scraping de sus páginas:
+ // no ofrecen endpoints públicos estables garantizados para el navegador. Las imágenes se toman
+ // de APIs que sí entreguen una URL de foto verificable, nunca de una imagen arbitraria del sitio.
+ const unique=[...new Map(candidates.sort((a,b)=>b.score-a.score).map(c=>[c.url,c])).values()].map(c=>c.url).slice(0,6);
+ playerPhotoCache.set(cacheKey,unique);return unique;
+}
+function teamLogoFromStandings(teamName){
+ const key=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+ const map=window.teamLogoByName||new Map();const target=key(teamName);
+ if(map.has(target))return map.get(target);
+ const aliases={barcelona:['fcbarcelona','barcelona','barca'],realmadrid:['real madrid','realmadrid','madrid'],atleticodemadrid:['atleticomadrid','atleticodemadrid','atletico'],athleticclub:['athleticbilbao','athleticclub','bilbao'],osasuna:['caosasuna','osasuna'],rayovallecano:['rayovallecano','rayo'],realbetis:['realbetis','betis'],realsociedad:['realsociedad'],celta:['rccelta','celta vigo','celta'],girona:['girona fc','girona'],getafe:['getafecf','getafe'],villarreal:['villarrealcf','villarreal'],espanyol:['rcdespanyol','espanyol'],mallorca:['rcdmallorca','mallorca'],sevilla:['sevillafc','sevilla'],valencia:['valenciacf','valencia'],alaves:['deportivoalaves','alaves'],levante:['levanteud','levante'],elche:['elchecf','elche']};
+ for(const [canonical,names] of Object.entries(aliases))if([canonical,...names].some(n=>key(n)===target)){for(const n of [canonical,...names])if(map.has(key(n)))return map.get(key(n));}
+ for(const [name,url] of map.entries())if(name&&target&&(name.includes(target)||target.includes(name))&&Math.min(name.length,target.length)>=5)return url;
+ return '';
+}
+
+function renderScorers(players){
+ const featured=$('scorersFeatured'),list=$('scorersNextFive');featured.innerHTML='';if(list)list.innerHTML='';
+ if(!players.length){featured.innerHTML='<div class="scorers-status">No se pudo obtener un ranking de goleadores válido. Intenta actualizar más tarde.</div>';$('scorersSource').textContent='LaLiga Pulse no recibió datos verificables. No se muestran cifras inventadas.';return}
+ // Solo muestra los seis primeros según los goles recibidos; las fotos faltantes se buscan por nombre.
+ players.slice(0,6).forEach((p,index)=>{
+  const card=document.createElement('article');card.className='scorer-card';
+  const img=document.createElement('img');img.className='scorer-photo photo-missing';img.alt='';img.loading='lazy';img.referrerPolicy='no-referrer';img.style.display='block';
+  let photoCandidates=[];let photoIndex=0;
+  const tryNextPhoto=()=>{if(photoIndex<photoCandidates.length){img.classList.remove('photo-missing');img.alt='Fotografía de '+p.name;img.src=photoCandidates[photoIndex++]}else{img.removeAttribute('src');img.alt='';img.classList.add('photo-missing')}};
+  img.onerror=()=>tryNextPhoto();
+  const suppliedPhoto=typeof p.photo==='string'?p.photo:(p.photo?.href||'');
+  if(suppliedPhoto)photoCandidates.push(suppliedPhoto);
+  findPlayerPhotos(p.name).then(urls=>{if(!card.isConnected)return;photoCandidates=[...new Set([...urls,...photoCandidates])];if(!img.getAttribute('src'))tryNextPhoto()}).catch(()=>{});
+  if(photoCandidates.length)tryNextPhoto();
+  const embeddedTeam=String(p.name||'').match(/\s*\(([^()]+)\)\s*$/);
+  const displayName=String(p.name||'').replace(/\s*\([^()]+\)\s*$/,'').trim();
+  const resolvedTeam=String(p.teamName||'').trim() || (embeddedTeam?embeddedTeam[1].trim():'');
+  const name=document.createElement('div');name.className='scorer-name';name.textContent=displayName;
+  const team=document.createElement('div');team.className='scorer-team';
+  const teamName=document.createElement('span');teamName.textContent=resolvedTeam?'('+resolvedTeam+')':'';
+  if(resolvedTeam){
+   const logoUrl=p.teamLogo||teamLogoFromStandings(resolvedTeam);
+   if(logoUrl){const logoImg=document.createElement('img');logoImg.alt='Escudo de '+resolvedTeam;logoImg.loading='lazy';logoImg.referrerPolicy='no-referrer';logoImg.className='scorer-team-logo';logoImg.onerror=()=>logoImg.remove();logoImg.src=logoUrl;team.append(logoImg);}
+  }
+  team.append(teamName);
+  const goals=document.createElement('div');goals.className='scorer-goals';goals.textContent=String(p.goals);const small=document.createElement('small');small.textContent=p.goals===1?'GOL':'GOLES';goals.append(small);
+  const rank=document.createElement('div');rank.style.cssText='font-size:11px;letter-spacing:1px;color:#777;margin-bottom:6px';rank.textContent='PUESTO '+(index+1);rank.style.cssText='grid-column:2;grid-row:1;font-size:11px;letter-spacing:1px;color:#777;margin-bottom:2px';
+  card.append(img,rank,name,team,goals);featured.append(card);
+ });
+ $('scorersSource').textContent='Fuente: '+(window.scorersDataSource||'fuente consultada')+'. Se muestran los seis primeros. Los escudos reutilizan las mismas URL de ESPN que aparecen en la clasificación. Se contrastan fuentes estadísticas de LaLiga, ESPN, MARCA, FotMob, BeSoccer, BBC Sport, Transfermarkt, Soccerway, AS y Mundo Deportivo; las fotos se cargan solo desde URL de imagen verificables de ESPN, FotMob o Wikimedia.';
+}
+function parseLaLigaScorers(doc){
+ const out=[];
+ const clean=s=>(s||'').replace(/\s+/g,' ').trim();
+ // First choice: a rendered HTML table with player, team and goals columns.
+ for(const table of doc.querySelectorAll('table')){
+  const headers=[...table.querySelectorAll('thead th')].map(x=>clean(x.textContent).toLowerCase());
+  const nameIdx=headers.findIndex(x=>/nombre|jugador|player/.test(x));
+  const teamIdx=headers.findIndex(x=>/equipo|team|club/.test(x));
+  const goalsIdx=headers.findIndex(x=>/goles a favor|goles|goals|gaf/.test(x));
+  if(nameIdx<0||goalsIdx<0)continue;
+  for(const row of table.querySelectorAll('tbody tr')){
+   const cells=[...row.querySelectorAll('td')]; if(!cells.length)continue;
+   const name=clean(cells[nameIdx]?.textContent); const goals=Number(clean(cells[goalsIdx]?.textContent).replace(/[^0-9-]/g,''));
+   if(!name||!Number.isFinite(goals)||goals<0)continue;
+   const teamCell=teamIdx>=0?cells[teamIdx]:null;
+   const teamName=clean(teamCell?.textContent);
+   const teamLogo=teamCell?.querySelector('img')?.src||'';
+   const playerImg=(cells[nameIdx]?.querySelector('img')||row.querySelector('img'))?.src||'';
+   out.push({name,goals,photo:playerImg,teamName,teamLogo});
+  }
+  if(out.length)return out.sort((a,b)=>b.goals-a.goals);
+ }
+ // Some LaLiga pages render the names and statistics in separate server-rendered lists.
+ // Only combine equal-length lists when the visible labels clearly identify the fields.
+ const nameNodes=[...doc.querySelectorAll('a[href*="/jugadores/"], a[href*="/players/"], [class*="player-name"], [class*="PlayerName"]')];
+ const names=nameNodes.map(n=>clean(n.textContent)).filter(n=>n&&n.length<60&&!/^ver|más|todos/i.test(n));
+ const bodyText=clean(doc.body?.innerText||doc.body?.textContent||'');
+ if(names.length>=10&&/GOLES A FAVOR|GAF/i.test(bodyText)){
+  // Do not guess the goals from page text; the rows must be structurally available.
+  return [];
+ }
+ // Last attempt: inspect JSON embedded in the official page and normalize only real player records.
+ const norm=[]; const seen=new Set();
+ const add=o=>{
+  if(!o||typeof o!=='object')return;
+  const name=o.name||o.playerName||o.fullName||o.displayName;
+  const raw=o.goals??o.goalsFor??o.totalGoals??o.goalsScored??o.value;
+  const goals=typeof raw==='number'?raw:Number(String(raw??'').replace(/[^0-9.-]/g,''));
+  if(typeof name==='string'&&name.trim()&&Number.isFinite(goals)&&goals>=0){const key=name.trim().toLowerCase();if(!seen.has(key)){seen.add(key);norm.push({name:name.trim(),goals,photo:o.photo||o.image||o.headshot||'',teamName:o.teamName||o.team?.name||o.team?.shortName||'',teamLogo:o.team?.logo||''})}}
+ };
+ const walk=o=>{if(!o||typeof o!=='object')return;if(Array.isArray(o)){o.forEach(walk);return}add(o);for(const [k,v] of Object.entries(o)){if(k==='__NEXT_DATA__')walk(v);else if(v&&typeof v==='object')walk(v)}};
+ for(const s of doc.querySelectorAll('script[type="application/ld+json"],script#__NEXT_DATA__,script[type="application/json"]')){try{walk(JSON.parse(s.textContent))}catch{}}
+ return norm.sort((a,b)=>b.goals-a.goals);
+}
+function parseMarcaScorers(doc){
+ const rows=[];
+ for(const table of doc.querySelectorAll('table')){
+  const trs=[...table.querySelectorAll('tr')]; if(trs.length<2)continue;
+  const headers=[...(trs[0]?.querySelectorAll('th,td')||[])].map(x=>x.textContent.trim().toLowerCase());
+  const playerIdx=headers.findIndex(x=>/jugador|futbolista|player/.test(x));
+  const teamIdx=headers.findIndex(x=>/equipo|club|team/.test(x));
+  const goalIdx=headers.findIndex(x=>/goles|gol(es)?|goals|tantos/.test(x));
+  if(playerIdx<0||goalIdx<0)continue;
+  for(const tr of trs.slice(1)){
+   const cells=[...tr.querySelectorAll('td')]; if(!cells.length)continue;
+   const name=(cells[playerIdx]?.textContent||'').replace(/\s+/g,' ').trim();
+   const goalText=(cells[goalIdx]?.textContent||'').trim();
+   const goals=Number(goalText.replace(/[^0-9]/g,''));
+   if(!name||!Number.isFinite(goals)||!/^\d+$/.test(goalText.replace(/\s/g,'')))continue;
+   const img=cells[playerIdx]?.querySelector('img');
+   const teamCell=teamIdx>=0?cells[teamIdx]:null;
+   const teamImg=teamCell?.querySelector('img');
+   rows.push({name,goals,photo:img?.currentSrc||img?.src||'',teamName:(teamCell?.textContent||'').replace(/\s+/g,' ').trim(),teamLogo:teamImg?.currentSrc||teamImg?.src||''});
+  }
+ }
+ return rows.sort((a,b)=>b.goals-a.goals).slice(0,50);
+}
+async function tryMarcaProxy(){
+ // Intento directo con un lector público de páginas. Esto no garantiza disponibilidad;
+ // si el servicio bloquea la consulta, la función devuelve una lista vacía y sigue ESPN.
+ const url='https://r.jina.ai/http://www.marca.com/futbol/primera-division/pichichi.html';
+ const response=await fetch(url,{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(15000)});
+ if(!response.ok)throw Error('Lector MARCA HTTP '+response.status);
+ const text=await response.text();
+ const rows=[];
+ // Jina Reader suele representar las tablas HTML como texto/Markdown. Reconocemos
+ // únicamente filas que incluyan jugador, equipo y un valor numérico de goles.
+ for(const line of text.split(/\r?\n/)){
+  if(!line.includes('|'))continue;
+  const cells=line.split('|').map(x=>x.replace(/<[^>]*>/g,' ').replace(/\[([^\]]+)\]\([^)]*\)/g,'$1').replace(/[*_`]/g,'').replace(/\s+/g,' ').trim()).filter(Boolean);
+  if(cells.length<3||cells.every(x=>/^:?-{2,}:?$/.test(x)))continue;
+  const goalIdx=cells.findIndex((x,i)=>i>0&&/^(\d{1,2})$/.test(x));
+  if(goalIdx<0)continue;
+  const candidate=cells.slice(0,goalIdx).find(x=>/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(x)&&!/^pos(ición)?$/i.test(x));
+  if(!candidate||/jugador|futbolista|nombre/i.test(candidate))continue;
+  const team=cells.slice(goalIdx+1).find(x=>/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(x))||'';
+  rows.push({name:candidate,goals:Number(cells[goalIdx]),photo:'',teamName:team,teamLogo:''});
+ }
+ const unique=new Map();for(const r of rows){const k=r.name.toLowerCase();if(!unique.has(k)||r.goals>unique.get(k).goals)unique.set(k,r)}
+ return [...unique.values()].sort((a,b)=>b.goals-a.goals).slice(0,50);
+}
+async function loadScorers(){
+ const officialUrl='https://www.laliga.com/estadisticas/laliga-easports/goleadores';
+ let players=[],source='';
+ // Primary source: official LaLiga statistics page. Browser CORS policies may prevent reading it;
+ // in that case ESPN is used as a real fallback rather than inventing values.
+ try{
+  const response=await fetch(officialUrl,{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(10000)});
+  if(!response.ok)throw Error('LaLiga HTTP '+response.status);
+  const markup=await response.text();
+  const doc=new DOMParser().parseFromString(markup,'text/html');
+  players=parseLaLigaScorers(doc);
+  if(players.length){source='LaLiga oficial';}
+  else console.warn('LaLiga respondió, pero no se pudo reconocer una tabla de goleadores en el HTML.');
+ }catch(error){console.warn('LaLiga no se pudo consultar directamente desde el navegador; se probará ESPN.',error)}
+ if(!players.length){
+  try{players=await tryMarcaProxy();if(players.length)source='MARCA (respaldo mediante Worker)'}catch(error){console.warn('No se pudo consultar MARCA mediante Worker:',error)}
+ }
+ if(!players.length){
+  const urls=[
+   'https://site.api.espn.com/apis/site/v3/sports/soccer/esp.1/leaders?region=us&lang=en&limit=100',
+   'https://site.web.api.espn.com/apis/site/v3/sports/soccer/esp.1/leaders?region=us&lang=en&limit=100',
+   'https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/leaders?region=us&lang=en&limit=100',
+   'https://site.web.api.espn.com/apis/site/v2/sports/soccer/esp.1/leaders?region=us&lang=en&limit=100',
+   'https://sports.core.api.espn.com/v2/sports/soccer/leagues/esp.1/leaders?limit=100'
+  ];
+  let best=[];
+  for(const url of urls){try{const data=await json(url);const normalized=normalizeLeaders(data);if(normalized.length>best.length)best=normalized;if(best.length>=10)break}catch(e){console.warn('Consulta ESPN de goleadores falló:',url,e)}}
+  players=best; if(players.length)source='ESPN (respaldo)';
+ }
+ window.scorersDataSource=source||'sin fuente disponible';
+ renderScorers(players);
+ if(players.length)$('scorersSource').textContent='Fuente: '+source+'. Se muestran los seis primeros; las fotos dependen de los datos disponibles en la fuente.';
+ else $('scorersSource').textContent='No fue posible obtener un ranking válido de LaLiga ni de ESPN. No se muestran datos inventados. Pulsa Actualizar para reintentar.';
+}
+
+function setStatus(s,err=false){$('statusText').textContent=s;$('status').classList.toggle('error',err);let dot=$('status').querySelector('.status-dot');if(dot){dot.style.background=err?'#ff5268':'#20c997'}}
+let refreshing=false;async function refresh(){if(refreshing)return;refreshing=true;let b=$('refreshBtn');b.textContent='Actualizando…';b.disabled=true;try{const results=await Promise.allSettled([loadScores(),loadStandings(),loadScorers()]);if(results.some(x=>x.status==='rejected'))setStatus('Datos parciales: la fuente no respondió a todas las consultas. Pulsa Actualizar para reintentar.',true);else setStatus('Última consulta: '+new Intl.DateTimeFormat('es-GT',{timeZone:'America/Guatemala',hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date())+' · LaLiga/ESPN · actualización cada 60 segundos.')}catch(e){setStatus('No fue posible consultar los datos. Revisa tu conexión e inténtalo de nuevo.',true)}finally{b.innerHTML='<span aria-hidden="true">↻</span> Actualizar';b.disabled=false;refreshing=false}}document.addEventListener('DOMContentLoaded',()=>{const button=$('refreshBtn');if(button)button.addEventListener('click',refresh);const marcaBtn=$('marcaProxyBtn');if(marcaBtn)marcaBtn.addEventListener('click',()=>loadScorers().catch(()=>{}));refresh();setInterval(refresh,60000)});
+</script>
+
+<div class="status" id="status"><div class="status-copy"><div class="status-label"><span class="status-dot"></span>Estado de los datos</div><div class="status-detail" id="statusText">Datos deportivos en línea · LaLiga y ESPN como respaldo · actualización automática cada 60 segundos.</div></div><button id="refreshBtn"><span aria-hidden="true">↻</span> Actualizar</button></div>
+
+
+</body>
+</html>
