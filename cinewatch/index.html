@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090b12">
-<title>CINEWATCH — Media Monitor · Cartelera en vivo</title>
+<title>CINEWATCH — Media Monitor · Cartelera corregida</title>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 :root{
@@ -373,18 +373,6 @@ header{background:transparent;border:0;box-shadow:none;border-radius:0;padding:8
     </section>
   </aside>
 </div>
-
-<section class="xWallModule newsWallModule" id="newsWallModule">
-  <div class="xWallHead">
-    <div><h2>𝕏 Muro social de cine y series</h2><p>Prueba de visualización directa de tu lista pública de X.</p></div>
-    <div class="xWallActions"><span class="xWallStatus" id="xProfileStatus">Cronología oficial de X</span><a class="xWallBtn" href="https://x.com/i/lists/18907949?s=20" target="_blank" rel="noopener noreferrer">Abrir lista de X ↗</a></div>
-  </div>
-  <div class="xWallFrame xIframeFrame" id="xProfileFrame" style="padding:0;min-height:620px;max-height:none;overflow:hidden">
-    <iframe id="xProfileIframe" title="Lista pública de cine y series en X" src="https://x.com/i/lists/18907949?s=20" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" style="display:block;width:100%;height:620px;border:0;background:#080b11" allow="clipboard-read; clipboard-write"></iframe>
-    <div class="xWallLoading" id="xProfileLoading">Si X permite la carga dentro de esta página, las publicaciones de tu lista aparecerán aquí.<small>Si ves un área vacía o un mensaje de bloqueo, X impide mostrar su sitio dentro de un iframe. Puedes abrir la lista directamente con el botón superior.</small></div>
-  </div>
-  <div class="xWallFoot"><span>Fuente: cronología pública de X.</span><span>La visualización depende de que X permita cargar sus widgets en este navegador y sitio.</span></div>
-</section>
 
 <section class="statsModule" id="statsModule">
  <div class="statsHead"><div><h2>📊 Analítica de monitoreo</h2><p>Qué encontró CINEWATCH, qué categorías dominan y qué fuentes aportan más noticias útiles.</p></div><div class="statsControls" id="statsPeriod"><button class="active" data-period="day">Hoy</button><button data-period="week">7 días</button><button data-period="month">30 días</button></div></div>
@@ -1692,35 +1680,6 @@ setTimeout(refresh,150);
 setInterval(refresh,15*60*1000);
 setupXAccounts();
 
-// Prueba de carga directa de la lista pública de X 18907949 en iframe.
-(function setupXProfileTimeline(){
- const loading=document.getElementById('xProfileLoading');
- const frame=document.getElementById('xProfileFrame');
- if(!frame)return;
- let widgetLoaded=false;
- const showFallback=()=>{
-   if(loading && !widgetLoaded){
-     loading.innerHTML='X no terminó de cargar la lista dentro del iframe.<small>Abre la lista con el botón superior. Si la lista se ve en X pero aquí queda vacía, la política de seguridad de X puede impedir la incrustación directa.</small>';
-   }
- };
- const script=document.createElement('script');
- script.src='https://platform.twitter.com/widgets.js';
- script.async=true;
- script.charset='utf-8';
- script.onload=()=>{
-   try{
-     if(window.twttr && window.twttr.widgets){
-       window.twttr.widgets.load(frame).then(()=>{
-         widgetLoaded=true;
-         if(loading)loading.remove();
-       }).catch(showFallback);
-     }else setTimeout(showFallback,5000);
-   }catch(e){showFallback();}
- };
- script.onerror=showFallback;
- document.head.appendChild(script);
- setTimeout(showFallback,10000);
-})();
 </script>
 
 <div class="cwCartModal" id="cwCartModal" role="dialog" aria-modal="true" aria-labelledby="cwCartTitle">
@@ -1763,7 +1722,7 @@ setupXAccounts();
  function extractOfficialMovies(markdown,sourceName){
    const text=String(markdown||'').replace(/\r/g,'');const rows=[];const seen=new Set();
    const images=[];const imgRe=/!\[([^\]]*)\]\((https?:\/\/[^)\s]+)(?:\s+[^)]*)?\)/gi;let im;
-   while((im=imgRe.exec(text))){const alt=im[1].replace(/\s+/g,' ').trim();const url=im[2].replace(/&amp;/g,'&');if(/^https?:/i.test(url)&&/\.(jpe?g|png|webp|avif)([?#]|$)/i.test(url+' '))images.push({alt,url});}
+   while((im=imgRe.exec(text))){const alt=im[1].replace(/\s+/g,' ').trim();const url=im[2].replace(/&amp;/g,'&');if(/^https?:/i.test(url)&&/\.(jpe?g|png|webp|avif)(?:[?#].*)?$/i.test(url))images.push({alt,url});}
    const lines=text.split('\n').map(x=>x.trim().replace(/^#+\s*/, '').replace(/^[-*+]\s+/, '').replace(/\s*\|.*$/,'').trim()).filter(Boolean);
    for(let i=0;i<lines.length;i++){
      let raw=lines[i].replace(/\*\*/g,'').replace(/\s{2,}/g,' ').trim();
@@ -1796,7 +1755,7 @@ setupXAccounts();
      for(const m of fresh){const key=normalizeTitle(m.title);if(!key)continue;if(!merged.has(key))merged.set(key,{...m});else{const old=merged.get(key);old.source=old.source.includes(m.source)?old.source:old.source+' / '+m.source;if(m.officialPoster&&m.poster){old.poster=m.poster;old.officialPoster=true;}if(!old.original&&m.original)old.original=m.original;}}
      // Preserve the prior dataset as a fallback, but don't add stale duplicates for titles found live.
      const liveKeys=new Set([...merged.keys()]);
-     for(const m of baseMovies){const key=normalizeTitle(m.title);if(!merged.has(key)&&!liveKeys.has(key))merged.set(key,{...m,source:(m.source||'Cartelera guardada')+' · lista anterior'});}
+     for(const m of baseMovies){const key=normalizeTitle(m.title);if(key && !liveKeys.has(key) && !merged.has(key))merged.set(key,{...m,source:(m.source||'Cartelera guardada')+' · lista anterior'});}
      movies=[...merged.values()];
      const officialPosters=fresh.filter(m=>m.officialPoster&&m.poster).length;
      setLiveStatus(`Consulta completada parcialmente: ${fresh.length} fichas detectadas en ${ok.join(', ')}. ${officialPosters} pósteres se extrajeron directamente de las páginas consultadas. Fuentes sin resultados utilizables: ${failed.length?failed.join(', '):'ninguna'}. Los títulos previos se mantienen como respaldo.`,failed.length?'warn':'ok');
@@ -1815,7 +1774,7 @@ setupXAccounts();
  }
  function render(){
    const q=$('cwCartQ').value.toLowerCase().trim(), source=$('cwCartSource').value;
-   const list=movies.filter(m=>(!q||m.title.toLowerCase().includes(q)||(m.original||'').toLowerCase().includes(q))&&(source==='all'||m.source.toLowerCase().includes(source.toLowerCase())));
+   const list=movies.filter(m=>(!q||String(m.title||'').toLowerCase().includes(q)||String(m.original||'').toLowerCase().includes(q))&&(source==='all'||String(m.source||'').toLowerCase().includes(source.toLowerCase())));
    $('cwCartGrid').innerHTML=list.map(posterCard).join('')||'<div class="cwCartEmpty">No hay películas con ese filtro.</div>';
    $('cwCartCount').textContent=list.length+' películas';
    $('cwCartStatus').textContent=movies.length+' títulos consolidados';
