@@ -595,6 +595,7 @@ const playerPhotoCache=new Map();
 // Fuentes revisadas para goleadores y/o fotografías. No todas ofrecen una API pública:
 // LaLiga, ESPN, MARCA, FotMob, BeSoccer, BBC Sport, Transfermarkt, Soccerway, AS y Mundo Deportivo.
 async function findPlayerPhotos(name){
+ // GitHub Pages HTTPS: las fotos se cargan como <img> directas; la API solo descubre URL. Se conserva Referer estándar para servidores que lo requieren.
  const cacheKey=String(name||'').trim();
  if(playerPhotoCache.has(cacheKey))return playerPhotoCache.get(cacheKey);
  const norm=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
@@ -606,7 +607,7 @@ async function findPlayerPhotos(name){
   'raphinha (fc barcelona)':'https://www.fcbarcelona.com/photo-resources/2022/07/24/4089f82c-191e-499f-ac63-84eadeeb853e/raphinha.png?height=790&width=670'
  };
  const manual=officialPhotos[target];
- if(manual){playerPhotoCache.set(cacheKey,[manual]);return [manual]}
+ if(manual)candidates.push({url:manual,score:130});
  const addPhoto=(url,score=50)=>{if(typeof url==='string'&&/^https?:\/\//i.test(url)&&!/(logo|crest|badge|flag|team|club|default|placeholder)/i.test(url))candidates.push({url,score})};
  // 1) TheSportsDB: API pública de jugadores. Busca por nombre y acepta solo coincidencias sólidas.
  try{
@@ -680,10 +681,10 @@ function renderScorers(players){
  // Solo muestra los seis primeros según los goles recibidos; las fotos faltantes se buscan por nombre.
  players.slice(0,6).forEach((p,index)=>{
   const card=document.createElement('article');card.className='scorer-card';
-  const img=document.createElement('img');img.className='scorer-photo photo-missing';img.alt='';img.loading='lazy';img.referrerPolicy='no-referrer';img.style.display='block';
+  const img=document.createElement('img');img.className='scorer-photo photo-missing';img.alt='';img.loading='lazy';img.referrerPolicy='strict-origin-when-cross-origin';img.style.display='block';
   let photoCandidates=[];let photoIndex=0;
   const tryNextPhoto=()=>{if(photoIndex<photoCandidates.length){img.classList.remove('photo-missing');img.alt='Fotografía de '+p.name;img.src=photoCandidates[photoIndex++]}else{img.removeAttribute('src');img.alt='';img.classList.add('photo-missing')}};
-  img.onerror=()=>tryNextPhoto();
+  img.onload=()=>img.classList.remove('photo-missing');img.onerror=()=>tryNextPhoto();
   const suppliedPhoto=typeof p.photo==='string'?p.photo:(p.photo?.href||'');
   if(suppliedPhoto)photoCandidates.push(suppliedPhoto);
   findPlayerPhotos(p.name).then(urls=>{if(!card.isConnected)return;photoCandidates=[...new Set([...urls,...photoCandidates])];if(!img.getAttribute('src'))tryNextPhoto()}).catch(()=>{});
@@ -696,7 +697,7 @@ function renderScorers(players){
   const teamName=document.createElement('span');teamName.textContent=resolvedTeam?'('+resolvedTeam+')':'';
   if(resolvedTeam){
    const logoUrl=p.teamLogo||teamLogoFromStandings(resolvedTeam);
-   if(logoUrl){const logoImg=document.createElement('img');logoImg.alt='Escudo de '+resolvedTeam;logoImg.loading='lazy';logoImg.referrerPolicy='no-referrer';logoImg.className='scorer-team-logo';logoImg.onerror=()=>logoImg.remove();logoImg.src=logoUrl;team.append(logoImg);}
+   if(logoUrl){const logoImg=document.createElement('img');logoImg.alt='Escudo de '+resolvedTeam;logoImg.loading='lazy';logoImg.referrerPolicy='strict-origin-when-cross-origin';logoImg.className='scorer-team-logo';logoImg.onerror=()=>logoImg.remove();logoImg.src=logoUrl;team.append(logoImg);}
   }
   team.append(teamName);
   const goals=document.createElement('div');goals.className='scorer-goals';goals.textContent=String(p.goals);const small=document.createElement('small');small.textContent=p.goals===1?'GOL':'GOLES';goals.append(small);
