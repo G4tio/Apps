@@ -591,80 +591,8 @@ function normalizeLeaders(data){
  visit(data);
  return found.sort((a,b)=>b.goals-a.goals).slice(0,50)
 }
-const playerPhotoCache=new Map();
-// Fuentes revisadas para goleadores y/o fotografías. No todas ofrecen una API pública:
-// LaLiga, ESPN, MARCA, FotMob, BeSoccer, BBC Sport, Transfermarkt, Soccerway, AS y Mundo Deportivo.
-async function findPlayerPhotos(name){
- // GitHub Pages HTTPS: las fotos se cargan como <img> directas; la API solo descubre URL. Se conserva Referer estándar para servidores que lo requieren.
- const cacheKey=String(name||'').trim();
- if(playerPhotoCache.has(cacheKey))return playerPhotoCache.get(cacheKey);
- const norm=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
- const target=norm(name), words=target.split(' ').filter(w=>w.length>2), candidates=[];
- // Fotografías directas verificadas/manuales de perfiles oficiales. Se priorizan antes de APIs externas.
- const officialPhotos={
-  'raphinha':'https://www.fcbarcelona.com/photo-resources/2022/07/24/4089f82c-191e-499f-ac63-84eadeeb853e/raphinha.png?height=790&width=670',
-  'raphael dias belloli':'https://www.fcbarcelona.com/photo-resources/2022/07/24/4089f82c-191e-499f-ac63-84eadeeb853e/raphinha.png?height=790&width=670',
-  'raphinha (fc barcelona)':'https://www.fcbarcelona.com/photo-resources/2022/07/24/4089f82c-191e-499f-ac63-84eadeeb853e/raphinha.png?height=790&width=670'
- };
- const manual=officialPhotos[target];
- if(manual)candidates.push({url:manual,score:130});
- const addPhoto=(url,score=50)=>{if(typeof url==='string'&&/^https?:\/\//i.test(url)&&!/(logo|crest|badge|flag|team|club|default|placeholder)/i.test(url))candidates.push({url,score})};
- // 1) TheSportsDB: API pública de jugadores. Busca por nombre y acepta solo coincidencias sólidas.
- try{
-  const api='https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p='+encodeURIComponent(name);
-  const r=await fetch(api,{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(6500)});
-  if(r.ok){const data=await r.json();for(const player of (data.player||[])){
-   const n=player.strPlayer||'',nn=norm(n),exact=nn===target;
-   const hit=words.filter(w=>nn.split(' ').includes(w)).length;
-   if(!exact&&!(words.length>=2&&hit===words.length&&Math.abs(nn.length-target.length)<=12))continue;
-   const image=player.strCutout||player.strThumb||player.strRender||'';
-   if(image)addPhoto(image,exact?120:90);
-  }}
- }catch(e){}
- // 2) ESPN: búsqueda de fichas de atletas, igual que la clasificación utiliza ESPN para escudos.
- for(const endpoint of [
-  'https://site.api.espn.com/apis/site/v2/sports/search?query='+encodeURIComponent(name)+'&limit=15',
-  'https://site.web.api.espn.com/apis/site/v2/sports/search?query='+encodeURIComponent(name)+'&limit=15'
- ]){
-  try{
-   const r=await fetch(endpoint,{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(6500)});if(!r.ok)continue;
-   const data=await r.json();
-   const walk=o=>{if(!o)return;if(Array.isArray(o)){o.forEach(walk);return}if(typeof o!=='object')return;
-    const athlete=o.athlete||o.player||o;
-    const n=athlete.displayName||athlete.fullName||athlete.name||o.displayName||o.fullName||o.name;
-    const h=athlete.headshot?.href||o.headshot?.href||athlete.photo||o.photo||athlete.image?.href||o.image?.href||'';
-    if(n&&typeof h==='string'){const nn=norm(n),exact=nn===target,hit=words.filter(w=>nn.split(' ').includes(w)).length;if(exact)addPhoto(h,100);else if(words.length>=2&&hit===words.length&&Math.abs(nn.length-target.length)<=8)addPhoto(h,80)}
-    for(const [k,v] of Object.entries(o))if(!['links','$ref'].includes(k))walk(v);
-   };walk(data);if(candidates.some(c=>c.score===100))break;
-  }catch(e){}
- }
- // 3) FotMob: API pública no oficial de sugerencias y ficha del jugador.
- try{
-  const r=await fetch('https://www.fotmob.com/api/data/search/suggest?term='+encodeURIComponent(name),{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(6500)});
-  if(r.ok){const data=await r.json();const list=Array.isArray(data)?data:(data.suggestedPlayers||data.players||data.results||[]);
-   for(const item of list){const n=item.name||item.title||item.playerName||'',id=item.id||item.playerId;if(!id)continue;const nn=norm(n),exact=nn===target,hit=words.filter(w=>nn.split(' ').includes(w)).length;if(!exact&&!(words.length>=2&&hit===words.length))continue;
-    const direct=item.imageUrl||item.image||item.photo||item.playerImage;if(typeof direct==='string')addPhoto(direct,exact?98:75);
-    try{const pr=await fetch('https://www.fotmob.com/api/data/player?id='+encodeURIComponent(id),{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(5000)});if(pr.ok){const pd=await pr.json();const im=pd.imageUrl||pd.player?.imageUrl||pd.player?.image||pd.image;if(typeof im==='string')addPhoto(im,exact?97:74)}}catch(e){}
-   }
-  }
- }catch(e){}
- // 4) Wikimedia Commons API: respaldo fotográfico con comprobación del nombre en el título.
- try{
-  const api='https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrsearch='+encodeURIComponent('"'+name+'" football player portrait')+'&gsrnamespace=6&gsrlimit=12&prop=imageinfo&iiprop=url&iiurlwidth=320';
-  const res=await fetch(api,{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(7000)});
-  if(res.ok){const data=await res.json();for(const page of Object.values(data.query?.pages||{})){
-   const title=norm((page.title||'').replace(/^File:/i,'').replace(/\.[^.]+$/,''));const hits=words.filter(w=>title.includes(w)).length;
-   const unwanted=/logo|crest|badge|flag|icon|shirt|kit|stadium|squad|team photo/i.test(title);const info=page.imageinfo?.[0],url=info?.thumburl||info?.url||'';
-   if(url&&words.length&&hits===words.length&&!unwanted&&/\.(jpe?g|png|webp)(\?|$)/i.test(url))addPhoto(url,70);
-  }}
- }catch(e){}
- // 5-10) MARCA, BeSoccer, BBC Sport, Transfermarkt, Soccerway, AS y Mundo Deportivo
- // se registran como fuentes editoriales de referencia, pero no se fuerza scraping de sus páginas:
- // no ofrecen endpoints públicos estables garantizados para el navegador. Las imágenes se toman
- // de APIs que sí entreguen una URL de foto verificable, nunca de una imagen arbitraria del sitio.
- const unique=[...new Map(candidates.sort((a,b)=>b.score-a.score).map(c=>[c.url,c])).values()].map(c=>c.url).slice(0,6);
- playerPhotoCache.set(cacheKey,unique);return unique;
-}
+// Las fotografías de goleadores se cargan exclusivamente desde Apps/liga/fotos/ en GitHub Pages.
+// No se consultan APIs externas ni se utilizan URLs de fotos devueltas por proveedores estadísticos.
 function teamLogoFromStandings(teamName){
  const key=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
  const map=window.teamLogoByName||new Map();const target=key(teamName);
@@ -710,21 +638,15 @@ function localPlayerPhoto(name){
 function renderScorers(players){
  const featured=$('scorersFeatured'),list=$('scorersNextFive');featured.innerHTML='';if(list)list.innerHTML='';
  if(!players.length){featured.innerHTML='<div class="scorers-status">No se pudo obtener un ranking de goleadores válido. Intenta actualizar más tarde.</div>';$('scorersSource').textContent='LaLiga Pulse no recibió datos verificables. No se muestran cifras inventadas.';return}
- // Solo muestra los seis primeros según los goles recibidos; las fotos faltantes se buscan por nombre.
+ // Solo muestra los seis primeros según los goles recibidos; las fotografías proceden exclusivamente de la carpeta fotos del repositorio.
  players.slice(0,6).forEach((p,index)=>{
   const card=document.createElement('article');card.className='scorer-card';
   const img=document.createElement('img');img.className='scorer-photo photo-missing';img.alt='';img.loading='lazy';img.referrerPolicy='strict-origin-when-cross-origin';img.style.display='block';
-  let photoCandidates=[];let photoIndex=0;
-  const tryNextPhoto=()=>{if(photoIndex<photoCandidates.length){img.classList.remove('photo-missing');img.alt='Fotografía de '+p.name;img.src=photoCandidates[photoIndex++]}else{img.removeAttribute('src');img.alt='';img.classList.add('photo-missing')}};
-  img.onload=()=>img.classList.remove('photo-missing');img.onerror=()=>tryNextPhoto();
-  // Las fotos locales de ./fotos/ tienen prioridad: ya están guardadas en el repositorio
-  // y no dependen de servicios externos ni de permisos de otras webs.
   const localPhoto=localPlayerPhoto(p.name);
-  if(localPhoto)photoCandidates.push(localPhoto);
-  const suppliedPhoto=typeof p.photo==='string'?p.photo:(p.photo?.href||'');
-  if(suppliedPhoto)photoCandidates.push(suppliedPhoto);
-  findPlayerPhotos(p.name).then(urls=>{if(!card.isConnected)return;photoCandidates=[...new Set([...urls,...photoCandidates])];if(!img.getAttribute('src'))tryNextPhoto()}).catch(()=>{});
-  if(photoCandidates.length)tryNextPhoto();
+  img.onload=()=>img.classList.remove('photo-missing');
+  img.onerror=()=>{img.removeAttribute('src');img.alt='';img.classList.add('photo-missing')};
+  if(localPhoto){img.alt='Fotografía de '+p.name;img.src=localPhoto;}
+  else {img.removeAttribute('src');img.alt='';img.classList.add('photo-missing');}
   const embeddedTeam=String(p.name||'').match(/\s*\(([^()]+)\)\s*$/);
   const displayName=String(p.name||'').replace(/\s*\([^()]+\)\s*$/,'').trim();
   const resolvedTeam=String(p.teamName||'').trim() || (embeddedTeam?embeddedTeam[1].trim():'');
@@ -740,7 +662,7 @@ function renderScorers(players){
   const rank=document.createElement('div');rank.style.cssText='font-size:11px;letter-spacing:1px;color:#777;margin-bottom:6px';rank.textContent='PUESTO '+(index+1);rank.style.cssText='grid-column:2;grid-row:1;font-size:11px;letter-spacing:1px;color:#777;margin-bottom:2px';
   card.append(img,rank,name,team,goals);featured.append(card);
  });
- $('scorersSource').textContent='Fuente: '+(window.scorersDataSource||'fuente consultada')+'. Se muestran los seis primeros. Los escudos reutilizan las mismas URL de ESPN que aparecen en la clasificación. Se contrastan fuentes estadísticas de LaLiga, ESPN, MARCA, FotMob, BeSoccer, BBC Sport, Transfermarkt, Soccerway, AS y Mundo Deportivo; las fotos se cargan solo desde URL de imagen verificables de ESPN, FotMob o Wikimedia.';
+ $('scorersSource').textContent='Fuente de estadísticas: '+(window.scorersDataSource||'fuente consultada')+'. Fotografías: exclusivamente la carpeta /Apps/liga/fotos/ del repositorio GitHub. Si un jugador no tiene archivo local con nombre reconocido, se muestra el marcador de foto; no se buscan imágenes externas.';
 }
 function parseLaLigaScorers(doc){
  const out=[];
