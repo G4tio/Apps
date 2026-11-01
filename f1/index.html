@@ -7,6 +7,9 @@
 <meta name="description" content="F1 Center: calendario, resultados, campeonato, pilotos, escuderías y noticias de la Fórmula 1 2026 con datos en vivo.">
 <title>F1 Center · Temporada 2026</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e10600'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='900' font-style='italic' font-size='30' text-anchor='middle' fill='white'%3EF1%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#07090f;--panel:#0f141e;--panel-2:#141b28;--line:#222c3d;--line-soft:#ffffff0d;
@@ -28,8 +31,13 @@ a{color:inherit}
 /* Layout */
 .app{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
 .sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:22px 14px;border-right:1px solid var(--line-soft);background:#080b12e6;backdrop-filter:blur(18px);z-index:30}
-.side-logo{display:block;padding:4px 10px 26px}
-.side-logo img{width:100%;max-width:190px;height:auto;display:block}
+.side-logo{display:block;padding:2px 10px 24px;text-decoration:none}
+/* Marca tipográfica */
+.wordmark{display:inline-flex;align-items:baseline;gap:.18em;font-family:"Titillium Web",var(--font);font-weight:900;font-style:italic;line-height:.9;letter-spacing:-.02em;white-space:nowrap;text-transform:uppercase}
+.wordmark .f1{color:var(--red);text-shadow:0 0 .35em #e1060066;padding-right:.04em}
+.wordmark .ctr{background:linear-gradient(180deg,#ffffff 0%,#e9eef5 45%,#9aa6b8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.04em}
+.side-logo .wordmark{font-size:34px}
+.side-logo small{display:block;margin-top:6px;color:var(--dim);font-size:9px;letter-spacing:.32em;font-weight:700}
 .nav-label{color:var(--dim);font-size:10px;letter-spacing:.2em;font-weight:700;padding:0 12px;margin:14px 0 6px;text-transform:uppercase}
 .nav{display:grid;gap:3px}
 .nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:11px;color:#a9b3c4;text-decoration:none;border:1px solid transparent;transition:background .2s,color .2s,border-color .2s}
@@ -53,7 +61,7 @@ main{min-width:0;width:100%;max-width:1640px;margin:0 auto;padding:22px clamp(16
 .topbar .menu-btn,.scrim{display:none}
 .icon-btn{width:40px;height:40px;flex-shrink:0;display:grid;place-items:center;border:1px solid var(--line);border-radius:11px;background:#0f141e;transition:.2s}
 .icon-btn:hover{border-color:var(--lime)}
-.mobile-logo{display:none;height:22px}
+.mobile-logo{display:none;font-size:22px;text-decoration:none}
 .search{position:relative;flex:1;max-width:440px}
 .search input{width:100%;background:#0f141e;border:1px solid var(--line);border-radius:12px;padding:11px 14px 11px 40px;transition:.2s}
 .search input:focus{outline:none;border-color:#5b6a82;box-shadow:0 0 0 3px #ffffff08}
@@ -105,8 +113,13 @@ main{min-width:0;width:100%;max-width:1640px;margin:0 auto;padding:22px clamp(16
 .skeleton{background:linear-gradient(90deg,#ffffff06 25%,#ffffff10 50%,#ffffff06 75%);background-size:200% 100%;animation:shimmer 1.3s infinite;border-radius:8px}
 
 /* Home */
-.brand-hero{display:flex;justify-content:center;margin:0 0 22px}
-.brand-hero img{width:min(100%,720px);height:auto;filter:drop-shadow(0 10px 40px #e1060030)}
+.brand-hero{text-align:center;margin:6px 0 18px}
+.brand-hero .wordmark{font-size:clamp(54px,9vw,128px);filter:drop-shadow(0 14px 40px #e1060035)}
+.brand-hero .wordmark .f1{animation:glow 3s ease-in-out infinite}
+.brand-hero .tagline{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:10px;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.42em;text-transform:uppercase}
+.brand-hero .tagline::before,.brand-hero .tagline::after{content:"";height:2px;width:min(90px,12vw);background:linear-gradient(90deg,transparent,var(--red))}
+.brand-hero .tagline::after{transform:scaleX(-1)}
+@keyframes glow{50%{text-shadow:0 0 .6em #ff1a1a99}}
 .hero-grid{grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr)}
 .race-hero{position:relative;padding:26px;min-height:330px;isolation:isolate;background:linear-gradient(105deg,#111826 0%,#111826e6 50%,#11182640 100%),radial-gradient(ellipse at 85% 45%,#e1060040,transparent 55%)}
 .race-hero .bignum{position:absolute;right:18px;bottom:-50px;font-size:220px;font-weight:900;font-style:italic;letter-spacing:-.08em;color:#ffffff07;z-index:-1;line-height:1}
@@ -223,6 +236,29 @@ th.num,td.num{text-align:right}
 .analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .title-fight .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:10px 20px;border-top:1px solid var(--line-soft);align-items:center;font-size:13px}
 .title-fight .row:first-child{border-top:0}
+/* Galería de la última jornada */
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:92px;gap:6px;padding:14px 16px 6px}
+.gal button{all:unset;cursor:pointer;position:relative;border-radius:10px;overflow:hidden;background:#1a2232;min-width:0}
+.gal button:first-child{grid-column:span 3;grid-row:span 2}
+.gal button:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.gal img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.gal button:hover img{transform:scale(1.06)}
+.gal button::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#000b,transparent 55%);opacity:.0;transition:opacity .25s}
+.gal button:first-child::after,.gal button:hover::after{opacity:1}
+.gal .cap{position:absolute;left:12px;right:12px;bottom:10px;z-index:1;font-size:13px;font-weight:700;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 1px 4px #000}
+.gal button:not(:first-child) .cap{display:none}
+.gal .more{position:absolute;inset:0;display:grid;place-items:center;background:#000a;font-weight:800;font-size:18px;z-index:2}
+.gal-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 16px 14px;font-size:11px;color:var(--muted)}
+dialog.lb{width:min(1100px,calc(100vw - 24px));background:#05070b}
+.lb-img{position:relative;background:#000;display:grid;place-items:center;min-height:200px}
+.lb-img img{max-width:100%;max-height:calc(100vh - 220px);display:block}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid #ffffff30;background:#000a;color:#fff;font-size:20px;display:grid;place-items:center}
+.lb-nav:hover{border-color:var(--lime)}
+.lb-prev{left:12px}.lb-next{right:12px}
+.lb-info{padding:14px 18px 18px;display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.lb-info h3{margin:0 0 4px;font-size:16px}
+.lb-info small{color:var(--muted)}
+@media(max-width:780px){.gal{grid-auto-rows:78px}}
 
 /* Módulo: qué necesita para ser campeón */
 .tm-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:16px 16px 0}
@@ -306,13 +342,14 @@ dialog::backdrop{background:#000b;backdrop-filter:blur(4px)}
   .scrim{position:fixed;inset:0;background:#0009;z-index:25;display:none}
   .scrim.show{display:block}
   .topbar .menu-btn{display:grid}
-  .mobile-logo{display:block}
+  .mobile-logo{display:inline-flex}
   .search{max-width:none}
   .tz-pill{display:none}
   .topbar{flex-wrap:wrap}
   .search{order:5;flex-basis:100%}
   main{padding:14px 16px 40px}
-  .brand-hero{display:none}
+  .brand-hero{margin:0 0 12px}
+  .brand-hero .tagline{letter-spacing:.25em;font-size:10px}
   .race-hero{padding:20px;min-height:0}
   .race-hero h2{font-size:32px;margin-top:20px}
   .race-hero .bignum{font-size:150px}
@@ -336,7 +373,7 @@ dialog::backdrop{background:#000b;backdrop-filter:blur(4px)}
 <a class="skip" href="#main">Saltar al contenido</a>
 <div class="app">
   <aside class="sidebar" id="sidebar" aria-label="Menú">
-    <a class="side-logo" href="#/inicio" aria-label="F1 Center, inicio"><img src="logo.webp" alt="F1 Center" width="1400" height="175"></a>
+    <a class="side-logo" href="#/inicio" aria-label="F1 Center, inicio"><span class="wordmark"><span class="f1">F1</span><span class="ctr">Center</span></span><small>DATA CENTER · 2026</small></a>
     <div class="nav-label">Centro de carreras</div>
     <nav class="nav" aria-label="Navegación principal">
       <a href="#/inicio" data-page="inicio"><span class="ico">◈</span>Inicio</a>
@@ -364,7 +401,7 @@ dialog::backdrop{background:#000b;backdrop-filter:blur(4px)}
   <main id="main">
     <header class="topbar">
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="sidebar">☰</button>
-      <img class="mobile-logo" src="logo.webp" alt="F1 Center" width="176" height="22">
+      <a class="mobile-logo wordmark" href="#/inicio" aria-label="F1 Center, inicio"><span class="f1">F1</span><span class="ctr">Center</span></a>
       <div class="search" role="search">
         <span class="s-ico">⌕</span>
         <input id="search" type="search" placeholder="Buscar piloto, equipo o Gran Premio…" autocomplete="off" aria-label="Buscar" aria-controls="searchResults">
@@ -377,7 +414,7 @@ dialog::backdrop{background:#000b;backdrop-filter:blur(4px)}
     <!-- INICIO -->
     <section class="page" id="page-inicio" aria-labelledby="h-inicio">
       <h1 id="h-inicio" class="sr-only">Inicio</h1>
-      <div class="brand-hero"><img src="logo.webp" alt="" width="1400" height="175"></div>
+      <div class="brand-hero"><div class="wordmark" aria-hidden="true"><span class="f1">F1</span><span class="ctr">Center</span></div><div class="tagline">Temporada 2026</div></div>
       <div class="grid hero-grid">
         <article class="card race-hero" id="raceHero">
           <span class="bignum" id="heroRound">--</span>
@@ -412,6 +449,8 @@ dialog::backdrop{background:#000b;backdrop-filter:blur(4px)}
         <div>
           <div class="section-row"><h2 id="lastRaceTitle">Último podio</h2><a class="link" href="#/resultados">Resultados ↗</a></div>
           <article class="card" id="homePodium"></article>
+          <div class="section-row"><h2 id="galTitle">Imágenes de la jornada</h2><a class="link" id="galLink" href="https://www.formula1.com/en/latest" target="_blank" rel="noopener" style="white-space:nowrap">F1.com ↗</a></div>
+          <article class="card" id="homeGallery"><div class="gal"><div class="skeleton" style="grid-column:span 3;grid-row:span 2"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div></article>
           <div class="section-row"><h2>Últimas noticias</h2><a class="link" href="#/noticias">Ver todas ↗</a></div>
           <article class="card"><div class="news-list" id="homeNews"></div></article>
         </div>
@@ -1194,9 +1233,96 @@ $('#tmTabs').addEventListener('keydown', e => {
   const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length]; n.focus(); n.click();
 });
 
+/* ---------- Galería: imágenes oficiales de la última jornada ---------- */
+const F1_FEEDS = ['https://www.formula1.com/content/fom-website/en/latest/all.xml', 'https://www.formula1.com/en/latest/all.xml'];
+const GP_KEYS = {'United States':['austin','cota','united states','us grand prix','usa'],'Mexico City':['mexico','mexican'],'São Paulo':['sao paulo','brazil','brazilian','interlagos'],'Las Vegas':['las vegas','vegas'],'Qatar':['qatar','lusail'],'Abu Dhabi':['abu dhabi','yas marina'],'British':['british','silverstone'],'Italian':['italian','monza'],'Spanish':['madrid','madring','spanish'],'Barcelona-Catalunya':['barcelona','catalunya'],'Dutch':['dutch','zandvoort'],'Belgian':['belgian','spa'],'Hungarian':['hungarian','hungaroring'],'Austrian':['austrian','spielberg','red bull ring'],'Azerbaijan':['azerbaijan','baku'],'Singapore':['singapore','marina bay'],'Japanese':['japanese','suzuka'],'Chinese':['chinese','shanghai'],'Australian':['australian','melbourne'],'Bahrain':['bahrain','sakhir'],'Saudi Arabian':['saudi','jeddah'],'Miami':['miami'],'Canadian':['canadian','montreal'],'Monaco':['monaco']};
+const gallery = {race:null, items:[], source:'', idx:0};
+function feedImage(it){
+  const enc = it.querySelector('enclosure')?.getAttribute('url');
+  const media = [...it.getElementsByTagNameNS('*', 'content'), ...it.getElementsByTagNameNS('*', 'thumbnail')].map(e => e.getAttribute('url')).find(Boolean);
+  const desc = it.querySelector('description')?.textContent || '';
+  const inDesc = desc.match(/<img[^>]+src=["']([^"']+)/i)?.[1];
+  return safeUrl(enc || media || inDesc || '');
+}
+async function fetchViaProxy(url){
+  for (const p of PROXIES){
+    try {
+      const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 9000);
+      const res = await fetch(p(url), {signal:ctl.signal}); clearTimeout(t);
+      const txt = await res.text(); if (res.ok && /<(rss|feed)/i.test(txt)) return txt;
+    } catch {}
+  }
+  return '';
+}
+async function officialImages(r){
+  const keys = [...(GP_KEYS[r.gp] || []), norm(r.gp), norm(r.city)].filter(Boolean);
+  const from = raceStart(r) - 3 * 864e5, to = raceEnd(r) + 4 * 864e5;
+  for (const url of F1_FEEDS){
+    const txt = await fetchViaProxy(url); if (!txt) continue;
+    const xml = new DOMParser().parseFromString(txt, 'text/xml'); if (xml.querySelector('parsererror')) continue;
+    const items = [...xml.querySelectorAll('item')].map(it => {
+      const title = (it.querySelector('title')?.textContent || '').trim();
+      const date = Date.parse(it.querySelector('pubDate')?.textContent || '') || 0;
+      const text = norm(title + ' ' + (it.querySelector('description')?.textContent || ''));
+      return {img:feedImage(it), title, date, url:safeUrl(it.querySelector('link')?.textContent?.trim() || ''), credit:'Formula 1® · formula1.com', score:(keys.some(k => text.includes(k)) ? 2 : 0) + (date >= from && date <= to ? 1 : 0)};
+    }).filter(x => x.img && x.score >= 2 || (x.img && x.score === 1 && /race|qualifying|sprint|practice|grand prix|podium|win/i.test(x.title)));
+    if (items.length) return items.sort((a, b) => b.score - a.score || b.date - a.date).slice(0, 12);
+  }
+  return [];
+}
+async function commonsImages(r){
+  const cat = `Category:${SEASON} ${r.gp} Grand Prix`;
+  const url = 'https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=categorymembers&gcmtype=file&gcmlimit=20&gcmtitle=' + encodeURIComponent(cat) + '&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=1200';
+  try {
+    const data = await getJSON(url, 9000);
+    return Object.values(data?.query?.pages || {}).filter(p => /\.(jpe?g|png|webp)$/i.test(p.title)).map(p => {
+      const ii = p.imageinfo?.[0] || {}, m = ii.extmetadata || {};
+      const strip = h => String(h || '').replace(/<[^>]+>/g, '').trim();
+      return {img:safeUrl(ii.thumburl || ii.url), title:strip(m.ImageDescription?.value) || p.title.replace(/^File:|\.\w+$/g, '').replace(/_/g, ' '), url:safeUrl(ii.descriptionurl), credit:`${strip(m.Artist?.value) || 'Wikimedia Commons'} · ${strip(m.LicenseShortName?.value) || 'licencia libre'}`, date:0};
+    }).filter(x => x.img).slice(0, 12);
+  } catch { return []; }
+}
+async function renderGallery(){
+  const r = lastDone(), box = $('#homeGallery');
+  if (!r){ box.innerHTML = '<div class="empty"><strong>Aún no hay jornadas disputadas</strong>Las imágenes aparecerán tras la primera carrera.</div>'; return; }
+  $('#galTitle').textContent = `Imágenes · ${r.name.replace('GP de ', '')}`;
+  if (gallery.race !== r.round){
+    gallery.race = r.round;
+    gallery.loading = (async () => {
+      let items = await officialImages(r), source = 'Imágenes oficiales de Formula 1 (formula1.com)';
+      if (!items.length){ items = await commonsImages(r); source = 'Wikimedia Commons (licencias libres)'; }
+      gallery.items = items; gallery.source = source;
+    })();
+  }
+  await gallery.loading;
+  if (gallery.race !== r.round) return;
+  const it = gallery.items;
+  if (!it.length){
+    gallery.race = null;
+    box.innerHTML = `<div class="empty"><strong>No se pudieron cargar las imágenes</strong>Las fuentes no respondieron desde este navegador.<br><br><a class="link" href="https://www.formula1.com/en/latest" target="_blank" rel="noopener">Ver galerías en Formula1.com ↗</a></div>`;
+    return;
+  }
+  const shown = it.slice(0, 7), extra = it.length - shown.length;
+  box.innerHTML = `<div class="gal">${shown.map((x, i) => `<button data-gal="${i}" aria-label="${esc(x.title || 'Imagen ' + (i + 1))}"><img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.closest('button').remove()">${i === 0 ? `<span class="cap">${esc(x.title)}</span>` : ''}${i === shown.length - 1 && extra > 0 ? `<span class="more">+${extra}</span>` : ''}</button>`).join('')}</div>
+    <div class="gal-foot"><span>Fuente: ${esc(gallery.source)}</span><span>${it.length} imágenes</span></div>`;
+}
+function openLightbox(i){
+  const it = gallery.items; if (!it.length) return;
+  gallery.idx = (i + it.length) % it.length; const x = it[gallery.idx];
+  const m = $('#modal'); m.classList.add('lb');
+  openModal(`<div class="lb-img"><img src="${esc(x.img)}" alt="${esc(x.title)}">
+      ${it.length > 1 ? `<button class="lb-nav lb-prev" data-lb="-1" aria-label="Anterior">‹</button><button class="lb-nav lb-next" data-lb="1" aria-label="Siguiente">›</button>` : ''}
+      <button class="icon-btn modal-close" data-close aria-label="Cerrar" style="background:#000a">✕</button></div>
+    <div class="lb-info"><div><h3 id="modalTitle">${esc(x.title)}</h3><small>© ${esc(x.credit)} · ${gallery.idx + 1} / ${it.length}</small></div>${x.url ? `<a class="btn" href="${esc(x.url)}" target="_blank" rel="noopener">${x.credit.startsWith('Formula 1') ? 'Ver artículo' : 'Ver en Commons'} ↗</a>` : ''}</div>`);
+}
+$('#homeGallery').addEventListener('click', e => { const b = e.target.closest('[data-gal]'); if (b) openLightbox(+b.dataset.gal); });
+$('#modal').addEventListener('click', e => { const n = e.target.closest('[data-lb]'); if (n) openLightbox(gallery.idx + +n.dataset.lb); });
+$('#modal').addEventListener('close', () => $('#modal').classList.remove('lb'));
+document.addEventListener('keydown', e => { if ($('#modal').open && $('#modal').classList.contains('lb') && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) openLightbox(gallery.idx + (e.key === 'ArrowRight' ? 1 : -1)); });
+
 /* ---------- Arranque ---------- */
 function renderAll(){
-  renderHero(); renderHomeStats(); renderHomeStandings(); renderTitleModule(); renderHomePodium();
+  renderHero(); renderHomeStats(); renderHomeStandings(); renderTitleModule(); renderHomePodium(); renderGallery();
   renderRoundSelect(); renderCalendar(); renderStandings(); renderTeamChips(); renderDrivers(); renderTeams(); renderAnalysis(); renderNews();
   if ($('#page-resultados').classList.contains('active')) renderResults();
 }
