@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EduGrade AI</title>
+  <meta name="description" content="Evaluación automática de tareas escolares con inteligencia artificial">
+  <meta name="theme-color" content="#0B1F3A">
+  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+  <div id="auth" class="auth hidden"></div>
+
+  <div id="shell" class="shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="/img/logo.svg" alt="" width="36" height="36">
+        <div><strong>EduGrade</strong> <span class="ai">AI</span><small>Evaluación inteligente</small></div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="#/dashboard" data-route="dashboard"><span class="ic">📊</span>Dashboard</a>
+        <a href="#/estudiantes" data-route="estudiantes"><span class="ic">👥</span>Estudiantes</a>
+        <a href="#/drive" data-route="drive"><span class="ic">📁</span>Google Drive</a>
+        <a href="#/actividades" data-route="actividades"><span class="ic">🎓</span>Configuración académica</a>
+        <a href="#/rubricas" data-route="rubricas"><span class="ic">📋</span>Rúbricas</a>
+        <a href="#/resultados" data-route="resultados"><span class="ic">✅</span>Resultados</a>
+        <a href="#/incidencias" data-route="incidencias"><span class="ic">⚠️</span>Incidencias <span class="badge hidden" id="incBadge">0</span></a>
+        <a href="#/historial" data-route="historial"><span class="ic">🕘</span>Historial</a>
+        <a href="#/ajustes" data-route="ajustes"><span class="ic">⚙️</span>Ajustes</a>
+      </nav>
+      <div class="sidebar-foot">
+        <div id="userBox" class="user-box"></div>
+        <button class="btn ghost small" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </aside>
+    <div class="backdrop" id="backdrop"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+        <h1 id="pageTitle">Dashboard</h1>
+        <div class="top-actions" id="topActions"></div>
+      </header>
+      <div id="runBanner" class="run-banner hidden"></div>
+      <section id="view" class="view"></section>
+    </main>
+  </div>
+
+  <div id="modalRoot"></div>
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <script src="/vendor/chart.js/chart.umd.min.js"></script>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
