@@ -173,6 +173,12 @@ td.pts{font-weight:950;color:var(--blue)}
 .pcard .star[aria-pressed=true]{color:var(--gold)}
 .pcard .star:hover{background:#f3eff8}
 .avatar{width:76px;height:76px;border-radius:50%;object-fit:cover;object-position:top;background:linear-gradient(135deg,var(--claret),var(--blue));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.3rem}
+.avatar{overflow:hidden;position:relative}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:inherit}
+.avatar.hasimg{background:#eef0f7}
+.avatar img.cut{background:linear-gradient(180deg,#f3eef8,#e4e9f6)}
+.pcredit{margin:-4px 0 12px;font-size:.66rem;color:var(--muted)}
+.pcredit a{color:var(--blue);font-weight:700}
 .pcard b{font-size:.85rem;line-height:1.2}
 .pcard small{font-size:.68rem;color:var(--muted)}
 .pcard .pstats{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
@@ -548,7 +554,7 @@ dialog::backdrop{background:#070b22cc;backdrop-filter:blur(4px)}
 <dialog id="playerDlg" aria-label="Ficha del jugador"><div id="playerBody"></div></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<p class="note">Datos de endpoints públicos de ESPN, sin clave API y sin garantía de disponibilidad; la estructura puede cambiar y algunos detalles pueden faltar. Videos del canal oficial del FC Barcelona en YouTube. Logotipos y fotos se cargan de servidores externos. Proyecto de aficionado sin relación oficial con el club. <a href="https://www.fcbarcelona.es" target="_blank" rel="noopener">Web oficial del FC Barcelona ↗</a></p>
+<p class="note">Datos de endpoints públicos de ESPN, sin clave API y sin garantía de disponibilidad; la estructura puede cambiar y algunos detalles pueden faltar. Videos del canal oficial del FC Barcelona en YouTube. Fotos de jugadores: ESPN, TheSportsDB y Wikimedia Commons (CC BY-SA; autor y licencia en la página de cada archivo, enlazada desde la ficha del jugador). Logotipos y fotos se cargan de servidores externos. Proyecto de aficionado sin relación oficial con el club. <a href="https://www.fcbarcelona.es" target="_blank" rel="noopener">Web oficial del FC Barcelona ↗</a></p>
 </div>
 
 <script>
@@ -612,9 +618,74 @@ async function espn(path){
 const skeleton=n=>Array.from({length:n},()=>'<div class="skel"></div>').join('');
 const stateHTML=(title,msg,retry)=>`<div class="state"><b>${esc(title)}</b>${esc(msg||'')}${retry?`<br><button class="btn" data-retry="${retry}">REINTENTAR</button>`:''}</div>`;
 const imgErr=`onerror="this.style.visibility='hidden'"`;
-const avatarHTML=(name,photo,cls='avatar')=>{const fb=cls==='avatar'?cls:'avatar '+cls;return photo
-  ?`<img class="${cls}" src="${esc(photo)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;${fb}&quot;>${esc(initials(name))}</div>'">`
-  :`<div class="${fb}">${esc(initials(name))}</div>`};
+/* ================= Fotos de jugadores =================
+   Cadena de fuentes: ESPN → TheSportsDB → Wikipedia (Wikimedia Commons) → iniciales.
+   Se muestran las iniciales al instante y se sustituyen cuando alguna fuente da una foto.
+   Los resultados (también los fallidos) se guardan en este navegador para no repetir peticiones. */
+const PHOTO_KEY='barcaCenterPhotos',PHOTO_TTL=7*864e5,MISS_TTL=2*864e5;
+const photoCache=store.get(PHOTO_KEY,{});
+const savePhotos=()=>{const e=Object.entries(photoCache).sort((a,b)=>b[1].t-a[1].t).slice(0,400);store.set(PHOTO_KEY,Object.fromEntries(e))};
+const normName=n=>String(n||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+const avatarHTML=(name,photo,cls='avatar')=>{const fb=cls==='avatar'?cls:'avatar '+cls;
+  return `<div class="${fb}" data-pname="${esc(name)}" data-espn="${esc(photo||'')}">${esc(initials(name))}</div>`};
+function canLoad(url,ms=8000){return new Promise(res=>{if(!url)return res(false);const im=new Image(),t=setTimeout(()=>res(false),ms);
+  im.onload=()=>{clearTimeout(t);res(im.naturalWidth>20)};im.onerror=()=>{clearTimeout(t);res(false)};im.src=url})}
+/* Cola con pocas peticiones simultáneas: TheSportsDB y Wikipedia limitan las ráfagas */
+const photoQ=[];let photoActive=0;
+const slot=()=>new Promise(r=>{const go=()=>{photoActive++;r(()=>{photoActive--;photoQ.length&&photoQ.shift()()})};photoActive<3?go():photoQ.push(go)});
+async function fromTSDB(name){
+  const d=await getJSON(`https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=${encodeURIComponent(name)}`,10000);
+  const list=(d.player||[]).filter(x=>/soccer/i.test(x.strSport||'soccer'));
+  const want=normName(name);
+  const p=list.find(x=>/barcelona/i.test(x.strTeam||'')&&!/femen|women|atl[eè]tic/i.test(x.strTeam||''))||(list.length===1&&normName(list[0].strPlayer)===want?list[0]:null);
+  const u=p&&(p.strCutout||p.strThumb||p.strRender);
+  return u?{u,src:'tsdb',credit:'TheSportsDB',link:`https://www.thesportsdb.com/player/${p.idPlayer}`}:null;
+}
+async function fromWiki(name){
+  for(const lang of ['es','en']){
+    const q=`https://${lang}.wikipedia.org/w/api.php?action=query&format=json&origin=*&redirects=1&generator=search&gsrlimit=3&gsrsearch=${encodeURIComponent(name+(lang==='es'?' futbolista':' footballer'))}&prop=pageimages|description&piprop=thumbnail|name&pithumbsize=330`;
+    const d=await getJSON(q,10000);
+    const pages=Object.values(d.query?.pages||{}).sort((a,b)=>(a.index||0)-(b.index||0));
+    const want=normName(name).split(' ');
+    /* Solo artículos de futbolistas cuyo título contenga parte del nombre: evita homónimos */
+    const pg=pages.find(x=>x.thumbnail&&/futbol|football|soccer|portero|goalkeeper/i.test(x.description||'')&&want.some(w=>w.length>2&&normName(x.title).includes(w)));
+    if(pg)return{u:pg.thumbnail.source,src:'wiki',credit:'Wikimedia Commons · CC BY-SA',link:pg.pageimage?`https://commons.wikimedia.org/wiki/File:${encodeURIComponent(pg.pageimage)}`:`https://${lang}.wikipedia.org/wiki/${encodeURIComponent(pg.title)}`};
+  }
+  return null;
+}
+const pending=new Map();
+function resolvePhoto(name,espn){
+  const k=normName(name);if(!k)return Promise.resolve(null);
+  const c=photoCache[k];
+  if(c&&Date.now()-c.t<(c.u?PHOTO_TTL:MISS_TTL))return Promise.resolve(c.u?c:null);
+  if(pending.has(k))return pending.get(k);
+  const job=(async()=>{
+    let r=null;
+    if(espn&&await canLoad(espn))r={u:espn,src:'espn',credit:'ESPN'};
+    for(const f of [fromTSDB,fromWiki]){
+      if(r)break;
+      const done=await slot();
+      try{const x=await f(name);if(x&&await canLoad(x.u))r=x}catch(_){}finally{done()}
+    }
+    photoCache[k]=r?{...r,t:Date.now()}:{u:'',t:Date.now()};savePhotos();
+    return r;
+  })();
+  pending.set(k,job);job.finally(()=>pending.delete(k));
+  return job;
+}
+function hydratePhotos(root=document){
+  $$('[data-pname]:not([data-ph])',root).forEach(el=>{
+    el.dataset.ph='1';
+    resolvePhoto(el.dataset.pname,el.dataset.espn).then(r=>{
+      if(!r||!el.isConnected)return;
+      el.innerHTML=`<img src="${esc(r.u)}" alt="${esc(el.dataset.pname)}" class="${r.src==='tsdb'?'cut':''}">`;
+      el.classList.add('hasimg');
+      const cr=el.closest('dialog')?.querySelector('[data-credit]');
+      if(cr)cr.innerHTML=`Foto: ${r.link?`<a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.credit)} ↗</a>`:esc(r.credit)}`;
+    });
+  });
+}
+new MutationObserver(()=>{clearTimeout(hydratePhotos.t);hydratePhotos.t=setTimeout(hydratePhotos,30)}).observe(document.body,{childList:true,subtree:true});
 
 /* ---------- Traducción al español de textos de ESPN ---------- */
 const POS_ES={G:'Portero',GK:'Portero',D:'Defensa',M:'Centrocampista',F:'Delantero'};
@@ -932,11 +1003,13 @@ function openPlayer(id){
     ['Nacimiento',p.birth?fmtShort(p.birth):'—'],['Estatura / peso',[p.height,p.weight].filter(Boolean).join(' · ')||'—']];
   const st=[['Partidos',p.apps],['Goles',p.goals],['Asistencias',p.assists],['Atajadas',p.saves],['Porterías a cero',p.cleanSheets],['Amarillas',p.yellow],['Rojas',p.red]].filter(([,v])=>v!=null);
   $('playerBody').innerHTML=`<div class="ptop"><span class="bigno">${esc(p.num)}</span><button class="x" data-close aria-label="Cerrar">✕</button>${avatarHTML(p.name,p.photo)}<h3>${esc(p.name)}</h3><p>${esc(p.posName||POS_ES[p.pos])} · FC Barcelona</p></div>
-    <div class="pbody"><div class="infogrid">${info.map(([l,v])=>`<div><small>${esc(l)}</small>${esc(v)}</div>`).join('')}</div>
+    <div class="pbody"><p class="pcredit" data-credit>Foto: buscando…</p><div class="infogrid">${info.map(([l,v])=>`<div><small>${esc(l)}</small>${esc(v)}</div>`).join('')}</div>
     ${st.length?`<div class="kpis" style="border-radius:12px;overflow:hidden;margin-bottom:12px">${st.map(([l,v])=>`<div class="kpi"><strong>${esc(v)}</strong><small>${esc(l)}</small></div>`).join('')}</div>`:''}
     ${lead.length?`<p style="font-size:.8rem;color:var(--muted);margin:0 0 12px">${lead.map(x=>`${esc(x.k)}: <b>${esc(x.v)}</b>`).join(' · ')}</p>`:''}
     <div class="toolbar" style="margin:0"><button class="btn" data-star="${esc(p.id)}" aria-pressed="${on}">${on?'★ QUITAR DE FAVORITOS':'☆ AÑADIR A FAVORITOS'}</button><a class="btn ghost" href="https://www.youtube.com/results?search_query=${encodeURIComponent(p.name+' FC Barcelona')}" target="_blank" rel="noopener">▶ VIDEOS</a></div></div>`;
   const dlg=$('playerDlg');if(!dlg.open)dlg.showModal();
+  resolvePhoto(p.name,p.photo).then(r=>{const cr=$('playerBody').querySelector('[data-credit]');if(!cr)return;
+    cr.innerHTML=r?`Foto: ${r.link?`<a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.credit)} ↗</a>`:esc(r.credit)}`:'Sin foto disponible en las fuentes consultadas.'});
 }
 $('playerDlg').addEventListener('click',e=>{if(e.target===e.currentTarget||e.target.closest('[data-close]'))e.currentTarget.close()});
 
