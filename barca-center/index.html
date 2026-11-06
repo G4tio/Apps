@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1236">
+<meta name="description" content="Barça Center: marcadores, calendario, clasificación, plantilla, estadísticas, videos y noticias del FC Barcelona.">
+<title>Barça Center</title>
+<style>
+:root{
+  --blue:#004d98;--blue-d:#0b1236;--blue-l:#1d63c4;--claret:#a50044;--claret-d:#6e0230;--gold:#edbb00;
+  --ink:#101828;--muted:#667085;--line:#e6e9f2;--soft:#f5f6fb;
+  --green:#0b8b59;--red:#d21d3b;--amber:#e08a00;--r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;font:16px/1.4 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background-color:#070b22;
+  background:#070b22 radial-gradient(ellipse at 10% 0,#7a0a3f 0,#3a0c3d 28%,#0f1a4a 62%,#070b22 100%) fixed;overflow-x:hidden}
+button,input,select{font:inherit;-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.app{max-width:1100px;margin:auto;padding:20px 16px 48px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Cabecera */
+.brand{position:relative;text-align:center;color:#fff;padding:18px 16px;margin-bottom:12px;border:1px solid #ffffff22;border-radius:22px;overflow:hidden;
+  background:linear-gradient(135deg,#ffffff14,#ffffff05);box-shadow:0 16px 40px #02081740;backdrop-filter:blur(16px)}
+.brand::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;
+  background:repeating-linear-gradient(90deg,var(--claret) 0 34px,var(--blue) 34px 68px)}
+.brand small{display:block;font-size:.7rem;font-weight:800;letter-spacing:.22em;opacity:.85}
+.brand img{width:84px;height:84px;object-fit:contain;margin-top:8px;filter:drop-shadow(0 8px 18px #0006)}
+.brand h1{margin:2px 0 4px;font-size:clamp(1.8rem,5vw,2.4rem);letter-spacing:.06em;line-height:1}
+.brand h1 span{color:var(--gold)}
+.brand p{margin:0;color:#f0e4ee;font-size:.9rem}
+.season{display:inline-block;margin-top:8px;padding:4px 12px;border-radius:999px;background:#ffffff1c;border:1px solid #ffffff30;font-size:.7rem;font-weight:800;letter-spacing:.1em}
+
+/* Navegación */
+.nav{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 16px;scrollbar-width:none;position:sticky;top:0;z-index:10}
+.nav::-webkit-scrollbar{display:none}
+.nav button{flex:0 0 auto;min-height:44px;padding:10px 18px;border-radius:13px;border:1px solid #ffffff25;background:#1b1450cc;
+  color:#ecdff0;font-weight:800;font-size:.85rem;white-space:nowrap;backdrop-filter:blur(10px);transition:transform .2s,background .2s}
+.nav button:hover{transform:translateY(-2px);background:#ffffff22}
+.nav button[aria-selected=true]{background:#fff;color:var(--claret);border-color:#fff}
+.panel{display:none}.panel.active{display:block;animation:in .35s ease both}
+@keyframes in{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+/* Hero, barra de herramientas */
+.hero{text-align:center;background:linear-gradient(135deg,#fff,#f2ecf6);border-radius:20px;padding:20px 16px;margin-bottom:14px;box-shadow:0 14px 36px #02081720}
+.eyebrow{font-size:.65rem;letter-spacing:.15em;color:var(--claret);font-weight:900;text-transform:uppercase}
+.hero h2{margin:6px 0 4px;font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:-.5px}
+.hero p{margin:0;color:var(--muted);font-size:.9rem}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 14px}
+.btn,.chip{min-height:44px;padding:10px 16px;border-radius:12px;border:1px solid transparent;font-weight:850;font-size:.8rem;letter-spacing:.2px;transition:transform .2s,filter .2s,box-shadow .2s}
+.btn{color:#fff;background:linear-gradient(135deg,var(--claret),var(--blue));box-shadow:0 5px 12px #a5004430;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
+.btn.ghost{background:#fff;color:var(--blue);border-color:#d9dff0;box-shadow:none}
+.chip{background:#fff;color:#2c2f5a;border-color:#dfe2ef}
+.chip[aria-pressed=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex:1 1 100%}
+.chips::-webkit-scrollbar{display:none}
+.chips .chip{flex:0 0 auto}
+.field{flex:1;min-width:150px;min-height:46px;padding:10px 14px;border:1px solid #dfe2ef;border-radius:12px;background:#fff}
+.field:focus{outline:none;border-color:var(--blue-l);box-shadow:0 0 0 4px #1d63c425}
+
+/* Métricas */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.metric{background:linear-gradient(145deg,#fff,#f7f5fb);border-radius:14px;padding:12px;text-align:center;font-size:.75rem;color:#475467;box-shadow:0 7px 20px #02081712}
+.metric strong{display:block;white-space:nowrap;color:var(--blue);font-size:clamp(1.05rem,4.6vw,1.5rem);line-height:1.2}
+.metric .form{justify-content:center;margin:2px 0}
+
+/* Tarjetas */
+.card,.leaderbox{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 30px #02081717}
+.card+.card,.mt{margin-top:14px}
+.cardhead{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:14px 18px;background:linear-gradient(110deg,#faf8fc,#eff1fa);border-bottom:1px solid var(--line)}
+.cardhead h3,.leaderbox h3{margin:0;font-size:.95rem;text-transform:uppercase;letter-spacing:.6px;color:#1d1b4b}
+.cardhead span{font-size:.72rem;color:var(--muted);text-align:right}
+.leaderbox h3{padding:14px 18px;background:linear-gradient(110deg,#faf8fc,#eff1fa);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px}
+.leaderbox h3 small{font-size:.68rem;color:var(--muted);letter-spacing:0;text-transform:none;font-weight:700}
+.scroll{max-height:68vh;min-height:200px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.day{position:sticky;top:0;z-index:2;padding:10px 16px;background:#f0eef8;color:var(--claret);font-size:.72rem;font-weight:900;letter-spacing:.7px;text-transform:uppercase;border-bottom:1px solid #e3def0}
+.state{padding:28px 16px;text-align:center;color:var(--muted);font-size:.9rem}
+.state b{display:block;color:var(--ink);font-size:1rem;margin-bottom:4px}
+.state button{margin-top:12px}
+.skel{height:78px;margin:10px 14px;border-radius:12px;background:linear-gradient(90deg,#eef0f7 25%,#f8f9fc 50%,#eef0f7 75%);background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+
+/* Próximo partido (destacado) */
+.feature{position:relative;color:#fff;border-radius:22px;padding:18px 16px 16px;margin-bottom:14px;overflow:hidden;
+  background:linear-gradient(135deg,var(--claret) 0,#5a0b48 45%,var(--blue) 100%);box-shadow:0 18px 40px #0208173a}
+.feature::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:28px solid #ffffff10}
+.feature .fhead{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.68rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;opacity:.92}
+.comp-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#ffffff22;border:1px solid #ffffff33;font-size:.65rem;letter-spacing:.06em;font-weight:900;white-space:nowrap}
+.comp-pill img{width:16px;height:16px;object-fit:contain}
+.fteams{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin:14px 0 10px;text-align:center}
+.fteams img{width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 6px 14px #0005)}
+.fteams b{display:block;margin-top:6px;font-size:.9rem;line-height:1.15}
+.fteams .mid{min-width:120px}
+.fscore{font-size:clamp(2rem,8vw,2.8rem);font-weight:950;font-variant-numeric:tabular-nums;line-height:1}
+.fmeta{position:relative;z-index:1;text-align:center;font-size:.8rem;color:#f3e6f0}
+.countdown{display:flex;justify-content:center;gap:6px}
+.countdown div{min-width:50px;padding:6px 4px;border-radius:10px;background:#0000002b;border:1px solid #ffffff26}
+.countdown b{display:block;font-size:1.25rem;font-variant-numeric:tabular-nums;line-height:1.1}
+.countdown small{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.factions{position:relative;z-index:1;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.factions .btn{background:#fff;color:var(--claret);box-shadow:none;min-height:40px}
+.factions .btn.alt{background:#ffffff1f;color:#fff;border-color:#ffffff40}
+.livebadge{display:inline-flex;align-items:center;gap:6px;color:#fff;background:var(--red);padding:3px 10px;border-radius:999px;font-size:.65rem;font-weight:900;letter-spacing:.08em}
+.livebadge::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.25}}
+
+/* Forma reciente */
+.form{display:flex;gap:4px}
+.form i{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;font-style:normal;font-size:.68rem;font-weight:900;color:#fff}
+.form .V{background:var(--green)}.form .E{background:#98a2b3}.form .D{background:var(--red)}
+
+/* Partidos */
+.game{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr) 40px;gap:12px;align-items:center;padding:14px 16px;
+  border-bottom:1px solid #eef0f5;cursor:pointer;transition:background .2s,box-shadow .2s}
+.game:hover,.game:focus-visible{background:#f6f3fb;box-shadow:inset 3px 0 var(--claret)}
+.team{display:flex;align-items:center;gap:10px;min-width:0}
+.team.r{flex-direction:row-reverse;text-align:right}
+.team img{width:40px;height:40px;flex:0 0 40px;object-fit:contain;transition:transform .25s}
+.game:hover .team img{transform:scale(1.08)}
+.teamname{font-size:.82rem;font-weight:850;color:#343a40;line-height:1.2}
+.teamname.lose{opacity:.55}
+.teamname.fcb{color:var(--claret)}
+.code{font-size:.65rem;color:var(--muted);font-weight:800;margin-top:2px}
+.score{text-align:center;white-space:nowrap;font-weight:850;font-size:1.5rem;font-variant-numeric:tabular-nums}
+.score .dash{color:#b5becb;font-weight:400;margin:0 4px}
+.score .w{color:var(--blue)}
+.score .l{color:#98a2b3}
+.score .vs{font-size:.9rem;color:var(--muted)}
+.status{font-size:.6rem;letter-spacing:.7px;font-weight:900;color:var(--muted);margin-top:4px}
+.status.live{color:var(--red)}
+.status.live::before{content:"";display:inline-block;width:6px;height:6px;margin-right:5px;border-radius:50%;background:var(--red);vertical-align:1px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #d21d3b70}70%{box-shadow:0 0 0 6px #d21d3b00}100%{box-shadow:0 0 0 0 #d21d3b00}}
+.gcomp{font-size:.58rem;font-weight:900;letter-spacing:.06em;color:var(--blue);text-transform:uppercase;margin-bottom:3px}
+.res{justify-self:end;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;color:#fff;font-weight:900;font-size:.75rem}
+.res.V{background:var(--green)}.res.E{background:#98a2b3}.res.D{background:var(--red)}
+.res.ics{background:#f0eef8;color:var(--claret);border:0;font-size:.95rem}
+.res.ics:hover{background:var(--claret);color:#fff}
+
+/* Tablas */
+.tablewrap{overflow:auto;max-height:72vh}
+table{width:100%;border-collapse:collapse;font-size:.85rem;white-space:nowrap}
+th{position:sticky;top:0;z-index:1;background:#f1f0f8;color:#667085;font-size:.68rem;text-align:left;padding:12px 10px;border-bottom:1px solid var(--line)}
+td{padding:10px;border-bottom:1px solid #eef0f5}
+th.n,td.n{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:#f6f3fb}
+tr.z-ucl td:first-child{border-left:4px solid var(--blue)}
+tr.z-uel td:first-child{border-left:4px solid var(--amber)}
+tr.z-uecl td:first-child{border-left:4px solid var(--green)}
+tr.z-rel td:first-child{border-left:4px solid var(--red)}
+tr.z-po td:first-child{border-left:4px solid #8e7cc3}
+tr.fcb td{background:linear-gradient(90deg,#fbeef4,#eef3fc);font-weight:800}
+.teamcell{display:flex;align-items:center;gap:10px;font-weight:800}
+.teamcell img{width:26px;height:26px;object-fit:contain}
+td.pts{font-weight:950;color:var(--blue)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;padding:12px 18px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--line)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+/* Plantilla */
+.squadgroup h4{margin:0;padding:12px 18px;background:#f6f4fa;border-bottom:1px solid var(--line);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--claret)}
+.squad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px}
+.pcard{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:14px 10px 12px;border:1px solid #e7e4f0;border-radius:16px;background:linear-gradient(180deg,#fbf9fd,#fff);transition:transform .2s,box-shadow .2s,border-color .2s}
+.pcard:hover{transform:translateY(-3px);box-shadow:0 12px 24px #1d1b4b1a;border-color:#cdbfe0}
+.pcard .dorsal{position:absolute;top:8px;left:10px;font-size:1.2rem;font-weight:950;color:#d9d2e6;font-variant-numeric:tabular-nums}
+.pcard .star{position:absolute;top:6px;right:6px;width:32px;height:32px;border:0;border-radius:10px;background:transparent;color:#c5c9d6;font-size:1.05rem}
+.pcard .star[aria-pressed=true]{color:var(--gold)}
+.pcard .star:hover{background:#f3eff8}
+.avatar{width:76px;height:76px;border-radius:50%;object-fit:cover;object-position:top;background:linear-gradient(135deg,var(--claret),var(--blue));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.3rem}
+.pcard b{font-size:.85rem;line-height:1.2}
+.pcard small{font-size:.68rem;color:var(--muted)}
+.pcard .pstats{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.pcard .pstats span{font-size:.62rem;font-weight:800;background:#f0eef8;color:#4a3f6b;padding:3px 7px;border-radius:999px}
+.pcard.fav{border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.pcard .open{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}
+.flag{width:16px;height:11px;object-fit:cover;border-radius:2px;vertical-align:-1px;margin-right:4px}
+
+/* Líderes */
+.leader{display:grid;grid-template-columns:28px 50px minmax(0,1fr) 30px 48px;align-items:center;gap:8px;padding:10px 16px 10px 12px;border-top:1px solid #eef0f5;min-height:70px}
+.leader:hover{background:#f7f5fb}
+.leader.fcb{background:linear-gradient(90deg,#fbeef4,#fff)}
+.rank{text-align:center;font-size:.8rem;color:#98a2b3;font-weight:900}
+.playerpic{width:48px;height:48px;font-size:.8rem;border-radius:50%;object-fit:cover;object-position:top;background:#eef0f7}
+.playerinfo{min-width:0;display:flex;flex-direction:column;gap:3px}
+.playerinfo b{font-size:.85rem;line-height:1.2;overflow-wrap:anywhere}
+.playerinfo small{font-size:.68rem;color:var(--muted)}
+.teamlogo{width:26px;height:26px;object-fit:contain}
+.statval{font-size:1.1rem;color:var(--blue);font-weight:950;text-align:right;font-variant-numeric:tabular-nums}
+.srcbox{padding:18px;font-size:.85rem;color:var(--muted);line-height:1.8}
+.srcbox a{color:var(--blue);font-weight:700}
+
+/* Gráficas */
+.chart{padding:14px 16px 6px}
+.chart svg{display:block;width:100%;height:auto}
+.chart .axis{stroke:#e3e6ef}
+.chart text{font-size:10px;fill:#667085;font-family:inherit}
+.chartlegend{display:flex;gap:14px;flex-wrap:wrap;padding:0 18px 14px;font-size:.72rem;color:var(--muted)}
+.chartlegend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line)}
+.kpi{background:#fff;padding:14px 12px;text-align:center}
+.kpi strong{display:block;font-size:1.35rem;color:var(--blue);font-variant-numeric:tabular-nums}
+.kpi small{font-size:.7rem;color:var(--muted);font-weight:700}
+.kpi em{display:block;font-style:normal;font-size:.68rem;color:#98a2b3;margin-top:2px}
+.split{display:flex;height:12px;border-radius:99px;overflow:hidden;margin:4px 18px 4px;background:#eef0f5}
+.split span{display:block;height:100%}
+.splitlbl{display:flex;justify-content:space-between;padding:0 18px 14px;font-size:.7rem;color:var(--muted);font-weight:700}
+
+/* Favoritos */
+.favgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px}
+.favbtn{display:flex;align-items:center;gap:10px;min-height:60px;padding:10px 12px;text-align:left;background:#fff;border:1px solid #e5e2ef;border-radius:14px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.favbtn:hover{transform:translateY(-3px);border-color:#c7b8de;box-shadow:0 10px 20px #1d1b4b18}
+.favbtn img,.favbtn .avatar{width:38px;height:38px;font-size:.8rem;flex:0 0 38px}
+.favbtn span{flex:1;font-size:.8rem;font-weight:800}
+.favbtn span small{display:block;font-weight:600;color:var(--muted);font-size:.68rem}
+.favbtn[aria-pressed=true]{border-color:var(--gold);background:linear-gradient(135deg,#fffbea,#fff6d6);box-shadow:inset 0 0 0 1px var(--gold)}
+.favbtn b{color:var(--gold)}
+.prefs{display:flex;flex-direction:column;gap:2px;padding:6px 0}
+.pref{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;font-size:.85rem}
+.pref small{display:block;color:var(--muted);font-size:.72rem}
+.switch{position:relative;flex:0 0 52px;width:52px;height:30px;border-radius:99px;border:0;background:#d6d9e4;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px #0003;transition:transform .2s}
+.switch[aria-checked=true]{background:var(--claret)}
+.switch[aria-checked=true]::after{transform:translateX(22px)}
+
+/* Video oficial */
+.vid{position:relative;aspect-ratio:16/9;background:#0b0820}
+.vid iframe,.vid a.thumb{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid a.thumb{display:block;background:#0b0820 center/cover no-repeat}
+.vid a.thumb::after{content:"▶";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(2.4rem,9vw,4rem);color:#fff;text-shadow:0 4px 24px #000a;background:linear-gradient(transparent 50%,#0008)}
+.vidmeta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 18px}
+.vidmeta h4{margin:0;font-size:.95rem;line-height:1.3;flex:1 1 260px}
+.vidmeta small{display:block;margin-top:4px;color:var(--muted);font-size:.72rem;font-weight:700}
+.badge-new{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;background:var(--red);color:#fff;font-size:.62rem;font-weight:900;letter-spacing:.5px;vertical-align:2px}
+.vlist{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:0 14px 14px}
+.vlist button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px;border-radius:12px;overflow:hidden;background:#f7f5fb;transition:transform .2s}
+.vlist button:hover,.vlist button:focus-visible{transform:translateY(-3px)}
+.vlist button[aria-current=true]{box-shadow:0 0 0 2px var(--claret)}
+.vlist img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#ddd}
+.vlist span{padding:0 8px 8px;font-size:.7rem;font-weight:800;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Noticias */
+.news{list-style:none;margin:0;padding:0}
+.news li{border-bottom:1px solid #eef0f5}
+.news li:last-child{border-bottom:0}
+.news a{display:grid;grid-template-columns:132px minmax(0,1fr);gap:14px;padding:14px 16px;color:inherit;text-decoration:none;transition:background .2s,box-shadow .2s}
+.news a:hover,.news a:focus-visible{background:#f7f3fb;box-shadow:inset 3px 0 var(--claret)}
+.news img{width:132px;height:84px;object-fit:cover;border-radius:10px;background:#eef0f7}
+.news .noimg{width:132px;height:84px;border-radius:10px;background:linear-gradient(135deg,var(--claret),var(--blue))}
+.news h4{margin:0 0 4px;font-size:.92rem;line-height:1.3}
+.news p{margin:0;font-size:.78rem;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news small{display:block;margin-top:6px;font-size:.68rem;color:#98a2b3;font-weight:700}
+.morelink{display:block;width:100%;padding:14px;border:0;border-top:1px solid var(--line);background:#faf8fc;color:var(--claret);font-weight:850;font-size:.8rem;letter-spacing:.3px}
+.morelink:hover{background:#f1edf7}
+
+/* Detalle de partido */
+.detailtop{padding:22px 12px 16px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--claret),#4b0d4a 50%,var(--blue))}
+.detailteams{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.detailteams img{width:64px;height:64px;object-fit:contain;filter:drop-shadow(0 4px 10px #0005)}
+.detailteams b{display:block;font-size:.85rem;margin-top:6px}
+.bigscore{font-size:clamp(1.8rem,6vw,2.6rem);font-weight:950;font-variant-numeric:tabular-nums}
+.detailtop .status{color:#f3e6f0}
+.detailtop .scorers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;font-size:.72rem;color:#f3e6f0}
+.detailtop .scorers div:first-child{text-align:right}
+.dtabs{display:flex;gap:6px;padding:12px 14px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
+.dtabs button{flex:0 0 auto;min-height:40px;padding:8px 14px;border-radius:10px;border:1px solid #e1def0;background:#fff;color:#3a3566;font-weight:800;font-size:.78rem}
+.dtabs button[aria-selected=true]{background:var(--claret);border-color:var(--claret);color:#fff}
+.dbody{padding:14px}
+.cmp{margin:0 0 12px}
+.cmp .lbl{display:flex;justify-content:space-between;font-size:.78rem;font-weight:800;margin-bottom:4px}
+.cmp .lbl span:nth-child(2){color:var(--muted);font-weight:700;font-size:.72rem}
+.cmp .bars{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.cmp .bars div{height:8px;border-radius:99px;background:#eef0f5;overflow:hidden;display:flex}
+.cmp .bars div:first-child{justify-content:flex-end}
+.cmp .bars span{display:block;height:100%;border-radius:99px}
+.timeline{list-style:none;margin:0;padding:0}
+.timeline li{display:grid;grid-template-columns:1fr 54px 1fr;gap:8px;align-items:center;padding:8px 0;border-bottom:1px dashed #e7e4f0;font-size:.82rem}
+.timeline .min{text-align:center;font-weight:900;color:var(--claret);font-variant-numeric:tabular-nums}
+.timeline .h{text-align:right}
+.timeline small{display:block;color:var(--muted);font-size:.68rem}
+.ev-ico{display:inline-block;width:18px;text-align:center}
+.card-y,.card-r{display:inline-block;width:10px;height:14px;border-radius:2px;vertical-align:-2px}
+.card-y{background:#f5c400}.card-r{background:var(--red)}
+.pitch{position:relative;aspect-ratio:68/100;max-width:360px;margin:6px auto 10px;border-radius:14px;overflow:hidden;
+  background:repeating-linear-gradient(180deg,#2f8f4e 0 10%,#2a8547 10% 20%);border:2px solid #ffffff55}
+.pitch .ln{position:absolute;border:2px solid #ffffff70}
+.pitch .half{left:0;right:0;top:50%;border-width:2px 0 0}
+.pitch .circ{left:35%;right:35%;top:42%;bottom:42%;border-radius:50%}
+.pitch .box{left:22%;right:22%;bottom:0;height:16%;border-bottom:0}
+.pitch .box2{left:22%;right:22%;top:0;height:16%;border-top:0}
+.pl{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;width:70px;text-align:center}
+.pl .shirt{width:30px;height:30px;border-radius:50%;background:linear-gradient(90deg,var(--claret) 50%,var(--blue) 50%);color:#fff;border:2px solid #fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px #0005}
+.pl.gk .shirt{background:#f2c200;color:#222}
+.pl.opp .shirt{background:#f4f4f4;color:#222}
+.pl span{margin-top:2px;font-size:.6rem;font-weight:800;color:#fff;text-shadow:0 1px 3px #000;line-height:1.1}
+.bench{display:flex;flex-wrap:wrap;gap:6px;font-size:.72rem}
+.bench span{background:#f3f1f8;padding:4px 8px;border-radius:8px}
+.lineups{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lineups h4{margin:0 0 4px;font-size:.85rem;display:flex;align-items:center;gap:8px}
+.lineups h4 img{width:22px;height:22px;object-fit:contain}
+.lineups h4 small{margin-left:auto;color:var(--muted)}
+.infogrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.infogrid div{background:#f7f5fb;border-radius:12px;padding:10px 12px;font-size:.8rem}
+.infogrid small{display:block;color:var(--muted);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+
+/* Ficha de jugador (modal) */
+dialog{border:0;padding:0;border-radius:20px;width:min(520px,calc(100vw - 24px));max-height:calc(100vh - 40px);overflow:auto;box-shadow:0 30px 80px #000a}
+dialog::backdrop{background:#070b22cc;backdrop-filter:blur(4px)}
+.ptop{position:relative;padding:22px 18px 18px;color:#fff;text-align:center;background:linear-gradient(135deg,var(--claret),var(--blue))}
+.ptop .avatar{width:110px;height:110px;margin:0 auto 8px;border:3px solid #fff;font-size:2rem}
+.ptop h3{margin:0;font-size:1.3rem}
+.ptop p{margin:4px 0 0;font-size:.82rem;opacity:.9}
+.ptop .x{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:12px;border:0;background:#ffffff26;color:#fff;font-size:1.1rem}
+.ptop .bigno{position:absolute;left:16px;top:10px;font-size:2.6rem;font-weight:950;opacity:.25}
+.pbody{padding:16px}
+.pbody .infogrid{margin-bottom:12px}
+
+.note{color:#ecdcea;font-size:.7rem;line-height:1.6;margin:18px 4px 0}
+.note a{color:#fff;font-weight:800}
+.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,40px);opacity:0;z-index:50;background:#1d1b4b;color:#fff;padding:12px 18px;border-radius:12px;font-size:.85rem;font-weight:700;box-shadow:0 12px 30px #0006;transition:.3s;pointer-events:none;max-width:calc(100vw - 32px)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+@media(max-width:820px){.squad{grid-template-columns:repeat(3,minmax(0,1fr))}.vlist{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){
+  .app{padding:10px 10px 32px}
+  .brand img{width:70px;height:70px}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .grid2,.lineups{grid-template-columns:1fr}
+  .squad{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:8px}
+  .favgrid{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:8px}
+  .game{grid-template-columns:minmax(0,1fr) 96px minmax(0,1fr);gap:6px;margin:8px;padding:16px 8px 12px;border:1px solid #e7e4f0;border-radius:13px;background:#fff;box-shadow:0 3px 12px #1d1b4b0d}
+  .team,.team.r{flex-direction:column;text-align:center;gap:6px}
+  .team img{width:36px;height:36px;flex-basis:36px}
+  .teamname{font-size:.68rem;overflow-wrap:anywhere}
+  .score{font-size:1.35rem}
+  .res{position:absolute;top:6px;right:6px;width:24px;height:24px;font-size:.66rem}
+  .fteams img{width:56px;height:56px}
+  .fteams .mid{min-width:0}
+  .countdown div{min-width:42px}
+  .leader{grid-template-columns:22px 42px minmax(0,1fr) 26px 38px;gap:6px;padding:10px 12px 10px 8px}
+  .playerpic{width:42px;height:42px}
+  .news a{grid-template-columns:96px minmax(0,1fr);gap:10px;padding:12px}.news img,.news .noimg{width:96px;height:72px}.news h4{font-size:.85rem}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  th,td{padding:10px 8px}
+  .hide-m{display:none}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="brand">
+  <small>MÉS QUE UN CLUB</small>
+  <img src="https://a.espncdn.com/i/teamlogos/soccer/500/83.png" alt="FC Barcelona" onerror="this.style.visibility='hidden'">
+  <h1>BARÇA <span>CENTER</span></h1>
+  <p>Partidos, estadísticas y seguimiento de la temporada del FC Barcelona</p>
+  <span class="season" id="seasonLbl">TEMPORADA</span>
+</header>
+
+<nav class="nav" role="tablist" aria-label="Secciones">
+  <button role="tab" aria-selected="true" data-panel="home">Inicio</button>
+  <button role="tab" aria-selected="false" data-panel="schedule">Calendario</button>
+  <button role="tab" aria-selected="false" data-panel="results">Resultados</button>
+  <button role="tab" aria-selected="false" data-panel="standings">Clasificación</button>
+  <button role="tab" aria-selected="false" data-panel="squad">Plantilla</button>
+  <button role="tab" aria-selected="false" data-panel="stats">Estadísticas</button>
+  <button role="tab" aria-selected="false" data-panel="videos">Videos</button>
+  <button role="tab" aria-selected="false" data-panel="news">Noticias</button>
+  <button role="tab" aria-selected="false" data-panel="favorites">Mis culés</button>
+</nav>
+
+<!-- ============ INICIO ============ -->
+<section class="panel active" id="home">
+  <div class="feature" id="featureBox"><div class="skel" style="background:#ffffff18;height:200px"></div></div>
+  <div class="toolbar">
+    <button class="btn" id="refresh">↻ ACTUALIZAR</button>
+    <span style="color:#ecdcea;font-size:.75rem" id="autoNote">Actualización automática durante los partidos</span>
+  </div>
+  <div class="metrics">
+    <div class="metric"><strong id="mPos">—</strong>en LaLiga</div>
+    <div class="metric"><strong id="mPts">—</strong>puntos</div>
+    <div class="metric"><div class="form" id="mForm">—</div>últimos 5</div>
+    <div class="metric"><strong id="mUpdated">—</strong>actualización</div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div class="cardhead"><h3>Últimos resultados</h3><span>Todas las competiciones</span></div>
+      <div id="homeResults"></div>
+      <button class="morelink" data-go="results">VER TODOS LOS RESULTADOS →</button>
+    </div>
+    <div class="card">
+      <div class="cardhead"><h3>Próximos partidos</h3><span>Hora local</span></div>
+      <div id="homeNext"></div>
+      <button class="morelink" data-go="schedule">VER CALENDARIO COMPLETO →</button>
+    </div>
+  </div>
+  <div class="card mt">
+    <div class="cardhead"><h3>Último video · Canal oficial del FC Barcelona</h3><span id="videoStatus">YouTube</span></div>
+    <div id="videoBox"></div>
+  </div>
+  <div class="grid2 mt">
+    <div class="card">
+      <div class="cardhead"><h3>LaLiga · zona alta</h3><span id="miniTableLbl">—</span></div>
+      <div class="tablewrap" id="miniTable"></div>
+      <button class="morelink" data-go="standings">VER CLASIFICACIÓN →</button>
+    </div>
+    <div class="card">
+      <div class="cardhead"><h3>Noticias recientes</h3><span id="newsHomeCount">—</span></div>
+      <div id="newsHome"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALENDARIO ============ -->
+<section class="panel" id="schedule">
+  <div class="hero"><div class="eyebrow">Calendario oficial</div><h2>Próximos partidos</h2><p>LaLiga, Champions League, Copa del Rey y Supercopa · horarios en la hora local de tu dispositivo.</p></div>
+  <div class="toolbar">
+    <div class="chips" data-filter="schedule"></div>
+    <button class="btn ghost" id="icsAll">📅 EXPORTAR CALENDARIO (.ICS)</button>
+  </div>
+  <div class="card">
+    <div class="cardhead"><h3>Calendario</h3><span id="scheduleLabel">—</span></div>
+    <div class="scroll" id="scheduleList"></div>
+  </div>
+</section>
+
+<!-- ============ RESULTADOS ============ -->
+<section class="panel" id="results">
+  <div class="hero"><div class="eyebrow">Temporada en curso</div><h2>Resultados</h2><p>Todos los partidos jugados por el Barça. Toca uno para ver goles, estadísticas y alineaciones.</p></div>
+  <div class="toolbar">
+    <div class="chips" data-filter="results"></div>
+    <input class="field" id="resultSearch" type="search" placeholder="Buscar rival…" aria-label="Buscar rival">
+  </div>
+  <div class="metrics">
+    <div class="metric"><strong id="rW" style="color:var(--green)">—</strong>victorias</div>
+    <div class="metric"><strong id="rD" style="color:#667085">—</strong>empates</div>
+    <div class="metric"><strong id="rL" style="color:var(--red)">—</strong>derrotas</div>
+    <div class="metric"><strong id="rG">—</strong>goles (GF–GC)</div>
+  </div>
+  <div class="card">
+    <div class="cardhead"><h3>Partidos jugados</h3><span>Más recientes primero</span></div>
+    <div class="scroll" id="resultList"></div>
+  </div>
+</section>
+
+<!-- ============ CLASIFICACIÓN ============ -->
+<section class="panel" id="standings">
+  <div class="hero"><div class="eyebrow">Clasificación</div><h2>Tabla de posiciones</h2><p>Puntos, partidos y diferencia de goles. El Barça aparece resaltado.</p></div>
+  <div class="toolbar">
+    <button class="chip" data-table="esp.1" aria-pressed="true">LALIGA</button>
+    <button class="chip" data-table="uefa.champions" aria-pressed="false">CHAMPIONS LEAGUE</button>
+    <button class="btn" id="loadStandings">↻ ACTUALIZAR</button>
+  </div>
+  <div class="card"><div class="tablewrap" id="standingsTable"></div>
+    <div class="legend" id="standingsLegend"></div>
+  </div>
+</section>
+
+<!-- ============ PLANTILLA ============ -->
+<section class="panel" id="squad">
+  <div class="hero"><div class="eyebrow">Primer equipo</div><h2>Plantilla</h2><p>Toca un jugador para ver su ficha. Marca ★ para seguirlo en «Mis culés».</p></div>
+  <div class="toolbar">
+    <input class="field" id="squadSearch" type="search" placeholder="Buscar jugador o dorsal…" aria-label="Buscar jugador">
+    <button class="btn" id="loadSquad">↻ ACTUALIZAR</button>
+  </div>
+  <div class="card" id="squadBox"></div>
+</section>
+
+<!-- ============ ESTADÍSTICAS ============ -->
+<section class="panel" id="stats">
+  <div class="hero"><div class="eyebrow">Rendimiento</div><h2>Estadísticas del Barça</h2><p>Calculadas con todos los partidos jugados de la temporada, más los líderes individuales de cada competición.</p></div>
+  <div class="toolbar"><div class="chips" data-filter="stats"></div></div>
+  <div class="card">
+    <div class="cardhead"><h3>Balance de temporada</h3><span id="statsScope">Todas las competiciones</span></div>
+    <div class="kpis" id="kpis"></div>
+  </div>
+  <div class="grid2 mt">
+    <div class="card">
+      <div class="cardhead"><h3>Goles por partido</h3><span>Últimos 12</span></div>
+      <div class="chart" id="goalsChart"></div>
+      <div class="chartlegend"><span><i style="background:var(--claret)"></i>A favor</span><span><i style="background:#9aa3b8"></i>En contra</span></div>
+    </div>
+    <div class="card">
+      <div class="cardhead"><h3>Local vs. visitante</h3><span>V · E · D</span></div>
+      <div id="homeAway"></div>
+    </div>
+  </div>
+  <div class="toolbar mt">
+    <select id="leaderLeague" class="field" aria-label="Competición">
+      <option value="esp.1">LaLiga</option>
+      <option value="uefa.champions">Champions League</option>
+    </select>
+    <select id="leaderStat" class="field" aria-label="Estadística">
+      <option value="goals">Goles</option>
+      <option value="assists">Asistencias</option>
+    </select>
+    <button class="btn" id="loadLeaders">ACTUALIZAR</button>
+  </div>
+  <div class="grid2" id="leaderGrid"></div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section class="panel" id="videos">
+  <div class="hero"><div class="eyebrow">FC Barcelona en YouTube</div><h2>Videos oficiales</h2><p>Los últimos videos del canal oficial del club, sin salir de la página.</p></div>
+  <div class="card">
+    <div id="videoMain"></div>
+    <div class="vlist" id="videoList"></div>
+  </div>
+</section>
+
+<!-- ============ NOTICIAS ============ -->
+<section class="panel" id="news">
+  <div class="hero"><div class="eyebrow">Actualidad blaugrana</div><h2>Noticias recientes</h2><p>Las 20 noticias más recientes del Barça. Cada una abre el artículo original en una pestaña nueva.</p></div>
+  <div class="toolbar"><button class="btn" id="loadNews">↻ ACTUALIZAR NOTICIAS</button></div>
+  <div class="card">
+    <div class="cardhead"><h3>Últimas noticias</h3><span id="newsAllCount">—</span></div>
+    <div id="newsAll"></div>
+  </div>
+</section>
+
+<!-- ============ FAVORITOS ============ -->
+<section class="panel" id="favorites">
+  <div class="hero"><div class="eyebrow">Personaliza tu experiencia</div><h2>Mis culés</h2><p>Tus jugadores favoritos se destacan en la plantilla, alineaciones y goleadores. Todo se guarda en este navegador.</p></div>
+  <div class="card">
+    <div class="cardhead"><h3>Preferencias</h3><span>Este dispositivo</span></div>
+    <div class="prefs">
+      <div class="pref"><div>Avisos de partido<small>Notificación 30 min antes y al terminar (con la página abierta).</small></div><button class="switch" id="prefNotify" role="switch" aria-checked="false" aria-label="Avisos de partido"></button></div>
+      <div class="pref"><div>Solo LaLiga y Champions<small>Oculta Copa del Rey y Supercopa en Inicio.</small></div><button class="switch" id="prefMain" role="switch" aria-checked="false" aria-label="Solo LaLiga y Champions"></button></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="cardhead"><h3>Jugadores</h3><span id="favCount">0 seleccionados</span></div>
+    <div class="favgrid" id="favGrid"></div>
+  </div>
+</section>
+
+<!-- ============ DETALLE ============ -->
+<section class="panel" id="detail">
+  <div class="toolbar"><button class="btn" id="backBtn">← VOLVER</button></div>
+  <div class="card" id="detailCard"></div>
+</section>
+
+<dialog id="playerDlg" aria-label="Ficha del jugador"><div id="playerBody"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<p class="note">Datos de endpoints públicos de ESPN, sin clave API y sin garantía de disponibilidad; la estructura puede cambiar y algunos detalles pueden faltar. Videos del canal oficial del FC Barcelona en YouTube. Logotipos y fotos se cargan de servidores externos. Proyecto de aficionado sin relación oficial con el club. <a href="https://www.fcbarcelona.es" target="_blank" rel="noopener">Web oficial del FC Barcelona ↗</a></p>
+</div>
+
+<script>
+'use strict';
+/* ================= Configuración ================= */
+const TEAM_ID='83';                                       /* FC Barcelona en ESPN */
+const HOSTS=['https://site.api.espn.com','https://site.web.api.espn.com'];
+const COMPS=[                                             /* competiciones que juega el primer equipo */
+  {slug:'esp.1',name:'LaLiga',short:'LALIGA',logo:15},
+  {slug:'uefa.champions',name:'Champions League',short:'CHAMPIONS',logo:2},
+  {slug:'esp.copa_del_rey',name:'Copa del Rey',short:'COPA',logo:80},
+  {slug:'esp.super_cup',name:'Supercopa de España',short:'SUPERCOPA',logo:431}
+];
+const COMP=Object.fromEntries(COMPS.map(c=>[c.slug,c]));
+const FCB_CHANNEL='UC14UlmYlSNiQCBe9Eookf_A';             /* canal oficial FC Barcelona en YouTube */
+const LOGO=id=>`https://a.espncdn.com/i/teamlogos/soccer/500/${id}.png`;
+const LEAGUE_LOGO=id=>`https://a.espncdn.com/i/leaguelogos/soccer/500/${id}.png`;
+const HEAD=id=>`https://a.espncdn.com/i/headshots/soccer/players/full/${id}.png`;
+
+/* Temporada europea: arranca en julio; se identifica por el año de inicio (2026 = 2026/27). */
+const SY=(()=>{const d=new Date();return d.getMonth()>=6?d.getFullYear():d.getFullYear()-1})();
+const SEASON_TXT=`${SY}/${String(SY+1).slice(2)}`;
+
+/* ================= Utilidades ================= */
+const $=id=>document.getElementById(id);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const ymd=d=>`${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+const isoLocal=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const cap=s=>s?s.charAt(0).toUpperCase()+s.slice(1):s;
+const fmtDay=d=>cap(new Date(d).toLocaleDateString('es-GT',{weekday:'long',day:'numeric',month:'long',year:'numeric'}));
+const fmtTime=d=>new Date(d).toLocaleTimeString('es-GT',{hour:'2-digit',minute:'2-digit'});
+const fmtShort=d=>d?new Date(d).toLocaleDateString('es-GT',{day:'numeric',month:'short',year:'numeric'}):'';
+const num=v=>{if(v==null||v==='')return null;if(typeof v==='object')v=v.value??v.displayValue;const n=Number(v);return Number.isFinite(n)?n:null};
+const toNum=v=>{if(typeof v==='number')return v;const m=String(v??'').replace(/,/g,'').match(/-?\d+(?:\.\d+)?/);return m?Number(m[0]):NaN};
+const initials=n=>String(n||'?').split(/\s+/).filter(Boolean).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2800)}
+function ago(d){
+  if(!d)return '';
+  const m=Math.round((Date.now()-new Date(d))/60000);
+  if(m<1)return 'hace instantes';if(m<60)return `hace ${m} min`;
+  const h=Math.round(m/60);if(h<24)return `hace ${h} h`;
+  const dd=Math.round(h/24);if(dd<7)return `hace ${dd} día${dd===1?'':'s'}`;
+  return fmtShort(d);
+}
+
+async function getJSON(url,ms=12000){
+  const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),ms);
+  try{const r=await fetch(url,{signal:ctl.signal});if(!r.ok)throw new Error('La fuente respondió '+r.status);return await r.json()}
+  catch(e){throw e.name==='AbortError'?new Error('La fuente tardó demasiado en responder'):e instanceof TypeError?new Error('Sin conexión con la fuente de datos'):e}
+  finally{clearTimeout(t)}
+}
+/* Prueba el mismo recurso en los dos hosts de ESPN y devuelve el primero que responda con datos */
+async function espn(path){
+  let err;
+  for(const h of HOSTS){try{const d=await getJSON(h+path);if(d&&typeof d==='object'&&Object.keys(d).length)return d}catch(e){err=e}}
+  throw err||new Error('Sin datos');
+}
+const skeleton=n=>Array.from({length:n},()=>'<div class="skel"></div>').join('');
+const stateHTML=(title,msg,retry)=>`<div class="state"><b>${esc(title)}</b>${esc(msg||'')}${retry?`<br><button class="btn" data-retry="${retry}">REINTENTAR</button>`:''}</div>`;
+const imgErr=`onerror="this.style.visibility='hidden'"`;
+const avatarHTML=(name,photo,cls='avatar')=>{const fb=cls==='avatar'?cls:'avatar '+cls;return photo
+  ?`<img class="${cls}" src="${esc(photo)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;${fb}&quot;>${esc(initials(name))}</div>'">`
+  :`<div class="${fb}">${esc(initials(name))}</div>`};
+
+/* ---------- Traducción al español de textos de ESPN ---------- */
+const POS_ES={G:'Portero',GK:'Portero',D:'Defensa',M:'Centrocampista',F:'Delantero'};
+const POS_GROUP=[['G','Porteros'],['D','Defensas'],['M','Centrocampistas'],['F','Delanteros']];
+function posKey(p){
+  const a=String(p?.abbreviation||'').toUpperCase(),n=String(p?.name||p?.displayName||'').toLowerCase();
+  if(/^G/.test(a)||/goalkeeper/.test(n))return 'G';
+  if(/^(D|CB|CD|LB|RB|LWB|RWB|SW|WB)/.test(a)||/defen|back/.test(n))return 'D';
+  if(/^(F|CF|ST|LW|RW|FW|S$)/.test(a)||/forward|striker|wing/.test(n))return 'F';
+  return 'M';
+}
+const COUNTRY_ES={Spain:'España',Brazil:'Brasil',Germany:'Alemania',France:'Francia',Netherlands:'Países Bajos',Poland:'Polonia',Uruguay:'Uruguay',Denmark:'Dinamarca',Portugal:'Portugal',England:'Inglaterra',Sweden:'Suecia',Argentina:'Argentina',Belgium:'Bélgica',Croatia:'Croacia',Morocco:'Marruecos',Senegal:'Senegal',Nigeria:'Nigeria',Cameroon:'Camerún','Ivory Coast':'Costa de Marfil',Italy:'Italia',Colombia:'Colombia',Mexico:'México',Ecuador:'Ecuador',Chile:'Chile',Venezuela:'Venezuela','United States':'Estados Unidos',Japan:'Japón',Norway:'Noruega',Switzerland:'Suiza',Austria:'Austria',Turkey:'Turquía',Ukraine:'Ucrania',Serbia:'Serbia',Greece:'Grecia',Scotland:'Escocia',Wales:'Gales',Ireland:'Irlanda','Czech Republic':'Chequia',Czechia:'Chequia',Ghana:'Ghana',Guinea:'Guinea',Mali:'Malí',Algeria:'Argelia',Peru:'Perú',Paraguay:'Paraguay'};
+const countryES=c=>COUNTRY_ES[c]||c||'';
+const STAT_ES={possessionPct:'Posesión (%)',totalShots:'Tiros totales',shotsOnTarget:'Tiros a puerta',wonCorners:'Tiros de esquina',foulsCommitted:'Faltas',offsides:'Fueras de juego',yellowCards:'Tarjetas amarillas',redCards:'Tarjetas rojas',saves:'Atajadas',totalPasses:'Pases',accuratePasses:'Pases precisos',passPct:'Precisión de pase (%)',totalCrosses:'Centros',totalTackles:'Entradas',interceptions:'Intercepciones',blockedShots:'Tiros bloqueados',effectiveClearance:'Despejes',totalLongBalls:'Balones largos'};
+const STAT_ORDER=Object.keys(STAT_ES);
+function statusTxt(m){
+  const d=String(m.detail||'');
+  if(m.state==='in'){if(/HT|half/i.test(d))return 'Descanso';return m.clock&&m.clock!=="0'"?m.clock:'En juego'}
+  if(m.state==='post'){if(/pen/i.test(d))return 'Final (pen.)';if(/AET|ET\b|extra/i.test(d))return 'Final (prórroga)';if(/postp|susp|canc|abd/i.test(d))return 'Aplazado';return 'Final'}
+  if(/postp|canc/i.test(d))return 'Aplazado';
+  if(/TBD/i.test(d))return 'Hora por definir';
+  return fmtTime(m.date);
+}
+
+/* ================= Estado ================= */
+const S={matches:new Map(),standings:{},roster:[],leaders:{},news:[],videos:[],lastOk:0,summaries:new Map()};
+let favs=new Set(store.get('barcaCenterFavPlayers',[]));
+const prefs=Object.assign({notify:false,mainOnly:false},store.get('barcaCenterPrefs',{}));
+const saveFavs=()=>store.set('barcaCenterFavPlayers',[...favs]);
+const savePrefs=()=>store.set('barcaCenterPrefs',prefs);
+const filters={schedule:'all',results:'all',stats:'all'};
+
+/* ================= Partidos ================= */
+function normTeam(t){
+  t=t||{};const id=String(t.id||'');
+  return{id,name:t.displayName||t.name||t.shortDisplayName||'Por definir',short:t.shortDisplayName||t.abbreviation||t.name||'',abbr:t.abbreviation||'',
+    logo:t.logos?.[0]?.href||t.logo||(id?LOGO(id):'')};
+}
+function normEvent(e,slug){
+  const c=e.competitions?.[0]||{},cs=c.competitors||[];
+  const h=cs.find(x=>x.homeAway==='home')||cs[0],a=cs.find(x=>x.homeAway==='away')||cs[1];
+  if(!h||!a)return null;
+  const st=c.status||e.status||{},ty=st.type||{};
+  const state=ty.state||(ty.completed?'post':'pre');
+  const side=x=>({team:normTeam(x.team),score:state==='pre'?null:num(x.score),winner:x.winner,pens:num(x.shootoutScore)});
+  const note=c.notes?.[0]?.headline||e.seasonType?.name||'';
+  let bc='';try{bc=[...(c.broadcasts||[]),...(c.geoBroadcasts||[])].map(b=>b.media?.shortName||b.names?.join(', ')||b.shortName).filter(Boolean).join(' · ')}catch(_){}
+  return{id:String(e.id),slug,date:e.date||c.date,state,clock:st.displayClock,detail:ty.shortDetail||ty.detail||ty.description||'',
+    home:side(h),away:side(a),venue:c.venue?.fullName||'',city:c.venue?.address?.city||'',note,bc};
+}
+const isFcb=t=>String(t?.id)===TEAM_ID;
+const meOf=m=>isFcb(m.home.team)?m.home:m.away;
+const oppOf=m=>isFcb(m.home.team)?m.away:m.home;
+const isHome=m=>isFcb(m.home.team);
+function resultOf(m){
+  if(m.state!=='post'||m.home.score==null)return null;
+  const me=meOf(m),op=oppOf(m);
+  if(me.score>op.score)return 'V';if(me.score<op.score)return 'D';
+  if(me.pens!=null&&op.pens!=null)return me.pens>op.pens?'V':'D';
+  return 'E';
+}
+const allMatches=()=>[...S.matches.values()].sort((a,b)=>new Date(a.date)-new Date(b.date));
+const played=(f='all')=>allMatches().filter(m=>m.state==='post'&&resultOf(m)&&(f==='all'||m.slug===f));
+const upcoming=(f='all')=>allMatches().filter(m=>m.state!=='post'&&(f==='all'||m.slug===f));
+const liveMatch=()=>allMatches().find(m=>m.state==='in');
+const mainFilter=m=>!prefs.mainOnly||['esp.1','uefa.champions'].includes(m.slug);
+
+/* Calendario del equipo en cada competición: resultados y próximos partidos (fixture=true) */
+async function loadMatches(){
+  const jobs=[];
+  for(const c of COMPS){
+    for(const q of [`?season=${SY}`,`?fixture=true&season=${SY}`]){
+      jobs.push(espn(`/apis/site/v2/sports/soccer/${c.slug}/teams/${TEAM_ID}/schedule${q}`).then(d=>({c,d})).catch(()=>null));
+    }
+  }
+  const res=await Promise.all(jobs);
+  let ok=0;
+  res.filter(Boolean).forEach(({c,d})=>{ok++;(d.events||[]).forEach(e=>{const m=normEvent(e,c.slug);if(m&&(isFcb(m.home.team)||isFcb(m.away.team))){const prev=S.matches.get(m.id);S.matches.set(m.id,m);if(prev)notifyChange(prev,m)}})});
+  if(!ok)throw new Error('No se pudo conectar con la fuente de datos');
+}
+/* Marcador en vivo: el scoreboard de la liga se actualiza más rápido que el calendario del equipo */
+async function refreshLive(){
+  const near=allMatches().filter(m=>m.state==='in'||(m.state==='pre'&&Math.abs(new Date(m.date)-Date.now())<3*36e5));
+  const slugs=[...new Set(near.map(m=>m.slug))];
+  await Promise.all(slugs.map(async slug=>{
+    try{const d=await espn(`/apis/site/v2/sports/soccer/${slug}/scoreboard?dates=${ymd(new Date())}`);
+      (d.events||[]).forEach(e=>{const m=normEvent(e,slug);if(m&&S.matches.has(m.id)){const prev=S.matches.get(m.id);S.matches.set(m.id,m);notifyChange(prev,m)}})}catch(_){}
+  }));
+}
+
+/* ---------- Tarjetas de partido ---------- */
+function teamHTML(side,cls,done){
+  const t=side.team,lose=done&&side.winner===false;
+  return `<div class="team ${cls}"><img src="${esc(t.logo)}" alt="" loading="lazy" ${imgErr}><div><div class="teamname ${lose?'lose':''} ${isFcb(t)?'fcb':''}">${esc(t.name)}</div><div class="code">${esc(t.abbr)}</div></div></div>`;
+}
+function gameHTML(m){
+  const live=m.state==='in',done=m.state==='post';
+  const st=statusTxt(m);
+  const sc=(done||live)
+    ?`<span class="${m.home.winner?'w':done?'l':''}">${esc(m.home.score??0)}</span><span class="dash">–</span><span class="${m.away.winner?'w':done?'l':''}">${esc(m.away.score??0)}</span>`
+    :'<span class="vs">VS</span>';
+  const r=resultOf(m);
+  const tail=r?`<span class="res ${r}" title="${({V:'Victoria',E:'Empate',D:'Derrota'})[r]}">${r}</span>`:m.state==='pre'?`<button class="res ics" data-ics="${esc(m.id)}" title="Añadir a mi calendario" aria-label="Añadir a mi calendario">📅</button>`:'<span></span>';
+  return `<article class="game" data-event="${esc(m.id)}" tabindex="0" role="button" aria-label="Ver detalle: ${esc(m.home.team.name)} contra ${esc(m.away.team.name)}">
+    ${teamHTML(m.home,'l',done)}<div class="score"><div class="gcomp">${esc(COMP[m.slug]?.short||'')}</div>${sc}<div class="status ${live?'live':''}">${esc(String(st).toUpperCase())}${m.home.pens!=null&&done?` · PEN ${esc(m.home.pens)}-${esc(m.away.pens)}`:''}</div></div>${teamHTML(m.away,'r',done)}${tail}</article>`;
+}
+function renderList(list,target,newestFirst,emptyMsg){
+  const el=$(target);
+  if(!list.length){el.innerHTML=stateHTML('No hay partidos para mostrar',emptyMsg||'Prueba otra competición o actualiza.');return}
+  const sorted=[...list].sort((a,b)=>(newestFirst?-1:1)*(new Date(a.date)-new Date(b.date)));
+  const groups=new Map();
+  sorted.forEach(m=>{const k=isoLocal(new Date(m.date));(groups.get(k)||groups.set(k,[]).get(k)).push(m)});
+  el.innerHTML=[...groups].map(([d,ms])=>`<div class="day">${esc(fmtDay(d+'T12:00:00'))}</div>${ms.map(gameHTML).join('')}`).join('');
+}
+const compPill=slug=>{const c=COMP[slug];return c?`<span class="comp-pill"><img src="${LEAGUE_LOGO(c.logo)}" alt="" ${imgErr}>${esc(c.name)}</span>`:''};
+const formHTML=list=>list.length?`<div class="form">${list.map(r=>`<i class="${r}" title="${({V:'Victoria',E:'Empate',D:'Derrota'})[r]}">${r}</i>`).join('')}</div>`:'—';
+
+/* ---------- Partido destacado (en vivo, próximo o último) ---------- */
+function renderFeature(){
+  const box=$('featureBox');
+  const live=liveMatch(),next=upcoming().filter(mainFilter)[0],last=played().filter(mainFilter).slice(-1)[0];
+  const m=live||next||last;
+  if(!m){box.innerHTML=`<div class="state" style="color:#f3e6f0"><b style="color:#fff">Sin partidos disponibles</b>No se encontraron partidos de esta temporada.</div>`;return}
+  const pre=m.state==='pre',inn=m.state==='in';
+  const head=inn?'<span class="livebadge">EN VIVO</span>':pre?'Próximo partido':'Último resultado';
+  const mid=pre
+    ?`<div class="countdown" data-countdown="${esc(m.date)}"></div>`
+    :`<div class="fscore">${esc(m.home.score??0)} – ${esc(m.away.score??0)}</div><div style="font-size:.75rem;font-weight:800;margin-top:4px">${esc(statusTxt(m).toUpperCase())}${m.home.pens!=null&&m.state==='post'?` · PEN ${esc(m.home.pens)}-${esc(m.away.pens)}`:''}</div>`;
+  box.innerHTML=`<div class="fhead"><span>${head}</span>${compPill(m.slug)}</div>
+    <div class="fteams"><div><img src="${esc(m.home.team.logo)}" alt="" ${imgErr}><b>${esc(m.home.team.name)}</b></div><div class="mid">${mid}</div><div><img src="${esc(m.away.team.logo)}" alt="" ${imgErr}><b>${esc(m.away.team.name)}</b></div></div>
+    <div class="fmeta">${esc(fmtDay(m.date))} · ${esc(fmtTime(m.date))}${m.venue?' · '+esc(m.venue):''}${m.note&&!/regular/i.test(m.note)?'<br>'+esc(m.note):''}${m.bc?'<br>📺 '+esc(m.bc):''}</div>
+    <div class="factions"><button class="btn" data-open="${esc(m.id)}">${pre?'PREVIA DEL PARTIDO':'VER DETALLE'}</button>${pre?`<button class="btn alt" data-ics="${esc(m.id)}">📅 AÑADIR AL CALENDARIO</button>`:''}${!pre?`<a class="btn alt" href="${esc(ytSearch(m))}" target="_blank" rel="noopener">▶ RESUMEN EN YOUTUBE</a>`:''}</div>`;
+  tickCountdowns();
+}
+function tickCountdowns(){
+  $$('[data-countdown]').forEach(el=>{
+    const ms=new Date(el.dataset.countdown)-Date.now();
+    if(ms<=0){el.innerHTML='<b style="font-size:1rem">¡A punto de empezar!</b>';return}
+    const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,mi=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
+    el.innerHTML=[[d,'días'],[h,'horas'],[mi,'min'],[s,'seg']].map(([v,l])=>`<div><b>${pad(v)}</b><small>${l}</small></div>`).join('');
+  });
+}
+setInterval(tickCountdowns,1000);
+const ytSearch=m=>'https://www.youtube.com/results?search_query='+encodeURIComponent(`${m.home.team.name} vs ${m.away.team.name} resumen ${COMP[m.slug]?.name||''} ${new Date(m.date).getFullYear()}`);
+
+/* ---------- Inicio ---------- */
+function renderHome(){
+  renderFeature();
+  const p=played().filter(mainFilter),u=upcoming().filter(mainFilter).filter(m=>m.state==='pre');
+  renderList(p.slice(-4),'homeResults',true,'Aún no hay partidos jugados esta temporada.');
+  renderList(u.slice(0,4),'homeNext',false,'No hay partidos programados por ahora.');
+  $('mForm').innerHTML=formHTML(played().slice(-5).map(resultOf));
+  const row=(S.standings['esp.1']||[]).find(r=>isFcb(r.team));
+  $('mPos').textContent=row?`${row.rank}.º`:'—';
+  $('mPts').textContent=row?row.pts:'—';
+  $('mUpdated').textContent=S.lastOk?fmtTime(S.lastOk):'—';
+}
+
+/* ---------- Calendario y resultados ---------- */
+function renderChips(){
+  $$('[data-filter]').forEach(box=>{
+    const k=box.dataset.filter;
+    const used=new Set(allMatches().map(m=>m.slug));
+    const opts=[['all','TODAS'],...COMPS.filter(c=>used.has(c.slug)||c.slug==='esp.1').map(c=>[c.slug,c.short])];
+    if(!opts.some(([v])=>v===filters[k]))filters[k]='all';
+    box.innerHTML=opts.map(([v,l])=>`<button class="chip" data-f="${v}" aria-pressed="${filters[k]===v}">${esc(l)}</button>`).join('');
+  });
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-filter] [data-f]');if(!b)return;
+  const k=b.closest('[data-filter]').dataset.filter;filters[k]=b.dataset.f;
+  $$('[data-f]',b.parentElement).forEach(x=>x.setAttribute('aria-pressed',x===b));
+  ({schedule:renderSchedule,results:renderResults,stats:renderStats})[k]();
+});
+function renderSchedule(){
+  const list=upcoming(filters.schedule);
+  $('scheduleLabel').textContent=`${list.length} partido${list.length===1?'':'s'} pendiente${list.length===1?'':'s'}`;
+  renderList(list,'scheduleList',false,'No hay partidos programados en esta competición.');
+}
+function renderResults(){
+  const q=$('resultSearch').value.trim().toLowerCase();
+  const all=played(filters.results);
+  const list=all.filter(m=>!q||oppOf(m).team.name.toLowerCase().includes(q));
+  const c={V:0,E:0,D:0};let gf=0,gc=0;
+  all.forEach(m=>{c[resultOf(m)]++;gf+=meOf(m).score;gc+=oppOf(m).score});
+  $('rW').textContent=c.V;$('rD').textContent=c.E;$('rL').textContent=c.D;$('rG').textContent=`${gf}–${gc}`;
+  renderList(list,'resultList',true,q?'Ningún rival coincide con la búsqueda.':'Aún no hay partidos jugados.');
+}
+
+/* ---------- Exportar a calendario (.ics) ---------- */
+function icsDate(d){d=new Date(d);return `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}00Z`}
+function icsEvent(m){
+  const end=new Date(new Date(m.date).getTime()+115*6e4);
+  const t=s=>String(s).replace(/[,;\\]/g,c=>'\\'+c);
+  return ['BEGIN:VEVENT',`UID:barca-center-${m.id}@espn`,`DTSTAMP:${icsDate(new Date())}`,`DTSTART:${icsDate(m.date)}`,`DTEND:${icsDate(end)}`,
+    `SUMMARY:${t(`⚽ ${m.home.team.name} vs ${m.away.team.name}`)}`,`DESCRIPTION:${t(COMP[m.slug]?.name||'')}`,m.venue?`LOCATION:${t(m.venue)}`:'',
+    'BEGIN:VALARM','TRIGGER:-PT30M','ACTION:DISPLAY','DESCRIPTION:El Barça juega en 30 minutos','END:VALARM','END:VEVENT'].filter(Boolean).join('\r\n');
+}
+function downloadICS(list,name){
+  if(!list.length){toast('No hay partidos para exportar');return}
+  const body=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Barca Center//ES','CALSCALE:GREGORIAN',...list.map(icsEvent),'END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([body],{type:'text/calendar'}));a.download=name;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  toast(list.length===1?'Partido exportado: ábrelo para añadirlo a tu calendario':`${list.length} partidos exportados`);
+}
+$('icsAll').addEventListener('click',()=>downloadICS(upcoming(filters.schedule).filter(m=>m.state==='pre'),'barca-calendario.ics'));
+
+/* ================= Clasificación ================= */
+let table='esp.1';
+function normStandings(d){
+  const groups=d.children?.length?d.children:[d];
+  const out=[];
+  groups.forEach(g=>(g.standings?.entries||[]).forEach(en=>{
+    const s={};(en.stats||[]).forEach(x=>{s[String(x.name||x.type||'').toLowerCase()]=x.value??num(x.displayValue)});
+    const g2=k=>{for(const x of k)if(s[x]!=null)return Number(s[x]);return 0};
+    out.push({team:normTeam(en.team),rank:g2(['rank'])||null,gp:g2(['gamesplayed']),w:g2(['wins']),d:g2(['ties','draws']),l:g2(['losses']),
+      gf:g2(['pointsfor','goalsfor']),ga:g2(['pointsagainst','goalsagainst']),gd:g2(['pointdifferential','goaldifference']),pts:g2(['points']),note:en.note||null});
+  }));
+  out.sort((a,b)=>(a.rank??999)-(b.rank??999)||b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);
+  out.forEach((r,i)=>{if(!r.rank)r.rank=i+1});
+  return out;
+}
+async function fetchStandings(slug){
+  let d;
+  try{d=await espn(`/apis/v2/sports/soccer/${slug}/standings?season=${SY}`)}catch(e){d=await espn(`/apis/v2/sports/soccer/${slug}/standings`)}
+  const rows=normStandings(d);if(!rows.length)throw new Error('La fuente no devolvió equipos.');
+  S.standings[slug]=rows;return rows;
+}
+/* Zonas: se usa la nota de ESPN cuando existe; si no, el reparto habitual de cada competición */
+function zoneOf(slug,r,total){
+  const n=String(r.note?.description||'').toLowerCase();
+  if(n){if(/relegat|descen/.test(n))return 'rel';if(/conference/.test(n))return 'uecl';if(/europa/.test(n))return 'uel';if(/play.?off|knockout/.test(n))return 'po';if(/champions|round of 16|octavos/.test(n))return 'ucl'}
+  if(slug==='uefa.champions')return r.rank<=8?'ucl':r.rank<=24?'po':'';
+  return r.rank<=4?'ucl':r.rank<=6?'uel':r.rank===7?'uecl':r.rank>total-3?'rel':'';
+}
+const LEGENDS={
+  'esp.1':[['var(--blue)','Champions League'],['var(--amber)','Europa League'],['var(--green)','Conference League'],['var(--red)','Descenso']],
+  'uefa.champions':[['var(--blue)','Octavos directos (1–8)'],['#8e7cc3','Play-off (9–24)']]
+};
+function standingsHTML(slug,rows,limit){
+  let list=rows;
+  if(limit){const i=rows.findIndex(r=>isFcb(r.team));list=rows.slice(0,limit);if(i>=limit)list=[...list,rows[i]]}
+  return `<table><thead><tr><th>#</th><th>Equipo</th><th class="n">PJ</th><th class="n ${limit?'hide-m':''}">G</th><th class="n ${limit?'hide-m':''}">E</th><th class="n ${limit?'hide-m':''}">P</th>${limit?'':'<th class="n hide-m">GF</th><th class="n hide-m">GC</th>'}<th class="n">DG</th><th class="n">PTS</th></tr></thead><tbody>${list.map(r=>{
+    const z=zoneOf(slug,r,rows.length);
+    return `<tr class="${z?'z-'+z:''} ${isFcb(r.team)?'fcb':''}"><td>${r.rank}</td><td><div class="teamcell"><img src="${esc(r.team.logo)}" alt="" loading="lazy" ${imgErr}><span>${esc(limit?r.team.short||r.team.name:r.team.name)}</span></div></td><td class="n">${r.gp}</td><td class="n ${limit?'hide-m':''}">${r.w}</td><td class="n ${limit?'hide-m':''}">${r.d}</td><td class="n ${limit?'hide-m':''}">${r.l}</td>${limit?'':`<td class="n hide-m">${r.gf}</td><td class="n hide-m">${r.ga}</td>`}<td class="n">${r.gd>0?'+':''}${r.gd}</td><td class="n pts">${r.pts}</td></tr>`}).join('')}</tbody></table>`;
+}
+async function loadStandings(){
+  $('standingsTable').innerHTML=skeleton(8);
+  $('standingsLegend').innerHTML=(LEGENDS[table]||[]).map(([c,l])=>`<span><i style="background:${c}"></i>${esc(l)}</span>`).join('')+'<span>Fila resaltada: FC Barcelona</span>';
+  try{const rows=await fetchStandings(table);$('standingsTable').innerHTML=standingsHTML(table,rows)}
+  catch(e){$('standingsTable').innerHTML=stateHTML('Clasificación no disponible',e.message+' Consulta la web oficial de la competición.','standings')}
+}
+async function loadMiniTable(){
+  try{const rows=S.standings['esp.1']||await fetchStandings('esp.1');
+    $('miniTable').innerHTML=standingsHTML('esp.1',rows,6);
+    const r=rows.find(x=>isFcb(x.team));$('miniTableLbl').textContent=r?`Barça ${r.rank}.º · ${r.pts} pts`:`${rows.length} equipos`;
+    renderHome();
+  }catch(e){$('miniTable').innerHTML=stateHTML('Clasificación no disponible',e.message)}
+}
+$$('[data-table]').forEach(b=>b.addEventListener('click',()=>{table=b.dataset.table;$$('[data-table]').forEach(x=>x.setAttribute('aria-pressed',x===b));loadStandings()}));
+$('loadStandings').addEventListener('click',()=>{delete S.standings[table];loadStandings()});
+
+/* ================= Plantilla ================= */
+function normAthlete(a){
+  const stats={};
+  /* El roster de fútbol de ESPN puede traer estadísticas de temporada (apariciones, goles…) */
+  const walk=o=>{if(!o||typeof o!=='object')return;if(Array.isArray(o)){o.forEach(walk);return}
+    if(o.name&&(o.value!=null||o.displayValue!=null)&&!(o.name in stats))stats[o.name]=num(o.value)??toNum(o.displayValue);
+    Object.values(o).forEach(v=>typeof v==='object'&&walk(v))};
+  walk(a.statistics||a.stats);
+  const pick=(...k)=>{for(const x of k)if(Number.isFinite(stats[x]))return stats[x];return null};
+  return{id:String(a.id||a.displayName),name:a.displayName||a.fullName||'Jugador',short:a.shortName||a.displayName||'',
+    num:a.jersey||'',pos:posKey(a.position),posName:a.position?.displayName||a.position?.name||'',
+    photo:a.headshot?.href||(a.id?HEAD(a.id):''),age:a.age||null,birth:a.dateOfBirth||'',
+    country:a.citizenship||a.birthPlace?.country||'',flag:a.flag?.href||'',height:a.displayHeight||'',weight:a.displayWeight||'',
+    apps:pick('appearances','gamesPlayed','starts'),goals:pick('totalGoals','goals'),assists:pick('goalAssists','assists'),
+    saves:pick('saves'),yellow:pick('yellowCards'),red:pick('redCards'),cleanSheets:pick('cleanSheet','cleanSheets')};
+}
+async function loadSquad(){
+  $('squadBox').innerHTML=skeleton(6);
+  try{
+    let d=null;
+    for(const slug of ['esp.1','uefa.champions']){try{d=await espn(`/apis/site/v2/sports/soccer/${slug}/teams/${TEAM_ID}/roster?season=${SY}`);if((d.athletes||[]).length)break}catch(e){if(slug==='uefa.champions')throw e}}
+    let raw=d?.athletes||[];
+    if(raw[0]?.items)raw=raw.flatMap(g=>g.items||[]);         /* formato agrupado por posición */
+    S.roster=raw.map(normAthlete);
+    if(!S.roster.length)throw new Error('La fuente no devolvió jugadores.');
+    renderSquad();renderFavorites();
+  }catch(e){$('squadBox').innerHTML=stateHTML('Plantilla no disponible',e.message,'squad')}
+}
+function pcardHTML(p){
+  const on=favs.has(p.id);
+  const st=[p.apps!=null?`${p.apps} PJ`:'',p.pos==='G'?(p.saves!=null?`${p.saves} atajadas`:''):(p.goals!=null?`${p.goals} G`:''),p.pos!=='G'&&p.assists!=null?`${p.assists} A`:''].filter(Boolean);
+  return `<div class="pcard ${on?'fav':''}"><span class="dorsal">${esc(p.num)}</span><button class="star" data-star="${esc(p.id)}" aria-pressed="${on}" aria-label="${on?'Quitar de':'Añadir a'} favoritos: ${esc(p.name)}">★</button>
+    <button class="open" data-player="${esc(p.id)}">${avatarHTML(p.name,p.photo)}<b>${esc(p.name)}</b><small>${p.flag?`<img class="flag" src="${esc(p.flag)}" alt="" ${imgErr}>`:''}${esc(countryES(p.country))}${p.age?` · ${p.age} años`:''}</small></button>
+    ${st.length?`<div class="pstats">${st.map(s=>`<span>${esc(s)}</span>`).join('')}</div>`:''}</div>`;
+}
+function renderSquad(){
+  if(!S.roster.length)return;
+  const q=$('squadSearch').value.trim().toLowerCase();
+  const list=S.roster.filter(p=>!q||p.name.toLowerCase().includes(q)||String(p.num)===q);
+  const html=POS_GROUP.map(([k,l])=>{const ps=list.filter(p=>p.pos===k).sort((a,b)=>(+a.num||99)-(+b.num||99));
+    return ps.length?`<div class="squadgroup"><h4>${l} · ${ps.length}</h4><div class="squad">${ps.map(pcardHTML).join('')}</div></div>`:''}).join('');
+  $('squadBox').innerHTML=html||stateHTML('Sin coincidencias','Prueba con otro nombre o dorsal.');
+}
+$('squadSearch').addEventListener('input',renderSquad);
+$('loadSquad').addEventListener('click',loadSquad);
+
+/* ---------- Ficha de jugador ---------- */
+function openPlayer(id){
+  const p=S.roster.find(x=>x.id===id);if(!p)return;
+  const on=favs.has(p.id);
+  const lead=Object.entries(S.leaders).flatMap(([k,v])=>(v||[]).filter(x=>x.id===p.id||x.name===p.name).map(x=>({k,v:x.value})));
+  const info=[['Posición',p.posName||POS_ES[p.pos]],['Dorsal',p.num||'—'],['Nacionalidad',countryES(p.country)||'—'],['Edad',p.age?`${p.age} años`:'—'],
+    ['Nacimiento',p.birth?fmtShort(p.birth):'—'],['Estatura / peso',[p.height,p.weight].filter(Boolean).join(' · ')||'—']];
+  const st=[['Partidos',p.apps],['Goles',p.goals],['Asistencias',p.assists],['Atajadas',p.saves],['Porterías a cero',p.cleanSheets],['Amarillas',p.yellow],['Rojas',p.red]].filter(([,v])=>v!=null);
+  $('playerBody').innerHTML=`<div class="ptop"><span class="bigno">${esc(p.num)}</span><button class="x" data-close aria-label="Cerrar">✕</button>${avatarHTML(p.name,p.photo)}<h3>${esc(p.name)}</h3><p>${esc(p.posName||POS_ES[p.pos])} · FC Barcelona</p></div>
+    <div class="pbody"><div class="infogrid">${info.map(([l,v])=>`<div><small>${esc(l)}</small>${esc(v)}</div>`).join('')}</div>
+    ${st.length?`<div class="kpis" style="border-radius:12px;overflow:hidden;margin-bottom:12px">${st.map(([l,v])=>`<div class="kpi"><strong>${esc(v)}</strong><small>${esc(l)}</small></div>`).join('')}</div>`:''}
+    ${lead.length?`<p style="font-size:.8rem;color:var(--muted);margin:0 0 12px">${lead.map(x=>`${esc(x.k)}: <b>${esc(x.v)}</b>`).join(' · ')}</p>`:''}
+    <div class="toolbar" style="margin:0"><button class="btn" data-star="${esc(p.id)}" aria-pressed="${on}">${on?'★ QUITAR DE FAVORITOS':'☆ AÑADIR A FAVORITOS'}</button><a class="btn ghost" href="https://www.youtube.com/results?search_query=${encodeURIComponent(p.name+' FC Barcelona')}" target="_blank" rel="noopener">▶ VIDEOS</a></div></div>`;
+  const dlg=$('playerDlg');if(!dlg.open)dlg.showModal();
+}
+$('playerDlg').addEventListener('click',e=>{if(e.target===e.currentTarget||e.target.closest('[data-close]'))e.currentTarget.close()});
+
+/* ================= Favoritos ================= */
+function toggleFav(id){
+  const p=S.roster.find(x=>x.id===id);
+  favs.has(id)?favs.delete(id):favs.add(id);saveFavs();
+  toast(favs.has(id)?`★ ${p?.name||'Jugador'} añadido a Mis culés`:`${p?.name||'Jugador'} quitado de Mis culés`);
+  renderSquad();renderFavorites();renderLeadersView();
+  if($('playerDlg').open)openPlayer(id);
+}
+function renderFavorites(){
+  $('favCount').textContent=`${favs.size} seleccionado${favs.size===1?'':'s'}`;
+  if(!S.roster.length){$('favGrid').innerHTML=stateHTML('Cargando plantilla…','');return}
+  const list=[...S.roster].sort((a,b)=>(favs.has(b.id)-favs.has(a.id))||POS_GROUP.findIndex(x=>x[0]===a.pos)-POS_GROUP.findIndex(x=>x[0]===b.pos)||(+a.num||99)-(+b.num||99));
+  $('favGrid').innerHTML=list.map(p=>{const on=favs.has(p.id);
+    return `<button class="favbtn" data-star="${esc(p.id)}" aria-pressed="${on}">${avatarHTML(p.name,p.photo)}<span>${esc(p.name)}<small>${esc(p.num?'#'+p.num+' · ':'')}${esc(POS_ES[p.pos])}</small></span>${on?'<b>★</b>':''}</button>`}).join('');
+}
+function bindSwitch(id,key,after){
+  const b=$(id);b.setAttribute('aria-checked',prefs[key]);
+  b.addEventListener('click',async()=>{
+    let v=!prefs[key];
+    if(key==='notify'&&v){
+      if(!('Notification' in window)){toast('Este navegador no admite notificaciones');return}
+      const p=await Notification.requestPermission().catch(()=>'denied');
+      if(p!=='granted'){toast('Permiso de notificaciones denegado');return}
+    }
+    prefs[key]=v;savePrefs();b.setAttribute('aria-checked',v);after?.();
+  });
+}
+bindSwitch('prefNotify','notify',()=>toast(prefs.notify?'Avisos activados':'Avisos desactivados'));
+bindSwitch('prefMain','mainOnly',renderHome);
+
+/* ---------- Avisos ---------- */
+const notified=new Set(store.get('barcaCenterNotified',[]));
+function notify(key,title,body){
+  if(!prefs.notify||notified.has(key)||!('Notification' in window)||Notification.permission!=='granted')return;
+  notified.add(key);store.set('barcaCenterNotified',[...notified].slice(-60));
+  try{new Notification(title,{body,icon:LOGO(TEAM_ID),tag:key})}catch(_){}
+}
+function notifyChange(prev,m){
+  const me=meOf(m),op=oppOf(m);
+  if(prev&&prev.state!=='post'&&m.state==='post'){const r=resultOf(m);notify('ft'+m.id,({V:'¡Victoria del Barça!',E:'Empate del Barça',D:'Derrota del Barça'})[r]||'Final del partido',`${m.home.team.name} ${m.home.score} – ${m.away.score} ${m.away.team.name}`)}
+  if(prev&&m.state==='in'&&prev.state==='in'&&(me.score>(meOf(prev).score??0)))notify(`g${m.id}-${me.score}-${op.score}`,'⚽ ¡GOOOL del Barça!',`${m.home.team.name} ${m.home.score} – ${m.away.score} ${m.away.team.name}`);
+}
+function checkReminders(){
+  const n=upcoming().find(m=>m.state==='pre');if(!n)return;
+  const ms=new Date(n.date)-Date.now();
+  if(ms>0&&ms<=30*6e4)notify('pre'+n.id,'El Barça juega en menos de 30 minutos',`${n.home.team.name} vs ${n.away.team.name} · ${COMP[n.slug]?.name||''}`);
+}
+
+/* ================= Estadísticas ================= */
+function renderStats(){
+  const f=filters.stats,list=played(f);
+  $('statsScope').textContent=f==='all'?'Todas las competiciones':COMP[f]?.name||'';
+  if(!list.length){$('kpis').innerHTML=`<div class="kpi" style="grid-column:1/-1">${stateHTML('Sin partidos jugados','Las estadísticas aparecerán cuando haya resultados.')}</div>`;$('goalsChart').innerHTML='';$('homeAway').innerHTML='';return}
+  const c={V:0,E:0,D:0};let gf=0,gc=0,cs=0,scored=0,best=null;
+  list.forEach(m=>{const r=resultOf(m),a=meOf(m).score,b=oppOf(m).score;c[r]++;gf+=a;gc+=b;if(!b)cs++;if(a)scored++;
+    if(!best||a-b>best.d||(a-b===best.d&&a>best.a))best={d:a-b,a,b,m}});
+  /* racha actual */
+  let streak=0,sr=resultOf(list[list.length-1]);
+  for(let i=list.length-1;i>=0&&resultOf(list[i])===sr;i--)streak++;
+  let unbeaten=0;for(let i=list.length-1;i>=0&&resultOf(list[i])!=='D';i--)unbeaten++;
+  const n=list.length,pct=Math.round(c.V/n*100);
+  const k=[[n,'Partidos',`${c.V}V · ${c.E}E · ${c.D}D`],[pct+'%','Victorias',`${c.V} de ${n}`],[`${gf}`,'Goles a favor',`${(gf/n).toFixed(2)} por partido`],
+    [`${gc}`,'Goles en contra',`${(gc/n).toFixed(2)} por partido`],[cs,'Porterías a cero',`${Math.round(cs/n*100)}% de los partidos`],
+    [`${streak}${sr}`,'Racha actual',`${unbeaten} sin perder`],[`${gf-gc>0?'+':''}${gf-gc}`,'Diferencia de goles',`marcó en ${scored} de ${n}`],
+    [best?`${best.a}-${best.b}`:'—','Mayor victoria',best?`vs ${oppOf(best.m).team.short||oppOf(best.m).team.name}`:''],
+    [formHTML(list.slice(-5).map(resultOf)),'Forma','últimos 5']];
+  $('kpis').innerHTML=k.map(([v,l,s])=>`<div class="kpi"><strong>${String(v).startsWith('<')?v:esc(v)}</strong><small>${esc(l)}</small><em>${esc(s)}</em></div>`).join('').replace('<strong><div class="form">','<strong style="display:flex;justify-content:center"><div class="form">');
+  /* Gráfica de goles (SVG) */
+  const last=list.slice(-12),W=520,H=180,pb=34,pt=14,bw=Math.min(16,(W-30)/last.length/2.6);
+  const max=Math.max(3,...last.map(m=>Math.max(meOf(m).score,oppOf(m).score)));
+  const y=v=>H-pb-(v/max)*(H-pb-pt);
+  const step=(W-30)/last.length;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Goles a favor y en contra en los últimos ${last.length} partidos">`;
+  for(let v=0;v<=max;v++)svg+=`<line class="axis" x1="24" x2="${W}" y1="${y(v)}" y2="${y(v)}"/><text x="14" y="${y(v)+3}" text-anchor="middle">${v}</text>`;
+  last.forEach((m,i)=>{const cx=30+step*i+step/2,a=meOf(m).score,b=oppOf(m).score,r=resultOf(m);
+    svg+=`<g data-open="${esc(m.id)}" style="cursor:pointer"><title>${esc(`${m.home.team.name} ${m.home.score}-${m.away.score} ${m.away.team.name}`)}</title>
+      <rect x="${cx-bw-1}" y="${y(a)}" width="${bw}" height="${Math.max(0,H-pb-y(a))}" rx="3" fill="var(--claret)"/>
+      <rect x="${cx+1}" y="${y(b)}" width="${bw}" height="${Math.max(0,H-pb-y(b))}" rx="3" fill="#9aa3b8"/>
+      <text x="${cx}" y="${H-pb+13}" text-anchor="middle" style="font-weight:800">${esc((oppOf(m).team.abbr||oppOf(m).team.name).slice(0,3).toUpperCase())}</text>
+      <text x="${cx}" y="${H-pb+26}" text-anchor="middle" style="font-weight:900;fill:${r==='V'?'#0b8b59':r==='D'?'#d21d3b':'#98a2b3'}">${r}</text></g>`});
+  $('goalsChart').innerHTML=svg+'</svg>';
+  /* Local vs visitante */
+  const split=arr=>{const o={V:0,E:0,D:0,gf:0,gc:0,n:arr.length};arr.forEach(m=>{o[resultOf(m)]++;o.gf+=meOf(m).score;o.gc+=oppOf(m).score});return o};
+  const H1=split(list.filter(isHome)),A1=split(list.filter(m=>!isHome(m)));
+  const bar=(o,l)=>`<div style="padding:14px 18px 0;font-size:.8rem;font-weight:850;display:flex;justify-content:space-between"><span>${l}</span><span style="color:var(--muted);font-weight:700">${o.n} PJ · ${o.gf}-${o.gc} goles</span></div>
+    <div class="split">${o.n?['V','E','D'].map(k=>`<span style="width:${o[k]/o.n*100}%;background:${k==='V'?'var(--green)':k==='E'?'#b4bccb':'var(--red)'}" title="${o[k]}"></span>`).join(''):''}</div>
+    <div class="splitlbl"><span style="color:var(--green)">${o.V} V</span><span>${o.E} E</span><span style="color:var(--red)">${o.D} D</span></div>`;
+  $('homeAway').innerHTML=bar(H1,'🏟️ Local')+bar(A1,'✈️ Visitante');
+}
+
+/* ---------- Líderes individuales ---------- */
+const CATS={goals:{label:'Goles',match:/goal/i,unit:'goles'},assists:{label:'Asistencias',match:/assist/i,unit:'asist.'}};
+function normLeaders(data){
+  const out={},seen=new Set();
+  (function walk(n){
+    if(!n||typeof n!=='object'||seen.has(n))return;seen.add(n);
+    if(Array.isArray(n)){n.forEach(walk);return}
+    if(Array.isArray(n.leaders)&&n.leaders.length&&(n.name||n.displayName)){
+      const nm=`${n.name} ${n.displayName||''}`;
+      const k=/against|conced/i.test(nm)?null:Object.keys(CATS).find(x=>CATS[x].match.test(nm));
+      if(k&&!out[k]){
+        out[k]=n.leaders.map(l=>{const a=l.athlete||{},t=l.team||a.team||{};const v=num(l.value)??toNum(l.displayValue);
+          const tid=String(t.id||(String(t.$ref||'').match(/teams\/(\d+)/)||[])[1]||'');
+          return a.displayName&&Number.isFinite(v)?{id:String(a.id||a.displayName),name:a.displayName,photo:a.headshot?.href||(a.id?HEAD(a.id):''),team:{id:tid,name:t.displayName||t.name||'',logo:t.logos?.[0]?.href||(tid?LOGO(tid):'')},value:v}:null}).filter(Boolean).sort((a,b)=>b.value-a.value);
+      }
+    }
+    for(const [k,v] of Object.entries(n))if(!['headshot','logos','links','athlete','team'].includes(k))walk(v);
+  })(data);
+  return out;
+}
+const leadersCache={};
+async function loadLeaders(){
+  const lg=$('leaderLeague').value;
+  $('leaderGrid').innerHTML=`<div class="leaderbox">${skeleton(5)}</div><div class="leaderbox">${skeleton(5)}</div>`;
+  try{
+    if(!leadersCache[lg]){
+      let d=null,err;
+      for(const p of [`/apis/site/v3/sports/soccer/${lg}/leaders?region=us&lang=en&limit=100`,`/apis/site/v2/sports/soccer/${lg}/leaders`]){
+        try{d=await espn(p);const r=normLeaders(d);if(r.goals||r.assists){leadersCache[lg]=r;break}}catch(e){err=e}
+      }
+      if(!leadersCache[lg])throw err||new Error('La fuente no devolvió líderes.');
+    }
+    renderLeadersView();
+  }catch(e){$('leaderGrid').innerHTML=`<div class="leaderbox">${stateHTML('No se pudieron cargar los líderes',e.message,'leaders')}</div>`}
+}
+function leaderRow(r,i){
+  const fcb=isFcb(r.team),fav=favs.has(r.id)||S.roster.some(p=>favs.has(p.id)&&p.name===r.name);
+  return `<div class="leader ${fcb?'fcb':''}"><span class="rank">${i+1}</span>${avatarHTML(r.name,r.photo,'playerpic')}<div class="playerinfo"><b>${esc(r.name)}${fav?' ★':''}</b><small>${esc(r.team.name)}</small></div><img class="teamlogo" src="${esc(r.team.logo)}" alt="" ${imgErr}><span class="statval">${esc(r.value)}</span></div>`;
+}
+function renderLeadersView(){
+  const lg=$('leaderLeague').value,cat=$('leaderStat').value,data=leadersCache[lg];if(!data)return;
+  const list=data[cat]||[],c=CATS[cat];
+  const fcb=list.filter(r=>isFcb(r.team));
+  /* Guarda los números del Barça para mostrarlos en la ficha del jugador */
+  Object.keys(CATS).forEach(k=>(data[k]||[]).filter(r=>isFcb(r.team)).forEach(r=>{const key=`${CATS[k].label} ${COMP[lg].name}`;(S.leaders[key]=S.leaders[key]||[]).some(x=>x.id===r.id)||S.leaders[key].push(r)}));
+  $('leaderGrid').innerHTML=`<div class="leaderbox"><h3>${esc(c.label)} del Barça<small>${esc(COMP[lg].name)}</small></h3>${fcb.length?fcb.slice(0,10).map(leaderRow).join(''):stateHTML('Sin jugadores del Barça en el ranking','La fuente solo publica a los primeros de la competición.')}</div>
+    <div class="leaderbox"><h3>${esc(c.label)} · Top 10<small>${esc(COMP[lg].name)}</small></h3>${list.length?list.slice(0,10).map(leaderRow).join(''):stateHTML('Sin datos','')}</div>`;
+}
+$('loadLeaders').addEventListener('click',()=>{delete leadersCache[$('leaderLeague').value];loadLeaders()});
+$('leaderLeague').addEventListener('change',loadLeaders);
+$('leaderStat').addEventListener('change',renderLeadersView);
+
+/* ================= Videos (YouTube) ================= */
+const YT_RSS=`https://www.youtube.com/feeds/videos.xml?channel_id=${FCB_CHANNEL}`;
+let videoId=null,videoFirst=true;
+const isLocalFile=location.protocol==='file:';
+const embed=(id,title)=>`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?rel=0&modestbranding=1" title="${esc(title)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+function videoHTML(v,isNew){
+  const watch=`https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}`;
+  return `<div class="vid">${embed(v.id,v.title)}</div><div class="vidmeta"><div><h4>${esc(v.title)}${isNew?'<span class="badge-new">NUEVO</span>':''}</h4><small>Publicado ${esc(ago(v.date))}${v.date?' · '+esc(fmtShort(v.date)):''} · FC Barcelona en YouTube</small>${isLocalFile?'<small>¿El reproductor muestra un error? YouTube lo bloquea en archivos abiertos con doble clic; usa «Ver en YouTube» o abre la página desde un servidor web.</small>':''}</div><a class="btn" href="${watch}" target="_blank" rel="noopener">VER EN YOUTUBE ↗</a></div>`;
+}
+function renderVideoList(activeId){
+  $('videoList').innerHTML=S.videos.slice(0,12).map(v=>`<button data-video="${esc(v.id)}" aria-current="${v.id===activeId}"><img src="https://i.ytimg.com/vi/${encodeURIComponent(v.id)}/mqdefault.jpg" alt="" loading="lazy"><span>${esc(v.title)}</span></button>`).join('');
+}
+async function loadVideo(){
+  try{
+    /* El feed RSS de YouTube no permite CORS; se lee mediante rss2json (sin clave). */
+    const d=await getJSON(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(YT_RSS)}`);
+    const parseDate=s=>String(s).replace(' ','T')+'Z';
+    S.videos=(d.items||[]).map(it=>({id:(it.guid||'').split(':').pop()||(String(it.link||'').match(/[?&]v=([\w-]{11})/)||[])[1],title:it.title,date:parseDate(it.pubDate)}))
+      .filter(v=>v.id).sort((a,b)=>new Date(b.date)-new Date(a.date));
+    const v=S.videos[0];if(!v)throw new Error('El canal no devolvió videos');
+    if(v.id!==videoId){$('videoBox').innerHTML=videoHTML(v,!videoFirst);videoId=v.id}
+    if(videoFirst||!$('videoMain').innerHTML){$('videoMain').innerHTML=videoHTML(v,false);renderVideoList(v.id)}else renderVideoList($('videoList').querySelector('[aria-current=true]')?.dataset.video||v.id)
+    videoFirst=false;
+    $('videoStatus').textContent='Actualizado '+fmtTime(new Date());
+  }catch(e){
+    if(videoId)return;                                   /* conserva el video actual si falla una actualización */
+    const fb=`<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=UULF${FCB_CHANNEL.slice(2)}&rel=0" title="Últimos videos del FC Barcelona" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><div class="vidmeta"><small>Lista de reproducción del canal oficial.</small><a class="btn" href="https://www.youtube.com/@fcbarcelona" target="_blank" rel="noopener">ABRIR CANAL ↗</a></div>`;
+    $('videoBox').innerHTML=fb;$('videoMain').innerHTML=fb;$('videoList').innerHTML='';
+    $('videoStatus').textContent='Lista del canal';
+  }
+}
+$('videoList').addEventListener('click',e=>{
+  const b=e.target.closest('[data-video]');if(!b)return;
+  const v=S.videos.find(x=>x.id===b.dataset.video);if(!v)return;
+  $('videoMain').innerHTML=videoHTML(v,false).replace('loading="lazy"','');renderVideoList(v.id);
+  $('videoMain').scrollIntoView({behavior:'smooth',block:'start'});
+});
+setInterval(()=>{if(!document.hidden)loadVideo()},300000);
+
+/* ================= Noticias ================= */
+function parseNews(data){
+  const seen=new Set();
+  return (data?.articles||[]).map(a=>{
+    const link=a.links?.web?.href||'';
+    const img=(a.images||[]).find(i=>i.url&&!/logo|\.svg$/i.test(i.url))?.url||'';
+    return {id:a.id||a.headline,title:a.headline||'',desc:a.description||'',date:a.published||a.lastModified,link,img,
+      fcb:(a.categories||[]).some(c=>String(c.teamId||c.team?.id)===TEAM_ID)||/barcelona|barça|barca/i.test(`${a.headline} ${a.description}`)};
+  }).filter(n=>n.title&&n.link&&!seen.has(n.id)&&seen.add(n.id)).sort((x,y)=>new Date(y.date||0)-new Date(x.date||0));
+}
+function newsHTML(list){
+  return `<ul class="news">${list.map(n=>`<li><a href="${esc(n.link)}" target="_blank" rel="noopener">${n.img?`<img src="${esc(n.img)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=noimg></div>'">`:'<div class="noimg"></div>'}<div><h4>${esc(n.title)}</h4>${n.desc?`<p>${esc(n.desc)}</p>`:''}<small>${esc(ago(n.date))} · ESPN ↗</small></div></a></li>`).join('')}</ul>`;
+}
+function renderNews(){
+  $('newsHomeCount').textContent=S.news.length?'Top 5':'—';
+  $('newsHome').innerHTML=S.news.length?newsHTML(S.news.slice(0,5))+'<button class="morelink" data-go="news">VER MÁS NOTICIAS →</button>':stateHTML('No hay noticias por ahora','Actualiza más tarde.');
+  $('newsAllCount').textContent=`${Math.min(20,S.news.length)} noticias`;
+  $('newsAll').innerHTML=S.news.length?newsHTML(S.news.slice(0,20)):stateHTML('No hay noticias por ahora','Actualiza más tarde.');
+}
+async function loadNews(){
+  const b=$('loadNews');b.disabled=true;
+  if(!S.news.length){$('newsHome').innerHTML=skeleton(3);$('newsAll').innerHTML=skeleton(4)}
+  try{
+    let list=[],err;
+    /* 1) noticias del equipo en español, 2) del equipo en inglés, 3) LaLiga filtrada por el Barça */
+    for(const q of [`/apis/site/v2/sports/soccer/esp.1/news?team=${TEAM_ID}&limit=30&lang=es&region=us`,`/apis/site/v2/sports/soccer/esp.1/news?team=${TEAM_ID}&limit=30`,`/apis/site/v2/sports/soccer/esp.1/news?limit=50`]){
+      try{const l=parseNews(await espn(q));const mine=l.filter(n=>n.fcb);list=mine.length>=3?mine:list.length?list:l;if(mine.length>=5)break}catch(e){err=e}
+    }
+    if(!list.length)throw err||new Error('La fuente no devolvió noticias por ahora.');
+    S.news=list;renderNews();
+  }catch(e){const h=stateHTML('No se pudieron cargar las noticias',e.message,'news');$('newsHome').innerHTML=h;$('newsAll').innerHTML=h}
+  finally{b.disabled=false}
+}
+$('loadNews').addEventListener('click',loadNews);
+
+/* ================= Detalle de partido ================= */
+function parseStats(sum,m){
+  const teams=sum?.boxscore?.teams||[];if(teams.length<2)return[];
+  const by=id=>teams.find(t=>String(t.team?.id)===String(id));
+  const h=by(m.home.team.id)||teams[0],a=by(m.away.team.id)||teams[1];
+  const ma=new Map((a.statistics||[]).map(s=>[s.name,s]));
+  return (h.statistics||[]).filter(s=>ma.has(s.name)&&STAT_ES[s.name]).map(s=>({name:s.name,label:STAT_ES[s.name],h:s.displayValue,a:ma.get(s.name).displayValue}))
+    .sort((x,y)=>STAT_ORDER.indexOf(x.name)-STAT_ORDER.indexOf(y.name));
+}
+function parseEvents(sum,m){
+  const raw=sum?.keyEvents?.length?sum.keyEvents:(sum?.header?.competitions?.[0]?.details||[]);
+  return raw.map(e=>{const t=String(e.type?.text||e.type?.type||'');const tid=String(e.team?.id||'');
+    const who=(e.participants||e.athletesInvolved||[]).map(p=>p.athlete?.displayName||p.displayName).filter(Boolean);
+    let kind=(e.scoringPlay||/goal/i.test(t))?'goal':/red/i.test(t)?'red':/yellow/i.test(t)?'yellow':/sub/i.test(t)?'sub':'other';
+    return{kind,t,min:e.clock?.displayValue||'',side:tid===m.home.team.id?'h':tid===m.away.team.id?'a':'',who,own:/own/i.test(t),pen:/pen/i.test(t)}})
+    .filter(e=>e.kind!=='other'&&e.side);
+}
+function parseRosters(sum,m){
+  return (sum?.rosters||[]).map(r=>{const tid=String(r.team?.id||'');
+    const pl=(r.roster||[]).map(x=>({id:String(x.athlete?.id||''),name:x.athlete?.displayName||'',num:x.jersey||x.athlete?.jersey||'',pos:x.position?.abbreviation||'',
+      line:posKey(x.position),starter:!!x.starter,fp:Number(x.formationPlace)||0,subIn:!!x.subbedIn}));
+    return{team:tid===m.home.team.id?m.home.team:tid===m.away.team.id?m.away.team:normTeam(r.team),side:tid===m.home.team.id?'h':'a',formation:r.formation||'',starters:pl.filter(p=>p.starter),bench:pl.filter(p=>!p.starter)}})
+    .sort((a,b)=>a.side==='h'?-1:1);
+}
+/* Coloca a los titulares sobre el campo según la formación (p. ej. 4-3-3) */
+function layout(starters,formation){
+  const LINE={G:0,D:1,M:2,F:3};
+  const gk=starters.filter(p=>p.line==='G').slice(0,1);
+  const out=starters.filter(p=>!gk.includes(p)).sort((x,y)=>(x.fp&&y.fp)?x.fp-y.fp:LINE[x.line]-LINE[y.line]);
+  let rows=String(formation||'').split('-').map(Number).filter(n=>n>0);
+  if(rows.reduce((s,n)=>s+n,0)!==out.length)rows=['D','M','F'].map(l=>out.filter(p=>p.line===l).length).filter(Boolean);
+  const res=[];let i=0;
+  if(gk[0])res.push({...gk[0],x:50,y:91});
+  rows.forEach((n,ri)=>{const y=74-ri*(62/Math.max(1,rows.length-1));out.slice(i,i+n).forEach((p,j)=>res.push({...p,x:(j+1)/(n+1)*100,y}));i+=n});
+  return res;
+}
+const shortName=n=>{const p=String(n||'').split(' ');return p.length>1?p.slice(1).join(' '):n};
+function pitchHTML(r){
+  const opp=!isFcb(r.team);
+  return `<div class="pitch"><span class="ln half"></span><span class="ln circ"></span><span class="ln box"></span><span class="ln box2"></span>${layout(r.starters,r.formation).map(p=>{
+    const fav=!opp&&(favs.has(p.id)||S.roster.some(x=>favs.has(x.id)&&x.name===p.name));
+    return `<div class="pl ${p.line==='G'?'gk':''} ${opp?'opp':''}" style="left:${p.x}%;top:${p.y}%"><div class="shirt">${esc(p.num)}</div><span>${esc(shortName(p.name))}${fav?' ★':''}</span></div>`}).join('')}</div>`;
+}
+function cmpBar(l,h,a,ch,ca){
+  const x=toNum(h),y=toNum(a),t=(x+y)||1;
+  return `<div class="cmp"><div class="lbl"><span>${esc(h)}</span><span>${esc(l)}</span><span>${esc(a)}</span></div><div class="bars"><div><span style="width:${x/t*100}%;background:${ch}"></span></div><div><span style="width:${y/t*100}%;background:${ca}"></span></div></div></div>`;
+}
+let backTo='home',detailTimer=null;
+async function openDetail(id){
+  const m=S.matches.get(String(id));if(!m)return;
+  const cur=$$('.panel.active')[0]?.id;if(cur&&cur!=='detail')backTo=cur;
+  showPanel('detail',false);window.scrollTo({top:0});
+  const card=$('detailCard');card.innerHTML=skeleton(3);
+  clearInterval(detailTimer);
+  await renderDetail(m,'summary');
+  if(m.state==='in')detailTimer=setInterval(()=>{if(!document.hidden&&$('detail').classList.contains('active'))renderDetail(S.matches.get(m.id),null,true)},30000);
+}
+async function renderDetail(m,tab,soft){
+  const card=$('detailCard');
+  let sum=null,err=null;
+  try{
+    if(m.state==='post'&&S.summaries.has(m.id))sum=S.summaries.get(m.id);
+    else{sum=await espn(`/apis/site/v2/sports/soccer/${m.slug}/summary?event=${encodeURIComponent(m.id)}`);S.summaries.set(m.id,sum)}
+    const hc=sum?.header?.competitions?.[0];
+    if(hc){const fresh=normEvent({id:m.id,date:hc.date||m.date,competitions:[hc]},m.slug);if(fresh){fresh.venue=fresh.venue||m.venue||sum.gameInfo?.venue?.fullName||'';Object.assign(m,fresh)}}
+  }catch(e){err=e}
+  const stats=parseStats(sum,m),events=parseEvents(sum,m),rosters=parseRosters(sum,m);
+  const pre=m.state==='pre',live=m.state==='in';
+  const goals=side=>events.filter(e=>e.kind==='goal'&&e.side===side).map(e=>`${esc(e.who[0]||'Gol')} ${esc(e.min)}${e.pen?' (p)':''}${e.own?' (p.p.)':''}`).join('<br>');
+  const mid=pre?`<div class="countdown" data-countdown="${esc(m.date)}"></div><div class="status" style="margin-top:6px">${esc(fmtTime(m.date))}</div>`
+    :`<div class="bigscore">${esc(m.home.score??0)} – ${esc(m.away.score??0)}</div><div class="status ${live?'live':''}">${esc(statusTxt(m).toUpperCase())}${m.home.pens!=null&&!live?` · PEN ${esc(m.home.pens)}-${esc(m.away.pens)}`:''}</div>`;
+  const tabs=[['summary','Resumen'],['stats','Estadísticas'],['lineups','Alineaciones'],['info','Información']];
+  const active=tab||card.dataset.tab||'summary';card.dataset.tab=active;
+  card.innerHTML=`<div class="detailtop"><div style="margin-bottom:10px">${compPill(m.slug)}</div><div class="detailteams">
+      <div><img src="${esc(m.home.team.logo)}" alt="" ${imgErr}><b>${esc(m.home.team.name)}</b></div><div>${mid}</div><div><img src="${esc(m.away.team.logo)}" alt="" ${imgErr}><b>${esc(m.away.team.name)}</b></div></div>
+      ${!pre&&events.some(e=>e.kind==='goal')?`<div class="scorers"><div>${goals('h')}</div><div>${goals('a')}</div></div>`:''}
+      <div class="status" style="margin-top:10px;letter-spacing:0;font-weight:700;font-size:.75rem">${esc(fmtDay(m.date))}${m.venue?' · '+esc(m.venue):''}</div></div>
+    <div class="dtabs" role="tablist">${tabs.map(([k,l])=>`<button role="tab" data-dtab="${k}" aria-selected="${k===active}">${l}</button>`).join('')}</div>
+    <div class="dbody" id="dbody"></div>`;
+  const ch=isFcb(m.home.team)?'var(--claret)':'#9aa3b8',ca=isFcb(m.away.team)?'var(--claret)':'#9aa3b8';
+  const body={
+    summary:()=>{
+      if(err&&!pre)return stateHTML('Resumen no disponible',err.message);
+      if(pre){
+        const a=(S.standings[m.slug]||[]).find(r=>r.team.id===m.home.team.id),b=(S.standings[m.slug]||[]).find(r=>r.team.id===m.away.team.id);
+        const h2h=(sum?.headToHeadGames||[]).flatMap(g=>g.events||[]).slice(0,5);
+        return `<h4 style="margin:0 0 10px">Previa</h4>${a&&b?[['Posición',a.rank,b.rank],['Puntos',a.pts,b.pts],['Goles a favor',a.gf,b.gf],['Goles en contra',a.ga,b.ga],['Diferencia de goles',a.gd,b.gd]].map(([l,x,y])=>cmpBar(l,x,y,ch,ca)).join(''):'<p style="color:var(--muted);font-size:.85rem">La comparación de clasificación estará disponible cuando se cargue la tabla de la competición.</p>'}
+          <p style="font-size:.8rem;color:var(--muted)">Forma del Barça: </p>${formHTML(played().slice(-5).map(resultOf))}
+          ${h2h.length?`<h4 style="margin:16px 0 6px">Últimos enfrentamientos</h4><ul class="timeline">${h2h.map(g=>`<li><span class="h">${esc(fmtShort(g.gameDate||g.date))}</span><span class="min">${esc(g.score||'')}</span><span>${esc(g.opponent?.displayName||g.opponentName||'')} ${g.gameResult?'· '+esc(g.gameResult):''}</span></li>`).join('')}</ul>`:''}
+          <div class="toolbar" style="margin-top:16px"><button class="btn" data-ics="${esc(m.id)}">📅 AÑADIR AL CALENDARIO</button></div>`;
+      }
+      if(!events.length)return stateHTML('Sin eventos registrados','La fuente no publicó goles, tarjetas ni cambios de este partido.');
+      const ico={goal:'⚽',yellow:'<i class="card-y"></i>',red:'<i class="card-r"></i>',sub:'⇄'},tr={goal:'Gol',yellow:'Amarilla',red:'Roja',sub:'Cambio'};
+      const cell=e=>`<span class="ev-ico">${ico[e.kind]}</span> <b>${esc(e.who[0]||tr[e.kind])}</b><small>${esc(tr[e.kind])}${e.pen?' · penal':''}${e.own?' · en propia':''}${e.kind==='sub'&&e.who[1]?' · sale '+esc(e.who[1]):''}</small>`;
+      return `<ul class="timeline">${events.map(e=>`<li><span class="h">${e.side==='h'?cell(e):''}</span><span class="min">${esc(e.min)}</span><span>${e.side==='a'?cell(e):''}</span></li>`).join('')}</ul>
+        <div class="toolbar" style="margin-top:14px"><a class="btn" href="${esc(ytSearch(m))}" target="_blank" rel="noopener">▶ VER RESUMEN EN YOUTUBE</a></div>`;
+    },
+    stats:()=>{
+      if(!stats.length)return stateHTML('Estadísticas no disponibles',pre?'Estarán disponibles cuando empiece el partido.':'La fuente no proporcionó estadísticas para este partido.');
+      return `<div class="lbl" style="display:flex;justify-content:space-between;font-size:.75rem;font-weight:900;margin-bottom:10px"><span>${esc(m.home.team.abbr||m.home.team.name)}</span><span>${esc(m.away.team.abbr||m.away.team.name)}</span></div>${stats.map(s=>cmpBar(s.label,s.h,s.a,ch,ca)).join('')}`;
+    },
+    lineups:()=>{
+      if(!rosters.some(r=>r.starters.length))return stateHTML('Alineaciones no disponibles',pre?'Se publican aproximadamente una hora antes del partido.':'La fuente no publicó las alineaciones.');
+      return `<div class="lineups">${rosters.map(r=>`<div><h4><img src="${esc(r.team.logo)}" alt="" ${imgErr}>${esc(r.team.name)}<small>${esc(r.formation)}</small></h4>${pitchHTML(r)}<div class="bench"><b style="width:100%;font-size:.72rem;color:var(--muted)">Suplentes</b>${r.bench.map(p=>`<span>${esc(p.num)} ${esc(p.name)}${p.subIn?' ⇄':''}</span>`).join('')||'<span>—</span>'}</div></div>`).join('')}</div>`;
+    },
+    info:()=>{
+      const gi=sum?.gameInfo||{};
+      const ref=(gi.officials||[]).map(o=>o.displayName||o.fullName).filter(Boolean)[0];
+      const items=[['Competición',COMP[m.slug]?.name],['Fecha',fmtDay(m.date)],['Hora local',fmtTime(m.date)],['Estadio',gi.venue?.fullName||m.venue],['Ciudad',gi.venue?.address?.city||m.city],['Asistencia',gi.attendance?Number(gi.attendance).toLocaleString('es-GT'):''],['Árbitro',ref],['TV',m.bc],['Fase',m.note]].filter(([,v])=>v);
+      return `<div class="infogrid">${items.map(([l,v])=>`<div><small>${esc(l)}</small>${esc(v)}</div>`).join('')}</div>`;
+    }
+  };
+  const show=k=>{card.dataset.tab=k;$$('[data-dtab]',card).forEach(b=>b.setAttribute('aria-selected',b.dataset.dtab===k));$('dbody').innerHTML=body[k]()};
+  show(active);
+  $$('[data-dtab]',card).forEach(b=>b.addEventListener('click',()=>show(b.dataset.dtab)));
+  tickCountdowns();
+}
+
+/* ================= Navegación y eventos ================= */
+const loaded=new Set();
+function showPanel(id){
+  if(id!=='detail')clearInterval(detailTimer);
+  $$('.nav button').forEach(b=>b.setAttribute('aria-selected',b.dataset.panel===id));
+  $$('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
+  if(!loaded.has(id)){loaded.add(id);
+    if(id==='standings')loadStandings();
+    if(id==='squad'&&!S.roster.length)loadSquad();
+    if(id==='stats')loadLeaders();
+    if(id==='favorites'&&!S.roster.length)loadSquad();
+  }
+  if(id==='schedule')renderSchedule();
+  if(id==='results')renderResults();
+  if(id==='stats')renderStats();
+  if(id!=='detail'){try{history.replaceState(null,'','#'+id)}catch(e){}}
+}
+$$('.nav button').forEach(b=>b.addEventListener('click',()=>showPanel(b.dataset.panel)));
+$('backBtn').addEventListener('click',()=>showPanel(backTo));
+$('resultSearch').addEventListener('input',renderResults);
+document.addEventListener('click',e=>{
+  const ics=e.target.closest('[data-ics]');if(ics){e.stopPropagation();const m=S.matches.get(ics.dataset.ics);if(m)downloadICS([m],`barca-${isoLocal(new Date(m.date))}.ics`);return}
+  const star=e.target.closest('[data-star]');if(star){toggleFav(star.dataset.star);return}
+  const pl=e.target.closest('[data-player]');if(pl){openPlayer(pl.dataset.player);return}
+  const g=e.target.closest('.game,[data-open]');if(g){openDetail(g.dataset.event||g.dataset.open);return}
+  const go=e.target.closest('[data-go]');if(go){showPanel(go.dataset.go);window.scrollTo({top:0,behavior:'smooth'});return}
+  const r=e.target.closest('[data-retry]');if(r)({matches:refresh,news:loadNews,standings:loadStandings,squad:loadSquad,leaders:loadLeaders})[r.dataset.retry]?.();
+});
+document.addEventListener('keydown',e=>{
+  if((e.key==='Enter'||e.key===' ')&&e.target.classList?.contains('game')){e.preventDefault();openDetail(e.target.dataset.event)}
+});
+
+/* ================= Carga y actualización ================= */
+let refreshing=false,timer=null;
+async function refresh(){
+  if(refreshing)return;refreshing=true;
+  const btn=$('refresh');btn.disabled=true;btn.textContent='CARGANDO…';
+  if(!S.matches.size){$('homeResults').innerHTML=skeleton(3);$('homeNext').innerHTML=skeleton(3)}
+  try{
+    await loadMatches();
+    await refreshLive();
+    S.lastOk=Date.now();
+    renderChips();renderHome();
+    const act=$$('.panel.active')[0]?.id;
+    if(act==='schedule')renderSchedule();if(act==='results')renderResults();if(act==='stats')renderStats();
+    checkReminders();
+  }catch(e){
+    if(!S.matches.size){const h=stateHTML('No se pudieron cargar los partidos',e.message,'matches');$('homeResults').innerHTML=h;$('homeNext').innerHTML='';$('featureBox').innerHTML=`<div class="state" style="color:#f3e6f0"><b style="color:#fff">Sin conexión con la fuente</b>${esc(e.message)}</div>`}
+    else toast('No se pudo actualizar: '+e.message);
+  }finally{btn.disabled=false;btn.textContent='↻ ACTUALIZAR';refreshing=false;scheduleNext()}
+}
+/* Cada 30 s con partido en vivo, cada 2 min si falta poco para empezar, si no cada 10 min */
+function scheduleNext(){
+  clearTimeout(timer);
+  const n=upcoming().find(m=>m.state==='pre'),soon=n&&new Date(n.date)-Date.now()<2*36e5;
+  const ms=liveMatch()?30e3:soon?120e3:600e3;
+  $('autoNote').textContent=liveMatch()?'🔴 Partido en vivo · actualización cada 30 s':soon?'Partido próximo · actualización cada 2 min':'Actualización automática cada 10 min';
+  timer=setTimeout(()=>{if(!document.hidden)refresh();else scheduleNext()},ms);
+}
+$('refresh').addEventListener('click',()=>{S.summaries.clear();refresh();loadMiniTable()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-S.lastOk>60e3){refresh();loadVideo()}});
+
+$('seasonLbl').textContent=`TEMPORADA ${SEASON_TXT}`;
+refresh();
+loadMiniTable();
+loadVideo();
+loadNews();
+loadSquad();                       /* favoritos y fichas disponibles desde el inicio */
+['home','news'].forEach(x=>loaded.add(x));
+const start=location.hash.slice(1);
+if(['schedule','results','standings','squad','stats','videos','news','favorites'].includes(start))showPanel(start);
+</script>
+</body>
+</html>
