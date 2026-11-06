@@ -6,7 +6,7 @@ import { db, tx, json, audit, getSetting, setSetting } from '../db.js';
 import { config, integrationStatus } from '../config.js';
 import { LEVELS, isValidLevel } from '../levels.js';
 import { hashPassword, verifyPassword, randomToken } from '../security.js';
-import { createSession, destroySession, currentUser, requireAuth, loginRateLimit, parseCookies } from '../auth.js';
+import { createSession, destroySession, currentUser, requireAuth, loginRateLimit } from '../auth.js';
 import { previewWorkbook, readWorkbook, sheetRows, extractStudents, findDuplicates } from '../excel-import.js';
 import * as drive from '../drive.js';
 import { refreshMatches, refreshAllMatches, filesWithMatches } from '../matches.js';
@@ -39,18 +39,18 @@ api.post('/auth/setup', loginRateLimit, (req, res) => {
   validateCredentials(username, password);
   const r = db.prepare('INSERT INTO users(username, display_name, pass_hash) VALUES(?,?,?)')
     .run(String(username).trim().toLowerCase(), display_name || username, hashPassword(password));
-  createSession(res, Number(r.lastInsertRowid));
+  const token = createSession(res, Number(r.lastInsertRowid));
   audit(Number(r.lastInsertRowid), 'setup');
-  res.json({ ok: true });
+  res.json({ ok: true, token });
 });
 
 api.post('/auth/login', loginRateLimit, (req, res) => {
   const { username, password } = req.body || {};
   const u = db.prepare('SELECT * FROM users WHERE username = ?').get(String(username || '').trim().toLowerCase());
   if (!u || !verifyPassword(password || '', u.pass_hash)) throw httpError(401, 'Usuario o contraseña incorrectos.');
-  createSession(res, u.id);
+  const token = createSession(res, u.id);
   audit(u.id, 'login');
-  res.json({ ok: true });
+  res.json({ ok: true, token });
 });
 
 api.post('/auth/logout', (req, res) => {
@@ -63,23 +63,54 @@ function validateCredentials(username, password) {
   if (String(password || '').length < 8) throw httpError(400, 'La contraseña debe tener al menos 8 caracteres.');
 }
 
-// Callback de OAuth (Google redirige aquí). Requiere sesión iniciada y valida el parámetro state.
+// ---------------------------------------------------------------- OAuth de Google Drive
+// El parámetro "state" se guarda en el servidor junto al docente que inició la conexión,
+// por lo que funciona tanto desde la página servida como desde el archivo HTML descargado.
+const oauthStates = new Map();   // state -> { userId, popup, expires }
+const oauthTickets = new Map();  // ticket de un solo uso -> { userId, expires }
+function sweep(map) { const now = Date.now(); for (const [k, v] of map) if (v.expires < now) map.delete(k); }
+
+function startOAuth(res, userId, popup) {
+  sweep(oauthStates);
+  const state = randomToken(24);
+  oauthStates.set(state, { userId, popup, expires: Date.now() + 10 * 60_000 });
+  res.redirect(drive.getAuthUrl(state));
+}
+
+// Inicio desde el archivo HTML descargado: usa un ticket de un solo uso (no expone el token de sesión en la URL).
+api.get('/drive/oauth/start-ticket', (req, res) => {
+  sweep(oauthTickets);
+  const t = oauthTickets.get(String(req.query.ticket || ''));
+  oauthTickets.delete(String(req.query.ticket || ''));
+  if (!t) return res.status(400).type('html').send(resultPage('El enlace de conexión expiró. Vuelva a intentarlo desde EduGrade AI.', false));
+  startOAuth(res, t.userId, true);
+});
+
 api.get('/drive/oauth/callback', async (req, res) => {
-  const user = currentUser(req);
-  const cookies = parseCookies(req);
-  const back = (q) => res.redirect(`/#/drive?${q}`);
-  if (!user) return back('drive_error=' + encodeURIComponent('Sesión expirada. Inicie sesión y vuelva a conectar.'));
-  if (req.query.error) return back('drive_error=' + encodeURIComponent(String(req.query.error)));
-  if (!req.query.state || req.query.state !== cookies.edugrade_oauth_state) return back('drive_error=' + encodeURIComponent('Parámetro de seguridad inválido.'));
-  res.append('Set-Cookie', 'edugrade_oauth_state=; Path=/api/drive/oauth; HttpOnly; SameSite=Lax; Max-Age=0');
+  sweep(oauthStates);
+  const st = oauthStates.get(String(req.query.state || ''));
+  oauthStates.delete(String(req.query.state || ''));
+  const done = (ok, msg) => {
+    if (st?.popup) return res.type('html').send(resultPage(msg, ok));
+    return res.redirect(`/#/drive?${ok ? 'drive_connected=1' : `drive_error=${encodeURIComponent(msg)}`}`);
+  };
+  if (!st) return done(false, 'Parámetro de seguridad inválido o vencido. Vuelva a conectar.');
+  if (req.query.error) return done(false, String(req.query.error));
   try {
     const { email } = await drive.handleOAuthCallback(String(req.query.code));
-    audit(user.id, 'drive.connect', { email });
-    back('drive_connected=1');
+    audit(st.userId, 'drive.connect', { email });
+    done(true, `Cuenta de Google conectada${email ? ` (${email})` : ''}. Ya puede cerrar esta pestaña y volver a EduGrade AI.`);
   } catch (e) {
-    back('drive_error=' + encodeURIComponent(e.message));
+    done(false, e.message);
   }
 });
+
+function resultPage(message, ok) {
+  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EduGrade AI</title>
+  <style>body{font-family:system-ui,sans-serif;background:#0b1f3a;color:#0f172a;display:grid;place-items:center;min-height:100vh;margin:0;padding:16px}
+  div{background:#fff;border-radius:16px;padding:28px;max-width:420px;text-align:center}h1{font-size:20px;color:${ok ? '#16a34a' : '#dc2626'}}</style></head>
+  <body><div><h1>${ok ? '✅ Listo' : '⚠️ No se pudo conectar'}</h1><p>${String(message).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))}</p></div></body></html>`;
+}
 
 // A partir de aquí, todo requiere sesión.
 api.use(requireAuth);
@@ -241,10 +272,13 @@ api.post('/students/:id/restore', (req, res) => {
 // ---------------------------------------------------------------- Google Drive
 api.get('/drive/status', (req, res) => res.json(drive.driveStatus()));
 
-api.get('/drive/oauth/start', (req, res) => {
-  const state = randomToken(24);
-  res.append('Set-Cookie', `edugrade_oauth_state=${state}; Path=/api/drive/oauth; HttpOnly; SameSite=Lax; Max-Age=600`);
-  res.redirect(drive.getAuthUrl(state));
+api.get('/drive/oauth/start', (req, res) => startOAuth(res, req.user.id, false));
+
+api.post('/drive/oauth/ticket', (req, res) => {
+  sweep(oauthTickets);
+  const ticket = randomToken(24);
+  oauthTickets.set(ticket, { userId: req.user.id, expires: Date.now() + 2 * 60_000 });
+  res.json({ url: `${config.publicUrl}/api/drive/oauth/start-ticket?ticket=${ticket}` });
 });
 
 api.post('/drive/disconnect', async (req, res) => {

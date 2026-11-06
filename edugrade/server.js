@@ -1,6 +1,7 @@
 // EduGrade AI — servidor principal.
 import express from 'express';
 import path from 'node:path';
+import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { config, integrationStatus } from './src/config.js';
 import { api } from './src/routes/api.js';
@@ -24,11 +25,29 @@ export function createApp() {
     next();
   });
 
-  // Protección CSRF: las peticiones que modifican datos deben venir del mismo origen.
+  // CORS para el archivo HTML descargable (edugrade.html), que se autentica con un token
+  // en la cabecera Authorization (nunca con cookies, por lo que no es vulnerable a CSRF).
+  const allowed = (process.env.ALLOWED_ORIGINS || '*').split(',').map((s) => s.trim()).filter(Boolean);
   app.use('/api', (req, res, next) => {
-    if (['GET', 'HEAD', 'OPTIONS'].includes(req.method)) return next();
     const origin = req.headers.origin;
-    if (origin && new URL(origin).host !== req.headers.host) return res.status(403).json({ error: 'Origen no permitido.' });
+    const cross = origin && (origin === 'null' || new URL(origin).host !== req.headers.host);
+    if (cross && (allowed.includes('*') || allowed.includes(origin))) {
+      res.setHeader('Access-Control-Allow-Origin', allowed.includes('*') ? '*' : origin);
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+      res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
+      res.setHeader('Access-Control-Max-Age', '600');
+      res.setHeader('Vary', 'Origin');
+      if (req.method === 'OPTIONS') return res.status(204).end();
+    }
+    // Protección CSRF: una petición de otro origen que modifica datos solo se acepta con token explícito.
+    if (cross && !['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
+      const bearer = String(req.headers.authorization || '').startsWith('Bearer ');
+      const isLogin = ['/auth/login', '/auth/setup'].includes(req.path);
+      if (!(bearer || isLogin) || !(allowed.includes('*') || allowed.includes(origin))) {
+        return res.status(403).json({ error: 'Origen no permitido.' });
+      }
+    }
     next();
   });
 
@@ -37,6 +56,16 @@ export function createApp() {
   app.use('/api', (req, res) => res.status(404).json({ error: 'Ruta no encontrada.' }));
 
   app.use('/vendor/chart.js', express.static(path.join(__dirname, 'node_modules/chart.js/dist'), { maxAge: '7d' }));
+  // Interfaz completa en un solo archivo HTML descargable, ya apuntando a este servidor.
+  app.get('/edugrade.html', (req, res) => {
+    const file = path.join(__dirname, 'dist/edugrade.html');
+    if (!fs.existsSync(file)) return res.status(404).type('text').send('Ejecute «npm run build:html» para generar el archivo.');
+    const html = fs.readFileSync(file, 'utf8').replace('__EDUGRADE_SERVER__', config.publicUrl.replace(/["\\<>]/g, ''));
+    res.setHeader('Content-Disposition', 'attachment; filename="edugrade.html"');
+    res.setHeader('Cache-Control', 'no-store');
+    res.type('html').send(html);
+  });
+
   app.use(express.static(path.join(__dirname, 'public'), { index: 'index.html' }));
 
   // Manejador de errores: mensajes claros para el docente, detalles solo en el registro.

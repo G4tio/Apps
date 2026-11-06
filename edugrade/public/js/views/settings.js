@@ -1,4 +1,4 @@
-import { api, esc, toast, modal, formValues, $, fmtDate, confirmDialog } from '../core.js';
+import { api, esc, toast, modal, formValues, $, fmtDate, confirmDialog, state } from '../core.js';
 
 export async function settingsView(el, { navigate }) {
   const [s, users, auditLog] = await Promise.all([api('/settings'), api('/users'), api('/audit')]);
@@ -15,6 +15,10 @@ export async function settingsView(el, { navigate }) {
         ${dr.configured ? '<div class="notice ok">✅ Credenciales OAuth configuradas</div>' : '<div class="notice err">No configurado. Defina <code>GOOGLE_CLIENT_ID</code> y <code>GOOGLE_CLIENT_SECRET</code>.</div>'}
         <p class="muted small mt">URI de redirección autorizado: <code>${esc(dr.redirectUri)}</code><br>Permiso: solo lectura (<code>drive.readonly</code>). Los tokens se guardan cifrados (AES-256-GCM).</p>
       </div>
+    </div>
+    <div class="card mt"><div class="card-head"><h3>Aplicación como archivo HTML</h3>
+        <a class="btn" href="${esc(state.base)}/edugrade.html" download="edugrade.html">⬇ Descargar edugrade.html</a></div>
+      <p class="muted small" style="margin:0">Un único archivo con toda la interfaz (estilos, gráficos y logo incluidos), ya configurado para conectarse a este servidor (<code>${esc(state.base || location.origin)}</code>). Puede guardarlo, abrirlo con doble clic, compartirlo con otros docentes o publicarlo en cualquier sitio web. Las evaluaciones, Google Drive y los datos siguen en el servidor.</p>
     </div>
     <div class="card mt"><h3>Retención y eliminación de documentos</h3>
       <form id="ret" class="form-grid">

@@ -1,4 +1,4 @@
-import { api, state, esc, toast, $, $$, formValues, progressBar } from './core.js';
+import { api, state, esc, toast, $, $$, formValues, progressBar, setServer, setToken, openApiFile } from './core.js';
 import { dashboardView } from './views/dashboard.js';
 import { studentsView } from './views/students.js';
 import { driveView } from './views/drive.js';
@@ -37,6 +37,7 @@ async function render() {
   document.title = `${title} · EduGrade AI`;
   $$('#nav a').forEach((a) => a.classList.toggle('active', a.dataset.route === route));
   document.body.classList.remove('menu-open');
+  document.getElementById('modalRoot').innerHTML = '';
   document.getElementById('topActions').innerHTML = '';
   if (typeof cleanup === 'function') cleanup();
   cleanup = null;
@@ -58,23 +59,60 @@ export function navigate(hash) {
 }
 
 // ---------------------------------------------------------------- Sesión
+function brandBlock() {
+  return `<div class="brand"><img src="${state.logo}" width="44" height="44" alt=""><div><strong style="font-size:22px">EduGrade</strong> <span class="ai">AI</span><small>Sistema inteligente de evaluación automática</small></div></div>`;
+}
+
+// Archivo HTML descargado: primero se indica la dirección del servidor de EduGrade AI.
+function showServerSetup(message = '') {
+  document.getElementById('shell').classList.add('hidden');
+  const auth = document.getElementById('auth');
+  auth.classList.remove('hidden');
+  auth.innerHTML = `<form class="auth-card" id="srvForm">
+    ${brandBlock()}
+    <div class="notice mb">Este archivo es la interfaz de EduGrade AI. Indique la dirección del servidor de EduGrade AI de su institución (donde se ejecutan las evaluaciones con IA, Google Drive y la base de datos).</div>
+    <div class="field"><label>Dirección del servidor</label><input name="server" required placeholder="https://edugrade.mi-colegio.edu.gt" value="${esc(state.base)}">
+      <div class="hint">Ejemplo en la misma computadora: http://localhost:3000</div></div>
+    <button class="btn big" style="width:100%">Conectar</button>
+    <p class="small center" style="color:#b91c1c" id="srvErr">${esc(message)}</p>
+  </form>`;
+  $('#srvForm').onsubmit = async (e) => {
+    e.preventDefault();
+    let url = formValues(e.target).server.trim();
+    if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
+    const prev = state.base;
+    setServer(url);
+    try {
+      await api('/auth/status');
+      setToken(null);
+      await boot();
+    } catch (err) {
+      setServer(prev);
+      $('#srvErr').textContent = `${err.message} Verifique la dirección y que el servidor esté encendido.`;
+    }
+  };
+}
+
 function showAuth(setupRequired) {
   document.getElementById('shell').classList.add('hidden');
   const auth = document.getElementById('auth');
   auth.classList.remove('hidden');
   auth.innerHTML = `<form class="auth-card" id="authForm" autocomplete="on">
-    <div class="brand"><img src="/img/logo.svg" width="44" height="44" alt=""><div><strong style="font-size:22px">EduGrade</strong> <span class="ai">AI</span><small>Sistema inteligente de evaluación automática</small></div></div>
+    ${brandBlock()}
     ${setupRequired ? '<div class="notice mb">Bienvenido. Cree la cuenta del docente administrador para proteger la información académica.</div>' : ''}
     ${setupRequired ? '<div class="field"><label>Nombre para mostrar</label><input name="display_name" placeholder="Prof. Ana Martínez"></div>' : ''}
     <div class="field"><label>Usuario</label><input name="username" required autocomplete="username"></div>
     <div class="field"><label>Contraseña</label><input name="password" type="password" required minlength="8" autocomplete="${setupRequired ? 'new-password' : 'current-password'}"></div>
     <button class="btn big" style="width:100%">${setupRequired ? 'Crear cuenta e ingresar' : 'Ingresar'}</button>
     <p class="muted small center" id="authErr"></p>
+    ${state.standalone ? `<p class="muted small center">Servidor: ${esc(state.base)} · <a href="#" id="chgSrv">cambiar</a></p>` : ''}
   </form>`;
+  $('#chgSrv')?.addEventListener('click', (e) => { e.preventDefault(); showServerSetup(); });
   $('#authForm').onsubmit = async (e) => {
     e.preventDefault();
     try {
-      await api(setupRequired ? '/auth/setup' : '/auth/login', { method: 'POST', body: formValues(e.target) });
+      const r = await api(setupRequired ? '/auth/setup' : '/auth/login', { method: 'POST', body: formValues(e.target) });
+      setToken(r.token);
       await boot();
     } catch (err) {
       $('#authErr').textContent = err.message;
@@ -83,13 +121,20 @@ function showAuth(setupRequired) {
 }
 
 async function boot() {
-  const st = await api('/auth/status');
+  if (state.standalone && !state.base) return showServerSetup();
+  let st;
+  try {
+    st = await api('/auth/status');
+  } catch (e) {
+    if (state.standalone) return showServerSetup(e.message);
+    throw e;
+  }
   if (!st.user) return showAuth(st.setupRequired);
   state.user = st.user;
   state.meta = await api('/meta');
   document.getElementById('auth').classList.add('hidden');
   document.getElementById('shell').classList.remove('hidden');
-  document.getElementById('userBox').innerHTML = `👤 ${esc(st.user.display_name || st.user.username)}`;
+  document.getElementById('userBox').innerHTML = `👤 ${esc(st.user.display_name || st.user.username)}${state.standalone ? `<div class="small" style="opacity:.7;word-break:break-all">🔗 ${esc(state.base)}</div>` : ''}`;
   render();
   startPolling();
 }
@@ -100,10 +145,43 @@ state.onUnauthorized = () => {
 };
 
 document.getElementById('logoutBtn').onclick = async () => {
-  await api('/auth/logout', { method: 'POST' });
+  try { await api('/auth/logout', { method: 'POST' }); } catch { /* sin conexión */ }
+  setToken(null);
   stopPolling();
   showAuth(false);
 };
+
+// Enlaces a la API (Excel, PDF, conexión con Google): se abren con la sesión actual,
+// también cuando la interfaz se usa como archivo HTML descargado.
+document.addEventListener('click', async (e) => {
+  const a = e.target.closest('a[href^="/api/"]');
+  if (!a) return;
+  e.preventDefault();
+  const path = a.getAttribute('href').slice(4);
+  if (path.startsWith('/drive/oauth/start')) return connectGoogle();
+  openApiFile(path, { inline: a.target === '_blank' });
+});
+
+async function connectGoogle() {
+  if (!state.standalone) { location.href = '/api/drive/oauth/start'; return; }
+  const win = window.open('', '_blank');
+  try {
+    const { url } = await api('/drive/oauth/ticket', { method: 'POST' });
+    if (win) win.location.href = url; else location.href = url;
+    toast('Complete la autorización de Google en la pestaña nueva. Esta pantalla se actualizará sola.', 'info', 8000);
+    const started = Date.now();
+    const t = setInterval(async () => {
+      if (Date.now() - started > 5 * 60_000) return clearInterval(t);
+      try {
+        const st = await api('/drive/status');
+        if (st.connected) { clearInterval(t); toast('Cuenta de Google conectada.', 'ok'); navigate('#/drive'); }
+      } catch { /* reintentar */ }
+    }, 3000);
+  } catch (err) {
+    win?.close();
+    toast(err.message, 'err');
+  }
+}
 document.getElementById('menuBtn').onclick = () => document.body.classList.toggle('menu-open');
 document.getElementById('backdrop').onclick = () => document.body.classList.remove('menu-open');
 window.addEventListener('hashchange', render);

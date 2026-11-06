@@ -26,16 +26,30 @@ export function createSession(res, userId) {
   db.prepare('INSERT INTO sessions(token_hash, user_id, expires_at) VALUES(?,?,?)').run(sha256(token), userId, expires);
   db.prepare('DELETE FROM sessions WHERE expires_at < ?').run(Date.now());
   res.setHeader('Set-Cookie', `${COOKIE}=${token}; ${cookieAttrs(SESSION_DAYS * 86400)}`);
+  return token;
+}
+
+/** Token de sesión de la petición: cookie (misma página) o cabecera Authorization (archivo HTML descargado). */
+export function requestToken(req) {
+  const h = String(req.headers.authorization || '');
+  if (h.startsWith('Bearer ')) return h.slice(7).trim();
+  return parseCookies(req)[COOKIE] || null;
+}
+
+export function userIdForToken(token) {
+  if (!token) return null;
+  const row = db.prepare('SELECT user_id FROM sessions WHERE token_hash = ? AND expires_at > ?').get(sha256(token), Date.now());
+  return row ? row.user_id : null;
 }
 
 export function destroySession(req, res) {
-  const token = parseCookies(req)[COOKIE];
+  const token = requestToken(req);
   if (token) db.prepare('DELETE FROM sessions WHERE token_hash = ?').run(sha256(token));
   res.setHeader('Set-Cookie', `${COOKIE}=; ${cookieAttrs(0)}`);
 }
 
 export function currentUser(req) {
-  const token = parseCookies(req)[COOKIE];
+  const token = requestToken(req);
   if (!token) return null;
   const row = db.prepare(`SELECT u.id, u.username, u.display_name FROM sessions s JOIN users u ON u.id = s.user_id
     WHERE s.token_hash = ? AND s.expires_at > ?`).get(sha256(token), Date.now());

@@ -224,3 +224,23 @@ test('rechaza peticiones sin sesión y de otro origen', async () => {
   const r2 = await fetch(`${base}/api/rubrics`, { method: 'POST', headers: { cookie, origin: 'https://evil.example', 'content-type': 'application/json' }, body: '{}' });
   assert.equal(r2.status, 403);
 });
+
+test('el archivo HTML descargado funciona con token y CORS (sin cookies)', async () => {
+  const pre = await fetch(`${base}/api/runs`, { method: 'OPTIONS', headers: { origin: 'null', 'access-control-request-method': 'POST', 'access-control-request-headers': 'authorization,content-type' } });
+  assert.equal(pre.status, 204);
+  assert.equal(pre.headers.get('access-control-allow-origin'), '*');
+  const login = await fetch(`${base}/api/auth/login`, { method: 'POST', headers: { origin: 'null', 'content-type': 'application/json' }, body: JSON.stringify({ username: 'docente', password: 'secreto123' }) });
+  const { token } = await login.json();
+  assert.ok(token);
+  const h = { origin: 'null', authorization: `Bearer ${token}`, 'content-type': 'application/json' };
+  const me = await fetch(`${base}/api/me`, { headers: h });
+  assert.equal((await me.json()).username, 'docente');
+  const created = await fetch(`${base}/api/rubrics`, { method: 'POST', headers: h, body: JSON.stringify({ name: 'Token', criteria: [{ name: 'A', weight: 100, max_score: 4 }] }) });
+  assert.equal(created.status, 200);
+  // Sin token, otro origen no puede modificar datos aunque envíe la cookie de sesión.
+  const csrf = await fetch(`${base}/api/rubrics`, { method: 'POST', headers: { origin: 'null', cookie, 'content-type': 'application/json' }, body: '{}' });
+  assert.equal(csrf.status, 403);
+  // Ticket de un solo uso para conectar Google desde el archivo
+  const t = await (await fetch(`${base}/api/drive/oauth/ticket`, { method: 'POST', headers: h })).json();
+  assert.match(t.url, /start-ticket\?ticket=/);
+});

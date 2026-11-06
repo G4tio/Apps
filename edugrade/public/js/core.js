@@ -1,14 +1,57 @@
 // Utilidades compartidas del frontend: API, escape HTML, modales, notificaciones.
-export const state = { meta: null, user: null, onUnauthorized: null };
+//
+// La interfaz funciona de dos formas:
+//  - servida por el servidor de EduGrade AI (misma página, sesión por cookie), o
+//  - como archivo «edugrade.html» descargado: se conecta a la URL del servidor y usa un token.
+const STANDALONE = typeof window.EDUGRADE_STANDALONE !== 'undefined';
+const LS = { server: 'edugrade.server', token: 'edugrade.token' };
+function lsGet(k) { try { return localStorage.getItem(k); } catch { return null; } }
+function lsSet(k, v) { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch { /* sin almacenamiento */ } }
+const embedded = STANDALONE && window.EDUGRADE_SERVER && !String(window.EDUGRADE_SERVER).startsWith('__') ? window.EDUGRADE_SERVER : '';
+
+export const state = {
+  meta: null,
+  user: null,
+  onUnauthorized: null,
+  standalone: STANDALONE,
+  base: STANDALONE ? (lsGet(LS.server) || embedded || '').replace(/\/$/, '') : '',
+  token: STANDALONE ? lsGet(LS.token) : null,
+  logo: window.EDUGRADE_LOGO || '/img/logo.svg',
+};
+
+export function setServer(url) {
+  state.base = String(url || '').trim().replace(/\/$/, '');
+  lsSet(LS.server, state.base);
+}
+export function setToken(token) {
+  if (!STANDALONE) return;
+  state.token = token || null;
+  lsSet(LS.token, state.token);
+}
+
+export function apiUrl(path) {
+  return `${state.base}/api${path}`;
+}
+
+async function rawFetch(path, opts = {}) {
+  const headers = { ...(opts.headers || {}) };
+  if (state.token) headers.Authorization = `Bearer ${state.token}`;
+  return fetch(apiUrl(path), { ...opts, headers, credentials: STANDALONE ? 'omit' : 'same-origin' });
+}
 
 export async function api(path, { method = 'GET', body, form } = {}) {
-  const opts = { method, headers: {}, credentials: 'same-origin' };
+  const opts = { method, headers: {} };
   if (form) opts.body = form;
   else if (body !== undefined) {
     opts.headers['Content-Type'] = 'application/json';
     opts.body = JSON.stringify(body);
   }
-  const res = await fetch(`/api${path}`, opts);
+  let res;
+  try {
+    res = await rawFetch(path, opts);
+  } catch {
+    throw new Error(STANDALONE ? `No se pudo conectar con el servidor ${state.base || '(sin configurar)'}.` : 'No se pudo conectar con el servidor.');
+  }
   if (res.status === 401 && !path.startsWith('/auth/')) {
     state.onUnauthorized?.();
     throw new Error('Sesión expirada.');
@@ -17,6 +60,37 @@ export async function api(path, { method = 'GET', body, form } = {}) {
   const data = ct.includes('application/json') ? await res.json() : await res.text();
   if (!res.ok) throw new Error((data && data.error) || `Error ${res.status}`);
   return data;
+}
+
+/** Descarga o abre un recurso protegido de la API (Excel, PDF) usando la sesión actual. */
+export async function openApiFile(path, { inline = false } = {}) {
+  const win = inline ? window.open('', '_blank') : null;
+  try {
+    const res = await rawFetch(path);
+    if (!res.ok) {
+      let msg = `Error ${res.status}`;
+      try { msg = (await res.json()).error || msg; } catch { /* no JSON */ }
+      throw new Error(msg);
+    }
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    if (win) {
+      win.location.href = url;
+    } else {
+      const cd = res.headers.get('content-disposition') || '';
+      const m = cd.match(/filename\*=UTF-8''([^;]+)/i) || cd.match(/filename="?([^";]+)"?/i);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = m ? decodeURIComponent(m[1]) : 'archivo';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+    setTimeout(() => URL.revokeObjectURL(url), 60_000);
+  } catch (e) {
+    win?.close();
+    toast(e.message, 'err');
+  }
 }
 
 export function esc(v) {
@@ -130,11 +204,3 @@ export function progressBar(s) {
     <span class="ok" style="width:${pct(s.evaluated)}"></span><span class="err" style="width:${pct(s.errors)}"></span><span class="nodoc" style="width:${pct(s.no_document)}"></span></div>`;
 }
 
-export function download(url) {
-  const a = document.createElement('a');
-  a.href = url;
-  a.rel = 'noopener';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-}

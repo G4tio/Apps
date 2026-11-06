@@ -30,6 +30,16 @@ npm start                 # http://localhost:3000
 
 La primera vez que abra la aplicación se le pedirá crear la cuenta del docente administrador.
 
+## La aplicación como un solo archivo HTML
+
+`dist/edugrade.html` contiene toda la interfaz en un único archivo (HTML, estilos, JavaScript, gráficos y logo). Se puede descargar, abrir con doble clic, enviar a otros docentes o publicar en cualquier sitio web (por ejemplo GitHub Pages).
+
+- Desde la aplicación: **Ajustes → Descargar edugrade.html** (o `http://SU-SERVIDOR/edugrade.html`). Esa copia ya trae configurada la dirección del servidor.
+- La copia del repositorio pide la dirección del servidor la primera vez que se abre.
+- Se regenera con `npm run build:html` (también automáticamente con `npm start`).
+
+El archivo es la interfaz: la evaluación con IA, Google Drive y la base de datos siguen en el servidor, que debe estar encendido. Se autentica con un token (no con cookies) y la conexión con Google usa un enlace de un solo uso. `ALLOWED_ORIGINS` limita desde dónde puede usarse.
+
 ## Activar las integraciones
 
 ### 1. Inteligencia artificial (Anthropic)
