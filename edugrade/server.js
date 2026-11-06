@@ -60,7 +60,7 @@ export function createApp() {
   app.get('/edugrade.html', (req, res) => {
     const file = path.join(__dirname, 'dist/edugrade.html');
     if (!fs.existsSync(file)) return res.status(404).type('text').send('Ejecute «npm run build:html» para generar el archivo.');
-    const html = fs.readFileSync(file, 'utf8').replace('__EDUGRADE_SERVER__', config.publicUrl.replace(/["\\<>]/g, ''));
+    const html = fs.readFileSync(file, 'utf8').replace(/window\.EDUGRADE_SERVER="[^"]*"/, `window.EDUGRADE_SERVER=${JSON.stringify(config.publicUrl.replace(/["\\<>]/g, ''))}`);
     res.setHeader('Content-Disposition', 'attachment; filename="edugrade.html"');
     res.setHeader('Cache-Control', 'no-store');
     res.type('html').send(html);

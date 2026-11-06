@@ -1,4 +1,4 @@
-import { api, state, esc, toast, $, $$, formValues, progressBar, setServer, setToken, openApiFile } from './core.js';
+import { api, state, esc, toast, $, $$, formValues, progressBar, setToken, openApiFile } from './core.js';
 import { dashboardView } from './views/dashboard.js';
 import { studentsView } from './views/students.js';
 import { driveView } from './views/drive.js';
@@ -63,34 +63,17 @@ function brandBlock() {
   return `<div class="brand"><img src="${state.logo}" width="44" height="44" alt=""><div><strong style="font-size:22px">EduGrade</strong> <span class="ai">AI</span><small>Sistema inteligente de evaluación automática</small></div></div>`;
 }
 
-// Archivo HTML descargado: primero se indica la dirección del servidor de EduGrade AI.
-function showServerSetup(message = '') {
+// Si el servidor no responde, se muestra un aviso sencillo con opción de reintentar.
+function showOffline() {
   document.getElementById('shell').classList.add('hidden');
   const auth = document.getElementById('auth');
   auth.classList.remove('hidden');
-  auth.innerHTML = `<form class="auth-card" id="srvForm">
+  auth.innerHTML = `<div class="auth-card">
     ${brandBlock()}
-    <div class="notice mb">Este archivo es la interfaz de EduGrade AI. Indique la dirección del servidor de EduGrade AI de su institución (donde se ejecutan las evaluaciones con IA, Google Drive y la base de datos).</div>
-    <div class="field"><label>Dirección del servidor</label><input name="server" required placeholder="https://edugrade.mi-colegio.edu.gt" value="${esc(state.base)}">
-      <div class="hint">Ejemplo en la misma computadora: http://localhost:3000</div></div>
-    <button class="btn big" style="width:100%">Conectar</button>
-    <p class="small center" style="color:#b91c1c" id="srvErr">${esc(message)}</p>
-  </form>`;
-  $('#srvForm').onsubmit = async (e) => {
-    e.preventDefault();
-    let url = formValues(e.target).server.trim();
-    if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
-    const prev = state.base;
-    setServer(url);
-    try {
-      await api('/auth/status');
-      setToken(null);
-      await boot();
-    } catch (err) {
-      setServer(prev);
-      $('#srvErr').textContent = `${err.message} Verifique la dirección y que el servidor esté encendido.`;
-    }
-  };
+    <div class="notice warn mb">No se pudo conectar con EduGrade AI. Verifique que el programa esté encendido (<code>npm start</code>) e intente de nuevo.</div>
+    <button class="btn big" style="width:100%" id="retryBtn">Reintentar</button>
+  </div>`;
+  $('#retryBtn').onclick = () => boot();
 }
 
 function showAuth(setupRequired) {
@@ -105,9 +88,7 @@ function showAuth(setupRequired) {
     <div class="field"><label>Contraseña</label><input name="password" type="password" required minlength="8" autocomplete="${setupRequired ? 'new-password' : 'current-password'}"></div>
     <button class="btn big" style="width:100%">${setupRequired ? 'Crear cuenta e ingresar' : 'Ingresar'}</button>
     <p class="muted small center" id="authErr"></p>
-    ${state.standalone ? `<p class="muted small center">Servidor: ${esc(state.base)} · <a href="#" id="chgSrv">cambiar</a></p>` : ''}
   </form>`;
-  $('#chgSrv')?.addEventListener('click', (e) => { e.preventDefault(); showServerSetup(); });
   $('#authForm').onsubmit = async (e) => {
     e.preventDefault();
     try {
@@ -121,12 +102,11 @@ function showAuth(setupRequired) {
 }
 
 async function boot() {
-  if (state.standalone && !state.base) return showServerSetup();
   let st;
   try {
     st = await api('/auth/status');
   } catch (e) {
-    if (state.standalone) return showServerSetup(e.message);
+    if (state.standalone) return showOffline();
     throw e;
   }
   if (!st.user) return showAuth(st.setupRequired);
@@ -134,7 +114,7 @@ async function boot() {
   state.meta = await api('/meta');
   document.getElementById('auth').classList.add('hidden');
   document.getElementById('shell').classList.remove('hidden');
-  document.getElementById('userBox').innerHTML = `👤 ${esc(st.user.display_name || st.user.username)}${state.standalone ? `<div class="small" style="opacity:.7;word-break:break-all">🔗 ${esc(state.base)}</div>` : ''}`;
+  document.getElementById('userBox').innerHTML = `👤 ${esc(st.user.display_name || st.user.username)}`;
   render();
   startPolling();
 }

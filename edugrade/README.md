@@ -34,8 +34,8 @@ La primera vez que abra la aplicación se le pedirá crear la cuenta del docente
 
 `dist/edugrade.html` contiene toda la interfaz en un único archivo (HTML, estilos, JavaScript, gráficos y logo). Se puede descargar, abrir con doble clic, enviar a otros docentes o publicar en cualquier sitio web (por ejemplo GitHub Pages).
 
-- Desde la aplicación: **Ajustes → Descargar edugrade.html** (o `http://SU-SERVIDOR/edugrade.html`). Esa copia ya trae configurada la dirección del servidor.
-- La copia del repositorio pide la dirección del servidor la primera vez que se abre.
+- Se abre con doble clic y entra directo al inicio de sesión: la dirección del servidor va incluida en el archivo (`http://localhost:3000`, o el valor de `PUBLIC_URL` en `.env`).
+- También se descarga desde **Ajustes → Descargar edugrade.html** (o `http://SU-SERVIDOR/edugrade.html`).
 - Se regenera con `npm run build:html` (también automáticamente con `npm start`).
 
 El archivo es la interfaz: la evaluación con IA, Google Drive y la base de datos siguen en el servidor, que debe estar encendido. Se autentica con un token (no con cookies) y la conexión con Google usa un enlace de un solo uso. `ALLOWED_ORIGINS` limita desde dónde puede usarse.

@@ -4,25 +4,20 @@
 //  - servida por el servidor de EduGrade AI (misma página, sesión por cookie), o
 //  - como archivo «edugrade.html» descargado: se conecta a la URL del servidor y usa un token.
 const STANDALONE = typeof window.EDUGRADE_STANDALONE !== 'undefined';
-const LS = { server: 'edugrade.server', token: 'edugrade.token' };
+const LS = { token: 'edugrade.token' };
 function lsGet(k) { try { return localStorage.getItem(k); } catch { return null; } }
 function lsSet(k, v) { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch { /* sin almacenamiento */ } }
-const embedded = STANDALONE && window.EDUGRADE_SERVER && !String(window.EDUGRADE_SERVER).startsWith('__') ? window.EDUGRADE_SERVER : '';
 
 export const state = {
   meta: null,
   user: null,
   onUnauthorized: null,
   standalone: STANDALONE,
-  base: STANDALONE ? (lsGet(LS.server) || embedded || '').replace(/\/$/, '') : '',
+  base: STANDALONE ? String(window.EDUGRADE_SERVER || 'http://localhost:3000').replace(/\/$/, '') : '',
   token: STANDALONE ? lsGet(LS.token) : null,
   logo: window.EDUGRADE_LOGO || '/img/logo.svg',
 };
 
-export function setServer(url) {
-  state.base = String(url || '').trim().replace(/\/$/, '');
-  lsSet(LS.server, state.base);
-}
 export function setToken(token) {
   if (!STANDALONE) return;
   state.token = token || null;
@@ -50,7 +45,7 @@ export async function api(path, { method = 'GET', body, form } = {}) {
   try {
     res = await rawFetch(path, opts);
   } catch {
-    throw new Error(STANDALONE ? `No se pudo conectar con el servidor ${state.base || '(sin configurar)'}.` : 'No se pudo conectar con el servidor.');
+    throw new Error('No se pudo conectar con el servidor de EduGrade AI.');
   }
   if (res.status === 401 && !path.startsWith('/auth/')) {
     state.onUnauthorized?.();
