@@ -326,6 +326,12 @@ dialog::backdrop{background:#070b22cc;backdrop-filter:blur(4px)}
 .pbody{padding:16px}
 .pbody .infogrid{margin-bottom:12px}
 
+.official{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:14px}
+.official a{display:flex;align-items:center;gap:10px;min-height:56px;padding:10px 12px;border:1px solid #e5e2ef;border-radius:14px;text-decoration:none;font-size:.8rem;font-weight:800;transition:transform .2s,border-color .2s}
+.official a:hover{transform:translateY(-3px);border-color:#c7b8de}
+.official a i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:0 0 32px;border-radius:10px;color:#fff;font-size:.8rem;background:linear-gradient(135deg,var(--claret),var(--blue))}
+.official a small{display:block;font-weight:600;color:var(--muted);font-size:.66rem}
+@media(max-width:640px){.official{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:8px}}
 .note{color:#ecdcea;font-size:.7rem;line-height:1.6;margin:18px 4px 0}
 .note a{color:#fff;font-weight:800}
 .toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,40px);opacity:0;z-index:50;background:#1d1b4b;color:#fff;padding:12px 18px;border-radius:12px;font-size:.85rem;font-weight:700;box-shadow:0 12px 30px #0006;transition:.3s;pointer-events:none;max-width:calc(100vw - 32px)}
@@ -473,6 +479,7 @@ dialog::backdrop{background:#070b22cc;backdrop-filter:blur(4px)}
   <div class="toolbar">
     <input class="field" id="squadSearch" type="search" placeholder="Buscar jugador o dorsal…" aria-label="Buscar jugador">
     <button class="btn" id="loadSquad">↻ ACTUALIZAR</button>
+    <a class="btn ghost" href="https://www.fcbarcelona.com/es/futbol/primer-equipo/jugadores" target="_blank" rel="noopener">PLANTILLA OFICIAL ↗</a>
   </div>
   <div class="card" id="squadBox"></div>
 </section>
@@ -522,7 +529,7 @@ dialog::backdrop{background:#070b22cc;backdrop-filter:blur(4px)}
 <!-- ============ NOTICIAS ============ -->
 <section class="panel" id="news">
   <div class="hero"><div class="eyebrow">Actualidad blaugrana</div><h2>Noticias recientes</h2><p>Las 20 noticias más recientes del Barça. Cada una abre el artículo original en una pestaña nueva.</p></div>
-  <div class="toolbar"><button class="btn" id="loadNews">↻ ACTUALIZAR NOTICIAS</button></div>
+  <div class="toolbar"><button class="btn" id="loadNews">↻ ACTUALIZAR NOTICIAS</button><a class="btn ghost" href="https://www.fcbarcelona.com/es/noticias" target="_blank" rel="noopener">NOTICIAS OFICIALES DEL CLUB ↗</a></div>
   <div class="card">
     <div class="cardhead"><h3>Últimas noticias</h3><span id="newsAllCount">—</span></div>
     <div id="newsAll"></div>
@@ -538,6 +545,10 @@ dialog::backdrop{background:#070b22cc;backdrop-filter:blur(4px)}
       <div class="pref"><div>Avisos de partido<small>Notificación 30 min antes y al terminar (con la página abierta).</small></div><button class="switch" id="prefNotify" role="switch" aria-checked="false" aria-label="Avisos de partido"></button></div>
       <div class="pref"><div>Solo LaLiga y Champions<small>Oculta Copa del Rey y Supercopa en Inicio.</small></div><button class="switch" id="prefMain" role="switch" aria-checked="false" aria-label="Solo LaLiga y Champions"></button></div>
     </div>
+  </div>
+  <div class="card">
+    <div class="cardhead"><h3>Canales oficiales del club</h3><span>Se abren en una pestaña nueva</span></div>
+    <div class="official" id="officialLinks"></div>
   </div>
   <div class="card">
     <div class="cardhead"><h3>Jugadores</h3><span id="favCount">0 seleccionados</span></div>
@@ -573,6 +584,17 @@ const FCB_CHANNEL='UC14UlmYlSNiQCBe9Eookf_A';             /* canal oficial FC Ba
 const LOGO=id=>`https://a.espncdn.com/i/teamlogos/soccer/500/${id}.png`;
 const LEAGUE_LOGO=id=>`https://a.espncdn.com/i/leaguelogos/soccer/500/${id}.png`;
 const HEAD=id=>`https://a.espncdn.com/i/headshots/soccer/players/full/${id}.png`;
+/* Páginas oficiales del club: solo se enlazan (su contenido e imágenes son propiedad del FC Barcelona) */
+const OFFICIAL={
+  web:'https://www.fcbarcelona.com/es/',
+  squad:'https://www.fcbarcelona.com/es/futbol/primer-equipo/jugadores',
+  news:'https://www.fcbarcelona.com/es/noticias',
+  youtube:'https://www.youtube.com/@fcbarcelona',
+  instagram:'https://www.instagram.com/fcbarcelona/',
+  x:'https://x.com/FCBarcelona_es',
+  tiktok:'https://www.tiktok.com/@fcbarcelona',
+  facebook:'https://www.facebook.com/fcbarcelona'
+};
 
 /* Temporada europea: arranca en julio; se identifica por el año de inicio (2026 = 2026/27). */
 const SY=(()=>{const d=new Date();return d.getMonth()>=6?d.getFullYear():d.getFullYear()-1})();
@@ -1006,7 +1028,7 @@ function openPlayer(id){
     <div class="pbody"><p class="pcredit" data-credit>Foto: buscando…</p><div class="infogrid">${info.map(([l,v])=>`<div><small>${esc(l)}</small>${esc(v)}</div>`).join('')}</div>
     ${st.length?`<div class="kpis" style="border-radius:12px;overflow:hidden;margin-bottom:12px">${st.map(([l,v])=>`<div class="kpi"><strong>${esc(v)}</strong><small>${esc(l)}</small></div>`).join('')}</div>`:''}
     ${lead.length?`<p style="font-size:.8rem;color:var(--muted);margin:0 0 12px">${lead.map(x=>`${esc(x.k)}: <b>${esc(x.v)}</b>`).join(' · ')}</p>`:''}
-    <div class="toolbar" style="margin:0"><button class="btn" data-star="${esc(p.id)}" aria-pressed="${on}">${on?'★ QUITAR DE FAVORITOS':'☆ AÑADIR A FAVORITOS'}</button><a class="btn ghost" href="https://www.youtube.com/results?search_query=${encodeURIComponent(p.name+' FC Barcelona')}" target="_blank" rel="noopener">▶ VIDEOS</a></div></div>`;
+    <div class="toolbar" style="margin:0"><button class="btn" data-star="${esc(p.id)}" aria-pressed="${on}">${on?'★ QUITAR DE FAVORITOS':'☆ AÑADIR A FAVORITOS'}</button><a class="btn ghost" href="https://www.youtube.com/results?search_query=${encodeURIComponent(p.name+' FC Barcelona')}" target="_blank" rel="noopener">▶ VIDEOS</a><a class="btn ghost" href="${OFFICIAL.squad}" target="_blank" rel="noopener">PERFIL OFICIAL ↗</a></div></div>`;
   const dlg=$('playerDlg');if(!dlg.open)dlg.showModal();
   resolvePhoto(p.name,p.photo).then(r=>{const cr=$('playerBody').querySelector('[data-credit]');if(!cr)return;
     cr.innerHTML=r?`Foto: ${r.link?`<a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.credit)} ↗</a>`:esc(r.credit)}`:'Sin foto disponible en las fuentes consultadas.'});
@@ -1318,13 +1340,13 @@ async function renderDetail(m,tab,soft){
         return `<h4 style="margin:0 0 10px">Previa</h4>${a&&b?[['Posición',a.rank,b.rank],['Puntos',a.pts,b.pts],['Goles a favor',a.gf,b.gf],['Goles en contra',a.ga,b.ga],['Diferencia de goles',a.gd,b.gd]].map(([l,x,y])=>cmpBar(l,x,y,ch,ca)).join(''):'<p style="color:var(--muted);font-size:.85rem">La comparación de clasificación estará disponible cuando se cargue la tabla de la competición.</p>'}
           <p style="font-size:.8rem;color:var(--muted)">Forma del Barça: </p>${formHTML(played().slice(-5).map(resultOf))}
           ${h2h.length?`<h4 style="margin:16px 0 6px">Últimos enfrentamientos</h4><ul class="timeline">${h2h.map(g=>`<li><span class="h">${esc(fmtShort(g.gameDate||g.date))}</span><span class="min">${esc(g.score||'')}</span><span>${esc(g.opponent?.displayName||g.opponentName||'')} ${g.gameResult?'· '+esc(g.gameResult):''}</span></li>`).join('')}</ul>`:''}
-          <div class="toolbar" style="margin-top:16px"><button class="btn" data-ics="${esc(m.id)}">📅 AÑADIR AL CALENDARIO</button></div>`;
+          <div class="toolbar" style="margin-top:16px"><button class="btn" data-ics="${esc(m.id)}">📅 AÑADIR AL CALENDARIO</button><a class="btn ghost" href="${OFFICIAL.news}" target="_blank" rel="noopener">PREVIA OFICIAL ↗</a></div>`;
       }
       if(!events.length)return stateHTML('Sin eventos registrados','La fuente no publicó goles, tarjetas ni cambios de este partido.');
       const ico={goal:'⚽',yellow:'<i class="card-y"></i>',red:'<i class="card-r"></i>',sub:'⇄'},tr={goal:'Gol',yellow:'Amarilla',red:'Roja',sub:'Cambio'};
       const cell=e=>`<span class="ev-ico">${ico[e.kind]}</span> <b>${esc(e.who[0]||tr[e.kind])}</b><small>${esc(tr[e.kind])}${e.pen?' · penal':''}${e.own?' · en propia':''}${e.kind==='sub'&&e.who[1]?' · sale '+esc(e.who[1]):''}</small>`;
       return `<ul class="timeline">${events.map(e=>`<li><span class="h">${e.side==='h'?cell(e):''}</span><span class="min">${esc(e.min)}</span><span>${e.side==='a'?cell(e):''}</span></li>`).join('')}</ul>
-        <div class="toolbar" style="margin-top:14px"><a class="btn" href="${esc(ytSearch(m))}" target="_blank" rel="noopener">▶ VER RESUMEN EN YOUTUBE</a></div>`;
+        <div class="toolbar" style="margin-top:14px"><a class="btn" href="${esc(ytSearch(m))}" target="_blank" rel="noopener">▶ VER RESUMEN EN YOUTUBE</a><a class="btn ghost" href="${OFFICIAL.news}" target="_blank" rel="noopener">CRÓNICA OFICIAL ↗</a></div>`;
     },
     stats:()=>{
       if(!stats.length)return stateHTML('Estadísticas no disponibles',pre?'Estarán disponibles cuando empiece el partido.':'La fuente no proporcionó estadísticas para este partido.');
@@ -1409,6 +1431,9 @@ function scheduleNext(){
 $('refresh').addEventListener('click',()=>{S.summaries.clear();refresh();loadMiniTable()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-S.lastOk>60e3){refresh();loadVideo()}});
 
+$('officialLinks').innerHTML=[['web','🌐','Web oficial','fcbarcelona.com'],['news','📰','Noticias','Sala de prensa del club'],['squad','👕','Plantilla','Fichas oficiales'],['youtube','▶','YouTube','@fcbarcelona'],
+  ['instagram','📷','Instagram','@fcbarcelona'],['x','𝕏','X','@FCBarcelona_es'],['tiktok','♪','TikTok','@fcbarcelona'],['facebook','f','Facebook','fcbarcelona']]
+  .map(([k,i,l,s])=>`<a href="${OFFICIAL[k]}" target="_blank" rel="noopener"><i aria-hidden="true">${i}</i><span>${l}<small>${s}</small></span></a>`).join('');
 $('seasonLbl').textContent=`TEMPORADA ${SEASON_TXT}`;
 refresh();
 loadMiniTable();
