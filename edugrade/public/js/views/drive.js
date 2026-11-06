@@ -1,4 +1,4 @@
-import { api, esc, toast, modal, options, setActions, fmtDate, $, confirmDialog } from '../core.js';
+import { api, esc, toast, modal, options, setActions, fmtDate, $, confirmDialog, state } from '../core.js';
 
 const MATCH = {
   confirmed: ['Coincidencia confirmada', 'green'],
@@ -14,46 +14,61 @@ export async function driveView(el, { query, navigate }) {
   const st = await api('/drive/status');
   const rosters = await api('/rosters');
 
-  if (!st.configured) {
-    el.innerHTML = `<div class="card"><h3>Google Drive no está configurado en el servidor</h3>
-      <div class="notice warn">El administrador debe crear credenciales OAuth 2.0 en Google Cloud y definir <code>GOOGLE_CLIENT_ID</code> y <code>GOOGLE_CLIENT_SECRET</code>.</div>
-      <ol class="mt">
+  const setupHelp = state.local
+    ? `<p class="muted">Para usar Google Drive, ingrese el «Client ID» de Google en <a href="#/ajustes">Ajustes</a>. Mientras tanto puede subir los PDF desde este dispositivo.</p>`
+    : `<div class="notice warn">El administrador debe crear credenciales OAuth 2.0 en Google Cloud y definir <code>GOOGLE_CLIENT_ID</code> y <code>GOOGLE_CLIENT_SECRET</code>.</div>
+      <ol class="mt small">
         <li>En <a href="https://console.cloud.google.com/apis/library/drive.googleapis.com" target="_blank" rel="noopener">Google Cloud Console</a>, habilite <strong>Google Drive API</strong>.</li>
-        <li>Configure la pantalla de consentimiento OAuth y agregue el alcance <code>…/auth/drive.readonly</code>.</li>
-        <li>Cree un <strong>ID de cliente OAuth</strong> de tipo «Aplicación web» con el URI de redirección autorizado:<br><code>${esc(st.redirectUri || `${location.origin}/api/drive/oauth/callback`)}</code></li>
-        <li>Copie el ID y el secreto en el archivo <code>.env</code> del servidor y reinicie EduGrade AI.</li>
-      </ol></div>`;
-    return;
-  }
+        <li>Configure la pantalla de consentimiento OAuth con el alcance <code>…/auth/drive.readonly</code>.</li>
+        <li>Cree un <strong>ID de cliente OAuth</strong> («Aplicación web») con el URI de redirección <code>${esc(st.redirectUri || `${location.origin}/api/drive/oauth/callback`)}</code>.</li>
+        <li>Copie el ID y el secreto en el archivo <code>.env</code> y reinicie EduGrade AI.</li>
+      </ol>`;
 
-  setActions(st.connected && st.folder ? '<button class="btn" id="syncBtn">⟳ Sincronizar</button>' : '');
+  setActions(st.connected && st.folder ? '<button class="btn" id="syncBtn">⟳ Sincronizar Drive</button>' : '');
   const rosterId = Number(query.get('roster')) || rosters[0]?.id || null;
 
   el.innerHTML = `
+    <div class="card mb"><div class="card-head"><h3>📤 Subir PDF desde este dispositivo</h3>${st.localCount ? `<span class="badge blue">${st.localCount} subidos</span>` : ''}</div>
+      <p class="muted small" style="margin-top:0">Seleccione los trabajos en PDF (puede elegir varios a la vez). Nómbrelos con el nombre del estudiante, por ejemplo <code>Ana_Lopez_Tarea1.pdf</code>.</p>
+      <label class="btn">Elegir archivos PDF<input type="file" id="upl" accept="application/pdf,.pdf" multiple class="hidden"></label>
+      <span class="muted small" id="uplMsg"></span>
+    </div>
     <div class="grid two">
       <div class="card"><h3>Cuenta de Google</h3>
-        ${st.connected ? `<p>✅ Conectada${st.email ? ` como <strong>${esc(st.email)}</strong>` : ''}</p>
+        ${!st.configured ? setupHelp : st.connected ? `<p>✅ Conectada${st.email ? ` como <strong>${esc(st.email)}</strong>` : ''}</p>
           <p class="muted small">Permiso solicitado: solo lectura de Drive (<code>drive.readonly</code>). EduGrade AI nunca modifica ni elimina sus archivos.</p>
           <button class="btn danger small" id="discBtn">Desconectar</button>`
-        : `<p class="muted">Conecte la cuenta de Google donde está la carpeta con las tareas en PDF.</p>
+        : `<p class="muted">${st.email ? `La sesión de ${esc(st.email)} expiró. ` : ''}Conecte la cuenta de Google donde está la carpeta con las tareas en PDF.</p>
           <a class="btn" href="/api/drive/oauth/start">Conectar cuenta Google</a>`}
       </div>
-      <div class="card"><h3>Carpeta de tareas</h3>
+      <div class="card"><h3>Carpeta de tareas en Drive</h3>
         ${st.folder ? `<p>📁 <strong>${esc(st.folder.name)}</strong></p>
-          <div class="row"><span class="badge blue">${st.pdfCount} PDF</span>${st.newCount ? `<span class="badge green">${st.newCount} nuevos</span>` : ''}${st.modifiedCount ? `<span class="badge amber">${st.modifiedCount} modificados</span>` : ''}</div>
           <p class="muted small">Última sincronización: ${fmtDate(st.lastSync)} · Se exploran también las subcarpetas.</p>` : '<p class="muted">No hay carpeta seleccionada.</p>'}
         ${st.connected ? `<button class="btn secondary small" id="pickBtn">${st.folder ? 'Cambiar carpeta' : 'Seleccionar carpeta'}</button>` : ''}
       </div>
     </div>
-    ${st.folder ? `<div class="card mt">
+    ${st.pdfCount ? `<div class="card mt">
       <div class="card-head"><h3>Documentos e identificación de estudiantes</h3>
-        <div class="row">${rosters.length ? `<select id="rosterSel" style="width:auto">${options(rosters.map((r) => ({ value: r.id, label: `Listado: ${r.name}` })), rosterId)}</select>` : ''}
+        <div class="row"><span class="badge blue">${st.pdfCount} PDF</span>${st.newCount ? `<span class="badge green">${st.newCount} nuevos</span>` : ''}${st.modifiedCount ? `<span class="badge amber">${st.modifiedCount} modificados</span>` : ''}
+        ${rosters.length ? `<select id="rosterSel" style="width:auto">${options(rosters.map((r) => ({ value: r.id, label: `Listado: ${r.name}` })), rosterId)}</select>` : ''}
         <select id="mf" style="width:auto">${options([{ value: '', label: 'Todos los estados' }, ...Object.entries(MATCH).map(([k, v]) => ({ value: k, label: v[0] }))], '')}</select></div></div>
       ${rosters.length ? '' : '<div class="notice warn mb">Importe un listado de estudiantes para identificar los documentos.</div>'}
       <div id="summary" class="row mb"></div>
-      <div class="table-wrap"><table><thead><tr><th>Archivo</th><th>Estado de sincronización</th><th>Identificación</th><th>Estudiante</th><th></th></tr></thead><tbody id="ftb"></tbody></table></div>
+      <div class="table-wrap"><table><thead><tr><th>Archivo</th><th>Estado</th><th>Identificación</th><th>Estudiante</th><th></th></tr></thead><tbody id="ftb"></tbody></table></div>
     </div>` : ''}`;
 
+  $('#upl').addEventListener('change', async (e) => {
+    const files = [...e.target.files];
+    if (!files.length) return;
+    $('#uplMsg').textContent = ` Subiendo ${files.length} archivo(s)…`;
+    try {
+      const fd = new FormData();
+      files.forEach((f) => fd.append('files', f));
+      const r = await api('/drive/upload', { method: 'POST', form: fd });
+      toast(`${r.total} PDF cargados (${r.nuevos} nuevos, ${r.modificados} actualizados).`, 'ok');
+      navigate(`#/drive?roster=${rosterId || ''}`);
+    } catch (err) { toast(err.message, 'err'); $('#uplMsg').textContent = ''; }
+  });
   $('#discBtn')?.addEventListener('click', async () => {
     if (await confirmDialog('¿Desconectar la cuenta de Google? Se revocará el acceso de EduGrade AI.', { okLabel: 'Desconectar', danger: true })) {
       await api('/drive/disconnect', { method: 'POST' });
@@ -69,7 +84,7 @@ export async function driveView(el, { query, navigate }) {
       navigate(`#/drive?roster=${rosterId || ''}`);
     } catch (err) { toast(err.message, 'err'); e.target.disabled = false; }
   });
-  if (!st.folder) return;
+  if (!st.pdfCount) return;
 
   let students = [];
   if (rosterId) students = (await api(`/rosters/${rosterId}`)).students.filter((s) => !s.deleted);
@@ -85,16 +100,24 @@ export async function driveView(el, { query, navigate }) {
       const [label, cls] = MATCH[f.match_status || 'none'];
       const sync = { new: ['Nuevo', 'green'], modified: ['Modificado', 'amber'], unchanged: ['Sin cambios', 'gray'] }[f.sync_state] || [f.sync_state, 'gray'];
       const shown = f.match_status === 'probable' ? (f.candidates[0]?.name ? `¿${f.candidates[0].name}?` : '') : f.student_name;
-      return `<tr><td><a href="${esc(f.web_view_link || '#')}" target="_blank" rel="noopener">📄 ${esc(f.name)}</a>${f.path ? `<div class="muted small">${esc(f.path)}</div>` : ''}</td>
+      return `<tr><td><a href="${f.web_view_link ? esc(f.web_view_link) : `/api/drive/files/${encodeURIComponent(f.id)}/content`}" target="_blank" rel="noopener">📄 ${esc(f.name)}</a>${f.path ? `<div class="muted small">${esc(f.path)}</div>` : ''}</td>
         <td><span class="badge ${sync[1]}">${sync[0]}</span></td>
         <td><span class="badge ${cls}">${label}</span>${f.match_reason ? `<div class="muted small">${esc(f.match_reason)}</div>` : ''}</td>
         <td>${esc(shown || '—')}</td>
-        <td class="right nowrap">${rosterId ? `<button class="btn small secondary" data-assign="${esc(f.id)}">Asignar</button>` : ''}</td></tr>`;
+        <td class="right nowrap">${rosterId ? `<button class="btn small secondary" data-assign="${esc(f.id)}">Asignar</button>` : ''}
+          ${f.folder_id === 'local' ? `<button class="btn small danger" data-remove="${esc(f.id)}" title="Quitar">🗑</button>` : ''}</td></tr>`;
     }).join('') || '<tr><td colspan="5" class="muted center">No hay documentos.</td></tr>';
   };
   draw();
   $('#mf').onchange = draw;
-  $('#ftb').onclick = (e) => {
+  $('#ftb').onclick = async (e) => {
+    const rm = e.target.closest('[data-remove]');
+    if (rm) {
+      if (await confirmDialog('¿Quitar este documento subido?', { okLabel: 'Quitar', danger: true })) {
+        try { await api(`/drive/files/${encodeURIComponent(rm.dataset.remove)}`, { method: 'DELETE' }); navigate(`#/drive?roster=${rosterId || ''}`); } catch (err) { toast(err.message, 'err'); }
+      }
+      return;
+    }
     const b = e.target.closest('[data-assign]');
     if (!b) return;
     const f = files.find((x) => x.id === b.dataset.assign);

@@ -1,7 +1,5 @@
 import express from 'express';
 import multer from 'multer';
-import fs from 'node:fs';
-import path from 'node:path';
 import { db, tx, json, audit, getSetting, setSetting } from '../db.js';
 import { config, integrationStatus } from '../config.js';
 import { LEVELS, isValidLevel } from '../levels.js';
@@ -13,11 +11,13 @@ import { refreshMatches, refreshAllMatches, filesWithMatches } from '../matches.
 import { saveRubric, rowToRubric, rubricFromExcel, normalizeRubric, httpError } from '../rubrics.js';
 import {
   createRun, setRunStatus, requeueItem, assignFile, ignoreFile, overrideGrade, INCIDENT_TYPES,
-  studentsInScope, planDocuments, getPdfBuffer,
+  studentsInScope, planDocuments,
 } from '../engine.js';
 import { runItems, runSummary, dashboardStats, historyList } from '../stats.js';
 import { buildRunWorkbook } from '../export.js';
 import { purgeCache, applyRetention } from '../retention.js';
+import { getPdfBuffer, saveUpload, removeUpload, isUpload, cacheInfo } from '../file-store.js';
+import { sha256 } from '../security.js';
 
 export const api = express.Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 15 * 1024 * 1024 } });
@@ -307,6 +307,37 @@ api.post('/drive/sync', async (req, res) => {
   res.json(summary);
 });
 
+// Subir PDF directamente desde el dispositivo (alternativa o complemento a Google Drive).
+api.post('/drive/upload', upload.array('files', 300), async (req, res) => {
+  const files = (req.files || []).filter((f) => /\.pdf$/i.test(f.originalname) || f.mimetype === 'application/pdf');
+  if (!files.length) throw httpError(400, 'Seleccione uno o más archivos PDF.');
+  let added = 0;
+  let updated = 0;
+  for (const f of files) {
+    const name = f.originalname.normalize('NFC');
+    const hash = sha256(f.buffer);
+    const fileId = `local_${sha256(name).slice(0, 20)}`;
+    const prev = db.prepare('SELECT * FROM drive_files WHERE id = ?').get(fileId);
+    await saveUpload(fileId, f.buffer);
+    const state = !prev || prev.sync_state === 'removed' ? 'new' : prev.md5 !== hash ? 'modified' : 'unchanged';
+    if (state === 'new') added++; else if (state === 'modified') updated++;
+    db.prepare(`INSERT INTO drive_files(id, folder_id, name, path, md5, modified_time, size, web_view_link, sync_state, last_synced)
+      VALUES(?, 'local', ?, 'Subido desde el dispositivo', ?, ?, ?, NULL, ?, ?)
+      ON CONFLICT(id) DO UPDATE SET md5=excluded.md5, modified_time=excluded.modified_time, size=excluded.size, sync_state=excluded.sync_state, last_synced=excluded.last_synced`)
+      .run(fileId, name, hash, new Date().toISOString(), f.buffer.length, state, new Date().toISOString());
+  }
+  refreshAllMatches();
+  res.json({ total: files.length, nuevos: added, modificados: updated });
+});
+
+api.delete('/drive/files/:fileId', async (req, res) => {
+  const fileId = String(req.params.fileId);
+  if (!isUpload(fileId)) throw httpError(400, 'Solo se pueden quitar documentos subidos desde el dispositivo.');
+  db.prepare("UPDATE drive_files SET sync_state = 'removed' WHERE id = ?").run(fileId);
+  await removeUpload(fileId);
+  res.json({ ok: true });
+});
+
 api.get('/drive/files', (req, res) => {
   res.json(filesWithMatches(req.query.roster_id ? id(req.query.roster_id) : null));
 });
@@ -400,7 +431,7 @@ api.get('/activities/:id/check', (req, res) => {
   const integrations = integrationStatus();
   const problems = [];
   const warnings = [];
-  if (!integrations.ai.configured) problems.push('La API de IA no está configurada en el servidor (ANTHROPIC_API_KEY).');
+  if (!integrations.ai.configured) problems.push(config.browser ? 'Ingrese la clave de la API de IA en Ajustes.' : 'La API de IA no está configurada en el servidor (ANTHROPIC_API_KEY).');
   if (!a.roster_id) problems.push('Asigne un listado de estudiantes a la actividad.');
   let rubric = null;
   if (!a.rubric_id) problems.push('Asigne una rúbrica a la actividad.');
@@ -409,7 +440,7 @@ api.get('/activities/:id/check', (req, res) => {
     try { rubric = normalizeRubric(rowToRubric(row)); } catch (e) { problems.push(`Rúbrica no válida: ${e.message}`); }
   }
   const ds = drive.driveStatus();
-  if (!ds.connected || !ds.folder) problems.push('Conecte Google Drive y seleccione la carpeta de tareas.');
+  if (!ds.pdfCount) problems.push('No hay documentos: conecte una carpeta de Google Drive o suba los PDF desde el dispositivo.');
   let plan = { students: 0, withDocument: 0, withoutDocument: 0, multiple: 0, unresolved: 0, files: 0 };
   if (a.roster_id) {
     const students = studentsInScope(a);
@@ -501,8 +532,7 @@ api.get('/runs/:id/export', async (req, res) => {
   if (!out) throw httpError(404, 'Evaluación no encontrada.');
   res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   res.setHeader('Content-Disposition', `attachment; filename="${out.filename}"`);
-  await out.workbook.xlsx.write(res);
-  res.end();
+  res.send(Buffer.from(await out.workbook.xlsx.writeBuffer()));
 });
 
 api.post('/items/:id/reevaluate', (req, res) => {
@@ -581,15 +611,17 @@ api.post('/incidents/:id/ignore', (req, res) => {
 });
 
 // ---------------------------------------------------------------- Ajustes, retención y seguridad
-api.get('/settings', (req, res) => {
+api.get('/settings', async (req, res) => {
   res.json({
     retention_days: Number(getSetting('retention.cacheDays', '30')),
     history_days: Number(getSetting('retention.historyDays', '0')),
     integrations: integrationStatus(),
-    cache: cacheInfo(),
+    cache: await cacheInfo(),
+    ai_model: getSetting('ai.model', config.anthropic.model),
+    google_client_id: config.browser ? getSetting('google.clientId', '') : undefined,
   });
 });
-api.put('/settings', (req, res) => {
+api.put('/settings', async (req, res) => {
   const rd = Number(req.body?.retention_days);
   const hd = Number(req.body?.history_days);
   if (!(rd >= 0 && rd <= 3650)) throw httpError(400, 'Días de retención no válidos.');
@@ -597,10 +629,10 @@ api.put('/settings', (req, res) => {
   setSetting('retention.cacheDays', rd);
   setSetting('retention.historyDays', hd);
   audit(req.user.id, 'settings.retention', { rd, hd });
-  res.json({ ok: true, applied: applyRetention() });
+  res.json({ ok: true, applied: await applyRetention() });
 });
-api.post('/settings/purge-cache', (req, res) => {
-  const n = purgeCache(0);
+api.post('/settings/purge-cache', async (req, res) => {
+  const n = await purgeCache(0);
   audit(req.user.id, 'settings.purgeCache', { n });
   res.json({ deleted: n });
 });
@@ -608,8 +640,13 @@ api.get('/audit', (req, res) => {
   res.json(db.prepare('SELECT a.*, u.display_name AS user_name FROM audit_log a LEFT JOIN users u ON u.id = a.user_id ORDER BY a.id DESC LIMIT 200').all());
 });
 
-function cacheInfo() {
-  const files = fs.readdirSync(config.cacheDir).filter((f) => f.endsWith('.pdf'));
-  const size = files.reduce((a, f) => a + fs.statSync(path.join(config.cacheDir, f)).size, 0);
-  return { files: files.length, bytes: size };
-}
+// Versión de navegador: las claves se guardan solo en este dispositivo.
+api.put('/settings/integrations', (req, res) => {
+  if (!config.browser) throw httpError(400, 'En el servidor, las claves se configuran en el archivo .env.');
+  const { ai_key, ai_model, google_client_id } = req.body || {};
+  if (ai_key !== undefined && ai_key !== '') setSetting('ai.apiKey', String(ai_key).trim());
+  if (ai_key === null) setSetting('ai.apiKey', null);
+  if (ai_model) setSetting('ai.model', String(ai_model).trim());
+  if (google_client_id !== undefined) setSetting('google.clientId', String(google_client_id).trim() || null);
+  res.json({ ok: true, integrations: integrationStatus() });
+});

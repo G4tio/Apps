@@ -56,11 +56,11 @@ export function createApp() {
   app.use('/api', (req, res) => res.status(404).json({ error: 'Ruta no encontrada.' }));
 
   app.use('/vendor/chart.js', express.static(path.join(__dirname, 'node_modules/chart.js/dist'), { maxAge: '7d' }));
-  // Interfaz completa en un solo archivo HTML descargable, ya apuntando a este servidor.
+  // Versión para navegador en un solo archivo HTML (funciona sin servidor).
   app.get('/edugrade.html', (req, res) => {
     const file = path.join(__dirname, 'dist/edugrade.html');
     if (!fs.existsSync(file)) return res.status(404).type('text').send('Ejecute «npm run build:html» para generar el archivo.');
-    const html = fs.readFileSync(file, 'utf8').replace(/window\.EDUGRADE_SERVER="[^"]*"/, `window.EDUGRADE_SERVER=${JSON.stringify(config.publicUrl.replace(/["\\<>]/g, ''))}`);
+    const html = fs.readFileSync(file);
     res.setHeader('Content-Disposition', 'attachment; filename="edugrade.html"');
     res.setHeader('Cache-Control', 'no-store');
     res.type('html').send(html);

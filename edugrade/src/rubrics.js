@@ -152,7 +152,7 @@ export function seedTemplates() {
  * Indicadores separados por ";". Niveles con el formato "Excelente:4:descriptor | Bueno:3:descriptor".
  */
 export function rubricFromExcel(buffer, name) {
-  const wb = XLSX.read(buffer, { type: 'buffer' });
+  const wb = XLSX.read(new Uint8Array(buffer), { type: 'array' });
   const rows = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { header: 1, defval: '', raw: false });
   if (rows.length < 2) throw httpError(400, 'El archivo no contiene criterios.');
   const headers = rows[0].map((h) => normalizeText(h));

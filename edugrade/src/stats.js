@@ -1,5 +1,5 @@
 // Cálculo de estadísticas para el dashboard, resultados e historial.
-import { db, json, getSetting } from './db.js';
+import { db, json } from './db.js';
 import { normalizeText } from './matching.js';
 
 export function displayStatus(item) {
@@ -117,10 +117,9 @@ export function dashboardStats(filters = {}) {
     students = students.filter((s) => ids.has(s.id));
   }
 
-  const folderId = getSetting('drive.folderId');
-  const docs = folderId ? db.prepare("SELECT COUNT(*) n FROM drive_files WHERE folder_id = ? AND sync_state != 'removed'").get(folderId).n : 0;
-  const identified = folderId ? db.prepare(`SELECT COUNT(DISTINCT m.file_id) n FROM file_matches m JOIN drive_files f ON f.id = m.file_id
-    WHERE f.folder_id = ? AND f.sync_state != 'removed' AND m.status IN ('confirmed','manual')`).get(folderId).n : 0;
+  const docs = db.prepare("SELECT COUNT(*) n FROM drive_files WHERE sync_state != 'removed'").get().n;
+  const identified = db.prepare(`SELECT COUNT(DISTINCT m.file_id) n FROM file_matches m JOIN drive_files f ON f.id = m.file_id
+    WHERE f.sync_state != 'removed' AND m.status IN ('confirmed','manual')`).get().n;
 
   const done = items.filter((i) => i.status === 'done');
   const approved = done.filter((i) => i.result === 'APROBADO');

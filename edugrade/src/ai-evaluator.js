@@ -7,13 +7,23 @@ import { config } from './config.js';
 import { LEVEL_RULES } from './levels.js';
 
 let client = null;
+let clientKey = null;
 function getClient() {
   if (!config.anthropic.apiKey) {
     const err = new Error('La API de IA no está configurada: defina ANTHROPIC_API_KEY en el servidor.');
     err.permanent = true;
     throw err;
   }
-  if (!client) client = new Anthropic({ apiKey: config.anthropic.apiKey, maxRetries: 2, timeout: 10 * 60 * 1000 });
+  if (!client || clientKey !== config.anthropic.apiKey) {
+    clientKey = config.anthropic.apiKey;
+    client = new Anthropic({
+      apiKey: clientKey,
+      maxRetries: 2,
+      timeout: 10 * 60 * 1000,
+      // Versión de navegador: la clave pertenece al propio docente y se guarda solo en su dispositivo.
+      dangerouslyAllowBrowser: Boolean(config.browser),
+    });
+  }
   return client;
 }
 

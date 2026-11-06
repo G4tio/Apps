@@ -12,7 +12,7 @@ export async function dashboardView(el) {
 
   const steps = [
     { done: rosters.length > 0, title: 'Importar Excel de estudiantes', href: '#/estudiantes' },
-    { done: drive.connected && drive.folder, title: 'Conectar carpeta de Google Drive', href: '#/drive' },
+    { done: drive.pdfCount > 0, title: 'Agregar los PDF (Google Drive o subirlos)', href: '#/drive' },
     { done: activities.some((a) => a.rubric_id && a.roster_id) && rubrics.length > 0, title: 'Configurar actividad y rúbrica', href: '#/actividades' },
     { done: activities.some((a) => a.last_run_id), title: 'Presionar «Iniciar evaluación»', href: '#/actividades' },
   ];

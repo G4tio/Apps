@@ -1,37 +1,26 @@
 // Utilidades compartidas del frontend: API, escape HTML, modales, notificaciones.
 //
 // La interfaz funciona de dos formas:
-//  - servida por el servidor de EduGrade AI (misma página, sesión por cookie), o
-//  - como archivo «edugrade.html» descargado: se conecta a la URL del servidor y usa un token.
-const STANDALONE = typeof window.EDUGRADE_STANDALONE !== 'undefined';
-const LS = { token: 'edugrade.token' };
-function lsGet(k) { try { return localStorage.getItem(k); } catch { return null; } }
-function lsSet(k, v) { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch { /* sin almacenamiento */ } }
+//  - servida por el servidor de EduGrade AI (Node.js), o
+//  - como página/archivo independiente (edugrade.html): todo corre en el navegador y los
+//    datos se guardan en el dispositivo (window.EDUGRADE_LOCAL_API).
+const LOCAL = typeof window.EDUGRADE_LOCAL_API !== 'undefined';
 
 export const state = {
   meta: null,
   user: null,
   onUnauthorized: null,
-  standalone: STANDALONE,
-  base: STANDALONE ? String(window.EDUGRADE_SERVER || 'http://localhost:3000').replace(/\/$/, '') : '',
-  token: STANDALONE ? lsGet(LS.token) : null,
+  local: LOCAL,
   logo: window.EDUGRADE_LOGO || '/img/logo.svg',
 };
 
-export function setToken(token) {
-  if (!STANDALONE) return;
-  state.token = token || null;
-  lsSet(LS.token, state.token);
-}
-
 export function apiUrl(path) {
-  return `${state.base}/api${path}`;
+  return `/api${path}`;
 }
 
 async function rawFetch(path, opts = {}) {
-  const headers = { ...(opts.headers || {}) };
-  if (state.token) headers.Authorization = `Bearer ${state.token}`;
-  return fetch(apiUrl(path), { ...opts, headers, credentials: STANDALONE ? 'omit' : 'same-origin' });
+  if (LOCAL) return window.EDUGRADE_LOCAL_API.fetch(path, opts);
+  return fetch(apiUrl(path), { ...opts, credentials: 'same-origin' });
 }
 
 export async function api(path, { method = 'GET', body, form } = {}) {
@@ -45,7 +34,7 @@ export async function api(path, { method = 'GET', body, form } = {}) {
   try {
     res = await rawFetch(path, opts);
   } catch {
-    throw new Error('No se pudo conectar con el servidor de EduGrade AI.');
+    throw new Error('No se pudo conectar con el servidor.');
   }
   if (res.status === 401 && !path.startsWith('/auth/')) {
     state.onUnauthorized?.();

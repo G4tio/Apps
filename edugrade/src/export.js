@@ -79,7 +79,7 @@ export async function buildRunWorkbook(runId) {
 
   if (roster) {
     const mapping = json.parse(roster.mapping, {});
-    const owb = XLSX.read(roster.original_file, { type: 'buffer', cellDates: true });
+    const owb = XLSX.read(new Uint8Array(roster.original_file), { type: 'array', cellDates: true });
     const rows = XLSX.utils.sheet_to_json(owb.Sheets[roster.sheet_name], { header: 1, defval: null, raw: true, blankrows: true });
     const width = Math.max(1, ...rows.map((r) => r.length));
     const studentsByRow = new Map(db.prepare('SELECT * FROM students WHERE roster_id = ? AND row_index IS NOT NULL').all(roster.id).map((s) => [s.row_index, s]));

@@ -1,4 +1,4 @@
-import { api, state, esc, toast, $, $$, formValues, progressBar, setToken, openApiFile } from './core.js';
+import { api, state, esc, toast, $, $$, formValues, progressBar, openApiFile } from './core.js';
 import { dashboardView } from './views/dashboard.js';
 import { studentsView } from './views/students.js';
 import { driveView } from './views/drive.js';
@@ -12,7 +12,7 @@ import { settingsView } from './views/settings.js';
 const ROUTES = {
   dashboard: ['Dashboard', dashboardView],
   estudiantes: ['Estudiantes', studentsView],
-  drive: ['Google Drive', driveView],
+  drive: ['Documentos y Google Drive', driveView],
   actividades: ['Configuración académica', activitiesView],
   rubricas: ['Rúbricas', rubricsView],
   resultados: ['Resultados', resultsView],
@@ -63,19 +63,6 @@ function brandBlock() {
   return `<div class="brand"><img src="${state.logo}" width="44" height="44" alt=""><div><strong style="font-size:22px">EduGrade</strong> <span class="ai">AI</span><small>Sistema inteligente de evaluación automática</small></div></div>`;
 }
 
-// Si el servidor no responde, se muestra un aviso sencillo con opción de reintentar.
-function showOffline() {
-  document.getElementById('shell').classList.add('hidden');
-  const auth = document.getElementById('auth');
-  auth.classList.remove('hidden');
-  auth.innerHTML = `<div class="auth-card">
-    ${brandBlock()}
-    <div class="notice warn mb">No se pudo conectar con EduGrade AI. Verifique que el programa esté encendido (<code>npm start</code>) e intente de nuevo.</div>
-    <button class="btn big" style="width:100%" id="retryBtn">Reintentar</button>
-  </div>`;
-  $('#retryBtn').onclick = () => boot();
-}
-
 function showAuth(setupRequired) {
   document.getElementById('shell').classList.add('hidden');
   const auth = document.getElementById('auth');
@@ -93,7 +80,6 @@ function showAuth(setupRequired) {
     e.preventDefault();
     try {
       const r = await api(setupRequired ? '/auth/setup' : '/auth/login', { method: 'POST', body: formValues(e.target) });
-      setToken(r.token);
       await boot();
     } catch (err) {
       $('#authErr').textContent = err.message;
@@ -102,19 +88,18 @@ function showAuth(setupRequired) {
 }
 
 async function boot() {
-  let st;
-  try {
-    st = await api('/auth/status');
-  } catch (e) {
-    if (state.standalone) return showOffline();
-    throw e;
-  }
+  const st = await api('/auth/status');
   if (!st.user) return showAuth(st.setupRequired);
   state.user = st.user;
   state.meta = await api('/meta');
   document.getElementById('auth').classList.add('hidden');
   document.getElementById('shell').classList.remove('hidden');
-  document.getElementById('userBox').innerHTML = `👤 ${esc(st.user.display_name || st.user.username)}`;
+  if (state.local) {
+    document.getElementById('userBox').innerHTML = '📱 Datos guardados en este dispositivo';
+    document.getElementById('logoutBtn').classList.add('hidden');
+  } else {
+    document.getElementById('userBox').innerHTML = `👤 ${esc(st.user.display_name || st.user.username)}`;
+  }
   render();
   startPolling();
 }
@@ -126,13 +111,12 @@ state.onUnauthorized = () => {
 
 document.getElementById('logoutBtn').onclick = async () => {
   try { await api('/auth/logout', { method: 'POST' }); } catch { /* sin conexión */ }
-  setToken(null);
   stopPolling();
   showAuth(false);
 };
 
 // Enlaces a la API (Excel, PDF, conexión con Google): se abren con la sesión actual,
-// también cuando la interfaz se usa como archivo HTML descargado.
+// también en la versión que funciona solo en el navegador.
 document.addEventListener('click', async (e) => {
   const a = e.target.closest('a[href^="/api/"]');
   if (!a) return;
@@ -143,23 +127,13 @@ document.addEventListener('click', async (e) => {
 });
 
 async function connectGoogle() {
-  if (!state.standalone) { location.href = '/api/drive/oauth/start'; return; }
-  const win = window.open('', '_blank');
+  if (!state.local) { location.href = '/api/drive/oauth/start'; return; }
   try {
-    const { url } = await api('/drive/oauth/ticket', { method: 'POST' });
-    if (win) win.location.href = url; else location.href = url;
-    toast('Complete la autorización de Google en la pestaña nueva. Esta pantalla se actualizará sola.', 'info', 8000);
-    const started = Date.now();
-    const t = setInterval(async () => {
-      if (Date.now() - started > 5 * 60_000) return clearInterval(t);
-      try {
-        const st = await api('/drive/status');
-        if (st.connected) { clearInterval(t); toast('Cuenta de Google conectada.', 'ok'); navigate('#/drive'); }
-      } catch { /* reintentar */ }
-    }, 3000);
+    await window.EDUGRADE_LOCAL_API.connectGoogle();
+    toast('Cuenta de Google conectada.', 'ok');
+    navigate('#/drive');
   } catch (err) {
-    win?.close();
-    toast(err.message, 'err');
+    toast(err.message, 'err', 9000);
   }
 }
 document.getElementById('menuBtn').onclick = () => document.body.classList.toggle('menu-open');

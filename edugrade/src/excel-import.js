@@ -12,7 +12,7 @@ const SECTION_HINTS = ['seccion', 'sec'];
 const LEVEL_HINTS = ['nivel', 'nivel educativo'];
 
 export function readWorkbook(buffer) {
-  return XLSX.read(buffer, { type: 'buffer', cellDates: true, dense: false });
+  return XLSX.read(new Uint8Array(buffer), { type: 'array', cellDates: true, dense: false });
 }
 
 export function sheetRows(wb, sheetName) {

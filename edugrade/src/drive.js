@@ -89,11 +89,9 @@ export async function disconnect() {
 
 export function driveStatus() {
   const folderId = getSetting('drive.folderId');
-  const counts = folderId
-    ? db.prepare(`SELECT COUNT(*) total,
+  const counts = db.prepare(`SELECT COUNT(*) total, SUM(folder_id = 'local') locales,
         SUM(sync_state='new') nuevos, SUM(sync_state='modified') modificados
-        FROM drive_files WHERE folder_id = ? AND sync_state != 'removed'`).get(folderId)
-    : { total: 0, nuevos: 0, modificados: 0 };
+        FROM drive_files WHERE sync_state != 'removed'`).get();
   return {
     configured: driveConfigured(),
     connected: Boolean(storedTokens()),
@@ -101,6 +99,7 @@ export function driveStatus() {
     folder: folderId ? { id: folderId, name: getSetting('drive.folderName') } : null,
     lastSync: getSetting('drive.lastSync'),
     pdfCount: counts.total || 0,
+    localCount: counts.locales || 0,
     newCount: counts.nuevos || 0,
     modifiedCount: counts.modificados || 0,
     scopes: DRIVE_SCOPES,
@@ -151,7 +150,10 @@ export async function selectFolder(folderId) {
   const prev = getSetting('drive.folderId');
   setSetting('drive.folderId', folder.id);
   setSetting('drive.folderName', folder.name);
-  if (prev && prev !== folder.id) setSetting('drive.lastSync', null);
+  if (prev && prev !== folder.id) {
+    setSetting('drive.lastSync', null);
+    db.prepare("UPDATE drive_files SET sync_state = 'removed' WHERE folder_id NOT IN (?, 'local')").run(folder.id);
+  }
   return folder;
 }
 

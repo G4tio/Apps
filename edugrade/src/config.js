@@ -26,6 +26,7 @@ export const config = {
   cacheDir: path.join(dataDir, 'cache'),
   appSecret: loadSecret(),
   secureCookies: publicUrl.startsWith('https://'),
+  browser: false,
   anthropic: {
     apiKey: process.env.ANTHROPIC_API_KEY || '',
     model: process.env.ANTHROPIC_MODEL || 'claude-opus-5-5',

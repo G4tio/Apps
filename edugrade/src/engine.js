@@ -1,10 +1,9 @@
 // Motor de evaluación automática: crea ejecuciones, identifica documentos por estudiante
 // y procesa la cola con concurrencia limitada, reintentos y guardado progresivo.
-import fs from 'node:fs';
-import path from 'node:path';
 import { db, tx, json } from './db.js';
 import { config } from './config.js';
 import { sha256 } from './security.js';
+import { getPdfBuffer } from './file-store.js';
 import { matchFile, fileMatchesKeyword, normalizeText } from './matching.js';
 import { downloadFile, fileVersion } from './drive.js';
 import { inspectPdf, PdfProblem } from './pdf.js';
@@ -205,18 +204,6 @@ export async function drain(timeoutMs = 30000) {
   }
 }
 
-function cachePath(fileId, version) {
-  return path.join(config.cacheDir, `${fileId.replace(/[^a-zA-Z0-9_-]/g, '')}_${sha256(String(version)).slice(0, 12)}.pdf`);
-}
-
-export async function getPdfBuffer(fileId, version) {
-  const p = cachePath(fileId, version);
-  if (fs.existsSync(p)) return fs.readFileSync(p);
-  const buf = await downloader(fileId);
-  fs.writeFileSync(p, buf, { mode: 0o600 });
-  return buf;
-}
-
 function recordChange(itemId, type, prev, next, reason, userId = null) {
   db.prepare('INSERT INTO grade_changes(item_id, change_type, old_score, new_score, old_result, new_result, reason, user_id) VALUES(?,?,?,?,?,?,?,?)')
     .run(itemId, type, prev?.score ?? null, next.score ?? null, prev?.result ?? null, next.result ?? null, reason || null, userId);
@@ -258,7 +245,7 @@ export async function processItem(item) {
   const attempt = item.attempts + 1;
   db.prepare('UPDATE run_items SET attempts = ? WHERE id = ?').run(attempt, item.id);
   try {
-    const pdf = await getPdfBuffer(item.file_id, item.file_version);
+    const pdf = await getPdfBuffer(item.file_id, item.file_version, downloader);
     const info = await inspectPdf(pdf);
     const out = await evaluator({ pdfBuffer: pdf, activity, rubric, studentName: item.student_name, pdfInfo: info });
     const grade = computeGrade(out.criteria, scale);

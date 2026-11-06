@@ -5,7 +5,7 @@ import path from 'node:path';
 import { config } from './config.js';
 import { db, getSetting } from './db.js';
 
-export function purgeCache(olderThanDays) {
+export async function purgeCache(olderThanDays) {
   const limit = Date.now() - olderThanDays * 86400_000;
   let n = 0;
   for (const f of fs.readdirSync(config.cacheDir)) {
@@ -20,10 +20,10 @@ export function purgeCache(olderThanDays) {
   return n;
 }
 
-export function applyRetention() {
+export async function applyRetention() {
   const cacheDays = Number(getSetting('retention.cacheDays', '30'));
   const historyDays = Number(getSetting('retention.historyDays', '0'));
-  const cache = cacheDays > 0 ? purgeCache(cacheDays) : 0;
+  const cache = cacheDays > 0 ? await purgeCache(cacheDays) : 0;
   let runs = 0;
   if (historyDays > 0) {
     runs = Number(db.prepare(`DELETE FROM runs WHERE status IN ('completed','cancelled','failed')
@@ -33,9 +33,9 @@ export function applyRetention() {
 }
 
 export function startRetentionJob() {
-  applyRetention();
+  applyRetention().catch((e) => console.error('[retention]', e));
   const t = setInterval(() => {
-    try { applyRetention(); } catch (e) { console.error('[retention]', e); }
+    applyRetention().catch((e) => console.error('[retention]', e));
   }, 6 * 3600_000);
   t.unref?.();
 }

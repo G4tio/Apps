@@ -1,5 +1,5 @@
 // Coincidencias persistentes archivo ↔ estudiante para cada listado (vista del módulo Drive).
-import { db, tx, getSetting } from './db.js';
+import { db, tx } from './db.js';
 import { matchFile } from './matching.js';
 
 export function refreshMatches(rosterId) {
@@ -29,13 +29,11 @@ export function refreshAllMatches() {
 }
 
 export function filesWithMatches(rosterId) {
-  const folderId = getSetting('drive.folderId');
-  if (!folderId) return [];
   return db.prepare(`SELECT f.*, m.status AS match_status, m.student_id, m.score AS match_score, m.reason AS match_reason, m.candidates,
       s.full_name AS student_name
     FROM drive_files f
     LEFT JOIN file_matches m ON m.file_id = f.id AND m.roster_id = ?
     LEFT JOIN students s ON s.id = m.student_id
-    WHERE f.folder_id = ? AND f.sync_state != 'removed'
-    ORDER BY f.name`).all(rosterId || 0, folderId).map((f) => ({ ...f, candidates: f.candidates ? JSON.parse(f.candidates) : [] }));
+    WHERE f.sync_state != 'removed'
+    ORDER BY f.name`).all(rosterId || 0).map((f) => ({ ...f, candidates: f.candidates ? JSON.parse(f.candidates) : [] }));
 }

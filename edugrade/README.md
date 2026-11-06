@@ -30,15 +30,23 @@ npm start                 # http://localhost:3000
 
 La primera vez que abra la aplicación se le pedirá crear la cuenta del docente administrador.
 
-## La aplicación como un solo archivo HTML
+## Versión para el navegador (sin servidor)
 
-`dist/edugrade.html` contiene toda la interfaz en un único archivo (HTML, estilos, JavaScript, gráficos y logo). Se puede descargar, abrir con doble clic, enviar a otros docentes o publicar en cualquier sitio web (por ejemplo GitHub Pages).
+`edugrade.html` (también publicado como `edugrade/index.html` para GitHub Pages) es EduGrade AI completo en **un solo archivo** que funciona solo en el navegador, también en el teléfono. No requiere instalar nada ni iniciar sesión.
 
-- Se abre con doble clic y entra directo al inicio de sesión: la dirección del servidor va incluida en el archivo (`http://localhost:3000`, o el valor de `PUBLIC_URL` en `.env`).
-- También se descarga desde **Ajustes → Descargar edugrade.html** (o `http://SU-SERVIDOR/edugrade.html`).
-- Se regenera con `npm run build:html` (también automáticamente con `npm start`).
+1. Abra el archivo (o la página publicada).
+2. En **Ajustes**, pegue su clave de la API de Anthropic (y, si usará Drive, el «Client ID» de Google).
+3. Importe el Excel, suba los PDF desde el dispositivo (o conecte Google Drive), configure la actividad y presione **INICIAR EVALUACIÓN**.
 
-El archivo es la interfaz: la evaluación con IA, Google Drive y la base de datos siguen en el servidor, que debe estar encendido. Se autentica con un token (no con cookies) y la conexión con Google usa un enlace de un solo uso. `ALLOWED_ORIGINS` limita desde dónde puede usarse.
+Cómo funciona: el mismo código de la API (`src/`) se empaqueta con `web/`, que reemplaza las piezas de Node.js por equivalentes del navegador: SQLite en WebAssembly (sql.js) guardado en IndexedDB, PDF guardados en el dispositivo, Google Drive con Google Identity Services y la API de IA llamada directamente desde el navegador.
+
+Diferencias con la versión de servidor:
+- Las claves y los datos se guardan **solo en ese dispositivo/navegador**. Use *Ajustes → Descargar respaldo* para no perderlos o pasarlos a otro equipo.
+- La página debe permanecer abierta mientras evalúa (si se cierra, continúa al volver a abrirla).
+- Google Drive necesita que la página esté publicada en una dirección `https://` (por ejemplo GitHub Pages) registrada como «Origen de JavaScript autorizado» del Client ID. Abierta como archivo local, use *Subir PDF desde este dispositivo*.
+- La revisión previa de los PDF es básica; la lectura completa la hace el modelo de IA.
+
+Se regenera con `npm run build:html` (también automáticamente con `npm start`).
 
 ## Activar las integraciones
 

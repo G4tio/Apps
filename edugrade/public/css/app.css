@@ -248,6 +248,8 @@ td .clip { max-width: 380px; overflow: hidden; text-overflow: ellipsis; display:
   .kpi .value { font-size: 24px; }
 }
 @media (max-width: 520px) {
+  .btn { white-space: normal; text-align: center; }
+  .view { overflow-x: hidden; }
   .steps { grid-template-columns: 1fr; }
   .grid.kpis { grid-template-columns: 1fr 1fr; }
   .modal-overlay { padding: 0; }
