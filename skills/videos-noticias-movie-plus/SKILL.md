@@ -75,7 +75,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - Tipografías: **Saira Condensed** Black/Bold itálica (rótulos, botones, subtítulos; combina con el logo) y **Montserrat** (textos secundarios con espaciado amplio). Están en `public/fonts/` (OFL).
 
 **Estructura** (igual en cada video):
-1. **Intro logo** (composición `Intro`, 2,5 s; primera versión, pendiente de aprobación del usuario). Se inspira en la referencia de Pinterest (bloques planos de color que se expanden, letra gigante que se aleja y letras que encajan una a una):
+1. **Intro logo** (composición `Intro`, 2,5 s; aprobada por el usuario). Se inspira en la referencia de Pinterest (bloques planos de color que se expanden, letra gigante que se aleja y letras que encajan una a una):
    - Bloque rojo que se expande desde el centro (0–0,27 s).
    - Estrella blanca gigante que se aleja ×11→×1 girando (0,17–0,67 s).
    - El rojo se contrae hasta convertirse en el aro, que se abre con sus cortes y gira (0,33–0,77 s), y el punto rebota.
@@ -88,7 +88,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
    - **Rótulo de dato** sobre la parte baja de la imagen, en MAYÚSCULAS, blanco con contorno negro/sombra dura (como «JEREMY LATCHMAN», «2028»): nombre de la persona, cifra, fecha o título. Máx. 4 palabras, entra con pop en su palabra.
    - Pequeño contador discreto arriba («1/5») con el acento de marca y barra de progreso fina.
    - Motion graphics simples cuando aporten dato: contador de taquilla que sube, calendario con la fecha que cae, estrellas/score que se rellenan, collage de pósters que se reparte.
-4. **Cierre** (composición `Cierre`, 3,2 s). El panel rojo entra desde abajo y se contrae en el aro, la estrella entra con «pop» girando y el logo se arma. Luego el logo sube y aparecen la píldora roja «SÍGUENOS» y el texto «NOTICIAS DE CINE CADA DÍA». Termina con un fundido a negro.
+4. **Cierre** (composición `Cierre`, 3,2 s; aprobada por el usuario; el CTA queda ≈100 px bajo el aro, sin tocarlo). El panel rojo entra desde abajo y se contrae en el aro, la estrella entra con «pop» girando y el logo se arma. Luego el logo sube y aparecen la píldora roja «SÍGUENOS» y el texto «NOTICIAS DE CINE CADA DÍA». Termina con un fundido a negro.
    - Diseño sonoro propio de ambos en `scripts/sfx.py`: whoosh, impacto al formarse el aro, clics por letra y brillo.
 
 **Subtítulos**: palabra por palabra, 2–4 palabras por bloque, en la franja y≈1250–1450 (por debajo de la imagen, por encima de la interfaz de TikTok), fuente condensada pesada ≈78 px, blanco con contorno; palabra activa y nombres/cifras en el color de acento. Cada palabra entra con escala 0,8→1 en 0,15 s.

@@ -23,7 +23,7 @@ const T: Tiempos = {
 
 export const Cierre: React.FC = () => {
   const f = useCurrentFrame();
-  const subir = lerp(0, -110, outExpo(prog(f, 36, 48)));
+  const subir = lerp(0, -140, outExpo(prog(f, 36, 48)));
   const pill = prog(f, 40, 50);
   const lema = outCubic(prog(f, 46, 56));
   const fuera = inOutCubic(prog(f, 80, 96));
@@ -38,7 +38,7 @@ export const Cierre: React.FC = () => {
             position: 'absolute',
             left: 0,
             width: 1080,
-            top: 1010,
+            top: 1085,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
