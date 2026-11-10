@@ -37,7 +37,7 @@
     {
      "tipo": "imagen",
      "src": "media/2026-11-10/n1_james_gunn_1.jpg",
-     "en": "Man",
+     "en": "Superman",
      "ajuste": "cover",
      "foco": "center 25%"
     }
@@ -71,9 +71,9 @@
     },
     {
      "tipo": "titulo",
-     "texto": "MAN OF TOMORROW",
+     "texto": "SUPERMAN: EL HOMBRE DEL MAÑANA",
      "categoria": "GUNN SIGUE EN DC",
-     "en": "Man"
+     "en": "Superman"
     }
    ],
    "fondo": "media/2026-11-10/n1_dc_studios_logo.png",
@@ -382,7 +382,8 @@
   "episodios",
   "Dickens",
   "fantasmas",
-  "Navidad"
+  "Navidad",
+  "Superman"
  ],
  "fechaTexto": "MARTES 10 DE NOVIEMBRE"
 }

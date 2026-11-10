@@ -49,7 +49,8 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
   - Ejemplos verificados:
     - *Ebenezer* → «Ebenezer: Los fantasmas de Navidad»
     - *Sunrise on the Reaping* → «Los Juegos del Hambre: Amanecer en la cosecha»
-    - *Godzilla Minus Zero*, *Wicked* y *Man of Tomorrow* se quedan igual.
+    - *Man of Tomorrow* → «Superman: El hombre del mañana», por decisión del usuario.
+    - *Godzilla Minus Zero* y *Wicked* se quedan igual.
   - Indícale al usuario en la tabla de noticias qué título usarás y de dónde sale.
 - Entrega al usuario: guion en bloques numerados, palabras totales y duración estimada (≈3,2 palabras/s, ritmo del video de referencia; apunta a ~170–180 palabras en total y 27–34 por noticia). Espera su aprobación.
 
@@ -87,7 +88,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
     | DC Studios | Di Si Stúdios |
     | Jeremy Latcham | Yéremi Lácham |
     | Marvel Studios | Márvel Stúdios |
-    | Man of Tomorrow | Man of Tumórrou |
+    | Superman | Súperman |
     | Godzilla Minus Zero | Godzila Máinus Zírou |
     | Wicked | Uíked |
     | Lionsgate | Láions Guéit |
@@ -100,6 +101,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
   - Muestra la tabla al usuario junto con el guion para que la apruebe.
   - Los títulos se escriben en su versión oficial para Latinoamérica; si siguen en inglés, se aplica esta regla.
   - En la verificación por bloques, una similitud baja en un bloque con muchos nombres en inglés puede deberse solo a que el ASR los escribe en inglés. Revisa el texto transcrito antes de repetir la toma.
+  - Para cambiar una sola noticia, borra solo `bloques/bNN_*.mp3` de ese bloque: el script reutiliza las tomas de los demás sin gastar créditos. Con `MAX_TOMAS=1` no genera tomas extra.
 - **Genera la voz por bloques con `scripts/voz_por_bloques.py <carpeta_voz> <carpeta_que_contiene_el_modelo_asr> 0.7 1.0`.**
   - Cada línea (gancho y cada noticia) se genera aparte; así se evitan las sílabas sueltas que Fish mete entre bloques («la Es oficial», «a su oficial»).
   - Cada bloque se transcribe y se compara con el texto; repite solo el que salga mal (similitud < 0,8, inicio raro o palabras de más), hasta 4 tomas, y reutiliza las tomas ya generadas.
@@ -195,7 +197,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
       - `salto`: línea de tiempo «+N AÑOS».
       - `bloques`: N fichas de episodio.
     - Usa solo datos verificados en las fuentes; los textos `sub` son descriptivos y cortos.
-    - **El dato debe coincidir con la imagen de arriba:** si un panel `nombre` dice «PETER SAFRAN», la tarjeta muestra a Safran. Ancla el cambio de imagen a la misma palabra que el dato siguiente; si queda una imagen sin dato propio, añádele uno (p. ej. `titulo` «MAN OF TOMORROW» sobre la foto de Gunn).
+    - **El dato debe coincidir con la imagen de arriba:** si un panel `nombre` dice «PETER SAFRAN», la tarjeta muestra a Safran. Ancla el cambio de imagen a la misma palabra que el dato siguiente; si queda una imagen sin dato propio, añádele uno (p. ej. `titulo` «SUPERMAN: EL HOMBRE DEL MAÑANA» sobre la foto de Gunn).
   - **Subtítulos:** debajo del panel de datos: palabra por palabra, en bloques de hasta 3 palabras, y≈1470–1640.
   - **Tarjeta de imagen:** 900×900 en y=290. Deja aire claro bajo las barras del contador (que terminan en y≈230), aprobado por el usuario.
   - **Pausa antes del cierre:** `mezcla.py` deja `PAUSA_FINAL` (0,9 s) tras la última palabra, para que el último dato se lea antes de que entre el panel rojo.

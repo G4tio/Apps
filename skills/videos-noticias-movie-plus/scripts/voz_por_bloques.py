@@ -43,7 +43,7 @@ def recortar(x):
 piezas = []
 for i, texto in enumerate(lineas):
     mejor = None
-    for intento in range(1, 5):
+    for intento in range(1, int(os.environ.get('MAX_TOMAS', '4')) + 1):
         tmp_txt = f'{carpeta}/bloques/b{i:02d}.txt'
         open(tmp_txt, 'w', encoding='utf8').write(texto)
         mp3 = f'{carpeta}/bloques/b{i:02d}_{intento}.mp3'
@@ -56,7 +56,7 @@ for i, texto in enumerate(lineas):
             sys.exit('Error al transcribir (¿ruta del modelo? debe ser la carpeta que CONTIENE el modelo):\n' + r.stderr[-500:])
         oido = norm(r.stderr)
         esperado = norm(texto)
-        sim = difflib.SequenceMatcher(None, ' '.join(esperado), ' '.join(oido)).ratio()
+        sim = difflib.SequenceMatcher(None, ' '.join(esperado), ' '.join(oido), autojunk=False).ratio()
         # palabras de más al inicio (sílabas sueltas): la primera palabra oída debe parecerse a la esperada
         inicio_ok = bool(oido) and difflib.SequenceMatcher(None, oido[0], esperado[0]).ratio() >= 0.5
         extra = len(oido) - len(esperado)
