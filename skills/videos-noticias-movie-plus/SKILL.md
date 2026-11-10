@@ -44,7 +44,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - **Cierre** (≈3 s): «Sigue a Movie Plus para más noticias de cine.» (ajusta si el usuario da otro CTA).
 - Escribe los números como se pronuncian en la versión para voz; mantén otra versión «para pantalla» con cifras (§5).
 - Títulos de películas: usa el título con el que se conoce en Latinoamérica; si difiere del original, menciona el original solo en pantalla.
-- Entrega al usuario: guion en bloques numerados, palabras totales y duración estimada (≈2,6 palabras/s). Espera su aprobación.
+- Entrega al usuario: guion en bloques numerados, palabras totales y duración estimada (≈3,2 palabras/s, ritmo del video de referencia; apunta a ~170–180 palabras en total y 27–34 por noticia). Espera su aprobación.
 
 ## 3. Imágenes
 - El usuario facilita las imágenes finales; indica cuál va en cada noticia. Si no lo dice, pregúntalo en una línea.
