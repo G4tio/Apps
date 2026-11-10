@@ -50,6 +50,17 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - El usuario facilita las imágenes finales; indica cuál va en cada noticia. Si no lo dice, pregúntalo en una línea.
 - Sugiere por noticia 2–3 imágenes concretas: póster oficial, still del tráiler (con el segundo aproximado), foto de prensa del estreno/evento, logo del estudio o plataforma. Da dónde encontrarlas (cuenta oficial, sitio del estudio, IMDb/TMDB, galería de prensa) **sin descargarlas tú**; no descargues fotos de personas.
 - Formatos útiles: póster vertical (va perfecto al centro), still horizontal (se recorta/centra con zoom lento), varios pósters → collage escalonado como en la referencia.
+- **Videos que trae el usuario** (tráileres descargados de TikTok u otras redes):
+  - **Placa final:** córtala siempre. Detecta el primer cuadro con fondo uniforme azul noche (≈ RGB 12,13,25), recorta 0,1 s antes y verifica el último cuadro.
+  - **Audio:** déjalo en **cero**, quitando la pista (`-an`).
+  - **Material:** guárdalo en `public/media/AAAA-MM-DD/` con el prefijo de la noticia (`n2_…`). Esa carpeta no se versiona.
+- **Nunca uses el tráiler completo: solo fragmentos de 1–3 s con las tomas más fuertes.**
+  - Detecta cortes con `select='gt(scene,0.28)'` y arma una hoja de contactos numerada por toma.
+  - Elige 2–5 fragmentos por noticia, alternados con las imágenes fijas.
+  - Evita las tomas con subtítulos quemados o rótulos, salvo la placa del título de la serie o película.
+  - Revisa el primer y el último cuadro de cada fragmento para que no se cuele otra toma.
+  - Guarda la selección en `src/videos/AAAA-MM-DD.json` (fuente, `desde`, `hasta`, descripción de la toma).
+- **Marcas de agua de TikTok:** los tráileres llevan el logo de TikTok en las esquinas. En la edición amplía el clip ~12 % y céntralo dentro del marco para que quede fuera.
 - Mientras falte una imagen: tarjeta de marcador con el título de la película en tipografía de marca; avísalo en la entrega.
 
 ## 4. Voz · Fish Audio

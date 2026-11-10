@@ -1,0 +1,150 @@
+{
+ "fecha": "2026-11-10",
+ "nota": "Solo fragmentos cortos de los tráileres (sin audio). Tiempos en segundos del archivo recortado.",
+ "noticias": [
+  {
+   "n": 1,
+   "tema": "DC Studios",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-10/n1_dc_studios_logo.png"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-10/n1_james_gunn_2.jpg"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-10/n1_peter_safran.jpg"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-10/n1_jeremy_latcham.jpg",
+     "rotulo": "JEREMY LATCHAM"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-10/n1_james_gunn_1.jpg"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "tema": "Godzilla Minus Zero",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n2_godzilla_trailer.mp4",
+     "desde": 0.2,
+     "hasta": 2.8,
+     "toma": "Godzilla ruge"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-10/n2_godzilla_2.jpg"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n2_godzilla_trailer.mp4",
+     "desde": 3.9,
+     "hasta": 5.4,
+     "toma": "avión en vuelo rasante"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n2_godzilla_trailer.mp4",
+     "desde": 22.7,
+     "hasta": 24.5,
+     "toma": "Godzilla entre brasas"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "tema": "Los Juegos del Hambre",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-10/n3_juegos_hambre_poster.png"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n3_juegos_hambre_trailer.mp4",
+     "desde": 32.6,
+     "hasta": 35.2,
+     "toma": "arena con la Cornucopia"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n3_juegos_hambre_trailer.mp4",
+     "desde": 41.1,
+     "hasta": 43.6,
+     "toma": "tributo en primer plano"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n3_juegos_hambre_trailer.mp4",
+     "desde": 96.5,
+     "hasta": 97.8,
+     "toma": "Haymitch con la serpiente"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "tema": "Los Anillos de Poder T3",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n4_anillos_trailer.mp4",
+     "desde": 90.7,
+     "hasta": 92.9,
+     "toma": "título LOS ANILLOS DE PODER"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n4_anillos_trailer.mp4",
+     "desde": 4.2,
+     "hasta": 5.15,
+     "toma": "el anillo brillando"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n4_anillos_trailer.mp4",
+     "desde": 55.15,
+     "hasta": 57.0,
+     "toma": "Sauron con corona"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n4_anillos_trailer.mp4",
+     "desde": 84.9,
+     "hasta": 86.0,
+     "toma": "silueta entre fuego (Balrog)"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-10/n4_anillos_trailer.mp4",
+     "desde": 61.9,
+     "hasta": 63.0,
+     "toma": "jinete en la playa"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "tema": "Ebenezer",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-10/n5_ebenezer_poster.jpg"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-10/n5_ebenezer_still.jpg"
+    }
+   ]
+  }
+ ]
+}
