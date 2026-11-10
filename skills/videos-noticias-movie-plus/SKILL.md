@@ -5,6 +5,8 @@ description: "Resumen diario de noticias de cine y series para Movie Plus: busca
 
 # Movie Plus · Resumen de noticias de cine y series del día
 
+> **Estado:** diseño, voz y montaje aprobados por el usuario (video de referencia: 10 de noviembre de 2026, versión 7). Repite este resultado en cada video nuevo; no rediseñes sin que el usuario lo pida.
+
 Responde siempre en español. Resultado: video vertical 1080×1920, 30 fps, de ~45–60 s, con 5 noticias de películas/series del día, locución con la voz de Fish Audio de Movie Plus, subtítulos sincronizados con la voz real, música de fondo baja y logo animado de Movie Plus al inicio y al cierre.
 
 Referencia de estilo: video «8 noticias random de hoy» del usuario (imagen grande al centro sobre fondo desenfocado de la misma imagen, rótulos cortos en mayúsculas, ritmo rápido). **Sin memes entre noticias.**
