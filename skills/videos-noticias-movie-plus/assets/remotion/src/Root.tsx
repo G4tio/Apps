@@ -1,27 +1,21 @@
 import React from 'react';
-import {Composition, continueRender, delayRender, staticFile} from 'remotion';
+import {Composition, continueRender, delayRender} from 'remotion';
+import {FUENTES_CSS} from './fuentes';
 import {Intro, INTRO_DUR} from './Intro';
 import {Cierre, CIERRE_DUR} from './Cierre';
 import {MoviePlusNews, NEWS_DUR} from './MoviePlusNews';
 import {W, H, FPS} from './marca';
 
-const fuentes: [string, string, FontFaceDescriptors][] = [
-  ['Saira Condensed', 'fonts/SairaCondensed-Black.ttf', {weight: '900'}],
-  ['Saira Condensed', 'fonts/SairaCondensed-Bold.ttf', {weight: '700'}],
-  ['Montserrat', 'fonts/Montserrat.ttf', {weight: '100 900'}],
-  ['Montserrat', 'fonts/Montserrat-Italic.ttf', {weight: '100 900', style: 'italic'}],
-];
-const h = delayRender('fuentes', {timeoutInMilliseconds: 120000});
-// Cada fuente tiene su propio límite de 15 s; pase lo que pase se libera el render.
-const conLimite = <T,>(p: Promise<T>) =>
-  Promise.race([p, new Promise<null>((r) => setTimeout(() => r(null), 15000))]);
-Promise.allSettled(
-  fuentes.map(([fam, src, d]) =>
-    conLimite(new FontFace(fam, `url(${staticFile(src)})`, d).load()).then((ff) => {
-      if (ff) document.fonts.add(ff);
-    }),
-  ),
-).finally(() => continueRender(h));
+// Fuentes incrustadas como data URI: cargan al instante, sin peticiones al servidor.
+const estilo = document.createElement('style');
+estilo.textContent = FUENTES_CSS;
+document.head.appendChild(estilo);
+const h = delayRender('fuentes', {timeoutInMilliseconds: 60000});
+Promise.allSettled([
+  document.fonts.load("900 italic 40px 'Saira Condensed'"),
+  document.fonts.load("700 italic 40px 'Saira Condensed'"),
+  document.fonts.load("600 40px 'Montserrat'"),
+]).finally(() => continueRender(h));
 
 export const RemotionRoot: React.FC = () => (
   <>

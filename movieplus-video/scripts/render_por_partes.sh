@@ -9,7 +9,7 @@ for ((a=0; a<TOTAL; a+=TRAMO)); do
   f=out/partes/p_$(printf %05d $a).mp4
   for intento in 1 2 3; do
     [ -s "$f" ] && break
-    conc=$([ $intento -eq 1 ] && echo 2 || echo 1)  # si falla, reintenta con una sola pestaña
+    conc=$([ $intento -eq 1 ] && echo 3 || echo 1)  # si falla, reintenta con una sola pestaña
     echo "tramo $a-$b (intento $intento, concurrencia $conc)"
     npx remotion render MoviePlusNews "$f" --frames=$a-$b --muted --codec=h264 --crf=17 \
       --concurrency=$conc --timeout=180000 --browser-executable=/opt/pw-browsers/chromium --log=error || rm -f "$f"
