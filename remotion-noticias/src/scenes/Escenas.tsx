@@ -4,9 +4,10 @@ import { C, F, P, W, ent, inOut, lerp, outBack, outCubic } from "../theme";
 import { Encabezado, Escenario, Fondo, Subtitulos } from "../components";
 import { Ilustracion } from "../viz";
 import { FECHA_REFERENCIA, FUENTES, NOTICIAS, Noticia as N } from "../data";
+import { BLOQUES } from "../timing";
 
 /* ---------- Resumen inicial (como en el video de referencia) ---------- */
-export const Resumen: React.FC<{ dur: number }> = ({ dur }) => {
+export const Resumen: React.FC<{ dur: number; voz: number }> = ({ dur, voz }) => {
   const f = useCurrentFrame();
   const total = NOTICIAS.length;
   const n = Math.round(lerp(0, total, P(f, 6, 22, outCubic)));
@@ -15,7 +16,7 @@ export const Resumen: React.FC<{ dur: number }> = ({ dur }) => {
     <AbsoluteFill>
       <Fondo glowY={900} />
       <Encabezado seccion="RESUMEN DEL DÍA" n={0} total={total} avance={0} derecha={`${String(total).padStart(2, "0")} NOTICIAS`} />
-      <Subtitulos captions={[{ at: 0.2, text: "Estas son las noticias importantes de *Guatemala*" }]} fin={dur} />
+      <Subtitulos bloque={0} offset={voz + Math.round(BLOQUES[0].inicio * 30)} fin={dur} />
       <div style={{
         position: "absolute", left: 0, right: 0, top: 640, textAlign: "center", opacity: P(f, 4, 8),
         transform: `scale(${0.5 + 0.5 * k})`, transformOrigin: "50% 60%",
@@ -41,8 +42,8 @@ export const Noticia: React.FC<{ noticia: N; n: number; dur: number }> = ({ noti
     <AbsoluteFill>
       <Fondo glowY={917} />
       <Encabezado seccion={noticia.seccion} n={n} total={NOTICIAS.length} avance={f / dur} />
-      <Subtitulos captions={noticia.captions} fin={dur} />
-      <Escenario etiqueta={noticia.etiqueta} etiquetaAt={84}>
+      <Subtitulos bloque={n} fin={dur} />
+      <Escenario etiqueta={noticia.etiqueta} etiquetaAt={Math.round((noticia.etiquetaAt ?? 3) * 30)}>
         <Ilustracion viz={noticia.viz} />
       </Escenario>
     </AbsoluteFill>

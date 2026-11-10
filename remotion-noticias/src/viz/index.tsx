@@ -2,6 +2,7 @@ import React from "react";
 import { interpolate, staticFile, useCurrentFrame } from "remotion";
 import { C, F, P, inOut, lerp, outBack, outCubic } from "../theme";
 import type { Viz } from "../data";
+import { Baldetti, Belice, Inflacion, Limitadores, Mosh, Sismo } from "./nacional";
 
 // Todas las ilustraciones dibujan en un lienzo 1080×800 con centro en (540, 400).
 const Lienzo: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -244,5 +245,11 @@ export const Ilustracion: React.FC<{ viz: Viz }> = ({ viz }) => {
     case "banderas": return <Banderas />;
     case "barco": return <Barco />;
     case "patrulla": return <Patrulla />;
+    case "sismo": return <Sismo />;
+    case "mosh": return <Mosh />;
+    case "limitadores": return <Limitadores />;
+    case "inflacion": return <Inflacion />;
+    case "baldetti": return <Baldetti />;
+    case "belice": return <Belice />;
   }
 };

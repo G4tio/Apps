@@ -1,6 +1,7 @@
 import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 import { C, F, P, W, outBack, outCubic } from "./theme";
+import { FRASES } from "./timing";
 
 /* ---------- Fondo común: degradado marino + trama de puntos ---------- */
 export const Fondo: React.FC<{ glowY?: number }> = ({ glowY = 900 }) => (
@@ -85,51 +86,40 @@ export const Encabezado: React.FC<{ seccion: string; n: number; total: number; a
   );
 };
 
-/* ---------- Subtítulos cinéticos palabra por palabra ---------- */
-type Tok = { w: string; kind: "n" | "k" | "c" };
-const tokenize = (text: string): Tok[] => {
-  const out: Tok[] = [];
-  const re = /\*([^*]+)\*|#([^#]+)#|(\S+)/g;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(text))) {
-    if (m[1]) m[1].split(" ").forEach((w) => out.push({ w, kind: "k" }));
-    else if (m[2]) out.push({ w: m[2], kind: "c" });
-    else out.push({ w: m[3], kind: "n" });
-  }
-  return out;
-};
-
-export const Subtitulos: React.FC<{ captions: { at: number; text: string }[]; fin: number }> = ({ captions, fin }) => {
+/* ---------- Subtítulos cinéticos palabra por palabra, con los tiempos reales de la voz ---------- */
+// Cada palabra entra atenuada ~0,26 s antes de pronunciarse y se ilumina en su t0;
+// la frase desaparece justo antes de la siguiente.
+export const Subtitulos: React.FC<{ bloque: number; offset?: number; fin: number }> = ({ bloque, offset = 0, fin }) => {
   const f = useCurrentFrame();
+  const frases = FRASES.filter((x) => x.b === bloque);
+  const fr = (t: number) => offset + Math.round(t * 30);
   return (
     <>
-      {captions.map((c, i) => {
-        const start = Math.round(c.at * 30);
-        const end = i + 1 < captions.length ? Math.round(captions[i + 1].at * 30) - 2 : fin;
-        if (f < start - 8 || f > end) return null;
-        const out = 1 - P(f, end - 5, 5);
-        const toks = tokenize(c.text);
+      {frases.map((c, i) => {
+        const start = fr(c.toks[0].t) - 8;
+        const end = i + 1 < frases.length ? fr(frases[i + 1].toks[0].t) - 10 : fin;
+        if (f < start || f > end) return null;
+        const out = 1 - P(f, end - 4, 4);
         return (
           <div
             key={i}
             style={{
-              position: "absolute", left: 70, right: 70, top: 262, height: 240,
+              position: "absolute", left: 70, right: 70, top: 262, height: 200,
               display: "flex", flexWrap: "wrap", alignContent: "flex-start", justifyContent: "flex-start",
               columnGap: 22, opacity: out,
               fontFamily: F.exo, fontWeight: 800, fontSize: 72, lineHeight: "90px",
             }}
           >
-            {toks.map((t, j) => {
-              // cada palabra entra atenuada ~0,26 s antes y se ilumina cuando se pronuncia
-              const ws = start + j * 4;
-              const p = P(f, ws - 8, 8, outCubic);
-              const on = P(f, ws, 4);
-              const color = t.kind === "k" ? C.celeste : t.kind === "c" ? C.claro : C.blanco;
+            {c.toks.map((t, j) => {
+              const t0 = fr(t.t) - 2;
+              const p = P(f, t0 - 8, 8, outCubic);
+              const on = P(f, t0, 3);
+              const color = t.k === "k" ? C.celeste : t.k === "c" ? C.claro : C.blanco;
               return (
                 <span
                   key={j}
                   style={{
-                    display: "inline-block", color,
+                    display: "inline-block", color, whiteSpace: "nowrap",
                     opacity: p * (0.45 + 0.55 * on),
                     transform: `translateY(${(1 - p) * 18}px) scale(${0.92 + 0.08 * p})`,
                     transformOrigin: "0 100%",

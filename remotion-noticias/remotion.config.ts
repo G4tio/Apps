@@ -8,4 +8,4 @@ Config.setVideoImageFormat("jpeg");
 Config.setJpegQuality(92);
 Config.setCodec("h264");
 Config.setPixelFormat("yuv420p");
-Config.setConcurrency(4);
+Config.setConcurrency(Math.min(4, require("os").cpus().length));
