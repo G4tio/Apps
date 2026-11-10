@@ -55,16 +55,17 @@ def mezcla(dur, eventos, nombre):
         w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
         w.writeframes((st * 32767).astype(np.int16).tobytes())
 
-mezcla(76 / 30, [
-    (0, whoosh(0.32), 0.8), (6, whoosh(0.5), 0.5), (22, impacto(), 1.0),
-    (29, click(1500), 1), (30, click(1700), 1), (32, click(1900), 1), (34, click(2100), 1), (36, click(2300), 1),
-    (37, click(2600, 0.03), 0.5), (39, click(2700, 0.03), 0.5), (41, click(2800, 0.03), 0.5), (43, click(2900, 0.03), 0.5),
-    (42, brillo(), 1), (60, whoosh(0.45), 0.9),
-], 'public/sfx/intro.wav')
+if __name__ == '__main__':
+    mezcla(76 / 30, [
+        (0, whoosh(0.32), 0.8), (6, whoosh(0.5), 0.5), (22, impacto(), 1.0),
+        (29, click(1500), 1), (30, click(1700), 1), (32, click(1900), 1), (34, click(2100), 1), (36, click(2300), 1),
+        (37, click(2600, 0.03), 0.5), (39, click(2700, 0.03), 0.5), (41, click(2800, 0.03), 0.5), (43, click(2900, 0.03), 0.5),
+        (42, brillo(), 1), (60, whoosh(0.45), 0.9),
+    ], 'public/sfx/intro.wav')
 
-mezcla(96 / 30, [
-    (0, whoosh(0.3), 0.8), (10, pop(), 0.8), (19, impacto(), 1.0),
-    (25, click(1500), 1), (26, click(1700), 1), (28, click(1900), 1), (30, click(2100), 1), (32, click(2300), 1),
-    (40, pop(), 1.0), (52, brillo(), 1), (80, whoosh(0.5, sube=False), 0.6),
-], 'public/sfx/cierre.wav')
-print('ok')
+    mezcla(96 / 30, [
+        (0, whoosh(0.3), 0.8), (10, pop(), 0.8), (19, impacto(), 1.0),
+        (25, click(1500), 1), (26, click(1700), 1), (28, click(1900), 1), (30, click(2100), 1), (32, click(2300), 1),
+        (40, pop(), 1.0), (52, brillo(), 1), (80, whoosh(0.5, sube=False), 0.6),
+    ], 'public/sfx/cierre.wav')
+    print('ok')

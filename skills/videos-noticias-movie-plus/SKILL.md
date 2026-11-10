@@ -60,7 +60,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
   - Evita las tomas con subtítulos quemados o rótulos, salvo la placa del título de la serie o película.
   - Revisa el primer y el último cuadro de cada fragmento para que no se cuele otra toma.
   - Guarda la selección en `src/videos/AAAA-MM-DD.json` (fuente, `desde`, `hasta`, descripción de la toma).
-- **Marcas de agua de TikTok:** los tráileres llevan el logo de TikTok en las esquinas. En la edición amplía el clip ~12 % y céntralo dentro del marco para que quede fuera.
+- **Marcas de agua de TikTok:** los tráileres llevan el logo y el @usuario en dos posiciones fijas: a la izquierda a media altura y abajo a la derecha. `scripts/fragmentos.py` las borra con `delogo` (coordenadas para videos 576×1024; verifica con una captura si el video tiene otro tamaño). En la tarjeta el clip va ampliado ×1,2; usa `"zoom": 1.0` en el medio si es una placa de título que no debe recortarse.
 - Mientras falte una imagen: tarjeta de marcador con el título de la película en tipografía de marca; avísalo en la entrega.
 
 ## 4. Voz · Fish Audio
@@ -69,6 +69,10 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
   `python3 scripts/fish_tts.py locucion.txt voz.mp3` (modelo `s1` por defecto; `--modelo speech-1.6` si el usuario lo prefiere).
 - `locucion.txt` = solo el texto aprobado, con números en palabras y nombres extranjeros escritos como se pronuncian si la voz falla (p. ej. «Tímoti Shalamé»). Separa noticias con un salto de línea; añade «…» donde quieras una micro‑pausa.
 - Escucha el resultado vía transcripción (§5): si una palabra sale mal, corrige la grafía solo en `locucion.txt` y regenera ese fragmento o todo.
+- **Revisa artefactos de Fish Audio:** a veces mete una sílaba suelta entre bloques (p. ej. «Oria» tras el gancho).
+  - Detéctala comparando la transcripción con el guion y midiendo el volumen por tramos de 0,1 s.
+  - Quítala con `atrim` + `acrossfade` (20 ms) y guarda `voz/voz_limpia.wav`.
+  - Avísale al usuario qué quitaste.
 - Si el usuario trae su propio audio, úsalo y salta este paso.
 
 ## 5. Sincronía real (no la estimes)
@@ -77,7 +81,14 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - `ffmpeg -i voz.mp3 -ar 16000 -ac 1 voz16k.wav && python3 scripts/transcribir.py voz16k.wav <carpeta_modelo> > palabras.json` (solo numpy + onnxruntime; 80 ms por cuadro).
 - Alinea guion↔transcripción con Needleman–Wunsch (similitud `difflib.SequenceMatcher`, gap −0,55) e interpola las no emparejadas. El ASR deforma nombres propios: usa la ortografía del guion con el tiempo detectado.
 - Aparición de cada palabra en subtítulos = `t0 − 0,08`. Corte entre noticias = `t0` de la primera palabra de la siguiente − 0,04.
-- Genera `src/timing.json` con `{palabras:[{w,pantalla,t}], noticias:[{inicio,fin}], cues:{}}`, sumando el desfase de la intro.
+- Usa `scripts/alinear.py` del proyecto: `python3 scripts/alinear.py public/media/AAAA-MM-DD src/videos/AAAA-MM-DD.json src/videos/AAAA-MM-DD.timing.json`.
+- El plan del día (`src/videos/AAAA-MM-DD.json`) define:
+  - `pantalla`: cifras en pantalla, p. ej. «treinta y un» → «31».
+  - `claves`: palabras que van en rojo en los subtítulos.
+  - Por noticia: `fondo` (imagen desenfocada de fondo), `medios` y `rotulos`.
+    - Cada medio y cada rótulo lleva `en`: la palabra que lo dispara; usa «La#2» para la segunda aparición.
+    - Cada medio puede llevar `ajuste` (`contain` para pósters y logos), `foco` y `zoom`.
+- **Reparte los medios según el espacio que les toca**: un fragmento de video no debe quedar en un espacio mucho mayor que su duración (máx. ralentización ×0,6); las imágenes absorben los espacios largos.
 
 ## 6. Diseño del video
 **Identidad Movie Plus** (confirmada con el logo oficial):
@@ -122,10 +133,31 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 
 ## 7. Edición con Remotion
 - El usuario autoriza usar Remotion. Parte de la plantilla `assets/remotion/` de la skill (copiada a `movieplus-video/`, `npm install`; Intro y Cierre ya hechos) y agrega ahí la composición del video. Renderiza siempre con `--browser-executable=/opt/pw-browsers/chromium` y recodifica a `yuv420p` con ffmpeg. Composición `MoviePlusNews` 1080×1920, 30 fps, duración = intro + voz + cierre.
-- Componentes: `Intro`, `Gancho`, `Noticia` (props: imágenes, rótulos con tiempos, índice), `Subtitulos` (lee `timing.json`), `Cierre`. Usa `interpolate`/`spring`, `<Img>` con `staticFile`, `<Audio>` para voz (con `startFrom`/`Sequence` tras la intro) y música.
-- **Música de fondo baja**: pista que dé el usuario o una sin derechos; volumen ≈ −22 dB bajo la voz (≈0,08–0,12 en Remotion) con ducking suave, fade in/out; whoosh en cada transición y golpe en el logo.
-- Revisión antes del render: renderiza fotogramas sueltos (`npx remotion still MoviePlusNews out/f.png --frame=N`) en 8–12 instantes clave y arma una hoja de contactos; corrige textos cortados y solapamientos.
-- Render: `npx remotion render MoviePlusNews out/movieplus_AAAA-MM-DD.mp4 --codec=h264 --crf=18 --concurrency=4`. Si Remotion no puede ejecutarse (sin red para npm o sin Chromium compatible: usa `--browser-executable=/opt/pw-browsers/chromium`), recurre a la misma maqueta en HTML + `renderFrame(t)` con Playwright y ffmpeg, y avísalo.
+- **Composición `MoviePlusNews`** (`src/MoviePlusNews.tsx`, ya hecha). Lee el plan y el `timing` del día; para un día nuevo cambia los dos `import` de `./videos/…`.
+  - **Intro:** el panel rojo final descubre el gancho; la voz entra a los 2,4 s.
+  - **Gancho:** «5» gigante en rojo y las líneas NOTICIAS / DE CINE / Y SERIES / DE HOY, que entran con su palabra.
+  - **Noticias:**
+    - Encabezado «NOTICIA 0n / 05» con la estrella y una barra de progreso de 5 segmentos.
+    - Fondo: la imagen de la noticia desenfocada.
+    - Tarjeta 900×930 con esquinas redondeadas y medios que cambian en su palabra.
+    - Rótulos grandes en Saira Condensed itálica con contorno; las cifras cuentan hacia arriba y cada rótulo dura máximo 2,8 s.
+  - **Subtítulos:** palabra por palabra, en bloques de hasta 3 palabras, y y≈1262–1460.
+  - **Transición:** barra roja diagonal (con filo blanco) en cada cambio de noticia.
+  - **Cierre:** entra con el panel rojo en la frase «Sigue a Movie Plus».
+- **Orden de trabajo para cada video:**
+  1. `fish_tts.py` y luego limpiar artefactos.
+  2. `transcribir.py` → `voz/palabras_asr.json`.
+  3. `alinear.py`.
+  4. `mezcla.py public/media/AAAA-MM-DD src/videos/AAAA-MM-DD.timing.json [musica.wav]`: calcula el montaje (intro 76 cuadros, cierre 96) y mezcla voz + música con ducking + whooshes + sonidos de logos en `mezcla.wav`.
+  5. `fragmentos.py src/videos/AAAA-MM-DD.timing.json`: corta cada fragmento a la duración exacta de su espacio, sin audio y sin marca de agua.
+  6. Hoja de contactos con `npx remotion still` en ~20 cuadros.
+  7. Render.
+- **Música de fondo baja:** pista que dé el usuario o, si no hay, la que genera `mezcla.py` (pad Am–F–C–G a 96 BPM, bajo y hi-hat suaves), a ≈ −26 dBFS y con ducking bajo la voz.
+- **Errores conocidos:**
+  - `<OffthreadVideo>` debe ir dentro de un `<Sequence from={inicio}>`; si no, se ve negro.
+  - No uses `playbackRate` con recortes: por eso los fragmentos se preparan con ffmpeg.
+  - Si la carga de fuentes da timeout con concurrencia alta, renderiza con `--concurrency=3 --timeout=180000`.
+- **Render:** `npx remotion render MoviePlusNews out/raw.mp4 --codec=h264 --crf=17 --concurrency=3 --timeout=180000 --browser-executable=/opt/pw-browsers/chromium` (~8 min para 1 min de video) y recodifica a `yuv420p` con `+faststart`.
 
 ## 8. Revisión y entrega
 - `ffprobe`: 1080×1920, 30 fps, H.264 yuv420p, AAC; `volumedetect`: pico < −1 dB, voz clara sobre la música.

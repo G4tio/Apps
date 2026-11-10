@@ -21,16 +21,21 @@ const T: Tiempos = {
   brillo: [52, 66],
 };
 
-export const Cierre: React.FC = () => {
+export const Cierre: React.FC<{sinAudio?: boolean; transparenteAlInicio?: boolean}> = ({
+  sinAudio,
+  transparenteAlInicio,
+}) => {
   const f = useCurrentFrame();
+  // Mientras el panel rojo sube (cuadros 0–8) se sigue viendo la última noticia.
+  const tapado = !transparenteAlInicio || f >= 8;
   const subir = lerp(0, -140, outExpo(prog(f, 36, 48)));
   const pill = prog(f, 40, 50);
   const lema = outCubic(prog(f, 46, 56));
   const fuera = inOutCubic(prog(f, 80, 96));
   return (
-    <AbsoluteFill style={{background: MARCA.fondo}}>
+    <AbsoluteFill style={{background: tapado ? MARCA.fondo : 'transparent'}}>
       <AbsoluteFill style={{opacity: 1 - fuera, transform: `scale(${lerp(1, 0.94, fuera)})`}}>
-        <Fondo f={f} glow={prog(f, 8, 24)} />
+        {tapado ? <Fondo f={f} glow={prog(f, 8, 24)} /> : null}
         <LogoAnim f={f} t={T} logoY={subir} />
         {/* CTA */}
         <div
@@ -77,7 +82,7 @@ export const Cierre: React.FC = () => {
           </div>
         </div>
       </AbsoluteFill>
-      <Audio src={staticFile('sfx/cierre.wav')} />
+      {!sinAudio ? <Audio src={staticFile('sfx/cierre.wav')} /> : null}
     </AbsoluteFill>
   );
 };

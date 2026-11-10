@@ -2,6 +2,7 @@ import React from 'react';
 import {Composition, continueRender, delayRender, staticFile} from 'remotion';
 import {Intro, INTRO_DUR} from './Intro';
 import {Cierre, CIERRE_DUR} from './Cierre';
+import {MoviePlusNews, NEWS_DUR} from './MoviePlusNews';
 import {W, H, FPS} from './marca';
 
 const fuentes: [string, string, FontFaceDescriptors][] = [
@@ -21,5 +22,6 @@ export const RemotionRoot: React.FC = () => (
   <>
     <Composition id="Intro" component={Intro} durationInFrames={INTRO_DUR} fps={FPS} width={W} height={H} />
     <Composition id="Cierre" component={Cierre} durationInFrames={CIERRE_DUR} fps={FPS} width={W} height={H} />
+    <Composition id="MoviePlusNews" component={MoviePlusNews} durationInFrames={NEWS_DUR} fps={FPS} width={W} height={H} />
   </>
 );
