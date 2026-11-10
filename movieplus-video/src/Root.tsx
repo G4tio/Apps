@@ -11,12 +11,17 @@ const fuentes: [string, string, FontFaceDescriptors][] = [
   ['Montserrat', 'fonts/Montserrat.ttf', {weight: '100 900'}],
   ['Montserrat', 'fonts/Montserrat-Italic.ttf', {weight: '100 900', style: 'italic'}],
 ];
-const h = delayRender('fuentes');
-Promise.all(
+const h = delayRender('fuentes', {timeoutInMilliseconds: 120000});
+// Cada fuente tiene su propio límite de 15 s; pase lo que pase se libera el render.
+const conLimite = <T,>(p: Promise<T>) =>
+  Promise.race([p, new Promise<null>((r) => setTimeout(() => r(null), 15000))]);
+Promise.allSettled(
   fuentes.map(([fam, src, d]) =>
-    new FontFace(fam, `url(${staticFile(src)})`, d).load().then((ff) => document.fonts.add(ff)),
+    conLimite(new FontFace(fam, `url(${staticFile(src)})`, d).load()).then((ff) => {
+      if (ff) document.fonts.add(ff);
+    }),
   ),
-).then(() => continueRender(h));
+).finally(() => continueRender(h));
 
 export const RemotionRoot: React.FC = () => (
   <>

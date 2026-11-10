@@ -157,7 +157,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
   - `<OffthreadVideo>` debe ir dentro de un `<Sequence from={inicio}>`; si no, se ve negro.
   - No uses `playbackRate` con recortes: por eso los fragmentos se preparan con ffmpeg.
   - Si la carga de fuentes da timeout con concurrencia alta, renderiza con `--concurrency=3 --timeout=180000`.
-- **Render:** `npx remotion render MoviePlusNews out/raw.mp4 --codec=h264 --crf=17 --concurrency=3 --timeout=180000 --browser-executable=/opt/pw-browsers/chromium` (~8 min para 1 min de video) y recodifica a `yuv420p` con `+faststart`.
+- **Render:** `bash scripts/render_por_partes.sh <total_cuadros> public/media/AAAA-MM-DD/mezcla.wav out/movieplus_AAAA-MM-DD.mp4` (total en `montaje.total` del timing). Renderiza en tramos de 460 cuadros sin audio (reintenta solo el tramo que falle), los une y les pone la mezcla; sale en yuv420p con `+faststart`. Unos 10–12 min por minuto de video.
 
 ## 8. Revisión y entrega
 - `ffprobe`: 1080×1920, 30 fps, H.264 yuv420p, AAC; `volumedetect`: pico < −1 dB, voz clara sobre la música.
