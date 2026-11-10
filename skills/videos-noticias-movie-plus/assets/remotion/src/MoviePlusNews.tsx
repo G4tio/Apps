@@ -120,7 +120,9 @@ const Escena: React.FC<{nt: Noticia; frame: number}> = ({nt, frame}) => {
   const rot = nt.rotulos.map((r, i) => {
     const a = fr(r.t);
     const sig = i + 1 < nt.rotulos.length ? fr(nt.rotulos[i + 1].t) : fin;
-    return {r, a, b: Math.min(sig, a + Math.round(2.8 * FPS))};
+    // el rótulo se va cuando cambia la imagen (mínimo 1 s en pantalla)
+    const cambio = medios.map((x) => x.a).find((x) => x > a + FPS) ?? fin;
+    return {r, a, b: Math.min(sig, cambio, a + Math.round(2.8 * FPS))};
   });
   return (
     <AbsoluteFill>
