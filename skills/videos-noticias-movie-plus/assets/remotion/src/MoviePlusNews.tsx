@@ -44,7 +44,7 @@ const contorno = (px: number): React.CSSProperties => ({
 });
 
 // Tarjeta principal
-const CARD = {x: 90, y: 240, w: 900, h: 900, r: 28};
+const CARD = {x: 90, y: 290, w: 900, h: 900, r: 28};
 const ZOOM_VIDEO = 1.2; // saca del encuadre la marca de agua de TikTok
 
 // ---------- medio (imagen o fragmento de video) ----------
@@ -284,7 +284,7 @@ const Subtitulos: React.FC<{frame: number}> = ({frame}) => {
   const bl = BLOQUES_SUB.find((x) => frame >= x.a && frame < x.b);
   if (!bl) return null;
   return (
-    <div style={{position: 'absolute', left: 60, width: W - 120, top: 1402, minHeight: 180, display: 'flex',
+    <div style={{position: 'absolute', left: 60, width: W - 120, top: 1470, minHeight: 170, display: 'flex',
       flexWrap: 'wrap', justifyContent: 'center', alignContent: 'center', columnGap: 18, rowGap: 0}}>
       {bl.pal.map((p, i) => {
         const a = fr(p.t);

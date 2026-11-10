@@ -185,7 +185,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
     - Encabezado «NOTICIA 0n / 05» con la estrella y una barra de progreso de 5 segmentos.
     - Fondo: la imagen de la noticia desenfocada.
     - Tarjeta 900×930 con esquinas redondeadas y medios que cambian en su palabra.
-    - **Datos debajo de la imagen, nunca encima** (pedido del usuario): panel de 900×212 en y≈1166 (`src/PanelDatos.tsx`), con borde rojo a la izquierda. Al empezar la noticia muestra `titulo` + `categoria` (definidos por noticia en el plan); luego cada dato entra en su palabra, deslizándose.
+    - **Datos debajo de la imagen, nunca encima** (pedido del usuario): panel de 900×212 en y=1226 (`src/PanelDatos.tsx`), con borde rojo a la izquierda. Al empezar la noticia muestra `titulo` + `categoria` (definidos por noticia en el plan); luego cada dato entra en su palabra, deslizándose.
     - **Cada dato se ilustra con motion graphics** según su `tipo`:
       - `nombre`: avatar e identificación.
       - `fecha`: calendario que se voltea, con `mes` y `dia`.
@@ -196,8 +196,8 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
       - `bloques`: N fichas de episodio.
     - Usa solo datos verificados en las fuentes; los textos `sub` son descriptivos y cortos.
     - **El dato debe coincidir con la imagen de arriba:** si un panel `nombre` dice «PETER SAFRAN», la tarjeta muestra a Safran. Ancla el cambio de imagen a la misma palabra que el dato siguiente; si queda una imagen sin dato propio, añádele uno (p. ej. `titulo` «MAN OF TOMORROW» sobre la foto de Gunn).
-  - **Subtítulos:** más abajo, debajo del panel de datos: palabra por palabra, en bloques de hasta 3 palabras, y≈1402–1580.
-  - **Tarjeta de imagen:** 900×900 en y=240.
+  - **Subtítulos:** debajo del panel de datos: palabra por palabra, en bloques de hasta 3 palabras, y≈1470–1640.
+  - **Tarjeta de imagen:** 900×900 en y=290. Deja aire claro bajo las barras del contador (que terminan en y≈230), aprobado por el usuario.
   - **Pausa antes del cierre:** `mezcla.py` deja `PAUSA_FINAL` (0,9 s) tras la última palabra, para que el último dato se lea antes de que entre el panel rojo.
   - **Transición:** barra roja diagonal (con filo blanco) en cada cambio de noticia.
   - **Cierre:** entra con el panel rojo tras la última noticia, sin voz.

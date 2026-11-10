@@ -1140,7 +1140,8 @@
      "hasta": 2.8,
      "toma": "Godzilla ruge",
      "en": null,
-     "t": 13.08
+     "t": 13.08,
+     "archivo": "media/2026-11-10/frag/n2_0.mp4"
     },
     {
      "tipo": "imagen",
@@ -1155,7 +1156,8 @@
      "hasta": 5.4,
      "toma": "avión en vuelo rasante",
      "en": "Es",
-     "t": 18.36
+     "t": 18.36,
+     "archivo": "media/2026-11-10/frag/n2_2.mp4"
     },
     {
      "tipo": "video",
@@ -1164,7 +1166,8 @@
      "hasta": 24.5,
      "toma": "Godzilla entre brasas",
      "en": "historia",
-     "t": 19.64
+     "t": 19.64,
+     "archivo": "media/2026-11-10/frag/n2_3.mp4"
     },
     {
      "tipo": "imagen",
@@ -1214,7 +1217,8 @@
      "hasta": 35.2,
      "toma": "arena con la Cornucopia",
      "en": "Es",
-     "t": 26.92
+     "t": 26.92,
+     "archivo": "media/2026-11-10/frag/n3_1.mp4"
     },
     {
      "tipo": "video",
@@ -1223,7 +1227,8 @@
      "hasta": 97.8,
      "toma": "Haymitch con la serpiente",
      "en": "y",
-     "t": 29.0
+     "t": 29.0,
+     "archivo": "media/2026-11-10/frag/n3_2.mp4"
     },
     {
      "tipo": "video",
@@ -1232,7 +1237,8 @@
      "hasta": 43.6,
      "toma": "tributo en primer plano",
      "en": "más",
-     "t": 30.12
+     "t": 30.12,
+     "archivo": "media/2026-11-10/frag/n3_3.mp4"
     }
    ],
    "rotulos": [
@@ -1270,7 +1276,8 @@
      "toma": "título LOS ANILLOS DE PODER",
      "en": null,
      "zoom": 1.0,
-     "t": 32.12
+     "t": 32.12,
+     "archivo": "media/2026-11-10/frag/n4_0.mp4"
     },
     {
      "tipo": "video",
@@ -1279,7 +1286,8 @@
      "hasta": 57.0,
      "toma": "Sauron con corona",
      "en": "con",
-     "t": 34.04
+     "t": 34.04,
+     "archivo": "media/2026-11-10/frag/n4_1.mp4"
     },
     {
      "tipo": "video",
@@ -1288,7 +1296,8 @@
      "hasta": 5.15,
      "toma": "el anillo brillando",
      "en": "Prime",
-     "t": 35.16
+     "t": 35.16,
+     "archivo": "media/2026-11-10/frag/n4_2.mp4"
     },
     {
      "tipo": "video",
@@ -1297,7 +1306,8 @@
      "hasta": 63.0,
      "toma": "jinete en la playa",
      "en": "La",
-     "t": 36.04
+     "t": 36.04,
+     "archivo": "media/2026-11-10/frag/n4_3.mp4"
     },
     {
      "tipo": "video",
@@ -1306,7 +1316,8 @@
      "hasta": 86.0,
      "toma": "silueta entre fuego",
      "en": "y",
-     "t": 37.48
+     "t": 37.48,
+     "archivo": "media/2026-11-10/frag/n4_4.mp4"
     }
    ],
    "rotulos": [

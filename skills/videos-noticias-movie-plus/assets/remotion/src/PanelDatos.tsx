@@ -9,7 +9,7 @@ export type Dato = {
   categoria?: string;
 };
 
-export const PANEL = {x: 90, y: 1166, w: 900, h: 212};
+export const PANEL = {x: 90, y: 1226, w: 900, h: 212};
 
 // Tipografía de los datos: Bebas Neue (distinta de los subtítulos, que van en Montserrat Black).
 const SAIRA: React.CSSProperties = {fontFamily: 'Bebas Neue', fontWeight: 400, fontStyle: 'normal', letterSpacing: '0.02em'};
