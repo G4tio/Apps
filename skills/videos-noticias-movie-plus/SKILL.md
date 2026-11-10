@@ -75,9 +75,31 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - Clave: nunca en el chat ni en archivos. Si no hay credencial para `api.fish.audio`, pídela con `request_credential` (host `api.fish.audio`, tipo bearer) y luego ejecuta:
   `python3 scripts/fish_tts.py locucion.txt voz.mp3` (modelo `s1` por defecto; `--modelo speech-1.6` si el usuario lo prefiere).
 - `locucion.txt` = el texto aprobado tal como se verá en subtítulos, con números en palabras y una línea por bloque.
-- **Audio solo en español** (pedido del usuario): la voz lee todo con su lectura normal en español.
-- **Excepción, solo si el usuario la pide:** un ajuste puntual de pronunciación va en `locucion_tts.txt` (el texto que se envía a Fish Audio). `locucion.txt` se queda como el texto de los subtítulos. Ajustes pedidos:
-  - «Godzilla Minus Zero» → «Godzilla Máinus Zero».
+- **Palabras en inglés: escríbelas como se pronuncian, solo en el texto para la voz** (pedido del usuario, para que no suenen raras). Aplica a títulos, nombres, estudios, plataformas y personajes.
+  - `locucion.txt` conserva la escritura real (es la que va en subtítulos y panel).
+  - `locucion_tts.txt` lleva la escritura fonética en español; guarda la tabla en `voz/pronunciacion.json`.
+  - Tabla aprobada (reutilízala y amplíala):
+
+    | Escritura real | Para la voz |
+    |---|---|
+    | James Gunn | Yeims Gan |
+    | Peter Safran | Píter Sáfran |
+    | DC Studios | Di Si Stúdios |
+    | Jeremy Latcham | Yéremi Lácham |
+    | Marvel Studios | Márvel Stúdios |
+    | Man of Tomorrow | Man of Tumórrou |
+    | Godzilla Minus Zero | Godzila Máinus Zírou |
+    | Wicked | Uíked |
+    | Lionsgate | Láions Guéit |
+    | Prime Video | Práim Vídiou |
+    | Ebenezer | Ebenízer |
+    | Johnny Depp | Yóni Dep |
+    | Scrooge | Escrúch |
+    | Hollywood | Jóliwud |
+    | Dickens | Díkens |
+  - Muestra la tabla al usuario junto con el guion para que la apruebe.
+  - Los títulos se escriben en su versión oficial para Latinoamérica; si siguen en inglés, se aplica esta regla.
+  - En la verificación por bloques, una similitud baja en un bloque con muchos nombres en inglés puede deberse solo a que el ASR los escribe en inglés. Revisa el texto transcrito antes de repetir la toma.
 - **Genera la voz por bloques con `scripts/voz_por_bloques.py <carpeta_voz> <carpeta_que_contiene_el_modelo_asr> 0.7 1.0`.**
   - Cada línea (gancho y cada noticia) se genera aparte; así se evitan las sílabas sueltas que Fish mete entre bloques («la Es oficial», «a su oficial»).
   - Cada bloque se transcribe y se compara con el texto; repite solo el que salga mal (similitud < 0,8, inicio raro o palabras de más), hasta 4 tomas, y reutiliza las tomas ya generadas.
