@@ -18,10 +18,23 @@ Referencia de estilo: video «8 noticias random de hoy» del usuario (imagen gra
 Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 
 ## 1. Búsqueda de noticias
-- Usa WebSearch (varias búsquedas en el mismo turno, modo `standard`; `extended` si los resultados son pobres o viejos). Busca en inglés y español: «movie news today», «box office this weekend», «trailer released», «casting», «renewed/cancelled series», «Netflix/Max/Disney+/Prime Video news», Variety, The Hollywood Reporter, Deadline, IGN, Collider, SensaCine, Espinof.
-- Criterios: noticias **de las últimas 24–48 h**, confirmadas por al menos un medio de referencia (Variety, THR, Deadline o comunicado oficial). Rumores solo si están etiquetados como tales en el guion («se reporta que…»).
+- **Busca solo en las fuentes autorizadas de `references/fuentes.md`** (lista del usuario, en niveles A/B/C, más medios en español y cines de Guatemala). Léela antes de buscar.
+- Usa WebSearch con varias búsquedas en el mismo turno, en modo `standard`; usa `extended` si los resultados son pobres o viejos. Combina el tema con `site:`, por ejemplo:
+  - `casting OR exclusive site:variety.com OR site:deadline.com OR site:hollywoodreporter.com`
+  - `trailer site:collider.com OR site:screenrant.com`
+  - `renewed OR cancelled site:tvline.com OR site:deadline.com`
+  - `box office weekend site:boxofficepro.com OR site:deadline.com`
+  - `estreno site:lacovacha.mx OR site:latam.ign.com`
+
+  Ignora los resultados que no sean de la lista.
+- Criterios:
+  - Noticias **de las últimas 24–48 h**.
+  - Cada noticia confirmada por al menos una fuente de **nivel A**.
+  - Lo que solo publique una fuente de nivel B o C va como rumor etiquetado («se reporta que…») o se descarta.
+  - Los agregadores (nivel C) solo sirven para detectar noticias.
+- Para estrenos, revisa los cines de Guatemala de la lista y añade la fecha local si existe.
 - Mezcla recomendada: 1 bombazo (anuncio, casting, cambio de estudio), 1 tráiler/póster, 1 taquilla o récord con cifra, 1 serie/streaming, 1 fecha de estreno. Prioriza lo que interesa al público latino/guatemalteco (estrenos en cines de la región si los hay).
-- Entrega una tabla: n.º · titular en 1 línea · dato clave (cifra/fecha) · fuente(s) con enlace · fecha. Ofrece 1–2 alternas por si el usuario quiere cambiar alguna.
+- Entrega una tabla: n.º · titular en 1 línea · dato clave (cifra/fecha) · fuente(s) con enlace al artículo (indica el nivel A/B/C) · fecha. Ofrece 1–2 alternas por si el usuario quiere cambiar alguna.
 
 ## 2. Guion (estilo del video de referencia)
 - **Gancho fijo** (≈2 s): «Cinco noticias de cine de hoy.» (o «…de cine y series de hoy»). Nada de saludos ni presentaciones.
