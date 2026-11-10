@@ -44,23 +44,35 @@
    ],
    "rotulos": [
     {
+     "tipo": "nombre",
      "texto": "JAMES GUNN",
+     "sub": "CODIRECTOR DE DC STUDIOS",
      "en": "James"
     },
     {
+     "tipo": "nombre",
      "texto": "PETER SAFRAN",
+     "sub": "CODIRECTOR DE DC STUDIOS",
      "en": "Peter"
     },
     {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "1",
      "texto": "1 DE DICIEMBRE",
+     "sub": "DEJAN EL CARGO",
      "en": "primero"
     },
     {
+     "tipo": "nombre",
      "texto": "JEREMY LATCHAM",
+     "sub": "NUEVO PRESIDENTE DE DC STUDIOS",
      "en": "Jeremy"
     }
    ],
-   "fondo": "media/2026-11-10/n1_dc_studios_logo.png"
+   "fondo": "media/2026-11-10/n1_dc_studios_logo.png",
+   "titulo": "DC STUDIOS",
+   "categoria": "CAMBIO DE MANDO"
   },
   {
    "n": 2,
@@ -105,18 +117,24 @@
    ],
    "rotulos": [
     {
-     "texto": "$31 MILLONES",
-     "en": "treinta",
-     "contador": 31,
+     "tipo": "contador",
+     "valor": 31,
      "prefijo": "$",
-     "sufijo": " MILLONES"
+     "sufijo": "M",
+     "texto": "$31M",
+     "sub": "TAQUILLA EN NORTEAMÉRICA",
+     "en": "treinta"
     },
     {
+     "tipo": "insignia",
      "texto": "RÉCORD HISTÓRICO",
+     "sub": "MEJOR ESTRENO EN OTRO IDIOMA",
      "en": "mejor"
     }
    ],
-   "fondo": "media/2026-11-10/n2_godzilla_2.jpg"
+   "fondo": "media/2026-11-10/n2_godzilla_2.jpg",
+   "titulo": "GODZILLA MINUS ZERO",
+   "categoria": "TAQUILLA"
   },
   {
    "n": 3,
@@ -155,18 +173,26 @@
    ],
    "rotulos": [
     {
+     "tipo": "comparacion",
      "texto": "SUPERA A WICKED",
+     "a": "AMANECER EN LA COSECHA",
+     "b": "WICKED",
+     "sub": "PREVENTA DE BOLETOS",
      "en": "Wicked"
     },
     {
-     "texto": "+$80 MILLONES",
-     "en": "ochenta",
-     "contador": 80,
+     "tipo": "contador",
+     "valor": 80,
      "prefijo": "+$",
-     "sufijo": " MILLONES"
+     "sufijo": "M",
+     "texto": "+$80M",
+     "sub": "ESTRENO PROYECTADO",
+     "en": "ochenta"
     }
    ],
-   "fondo": "media/2026-11-10/n3_juegos_hambre_poster.png"
+   "fondo": "media/2026-11-10/n3_juegos_hambre_poster.png",
+   "titulo": "LOS JUEGOS DEL HAMBRE",
+   "categoria": "PREVENTA"
   },
   {
    "n": 4,
@@ -210,21 +236,37 @@
      "src": "media/2026-11-10/n4_anillos_trailer.mp4",
      "desde": 84.9,
      "hasta": 86.0,
-     "toma": "silueta entre fuego (Balrog)",
-     "en": "Balrog"
+     "toma": "silueta entre fuego",
+     "en": "y"
     }
    ],
    "rotulos": [
     {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "11",
      "texto": "TEMPORADA 3",
+     "sub": "EN PRIME VIDEO",
      "en": "tercera"
     },
     {
-     "texto": "SIMON PEGG",
-     "en": "Simon"
+     "tipo": "salto",
+     "valor": 5,
+     "texto": "+5 AÑOS",
+     "sub": "SALTO EN EL TIEMPO",
+     "en": "cinco"
+    },
+    {
+     "tipo": "bloques",
+     "valor": 4,
+     "texto": "4 EPISODIOS",
+     "sub": "EN EL ESTRENO",
+     "en": "cuatro"
     }
    ],
-   "fondo": "media/2026-11-10/n4_anillos_fondo.jpg"
+   "fondo": "media/2026-11-10/n4_anillos_fondo.jpg",
+   "titulo": "LOS ANILLOS DE PODER",
+   "categoria": "SERIES · PRIME VIDEO"
   },
   {
    "n": 5,
@@ -246,15 +288,22 @@
    ],
    "rotulos": [
     {
+     "tipo": "nombre",
      "texto": "JOHNNY DEPP",
+     "sub": "ES SCROOGE EN EBENEZER",
      "en": "Johnny"
     },
     {
-     "texto": "8 AÑOS DESPUÉS",
+     "tipo": "salto",
+     "valor": 8,
+     "texto": "8 AÑOS",
+     "sub": "SIN UNA PELÍCULA DE HOLLYWOOD",
      "en": "ocho"
     }
    ],
-   "fondo": "media/2026-11-10/n5_ebenezer_poster.jpg"
+   "fondo": "media/2026-11-10/n5_ebenezer_poster.jpg",
+   "titulo": "EBENEZER",
+   "categoria": "PRIMERAS REACCIONES"
   }
  ],
  "voz": "media/2026-11-10/voz/voz_limpia.wav",
@@ -281,14 +330,19 @@
    "texto": "80"
   },
   {
+   "bloque": 5,
+   "frase": "ocho",
+   "texto": "8"
+  },
+  {
    "bloque": 4,
    "frase": "cinco",
    "texto": "5"
   },
   {
-   "bloque": 5,
-   "frase": "ocho",
-   "texto": "8"
+   "bloque": 4,
+   "frase": "cuatro",
+   "texto": "4"
   }
  ],
  "claves": [
@@ -312,15 +366,13 @@
   "Poder",
   "Prime",
   "Video",
-  "Balrog",
-  "Simon",
-  "Pegg",
   "Ebenezer",
   "Johnny",
   "Depp",
   "Scrooge",
   "Hollywood",
   "millones",
-  "dólares"
+  "dólares",
+  "episodios"
  ]
 }

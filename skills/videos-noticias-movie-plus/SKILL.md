@@ -64,7 +64,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - Mientras falte una imagen: tarjeta de marcador con el título de la película en tipografía de marca; avísalo en la entrega.
 
 ## 4. Voz · Fish Audio
-- Voz de Movie Plus: **`d8363f34e83d466791e2f295214c4deb`** (`reference_id`). No uses otra voz salvo que el usuario lo pida.
+- Voz de Movie Plus: **`ad19d86e04b34fc0a6bfaddd78b35408`** (`reference_id`, voz animada elegida por el usuario; la anterior era `d8363f34e83d466791e2f295214c4deb`). No uses otra voz salvo que el usuario lo pida. Habla a ≈3,5 palabras/s: 170 palabras ≈ 50 s.
 - Clave: nunca en el chat ni en archivos. Si no hay credencial para `api.fish.audio`, pídela con `request_credential` (host `api.fish.audio`, tipo bearer) y luego ejecuta:
   `python3 scripts/fish_tts.py locucion.txt voz.mp3` (modelo `s1` por defecto; `--modelo speech-1.6` si el usuario lo prefiere).
 - `locucion.txt` = solo el texto aprobado, con números en palabras y nombres extranjeros escritos como se pronuncian si la voz falla (p. ej. «Tímoti Shalamé»). Separa noticias con un salto de línea; añade «…» donde quieras una micro‑pausa.
@@ -140,8 +140,19 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
     - Encabezado «NOTICIA 0n / 05» con la estrella y una barra de progreso de 5 segmentos.
     - Fondo: la imagen de la noticia desenfocada.
     - Tarjeta 900×930 con esquinas redondeadas y medios que cambian en su palabra.
-    - Rótulos grandes en Saira Condensed itálica con contorno; las cifras cuentan hacia arriba y cada rótulo dura máximo 2,8 s.
-  - **Subtítulos:** palabra por palabra, en bloques de hasta 3 palabras, y y≈1262–1460.
+    - **Datos debajo de la imagen, nunca encima** (pedido del usuario): panel de 900×212 en y≈1166 (`src/PanelDatos.tsx`), con borde rojo a la izquierda. Al empezar la noticia muestra `titulo` + `categoria` (definidos por noticia en el plan); luego cada dato entra en su palabra, deslizándose.
+    - **Cada dato se ilustra con motion graphics** según su `tipo`:
+      - `nombre`: avatar e identificación.
+      - `fecha`: calendario que se voltea, con `mes` y `dia`.
+      - `contador`: cifra que sube + barra.
+      - `insignia`: trofeo con rayos.
+      - `comparacion`: barras A contra B y «✓ SUPERA»; no inventes cifras.
+      - `salto`: línea de tiempo «+N AÑOS».
+      - `bloques`: N fichas de episodio.
+    - Usa solo datos verificados en las fuentes; los textos `sub` son descriptivos y cortos.
+  - **Subtítulos:** más abajo, debajo del panel de datos: palabra por palabra, en bloques de hasta 3 palabras, y≈1402–1580.
+  - **Tarjeta de imagen:** 900×900 en y=240.
+  - **Pausa antes del cierre:** inserta ~1,2 s de silencio en la voz antes de «Sigue a Movie Plus», para que el último dato se lea antes de que entre el panel rojo. Después vuelve a transcribir y alinear.
   - **Transición:** barra roja diagonal (con filo blanco) en cada cambio de noticia.
   - **Cierre:** entra con el panel rojo en la frase «Sigue a Movie Plus».
 - **Orden de trabajo para cada video:**

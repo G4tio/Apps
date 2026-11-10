@@ -7,6 +7,7 @@ import {Cierre} from './Cierre';
 import {Fondo} from './Logo';
 import {MARCA, W, H, prog, lerp, outBack, outCubic, outExpo, inOutCubic, clamp} from './marca';
 import plan from './videos/2026-11-10.json';
+import {PanelDatos, Dato} from './PanelDatos';
 import timing from './videos/2026-11-10.timing.json';
 
 // ---------- tipos ----------
@@ -23,7 +24,7 @@ const TM = timing as unknown as {
   noticias: Noticia[];
   montaje: {fps: number; intro: number; vozOffset: number; cierreInicio: number; cierre: number; total: number};
 };
-const PLAN = plan as unknown as {voz: string; noticias: {n: number; fondo: string}[]};
+const PLAN = plan as unknown as {voz: string; noticias: {n: number; fondo: string; titulo: string; categoria: string}[]};
 const FPS = TM.montaje.fps;
 const VOZ = TM.montaje.vozOffset;
 export const NEWS_DUR = TM.montaje.total;
@@ -41,7 +42,7 @@ const contorno = (px: number): React.CSSProperties => ({
 });
 
 // Tarjeta principal
-const CARD = {x: 90, y: 262, w: 900, h: 930, r: 28};
+const CARD = {x: 90, y: 240, w: 900, h: 900, r: 28};
 const ZOOM_VIDEO = 1.2; // saca del encuadre la marca de agua de TikTok
 
 // ---------- medio (imagen o fragmento de video) ----------
@@ -79,51 +80,25 @@ const VistaMedio: React.FC<{m: Medio; dur: number; f: number}> = ({m, dur, f}) =
   );
 };
 
-// ---------- rótulo de dato ----------
-const VistaRotulo: React.FC<{r: Rotulo; f: number; finF: number}> = ({r, f, finF}) => {
-  const pin = prog(f, 0, 9);
-  if (pin <= 0) return null;
-  const out = prog(f, finF - 5, finF);
-  let texto = r.texto;
-  if (r.contador) {
-    const v = Math.round(r.contador * outCubic(prog(f, 0, 20)));
-    texto = `${r.prefijo ?? ''}${v}${r.sufijo ?? ''}`;
-  }
-  const fs = Math.min(118, 860 / (r.texto.length * 0.5));
-  return (
-    <div
-      style={{
-        position: 'absolute', left: 0, width: W, top: CARD.y + CARD.h - 70 - fs * 0.5,
-        textAlign: 'center', ...SAIRA, fontSize: fs, lineHeight: 1, color: '#fff',
-        letterSpacing: '0.01em', ...contorno(12),
-        opacity: 1 - out,
-        transform: `scale(${lerp(1.55, 1, outBack(pin, 2.2)) * lerp(1, 0.9, out)}) rotate(${lerp(-4, -2, pin)}deg)`,
-      }}
-    >
-      {texto}
-    </div>
-  );
-};
-
 // ---------- escena de noticia ----------
-const Escena: React.FC<{nt: Noticia; frame: number}> = ({nt, frame}) => {
+const Escena: React.FC<{nt: Noticia; frame: number; finExtra?: number}> = ({nt, frame, finExtra}) => {
   const ini = fr(nt.inicio);
-  const fin = fr(nt.fin);
+  const fin = finExtra ?? fr(nt.fin);
   const fl = frame - ini;
-  const fondo = PLAN.noticias.find((x) => x.n === nt.n)!.fondo;
+  const info = PLAN.noticias.find((x) => x.n === nt.n)!;
+  const fondo = info.fondo;
   const pop = outBack(prog(fl, 0, 12), 1.6);
   const medios = nt.medios.map((m, i) => ({
     m, a: fr(m.t), b: i + 1 < nt.medios.length ? fr(nt.medios[i + 1].t) : fin,
   }));
   // medio actual y el anterior (para el fundido)
   const idx = Math.max(0, medios.findIndex((x) => frame >= x.a && frame < x.b));
-  const rot = nt.rotulos.map((r, i) => {
-    const a = fr(r.t);
-    const sig = i + 1 < nt.rotulos.length ? fr(nt.rotulos[i + 1].t) : fin;
-    // el rótulo se va cuando cambia la imagen (mínimo 1 s en pantalla)
-    const cambio = medios.map((x) => x.a).find((x) => x > a + FPS) ?? fin;
-    return {r, a, b: Math.min(sig, cambio, a + Math.round(2.8 * FPS))};
-  });
+  // panel de datos: título de la noticia y luego cada dato en su palabra
+  const lista: Dato[] = [
+    {tipo: 'titulo', texto: info.titulo, categoria: info.categoria, t: nt.inicio} as Dato,
+    ...(nt.rotulos as unknown as Dato[]),
+  ];
+  const datos = lista.map((d, i) => ({d, a: i === 0 ? ini : fr(d.t), b: i + 1 < lista.length ? fr(lista[i + 1].t) : fin}));
   return (
     <AbsoluteFill>
       {/* fondo desenfocado de la noticia */}
@@ -153,16 +128,17 @@ const Escena: React.FC<{nt: Noticia; frame: number}> = ({nt, frame}) => {
           ) : null,
         )}
         {/* viñeta inferior para que el rótulo se lea */}
-        <AbsoluteFill style={{zIndex: 50, background: 'linear-gradient(180deg, rgba(0,0,0,0) 62%, rgba(0,0,0,0.55) 100%)'}} />
+        <AbsoluteFill style={{zIndex: 50, background: 'linear-gradient(180deg, rgba(0,0,0,0) 75%, rgba(0,0,0,0.3) 100%)'}} />
       </div>
-      {rot.map(({r, a, b}, i) => (frame >= a && frame < b ? <VistaRotulo key={i} r={r} f={frame - a} finF={b - a} /> : null))}
+      <PanelDatos datos={datos} frame={frame} inicio={ini} />
     </AbsoluteFill>
   );
 };
 
 // ---------- encabezado: contador + progreso ----------
 const Encabezado: React.FC<{frame: number}> = ({frame}) => {
-  const actual = TM.noticias.findIndex((nt) => frame >= fr(nt.inicio) && frame < fr(nt.fin));
+  const actual = TM.noticias.findIndex((nt, i) =>
+    frame >= fr(nt.inicio) && frame < (i === TM.noticias.length - 1 ? TM.montaje.cierreInicio + 10 : fr(nt.fin)));
   if (actual < 0) return null;
   const nt = TM.noticias[actual];
   const pIn = outExpo(prog(frame, fr(TM.noticias[0].inicio), fr(TM.noticias[0].inicio) + 12));
@@ -253,7 +229,7 @@ const Subtitulos: React.FC<{frame: number}> = ({frame}) => {
   const bl = BLOQUES_SUB.find((x) => frame >= x.a && frame < x.b);
   if (!bl) return null;
   return (
-    <div style={{position: 'absolute', left: 60, width: W - 120, top: 1262, minHeight: 200, display: 'flex',
+    <div style={{position: 'absolute', left: 60, width: W - 120, top: 1402, minHeight: 180, display: 'flex',
       flexWrap: 'wrap', justifyContent: 'center', alignContent: 'center', columnGap: 22, rowGap: 0}}>
       {bl.pal.map((p, i) => {
         const a = fr(p.t);
@@ -298,13 +274,13 @@ export const MoviePlusNews: React.FC = () => {
         <AbsoluteFill>
           <Fondo f={frame} />
           {frame < finGancho + 1 ? <Gancho frame={frame} /> : null}
-          {TM.noticias.map((nt) =>
-            frame >= fr(nt.inicio) && frame < fr(nt.fin) ? <Escena key={nt.n} nt={nt} frame={frame} /> : null,
-          )}
-          {/* la última escena se mantiene mientras entra el cierre */}
-          {frame >= fr(TM.noticias[TM.noticias.length - 1].fin) ? (
-            <Escena nt={TM.noticias[TM.noticias.length - 1]} frame={fr(TM.noticias[TM.noticias.length - 1].fin) - 1} />
-          ) : null}
+          {TM.noticias.map((nt, i) => {
+            const ultima = i === TM.noticias.length - 1;
+            const finEsc = ultima ? M.cierreInicio + 10 : fr(nt.fin);
+            return frame >= fr(nt.inicio) && frame < finEsc ? (
+              <Escena key={nt.n} nt={nt} frame={frame} finExtra={ultima ? finEsc : undefined} />
+            ) : null;
+          })}
           <Encabezado frame={frame} />
           <Subtitulos frame={frame} />
           <Transicion frame={frame} />

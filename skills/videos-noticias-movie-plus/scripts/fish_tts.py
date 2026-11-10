@@ -11,7 +11,7 @@ Uso:
 """
 import argparse, json, os, sys, urllib.request
 
-VOZ_MOVIE_PLUS = "d8363f34e83d466791e2f295214c4deb"
+VOZ_MOVIE_PLUS = "ad19d86e04b34fc0a6bfaddd78b35408"  # voz animada (antes: d8363f34e83d466791e2f295214c4deb)
 
 ap = argparse.ArgumentParser()
 ap.add_argument("texto")
