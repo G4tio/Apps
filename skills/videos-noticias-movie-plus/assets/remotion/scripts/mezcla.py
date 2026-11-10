@@ -20,8 +20,15 @@ FPS = 30
 INTRO = 76            # cuadros de la intro
 CIERRE = 96           # cuadros del cierre
 VOZ_OFF = 2.4         # la voz entra cuando el panel rojo descubre el gancho
-cierre_bloque = T['bloques'][-1]['inicio']
-cierre_ini = int(round((VOZ_OFF + cierre_bloque - 0.1) * FPS))
+PAUSA_FINAL = 0.9     # aire tras la última noticia antes del cierre
+N_NOT = len(T['noticias'])
+# El cierre entra después de la última noticia (bloque N) con una pausa para leer el último dato.
+# Si el guion trae una línea de cierre hablada (bloque N+1), entra en esa línea.
+if len(T['bloques']) > N_NOT + 1:
+    cierre_t = T['bloques'][N_NOT + 1]['inicio'] - 0.1
+else:
+    cierre_t = T['bloques'][N_NOT]['fin'] + PAUSA_FINAL
+cierre_ini = int(round((VOZ_OFF + cierre_t) * FPS))
 total = cierre_ini + CIERRE
 T['montaje'] = {'fps': FPS, 'intro': INTRO, 'vozOffset': VOZ_OFF, 'cierreInicio': cierre_ini,
                 'cierre': CIERRE, 'total': total}
@@ -98,7 +105,7 @@ mix += pista_voz + pista_mus * gain
 poner(leer('public/sfx/intro.wav'), 0, 0.9)
 poner(leer('public/sfx/cierre.wav'), cierre_ini / FPS, 0.9)
 # whoosh en cada cambio de noticia y tic suave en cada rótulo
-for b in T['bloques'][1:-1]:
+for b in T['bloques'][1:N_NOT + 1]:
     poner(whoosh(0.4), VOZ_OFF + b['inicio'] - 0.22, 0.32)
 for nt in T['noticias']:
     for r in nt['rotulos']:

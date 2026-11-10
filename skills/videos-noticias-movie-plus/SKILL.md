@@ -41,7 +41,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - **Una noticia = 2–3 frases cortas, ≈25–40 palabras, 8–11 s.** Arranca directo con el hecho: «Se reveló que…», «Es oficial:…», «Se reporta que…», «Tenemos nuevo tráiler de…», «Ya hay fecha:…».
 - **Datos claros**: nombres completos, cifra o fecha concreta en cada noticia (día y mes en palabras, montos en dólares redondeados: «ciento veinte millones de dólares»). Una idea por frase. Cierra con la consecuencia («…lo que significa que está terminada y lista para su estreno el 19 de noviembre»).
 - Tono: animado, cercano, de fan informado; sin opiniones largas ni chistes intercalados (los memes del original se omiten). Un remate breve opcional de 2–4 palabras por noticia está bien si suena natural («Por fin.»).
-- **Cierre** (≈3 s): «Sigue a Movie Plus para más noticias de cine.» (ajusta si el usuario da otro CTA).
+- **Sin línea de cierre hablada** (pedido del usuario): el guion termina con la última noticia; el cierre animado con «SÍGUENOS» entra solo, con su sonido, ~0,9 s después de la última palabra.
 - Escribe los números como se pronuncian en la versión para voz; mantén otra versión «para pantalla» con cifras (§5).
 - Títulos de películas: usa el título con el que se conoce en Latinoamérica; si difiere del original, menciona el original solo en pantalla.
 - Entrega al usuario: guion en bloques numerados, palabras totales y duración estimada (≈3,2 palabras/s, ritmo del video de referencia; apunta a ~170–180 palabras en total y 27–34 por noticia). Espera su aprobación.
@@ -67,7 +67,13 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - Voz de Movie Plus: **`ad19d86e04b34fc0a6bfaddd78b35408`** (`reference_id`, voz animada elegida por el usuario; la anterior era `d8363f34e83d466791e2f295214c4deb`). No uses otra voz salvo que el usuario lo pida. Habla a ≈3,5 palabras/s: 170 palabras ≈ 50 s.
 - Clave: nunca en el chat ni en archivos. Si no hay credencial para `api.fish.audio`, pídela con `request_credential` (host `api.fish.audio`, tipo bearer) y luego ejecuta:
   `python3 scripts/fish_tts.py locucion.txt voz.mp3` (modelo `s1` por defecto; `--modelo speech-1.6` si el usuario lo prefiere).
-- `locucion.txt` = solo el texto aprobado, con números en palabras y nombres extranjeros escritos como se pronuncian si la voz falla (p. ej. «Tímoti Shalamé»). Separa noticias con un salto de línea; añade «…» donde quieras una micro‑pausa.
+- `locucion.txt` = el texto aprobado tal como se verá en subtítulos, con números en palabras y una línea por bloque.
+- **Títulos de películas en inglés se pronuncian en inglés** (pedido del usuario; solo el título de la película, no estudios, plataformas ni personajes). Genera `locucion_tts.txt` reemplazando esos títulos por su escritura fonética en español y envía ese archivo a Fish Audio. Los subtítulos usan `locucion.txt`. Ejemplos usados:
+  - «Man of Tomorrow» → «Man of Tumórrou»
+  - «Godzilla Minus Zero» → «Gadsíla Máinus Zírou»
+  - «Wicked» → «Uíkid»
+  - «Ebenezer» → «Ebeníser»
+- **Espacio entre noticias:** después de la primera alineación, `scripts/pausas.py voz.mp3 <timing_provisional> voz/voz_limpia.wav 0.7 0.35` inserta 0,7 s de silencio antes de cada noticia (0,35 s tras el gancho). Luego vuelve a transcribir y alinear.
 - Escucha el resultado vía transcripción (§5): si una palabra sale mal, corrige la grafía solo en `locucion.txt` y regenera ese fragmento o todo.
 - **Revisa artefactos de Fish Audio:** a veces mete una sílaba suelta entre bloques (p. ej. «Oria» tras el gancho).
   - Detéctala comparando la transcripción con el guion y midiendo el volumen por tramos de 0,1 s.
@@ -157,9 +163,9 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
     - **El dato debe coincidir con la imagen de arriba:** si un panel `nombre` dice «PETER SAFRAN», la tarjeta muestra a Safran. Ancla el cambio de imagen a la misma palabra que el dato siguiente; si queda una imagen sin dato propio, añádele uno (p. ej. `titulo` «MAN OF TOMORROW» sobre la foto de Gunn).
   - **Subtítulos:** más abajo, debajo del panel de datos: palabra por palabra, en bloques de hasta 3 palabras, y≈1402–1580.
   - **Tarjeta de imagen:** 900×900 en y=240.
-  - **Pausa antes del cierre:** inserta ~1,2 s de silencio en la voz antes de «Sigue a Movie Plus», para que el último dato se lea antes de que entre el panel rojo. Después vuelve a transcribir y alinear.
+  - **Pausa antes del cierre:** `mezcla.py` deja `PAUSA_FINAL` (0,9 s) tras la última palabra, para que el último dato se lea antes de que entre el panel rojo.
   - **Transición:** barra roja diagonal (con filo blanco) en cada cambio de noticia.
-  - **Cierre:** entra con el panel rojo en la frase «Sigue a Movie Plus».
+  - **Cierre:** entra con el panel rojo tras la última noticia, sin voz.
 - **Orden de trabajo para cada video:**
   1. `fish_tts.py` y luego limpiar artefactos.
   2. `transcribir.py` → `voz/palabras_asr.json`.

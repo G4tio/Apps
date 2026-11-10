@@ -209,7 +209,7 @@ const Gancho: React.FC<{frame: number}> = ({frame}) => {
 type Bloque = {pal: Palabra[]; a: number; b: number};
 const BLOQUES_SUB: Bloque[] = (() => {
   const out: Bloque[] = [];
-  const visibles = TM.palabras.filter((p) => p.w && p.b > 0 && p.b < TM.bloques.length - 1);
+  const visibles = TM.palabras.filter((p) => p.w && p.b > 0 && p.b <= TOTAL_NOTICIAS);
   let cur: Palabra[] = [];
   const cerrar = () => { if (cur.length) out.push({pal: cur, a: 0, b: 0}); cur = []; };
   visibles.forEach((p, i) => {
@@ -251,7 +251,7 @@ const Subtitulos: React.FC<{frame: number}> = ({frame}) => {
 
 // ---------- transición entre noticias: barra roja diagonal ----------
 const Transicion: React.FC<{frame: number}> = ({frame}) => {
-  const cortes = TM.bloques.slice(1, -1).map((b) => fr(b.inicio));
+  const cortes = TM.bloques.slice(1, TOTAL_NOTICIAS + 1).map((b) => fr(b.inicio));
   const c = cortes.find((x) => frame >= x - 6 && frame <= x + 6);
   if (c === undefined) return null;
   const p = inOutCubic(prog(frame, c - 6, c + 6));

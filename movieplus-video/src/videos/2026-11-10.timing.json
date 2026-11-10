@@ -14,303 +14,273 @@
   },
   {
    "w": "de",
-   "t": 0.8,
-   "b": 0,
-   "clave": false
-  },
-  {
-   "w": "cine",
    "t": 0.88,
    "b": 0,
    "clave": false
   },
   {
+   "w": "cine",
+   "t": 0.96,
+   "b": 0,
+   "clave": false
+  },
+  {
    "w": "y",
-   "t": 1.2,
+   "t": 1.28,
    "b": 0,
    "clave": false
   },
   {
    "w": "series",
-   "t": 1.36,
+   "t": 1.44,
    "b": 0,
    "clave": false
   },
   {
    "w": "de",
-   "t": 1.68,
+   "t": 1.84,
    "b": 0,
    "clave": false
   },
   {
    "w": "hoy",
-   "t": 1.76,
+   "t": 2.0,
    "b": 0,
    "clave": false
   },
   {
    "w": "Es",
-   "t": 2.08,
+   "t": 2.56,
    "b": 1,
    "clave": false
   },
   {
    "w": "oficial",
-   "t": 2.32,
+   "t": 2.88,
    "b": 1,
    "clave": false
   },
   {
    "w": "James",
-   "t": 2.8,
+   "t": 3.36,
    "b": 1,
    "clave": true
   },
   {
    "w": "Gunn",
-   "t": 3.12,
+   "t": 3.76,
    "b": 1,
    "clave": true
   },
   {
    "w": "y",
-   "t": 3.52,
+   "t": 4.16,
    "b": 1,
    "clave": false
   },
   {
    "w": "Peter",
-   "t": 3.6,
+   "t": 4.24,
    "b": 1,
    "clave": true
   },
   {
    "w": "Safran",
-   "t": 3.92,
+   "t": 4.56,
    "b": 1,
    "clave": true
   },
   {
    "w": "dejan",
-   "t": 4.48,
+   "t": 5.12,
    "b": 1,
    "clave": false
   },
   {
    "w": "DC",
-   "t": 4.8,
+   "t": 5.36,
    "b": 1,
    "clave": true
   },
   {
    "w": "Studios",
-   "t": 5.12,
+   "t": 5.6,
    "b": 1,
    "clave": true
   },
   {
    "w": "el",
-   "t": 5.52,
-   "b": 1,
-   "clave": false
-  },
-  {
-   "w": "1",
-   "t": 5.68,
-   "b": 1,
-   "clave": true
-  },
-  {
-   "w": "de",
    "t": 6.08,
    "b": 1,
    "clave": false
   },
   {
+   "w": "1",
+   "t": 6.16,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 6.48,
+   "b": 1,
+   "clave": false
+  },
+  {
    "w": "diciembre",
-   "t": 6.24,
+   "t": 6.64,
    "b": 1,
    "clave": false
   },
   {
    "w": "Los",
-   "t": 6.8,
+   "t": 7.12,
    "b": 1,
    "clave": false
   },
   {
    "w": "reemplaza",
-   "t": 6.96,
+   "t": 7.28,
    "b": 1,
    "clave": false
   },
   {
    "w": "Jeremy",
-   "t": 7.52,
+   "t": 7.76,
    "b": 1,
    "clave": true
   },
   {
    "w": "Latcham",
-   "t": 8.08,
+   "t": 8.32,
    "b": 1,
    "clave": true
   },
   {
    "w": "exproductor",
-   "t": 8.56,
+   "t": 8.96,
    "b": 1,
    "clave": false
   },
   {
    "w": "de",
-   "t": 9.04,
+   "t": 9.36,
    "b": 1,
    "clave": false
   },
   {
    "w": "Marvel",
-   "t": 9.2,
+   "t": 9.44,
    "b": 1,
    "clave": true
   },
   {
    "w": "Studios",
-   "t": 9.68,
+   "t": 9.92,
    "b": 1,
    "clave": true
   },
   {
    "w": "aunque",
-   "t": 10.24,
-   "b": 1,
-   "clave": false
-  },
-  {
-   "w": "ambos",
    "t": 10.48,
    "b": 1,
    "clave": false
   },
   {
-   "w": "seguirán",
+   "w": "ambos",
    "t": 10.72,
    "b": 1,
    "clave": false
   },
   {
+   "w": "seguirán",
+   "t": 10.96,
+   "b": 1,
+   "clave": false
+  },
+  {
    "w": "en",
-   "t": 11.12,
+   "t": 11.36,
    "b": 1,
    "clave": false
   },
   {
    "w": "proyectos",
-   "t": 11.2,
+   "t": 11.52,
    "b": 1,
    "clave": false
   },
   {
    "w": "como",
-   "t": 11.68,
+   "t": 12.0,
    "b": 1,
    "clave": false
   },
   {
    "w": "Man",
-   "t": 11.76,
-   "b": 1,
-   "clave": false
-  },
-  {
-   "w": "of",
    "t": 12.08,
    "b": 1,
    "clave": false
   },
   {
-   "w": "Tomorrow",
+   "w": "of",
    "t": 12.32,
    "b": 1,
    "clave": false
   },
   {
+   "w": "Tomorrow",
+   "t": 12.56,
+   "b": 1,
+   "clave": false
+  },
+  {
    "w": "Godzilla",
-   "t": 12.8,
+   "t": 13.6,
    "b": 2,
    "clave": true
   },
   {
    "w": "Minus",
-   "t": 13.44,
+   "t": 14.4,
    "b": 2,
    "clave": true
   },
   {
    "w": "Zero",
-   "t": 13.76,
+   "t": 14.8,
    "b": 2,
    "clave": true
   },
   {
    "w": "arrasó",
-   "t": 14.08,
+   "t": 15.2,
    "b": 2,
    "clave": false
   },
   {
    "w": "en",
-   "t": 14.48,
+   "t": 15.6,
    "b": 2,
    "clave": false
   },
   {
    "w": "taquilla",
-   "t": 14.56,
+   "t": 15.68,
    "b": 2,
    "clave": false
   },
   {
    "w": "con",
-   "t": 15.04,
+   "t": 16.16,
    "b": 2,
    "clave": false
   },
   {
    "w": "cerca",
-   "t": 15.12,
+   "t": 16.24,
    "b": 2,
    "clave": false
-  },
-  {
-   "w": "de",
-   "t": 15.28,
-   "b": 2,
-   "clave": false
-  },
-  {
-   "w": "31",
-   "t": 15.36,
-   "b": 2,
-   "clave": true
-  },
-  {
-   "w": "",
-   "t": 15.76,
-   "b": 2,
-   "clave": false
-  },
-  {
-   "w": "",
-   "t": 15.84,
-   "b": 2,
-   "clave": false
-  },
-  {
-   "w": "millones",
-   "t": 16.0,
-   "b": 2,
-   "clave": true
   },
   {
    "w": "de",
@@ -319,711 +289,687 @@
    "clave": false
   },
   {
-   "w": "dólares",
-   "t": 16.48,
+   "w": "31",
+   "t": 16.56,
    "b": 2,
    "clave": true
   },
   {
-   "w": "en",
+   "w": "",
+   "t": 16.88,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "",
    "t": 16.96,
    "b": 2,
    "clave": false
   },
   {
+   "w": "millones",
+   "t": 17.12,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 17.52,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "dólares",
+   "t": 17.6,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 18.08,
+   "b": 2,
+   "clave": false
+  },
+  {
    "w": "Norteamérica",
-   "t": 17.28,
+   "t": 18.48,
    "b": 2,
    "clave": false
   },
   {
    "w": "Es",
-   "t": 17.84,
+   "t": 19.12,
    "b": 2,
    "clave": false
   },
   {
    "w": "el",
-   "t": 18.0,
+   "t": 19.28,
    "b": 2,
    "clave": false
   },
   {
    "w": "mejor",
-   "t": 18.16,
+   "t": 19.36,
    "b": 2,
    "clave": false
   },
   {
    "w": "estreno",
-   "t": 18.4,
+   "t": 19.68,
    "b": 2,
    "clave": false
   },
   {
    "w": "de",
-   "t": 18.8,
+   "t": 20.08,
    "b": 2,
    "clave": false
   },
   {
    "w": "la",
-   "t": 18.96,
+   "t": 20.24,
    "b": 2,
    "clave": false
   },
   {
    "w": "historia",
-   "t": 19.04,
-   "b": 2,
-   "clave": false
-  },
-  {
-   "w": "para",
-   "t": 19.44,
-   "b": 2,
-   "clave": false
-  },
-  {
-   "w": "una",
-   "t": 19.6,
-   "b": 2,
-   "clave": false
-  },
-  {
-   "w": "película",
-   "t": 19.76,
-   "b": 2,
-   "clave": false
-  },
-  {
-   "w": "de",
-   "t": 20.16,
-   "b": 2,
-   "clave": false
-  },
-  {
-   "w": "acción",
    "t": 20.32,
    "b": 2,
    "clave": false
   },
   {
-   "w": "real",
-   "t": 20.64,
+   "w": "para",
+   "t": 20.8,
    "b": 2,
    "clave": false
   },
   {
-   "w": "en",
+   "w": "una",
+   "t": 20.88,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "película",
    "t": 21.04,
    "b": 2,
    "clave": false
   },
   {
+   "w": "de",
+   "t": 21.44,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "acción",
+   "t": 21.6,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "real",
+   "t": 21.92,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 22.32,
+   "b": 2,
+   "clave": false
+  },
+  {
    "w": "otro",
-   "t": 21.12,
+   "t": 22.48,
    "b": 2,
    "clave": false
   },
   {
    "w": "idioma",
-   "t": 21.36,
+   "t": 22.64,
    "b": 2,
    "clave": false
   },
   {
    "w": "Los",
-   "t": 21.92,
+   "t": 23.6,
    "b": 3,
    "clave": false
   },
   {
    "w": "Juegos",
-   "t": 22.16,
+   "t": 24.0,
    "b": 3,
    "clave": true
   },
   {
    "w": "del",
-   "t": 22.56,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "Hambre",
-   "t": 22.64,
-   "b": 3,
-   "clave": true
-  },
-  {
-   "w": "Amanecer",
-   "t": 23.12,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "en",
-   "t": 23.68,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "la",
-   "t": 23.76,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "cosecha",
-   "t": 23.84,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "ya",
    "t": 24.32,
    "b": 3,
    "clave": false
   },
   {
-   "w": "superó",
-   "t": 24.48,
+   "w": "Hambre",
+   "t": 24.56,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Amanecer",
+   "t": 24.96,
    "b": 3,
    "clave": false
   },
   {
    "w": "en",
-   "t": 24.88,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "preventa",
-   "t": 25.04,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "a",
    "t": 25.44,
    "b": 3,
    "clave": false
   },
   {
-   "w": "Wicked",
+   "w": "la",
    "t": 25.52,
    "b": 3,
-   "clave": true
+   "clave": false
   },
   {
-   "w": "Es",
+   "w": "cosecha",
+   "t": 25.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "ya",
+   "t": 26.08,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "superó",
    "t": 26.32,
    "b": 3,
    "clave": false
   },
   {
-   "w": "la",
-   "t": 26.48,
+   "w": "en",
+   "t": 26.64,
    "b": 3,
    "clave": false
   },
   {
-   "w": "mejor",
-   "t": 26.56,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "de",
+   "w": "preventa",
    "t": 26.8,
    "b": 3,
    "clave": false
   },
   {
-   "w": "Lionsgate",
+   "w": "a",
    "t": 27.2,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Wicked",
+   "t": 27.6,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Es",
+   "t": 28.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 28.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "mejor",
+   "t": 28.24,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 28.48,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Lionsgate",
+   "t": 28.64,
    "b": 3,
    "clave": true
   },
   {
    "w": "desde",
-   "t": 27.6,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "la",
-   "t": 27.84,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "pandemia",
-   "t": 27.92,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "y",
-   "t": 28.4,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "apunta",
-   "t": 28.56,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "a",
-   "t": 28.76,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "un",
-   "t": 28.96,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "estreno",
-   "t": 29.04,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "de",
    "t": 29.44,
    "b": 3,
    "clave": false
   },
   {
-   "w": "más",
-   "t": 29.6,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "de",
+   "w": "la",
    "t": 29.68,
    "b": 3,
    "clave": false
   },
   {
+   "w": "pandemia",
+   "t": 29.76,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 30.24,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "apunta",
+   "t": 30.4,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 30.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 30.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "estreno",
+   "t": 30.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 31.28,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "más",
+   "t": 31.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 31.6,
+   "b": 3,
+   "clave": false
+  },
+  {
    "w": "80",
-   "t": 29.84,
+   "t": 31.68,
    "b": 3,
    "clave": true
   },
   {
    "w": "millones",
-   "t": 30.24,
+   "t": 32.16,
    "b": 3,
    "clave": true
   },
   {
    "w": "de",
-   "t": 30.64,
+   "t": 32.56,
    "b": 3,
    "clave": false
   },
   {
    "w": "dólares",
-   "t": 30.8,
+   "t": 32.64,
    "b": 3,
    "clave": true
   },
   {
    "w": "Mañana",
-   "t": 31.36,
-   "b": 4,
-   "clave": false
-  },
-  {
-   "w": "regresa",
-   "t": 31.84,
-   "b": 4,
-   "clave": false
-  },
-  {
-   "w": "Los",
-   "t": 32.32,
-   "b": 4,
-   "clave": false
-  },
-  {
-   "w": "Anillos",
-   "t": 32.4,
-   "b": 4,
-   "clave": true
-  },
-  {
-   "w": "de",
-   "t": 32.88,
-   "b": 4,
-   "clave": false
-  },
-  {
-   "w": "Poder",
-   "t": 32.96,
-   "b": 4,
-   "clave": true
-  },
-  {
-   "w": "con",
-   "t": 33.28,
-   "b": 4,
-   "clave": false
-  },
-  {
-   "w": "su",
-   "t": 33.36,
-   "b": 4,
-   "clave": false
-  },
-  {
-   "w": "tercera",
    "t": 33.52,
    "b": 4,
    "clave": false
   },
   {
-   "w": "temporada",
-   "t": 33.84,
+   "w": "regresa",
+   "t": 34.16,
    "b": 4,
    "clave": false
   },
   {
-   "w": "en",
-   "t": 34.32,
+   "w": "Los",
+   "t": 34.64,
    "b": 4,
    "clave": false
   },
   {
-   "w": "Prime",
-   "t": 34.48,
+   "w": "Anillos",
+   "t": 34.72,
    "b": 4,
    "clave": true
   },
   {
-   "w": "Video",
-   "t": 34.88,
+   "w": "de",
+   "t": 35.2,
    "b": 4,
-   "clave": true
+   "clave": false
   },
   {
-   "w": "La",
+   "w": "Poder",
    "t": 35.28,
    "b": 4,
-   "clave": false
+   "clave": true
   },
   {
-   "w": "historia",
-   "t": 35.44,
+   "w": "con",
+   "t": 35.6,
    "b": 4,
    "clave": false
   },
   {
-   "w": "salta",
+   "w": "su",
+   "t": 35.68,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "tercera",
    "t": 35.84,
    "b": 4,
    "clave": false
   },
   {
+   "w": "temporada",
+   "t": 36.16,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 36.64,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Prime",
+   "t": 36.72,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Video",
+   "t": 37.12,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "La",
+   "t": 37.6,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "historia",
+   "t": 37.76,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "salta",
+   "t": 38.08,
+   "b": 4,
+   "clave": false
+  },
+  {
    "w": "5",
-   "t": 36.24,
+   "t": 38.56,
    "b": 4,
    "clave": true
   },
   {
    "w": "años",
-   "t": 36.56,
+   "t": 38.8,
    "b": 4,
    "clave": false
   },
   {
    "w": "y",
-   "t": 36.88,
+   "t": 39.12,
    "b": 4,
    "clave": false
   },
   {
    "w": "se",
-   "t": 36.96,
+   "t": 39.2,
    "b": 4,
    "clave": false
   },
   {
    "w": "estrena",
-   "t": 37.04,
+   "t": 39.36,
    "b": 4,
    "clave": false
   },
   {
    "w": "con",
-   "t": 37.52,
+   "t": 39.84,
    "b": 4,
    "clave": false
   },
   {
    "w": "4",
-   "t": 37.68,
+   "t": 40.0,
    "b": 4,
    "clave": true
   },
   {
    "w": "episodios",
-   "t": 37.92,
+   "t": 40.24,
    "b": 4,
    "clave": true
   },
   {
    "w": "Ya",
-   "t": 38.64,
+   "t": 41.36,
    "b": 5,
    "clave": false
   },
   {
    "w": "hay",
-   "t": 38.88,
+   "t": 41.68,
    "b": 5,
    "clave": false
   },
   {
    "w": "primeras",
-   "t": 39.12,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "reacciones",
-   "t": 39.44,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "de",
-   "t": 39.92,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "Ebenezer",
-   "t": 40.08,
-   "b": 5,
-   "clave": true
-  },
-  {
-   "w": "la",
-   "t": 40.72,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "nueva",
-   "t": 40.8,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "versión",
-   "t": 41.12,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "de",
-   "t": 41.44,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "Cuento",
-   "t": 41.52,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "de",
-   "t": 41.76,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "Navidad",
    "t": 41.92,
    "b": 5,
    "clave": false
   },
   {
-   "w": "La",
-   "t": 42.4,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "crítica",
-   "t": 42.48,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "celebra",
-   "t": 42.88,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "el",
-   "t": 43.28,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "regreso",
-   "t": 43.36,
+   "w": "reacciones",
+   "t": 42.32,
    "b": 5,
    "clave": false
   },
   {
    "w": "de",
-   "t": 43.6,
+   "t": 42.8,
    "b": 5,
    "clave": false
   },
   {
-   "w": "Johnny",
-   "t": 43.76,
+   "w": "Ebenezer",
+   "t": 42.88,
    "b": 5,
    "clave": true
   },
   {
-   "w": "Depp",
+   "w": "la",
+   "t": 43.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "nueva",
+   "t": 43.68,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "versión",
+   "t": 43.92,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
    "t": 44.24,
    "b": 5,
-   "clave": true
+   "clave": false
   },
   {
-   "w": "como",
+   "w": "Cuento",
+   "t": 44.32,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
    "t": 44.56,
    "b": 5,
    "clave": false
   },
   {
-   "w": "Scrooge",
+   "w": "Navidad",
    "t": 44.72,
    "b": 5,
-   "clave": true
+   "clave": false
   },
   {
-   "w": "en",
+   "w": "La",
+   "t": 45.2,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "crítica",
    "t": 45.28,
    "b": 5,
    "clave": false
   },
   {
-   "w": "su",
-   "t": 45.36,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "primera",
-   "t": 45.44,
-   "b": 5,
-   "clave": false
-  },
-  {
-   "w": "película",
+   "w": "celebra",
    "t": 45.68,
    "b": 5,
    "clave": false
   },
   {
-   "w": "de",
-   "t": 46.0,
+   "w": "el",
+   "t": 46.08,
    "b": 5,
    "clave": false
   },
   {
-   "w": "Hollywood",
+   "w": "regreso",
    "t": 46.16,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 46.4,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Johnny",
+   "t": 46.48,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Depp",
+   "t": 47.04,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "como",
+   "t": 47.36,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Scrooge",
+   "t": 47.52,
    "b": 5,
    "clave": true
   },
   {
    "w": "en",
-   "t": 47.04,
+   "t": 48.0,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 48.08,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "primera",
+   "t": 48.16,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 48.4,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 48.72,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Hollywood",
+   "t": 48.8,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 49.68,
    "b": 5,
    "clave": false
   },
   {
    "w": "8",
-   "t": 47.2,
+   "t": 49.84,
    "b": 5,
    "clave": true
   },
   {
    "w": "años",
-   "t": 47.44,
+   "t": 50.0,
    "b": 5,
-   "clave": false
-  },
-  {
-   "w": "Sigue",
-   "t": 48.48,
-   "b": 6,
-   "clave": false
-  },
-  {
-   "w": "a",
-   "t": 48.88,
-   "b": 6,
-   "clave": false
-  },
-  {
-   "w": "Movie",
-   "t": 49.04,
-   "b": 6,
-   "clave": false
-  },
-  {
-   "w": "Plus",
-   "t": 49.44,
-   "b": 6,
-   "clave": false
-  },
-  {
-   "w": "para",
-   "t": 49.76,
-   "b": 6,
-   "clave": false
-  },
-  {
-   "w": "más",
-   "t": 49.92,
-   "b": 6,
-   "clave": false
-  },
-  {
-   "w": "noticias",
-   "t": 50.08,
-   "b": 6,
-   "clave": false
-  },
-  {
-   "w": "de",
-   "t": 50.48,
-   "b": 6,
-   "clave": false
-  },
-  {
-   "w": "cine",
-   "t": 50.56,
-   "b": 6,
    "clave": false
   }
  ],
@@ -1033,56 +979,49 @@
    "inicio": 0.0,
    "primera": 0,
    "ultima": 7,
-   "fin": 2.12
+   "fin": 2.6
   },
   {
    "bloque": 1,
-   "inicio": 2.12,
+   "inicio": 2.6,
    "primera": 8,
    "ultima": 38,
-   "fin": 12.84
+   "fin": 13.64
   },
   {
    "bloque": 2,
-   "inicio": 12.84,
+   "inicio": 13.64,
    "primera": 39,
    "ultima": 71,
-   "fin": 21.96
+   "fin": 23.64
   },
   {
    "bloque": 3,
-   "inicio": 21.96,
+   "inicio": 23.64,
    "primera": 72,
    "ultima": 105,
-   "fin": 31.4
+   "fin": 33.56
   },
   {
    "bloque": 4,
-   "inicio": 31.4,
+   "inicio": 33.56,
    "primera": 106,
    "ultima": 129,
-   "fin": 38.68
+   "fin": 41.4
   },
   {
    "bloque": 5,
-   "inicio": 38.68,
+   "inicio": 41.4,
    "primera": 130,
    "ultima": 161,
-   "fin": 48.52
-  },
-  {
-   "bloque": 6,
-   "inicio": 48.52,
-   "primera": 162,
-   "ultima": 170,
-   "fin": 51.44
+   "fin": 50.88
   }
  ],
  "noticias": [
   {
    "n": 1,
-   "inicio": 2.12,
-   "fin": 12.84,
+   "inicio": 2.6,
+   "fin": 13.64,
    "medios": [
     {
      "tipo": "imagen",
@@ -1090,7 +1029,7 @@
      "en": null,
      "ajuste": "cover",
      "foco": "center 15%",
-     "t": 2.12
+     "t": 2.6
     },
     {
      "tipo": "imagen",
@@ -1098,14 +1037,14 @@
      "en": "Peter",
      "ajuste": "cover",
      "foco": "center 25%",
-     "t": 3.64
+     "t": 4.28
     },
     {
      "tipo": "imagen",
      "src": "media/2026-11-10/n1_dc_studios_logo.png",
      "en": "primero",
      "ajuste": "contain",
-     "t": 5.72
+     "t": 6.2
     },
     {
      "tipo": "imagen",
@@ -1114,7 +1053,7 @@
      "en": "Jeremy",
      "ajuste": "cover",
      "foco": "center 25%",
-     "t": 7.56
+     "t": 7.8
     },
     {
      "tipo": "imagen",
@@ -1122,7 +1061,7 @@
      "en": "Man",
      "ajuste": "cover",
      "foco": "center 25%",
-     "t": 11.8
+     "t": 12.12
     }
    ],
    "rotulos": [
@@ -1131,14 +1070,14 @@
      "texto": "JAMES GUNN",
      "sub": "CODIRECTOR DE DC STUDIOS",
      "en": "James",
-     "t": 2.8
+     "t": 3.36
     },
     {
      "tipo": "nombre",
      "texto": "PETER SAFRAN",
      "sub": "CODIRECTOR DE DC STUDIOS",
      "en": "Peter",
-     "t": 3.6
+     "t": 4.24
     },
     {
      "tipo": "fecha",
@@ -1147,28 +1086,28 @@
      "texto": "1 DE DICIEMBRE",
      "sub": "DEJAN EL CARGO",
      "en": "primero",
-     "t": 5.68
+     "t": 6.16
     },
     {
      "tipo": "nombre",
      "texto": "JEREMY LATCHAM",
      "sub": "NUEVO PRESIDENTE DE DC STUDIOS",
      "en": "Jeremy",
-     "t": 7.52
+     "t": 7.76
     },
     {
      "tipo": "titulo",
      "texto": "MAN OF TOMORROW",
      "categoria": "GUNN SIGUE EN DC",
      "en": "Man",
-     "t": 11.76
+     "t": 12.08
     }
    ]
   },
   {
    "n": 2,
-   "inicio": 12.84,
-   "fin": 21.96,
+   "inicio": 13.64,
+   "fin": 23.64,
    "medios": [
     {
      "tipo": "video",
@@ -1177,14 +1116,14 @@
      "hasta": 2.8,
      "toma": "Godzilla ruge",
      "en": null,
-     "t": 12.84,
+     "t": 13.64,
      "archivo": "media/2026-11-10/frag/n2_0.mp4"
     },
     {
      "tipo": "imagen",
      "src": "media/2026-11-10/n2_godzilla_2.jpg",
      "en": "con",
-     "t": 15.08
+     "t": 16.2
     },
     {
      "tipo": "video",
@@ -1193,7 +1132,7 @@
      "hasta": 5.4,
      "toma": "avión en vuelo rasante",
      "en": "Es",
-     "t": 17.88,
+     "t": 19.16,
      "archivo": "media/2026-11-10/frag/n2_2.mp4"
     },
     {
@@ -1203,7 +1142,7 @@
      "hasta": 24.5,
      "toma": "Godzilla entre brasas",
      "en": "historia",
-     "t": 19.08,
+     "t": 20.36,
      "archivo": "media/2026-11-10/frag/n2_3.mp4"
     },
     {
@@ -1212,7 +1151,7 @@
      "en": "real",
      "ajuste": "cover",
      "foco": "40% center",
-     "t": 20.68
+     "t": 21.96
     }
    ],
    "rotulos": [
@@ -1224,28 +1163,28 @@
      "texto": "$31M",
      "sub": "TAQUILLA EN NORTEAMÉRICA",
      "en": "treinta",
-     "t": 15.36
+     "t": 16.56
     },
     {
      "tipo": "insignia",
      "texto": "RÉCORD HISTÓRICO",
      "sub": "MEJOR ESTRENO EN OTRO IDIOMA",
      "en": "mejor",
-     "t": 18.16
+     "t": 19.36
     }
    ]
   },
   {
    "n": 3,
-   "inicio": 21.96,
-   "fin": 31.4,
+   "inicio": 23.64,
+   "fin": 33.56,
    "medios": [
     {
      "tipo": "imagen",
      "src": "media/2026-11-10/n3_juegos_hambre_poster.png",
      "en": null,
      "ajuste": "contain",
-     "t": 21.96
+     "t": 23.64
     },
     {
      "tipo": "video",
@@ -1254,7 +1193,7 @@
      "hasta": 35.2,
      "toma": "arena con la Cornucopia",
      "en": "Es",
-     "t": 26.36,
+     "t": 28.04,
      "archivo": "media/2026-11-10/frag/n3_1.mp4"
     },
     {
@@ -1264,7 +1203,7 @@
      "hasta": 97.8,
      "toma": "Haymitch con la serpiente",
      "en": "y",
-     "t": 28.44,
+     "t": 30.28,
      "archivo": "media/2026-11-10/frag/n3_2.mp4"
     },
     {
@@ -1274,7 +1213,7 @@
      "hasta": 43.6,
      "toma": "tributo en primer plano",
      "en": "más",
-     "t": 29.64,
+     "t": 31.48,
      "archivo": "media/2026-11-10/frag/n3_3.mp4"
     }
    ],
@@ -1286,7 +1225,7 @@
      "b": "WICKED",
      "sub": "PREVENTA DE BOLETOS",
      "en": "Wicked",
-     "t": 25.52
+     "t": 27.6
     },
     {
      "tipo": "contador",
@@ -1296,14 +1235,14 @@
      "texto": "+$80M",
      "sub": "ESTRENO PROYECTADO",
      "en": "ochenta",
-     "t": 29.84
+     "t": 31.68
     }
    ]
   },
   {
    "n": 4,
-   "inicio": 31.4,
-   "fin": 38.68,
+   "inicio": 33.56,
+   "fin": 41.4,
    "medios": [
     {
      "tipo": "video",
@@ -1313,7 +1252,7 @@
      "toma": "título LOS ANILLOS DE PODER",
      "en": null,
      "zoom": 1.0,
-     "t": 31.4,
+     "t": 33.56,
      "archivo": "media/2026-11-10/frag/n4_0.mp4"
     },
     {
@@ -1323,7 +1262,7 @@
      "hasta": 57.0,
      "toma": "Sauron con corona",
      "en": "con",
-     "t": 33.32,
+     "t": 35.64,
      "archivo": "media/2026-11-10/frag/n4_1.mp4"
     },
     {
@@ -1333,7 +1272,7 @@
      "hasta": 5.15,
      "toma": "el anillo brillando",
      "en": "Prime",
-     "t": 34.52,
+     "t": 36.76,
      "archivo": "media/2026-11-10/frag/n4_2.mp4"
     },
     {
@@ -1343,7 +1282,7 @@
      "hasta": 63.0,
      "toma": "jinete en la playa",
      "en": "La",
-     "t": 35.32,
+     "t": 37.64,
      "archivo": "media/2026-11-10/frag/n4_3.mp4"
     },
     {
@@ -1353,7 +1292,7 @@
      "hasta": 86.0,
      "toma": "silueta entre fuego",
      "en": "y",
-     "t": 36.92,
+     "t": 39.16,
      "archivo": "media/2026-11-10/frag/n4_4.mp4"
     }
    ],
@@ -1365,7 +1304,7 @@
      "texto": "TEMPORADA 3",
      "sub": "EN PRIME VIDEO",
      "en": "tercera",
-     "t": 33.52
+     "t": 35.84
     },
     {
      "tipo": "salto",
@@ -1373,7 +1312,7 @@
      "texto": "+5 AÑOS",
      "sub": "SALTO EN EL TIEMPO",
      "en": "cinco",
-     "t": 36.24
+     "t": 38.56
     },
     {
      "tipo": "bloques",
@@ -1381,14 +1320,14 @@
      "texto": "4 EPISODIOS",
      "sub": "EN EL ESTRENO",
      "en": "cuatro",
-     "t": 37.68
+     "t": 40.0
     }
    ]
   },
   {
    "n": 5,
-   "inicio": 38.68,
-   "fin": 48.52,
+   "inicio": 41.4,
+   "fin": 50.88,
    "medios": [
     {
      "tipo": "imagen",
@@ -1396,14 +1335,14 @@
      "en": null,
      "ajuste": "cover",
      "foco": "center 38%",
-     "t": 38.68
+     "t": 41.4
     },
     {
      "tipo": "imagen",
      "src": "media/2026-11-10/n5_ebenezer_still.jpg",
      "en": "La#2",
      "ajuste": "contain",
-     "t": 42.44
+     "t": 45.24
     }
    ],
    "rotulos": [
@@ -1412,7 +1351,7 @@
      "texto": "JOHNNY DEPP",
      "sub": "ES SCROOGE EN EBENEZER",
      "en": "Johnny",
-     "t": 43.76
+     "t": 46.48
     },
     {
      "tipo": "salto",
@@ -1420,7 +1359,7 @@
      "texto": "8 AÑOS",
      "sub": "SIN UNA PELÍCULA DE HOLLYWOOD",
      "en": "ocho",
-     "t": 47.2
+     "t": 49.84
     }
    ]
   }
@@ -1430,8 +1369,8 @@
   "fps": 30,
   "intro": 76,
   "vozOffset": 2.4,
-  "cierreInicio": 1525,
+  "cierreInicio": 1625,
   "cierre": 96,
-  "total": 1621
+  "total": 1721
  }
 }
