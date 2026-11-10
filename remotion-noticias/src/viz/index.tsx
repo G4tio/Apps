@@ -1,5 +1,5 @@
 import React from "react";
-import { interpolate, useCurrentFrame } from "remotion";
+import { interpolate, staticFile, useCurrentFrame } from "remotion";
 import { C, F, P, inOut, lerp, outBack, outCubic } from "../theme";
 import type { Viz } from "../data";
 
@@ -117,16 +117,13 @@ const Barras = () => {
   );
 };
 
-/* 4. Banderas: Guatemala (simplificada, sin escudo) y Unión Europea con sus colores reales */
+/* 4. Banderas: Guatemala (con escudo, tomada del video de referencia) y Unión Europea con sus colores reales */
 const Bandera: React.FC<{ tipo: "gt" | "ue" }> = ({ tipo }) => {
   const w = 300, h = 200;
   if (tipo === "gt")
     return (
       <g>
-        <rect x={0} y={0} width={w / 3} height={h} fill="#4997D0" />
-        <rect x={w / 3} y={0} width={w / 3} height={h} fill="#FFFFFF" />
-        <rect x={(2 * w) / 3} y={0} width={w / 3} height={h} fill="#4997D0" />
-        <circle cx={w / 2} cy={h / 2} r="26" fill="none" stroke="#6C9A3B" strokeWidth="6" opacity="0.8" />
+        <image href={staticFile("marca/bandera-gt.png")} width={w} height={h} preserveAspectRatio="none" />
         <rect width={w} height={h} fill="none" stroke={C.claro} strokeWidth="3" rx="4" />
       </g>
     );

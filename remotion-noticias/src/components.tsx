@@ -46,7 +46,7 @@ const Pin = () => (
   </svg>
 );
 
-export const Encabezado: React.FC<{ seccion: string; n: number; total: number; avance: number }> = ({ seccion, n, total, avance }) => {
+export const Encabezado: React.FC<{ seccion: string; n: number; total: number; avance: number; derecha?: string }> = ({ seccion, n, total, avance, derecha }) => {
   const dd = (x: number) => String(x).padStart(2, "0");
   return (
     <>
@@ -68,14 +68,14 @@ export const Encabezado: React.FC<{ seccion: string; n: number; total: number; a
           fontFamily: F.mono, fontWeight: 800, fontSize: 30, color: C.suave, letterSpacing: "0.04em",
         }}
       >
-        NOTICIA {dd(n)} / {dd(total)}
+        {derecha ?? `NOTICIA ${dd(n)} / ${dd(total)}`}
       </div>
       {/* barra de progreso por noticias */}
-      <div style={{ position: "absolute", left: 70, top: 214, width: W - 140, display: "flex", gap: 10 }}>
+      <div style={{ position: "absolute", left: 70, top: 216, width: W - 140, display: "flex", gap: 12 }}>
         {Array.from({ length: total }).map((_, i) => {
           const fill = i < n - 1 ? 1 : i === n - 1 ? avance : 0;
           return (
-            <div key={i} style={{ flex: 1, height: 6, borderRadius: 3, background: "rgba(127,184,230,0.18)", overflow: "hidden" }}>
+            <div key={i} style={{ flex: 1, height: 5, borderRadius: 3, background: "rgba(127,184,230,0.16)", overflow: "hidden" }}>
               <div style={{ width: `${fill * 100}%`, height: "100%", background: C.celeste }} />
             </div>
           );
@@ -106,31 +106,33 @@ export const Subtitulos: React.FC<{ captions: { at: number; text: string }[]; fi
       {captions.map((c, i) => {
         const start = Math.round(c.at * 30);
         const end = i + 1 < captions.length ? Math.round(captions[i + 1].at * 30) - 2 : fin;
-        if (f < start - 1 || f > end) return null;
+        if (f < start - 8 || f > end) return null;
         const out = 1 - P(f, end - 5, 5);
         const toks = tokenize(c.text);
         return (
           <div
             key={i}
             style={{
-              position: "absolute", left: 70, right: 70, top: 250, height: 250,
-              display: "flex", flexWrap: "wrap", alignContent: "flex-start", justifyContent: "center",
-              columnGap: 20, rowGap: 4, opacity: out,
-              fontFamily: F.exo, fontWeight: 800, fontSize: 72, lineHeight: 1.12, textAlign: "center",
+              position: "absolute", left: 70, right: 70, top: 262, height: 240,
+              display: "flex", flexWrap: "wrap", alignContent: "flex-start", justifyContent: "flex-start",
+              columnGap: 22, opacity: out,
+              fontFamily: F.exo, fontWeight: 800, fontSize: 72, lineHeight: "90px",
             }}
           >
             {toks.map((t, j) => {
-              const ws = start + j * 3;
-              const p = P(f, ws, 8, outCubic);
+              // cada palabra entra atenuada ~0,26 s antes y se ilumina cuando se pronuncia
+              const ws = start + j * 4;
+              const p = P(f, ws - 8, 8, outCubic);
+              const on = P(f, ws, 4);
+              const color = t.kind === "k" ? C.celeste : t.kind === "c" ? C.claro : C.blanco;
               return (
                 <span
                   key={j}
                   style={{
-                    display: "inline-block",
-                    opacity: P(f, ws, 5),
-                    transform: `translateY(${(1 - p) * 26}px) scale(${0.85 + 0.15 * p})`,
-                    color: t.kind === "k" ? C.celeste : t.kind === "c" ? C.claro : C.blanco,
-                    textShadow: "0 4px 18px rgba(0,0,0,0.35)",
+                    display: "inline-block", color,
+                    opacity: p * (0.45 + 0.55 * on),
+                    transform: `translateY(${(1 - p) * 18}px) scale(${0.92 + 0.08 * p})`,
+                    transformOrigin: "0 100%",
                   }}
                 >
                   {t.w}
@@ -146,28 +148,34 @@ export const Subtitulos: React.FC<{ captions: { at: number; text: string }[]; fi
 
 /* ---------- Escenario de ilustración: círculo tenue con borde punteado giratorio ---------- */
 export const Escenario: React.FC<{ cy?: number; r?: number; children: React.ReactNode; etiqueta?: string; etiquetaAt?: number }> = ({
-  cy = 1010, r = 340, children, etiqueta, etiquetaAt = 70,
+  cy = 917, r = 360, children, etiqueta, etiquetaAt = 70,
 }) => {
   const f = useCurrentFrame();
   const inn = P(f, 4, 16, outBack);
   return (
     <>
       <svg width={W} height={1920} style={{ position: "absolute", left: 0, top: 0 }}>
+        <defs>
+          <radialGradient id="esc-glow"><stop offset="0" stopColor={C.celeste} stopOpacity="0.14" /><stop offset="1" stopColor={C.celeste} stopOpacity="0.02" /></radialGradient>
+        </defs>
         <g transform={`translate(${W / 2} ${cy}) scale(${inn})`} opacity={P(f, 4, 10)}>
-          <circle r={r} fill="rgba(31,182,255,0.06)" />
-          <circle r={r + 18} fill="none" stroke={C.celeste} strokeOpacity="0.35" strokeWidth="3" strokeDasharray="4 16" strokeLinecap="round" transform={`rotate(${f * 0.6})`} />
+          <circle r={r} fill="url(#esc-glow)" />
+          <circle r={r} fill="none" stroke={C.suave} strokeOpacity="0.45" strokeWidth="2.5" strokeDasharray="3 9" strokeLinecap="round" transform={`rotate(${f * 0.4})`} />
         </g>
       </svg>
       <div style={{ position: "absolute", left: 0, top: cy - 400, width: W, height: 800 }}>{children}</div>
       {etiqueta && (
         <div
           style={{
-            position: "absolute", left: 0, right: 0, top: cy + r + 60, textAlign: "center",
-            fontFamily: F.exo, fontStyle: "italic", fontWeight: 800, fontSize: 64, color: C.claro,
+            position: "absolute", left: 0, right: 0, top: cy + r + 50, display: "flex", justifyContent: "center",
             ...entStyle(f, etiquetaAt),
           }}
         >
-          {etiqueta}
+          <div style={{
+            padding: "14px 34px", borderRadius: 40, background: "linear-gradient(180deg, #123B6B, #0A2647)",
+            border: "2px solid rgba(127,184,230,0.6)", boxShadow: "0 8px 22px rgba(0,0,0,0.3)",
+            fontFamily: F.exo, fontWeight: 800, fontSize: 44, color: C.blanco, letterSpacing: "0.01em",
+          }}>{etiqueta.toUpperCase()}</div>
         </div>
       )}
     </>

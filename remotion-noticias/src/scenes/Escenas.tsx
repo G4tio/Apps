@@ -1,33 +1,35 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
 import { C, F, P, W, ent, inOut, lerp, outBack, outCubic } from "../theme";
 import { Encabezado, Escenario, Fondo, Subtitulos } from "../components";
 import { Ilustracion } from "../viz";
 import { FECHA_REFERENCIA, FUENTES, NOTICIAS, Noticia as N } from "../data";
 
-/* ---------- Resumen inicial: "6 noticias de hoy" ---------- */
+/* ---------- Resumen inicial (como en el video de referencia) ---------- */
 export const Resumen: React.FC<{ dur: number }> = ({ dur }) => {
   const f = useCurrentFrame();
-  const n = Math.round(lerp(0, NOTICIAS.length, P(f, 4, 24, outCubic)));
-  // al final la cifra se encoge y sube hacia el encabezado (continuidad)
-  const sale = P(f, dur - 18, 18, inOut);
+  const total = NOTICIAS.length;
+  const n = Math.round(lerp(0, total, P(f, 6, 22, outCubic)));
+  const k = P(f, 4, 16, outBack);
   return (
     <AbsoluteFill>
-      <Fondo />
+      <Fondo glowY={900} />
+      <Encabezado seccion="RESUMEN DEL DÍA" n={0} total={total} avance={0} derecha={`${String(total).padStart(2, "0")} NOTICIAS`} />
+      <Subtitulos captions={[{ at: 0.2, text: "Estas son las noticias importantes de *Guatemala*" }]} fin={dur} />
       <div style={{
-        position: "absolute", left: 0, right: 0, top: lerp(560, 120, sale), textAlign: "center",
-        transform: `scale(${lerp(1, 0.25, sale)})`, transformOrigin: "50% 0",
-        fontFamily: F.exo, fontStyle: "italic", fontWeight: 900, fontSize: 460, lineHeight: 1, color: C.celeste,
-        textShadow: "0 0 60px rgba(31,182,255,0.35)", ...(f < 14 ? ent(f, 0, "pop", 14) : {}),
+        position: "absolute", left: 0, right: 0, top: 640, textAlign: "center", opacity: P(f, 4, 8),
+        transform: `scale(${0.5 + 0.5 * k})`, transformOrigin: "50% 60%",
+        fontFamily: F.exo, fontStyle: "italic", fontWeight: 900, fontSize: 520, lineHeight: "440px",
+        background: "linear-gradient(180deg, #A8E4FF 0%, #1FB6FF 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent",
       }}>{n}</div>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 1060, textAlign: "center", opacity: 1 - sale,
-        fontFamily: F.exo, fontWeight: 800, fontSize: 92, color: C.blanco, ...ent(f, 14, "up") }}>
-        NOTICIAS <span style={{ color: C.claro }}>DE HOY</span>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 1112, textAlign: "center",
+        fontFamily: F.mono, fontWeight: 700, fontSize: 44, letterSpacing: "0.12em", color: C.suave, ...ent(f, 14, "up") }}>
+        NOTICIAS DE GUATEMALA
       </div>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 1190, textAlign: "center", opacity: 1 - sale,
-        fontFamily: F.mono, fontWeight: 700, fontSize: 32, letterSpacing: "0.08em", color: C.suave, ...ent(f, 22, "up") }}>
-        {FECHA_REFERENCIA.toUpperCase()}
-      </div>
+      <Img src={staticFile("marca/bandera-gt.png")} style={{
+        position: "absolute", left: 540 - 150, top: 1182, width: 300, height: 183, borderRadius: 6,
+        border: "2px solid rgba(191,234,255,0.6)", boxShadow: "0 10px 26px rgba(0,0,0,0.4)", ...ent(f, 20, "pop", 14),
+      }} />
     </AbsoluteFill>
   );
 };
@@ -37,7 +39,7 @@ export const Noticia: React.FC<{ noticia: N; n: number; dur: number }> = ({ noti
   const f = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <Fondo glowY={1010} />
+      <Fondo glowY={917} />
       <Encabezado seccion={noticia.seccion} n={n} total={NOTICIAS.length} avance={f / dur} />
       <Subtitulos captions={noticia.captions} fin={dur} />
       <Escenario etiqueta={noticia.etiqueta} etiquetaAt={84}>

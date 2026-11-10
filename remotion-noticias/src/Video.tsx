@@ -1,9 +1,8 @@
 import React from "react";
-import { AbsoluteFill, Sequence } from "remotion";
+import { AbsoluteFill, OffthreadVideo, Sequence, staticFile } from "remotion";
 import { NOTICIAS } from "./data";
 import { s } from "./theme";
 import { Transicion } from "./components";
-import { Logo } from "./scenes/Logo";
 import { Fuentes, Noticia, Recap, Resumen } from "./scenes/Escenas";
 
 const DUR = {
@@ -12,18 +11,18 @@ const DUR = {
   noticia: s(5.0),
   recap: s(7.0),
   fuentes: s(5.2),
-  cierre: s(3.6),
+  cierre: 108, // 3,6 s: duración exacta del clip de cierre
 };
 
 type Esc = { key: string; dur: number; el: (dur: number) => React.ReactNode };
 
 const ESCENAS: Esc[] = [
-  { key: "intro", dur: DUR.intro, el: (d) => <Logo dur={d} /> },
+  { key: "intro", dur: DUR.intro, el: () => <OffthreadVideo src={staticFile("marca/intro.mp4")} /> },
   { key: "resumen", dur: DUR.resumen, el: (d) => <Resumen dur={d} /> },
   ...NOTICIAS.map((n, i) => ({ key: `n${i}`, dur: DUR.noticia, el: (d: number) => <Noticia noticia={n} n={i + 1} dur={d} /> })),
   { key: "recap", dur: DUR.recap, el: () => <Recap /> },
   { key: "fuentes", dur: DUR.fuentes, el: () => <Fuentes /> },
-  { key: "cierre", dur: DUR.cierre, el: (d) => <Logo dur={d} salida /> },
+  { key: "cierre", dur: DUR.cierre, el: () => <OffthreadVideo src={staticFile("marca/cierre.mp4")} /> },
 ];
 
 let acc = 0;
