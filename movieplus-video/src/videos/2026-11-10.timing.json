@@ -1103,9 +1103,9 @@
     {
      "tipo": "imagen",
      "src": "media/2026-11-10/n1_dc_studios_logo.png",
-     "en": "DC",
+     "en": "primero",
      "ajuste": "contain",
-     "t": 4.84
+     "t": 5.72
     },
     {
      "tipo": "imagen",
@@ -1119,10 +1119,10 @@
     {
      "tipo": "imagen",
      "src": "media/2026-11-10/n1_james_gunn_1.jpg",
-     "en": "aunque",
+     "en": "Man",
      "ajuste": "cover",
      "foco": "center 25%",
-     "t": 10.28
+     "t": 11.8
     }
    ],
    "rotulos": [
@@ -1155,6 +1155,13 @@
      "sub": "NUEVO PRESIDENTE DE DC STUDIOS",
      "en": "Jeremy",
      "t": 7.52
+    },
+    {
+     "tipo": "titulo",
+     "texto": "MAN OF TOMORROW",
+     "categoria": "GUNN SIGUE EN DC",
+     "en": "Man",
+     "t": 11.76
     }
    ]
   },

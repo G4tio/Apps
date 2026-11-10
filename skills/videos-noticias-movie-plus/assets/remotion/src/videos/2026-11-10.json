@@ -23,7 +23,7 @@
     {
      "tipo": "imagen",
      "src": "media/2026-11-10/n1_dc_studios_logo.png",
-     "en": "DC",
+     "en": "primero",
      "ajuste": "contain"
     },
     {
@@ -37,7 +37,7 @@
     {
      "tipo": "imagen",
      "src": "media/2026-11-10/n1_james_gunn_1.jpg",
-     "en": "aunque",
+     "en": "Man",
      "ajuste": "cover",
      "foco": "center 25%"
     }
@@ -68,6 +68,12 @@
      "texto": "JEREMY LATCHAM",
      "sub": "NUEVO PRESIDENTE DE DC STUDIOS",
      "en": "Jeremy"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "MAN OF TOMORROW",
+     "categoria": "GUNN SIGUE EN DC",
+     "en": "Man"
     }
    ],
    "fondo": "media/2026-11-10/n1_dc_studios_logo.png",

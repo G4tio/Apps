@@ -154,6 +154,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
       - `salto`: línea de tiempo «+N AÑOS».
       - `bloques`: N fichas de episodio.
     - Usa solo datos verificados en las fuentes; los textos `sub` son descriptivos y cortos.
+    - **El dato debe coincidir con la imagen de arriba:** si un panel `nombre` dice «PETER SAFRAN», la tarjeta muestra a Safran. Ancla el cambio de imagen a la misma palabra que el dato siguiente; si queda una imagen sin dato propio, añádele uno (p. ej. `titulo` «MAN OF TOMORROW» sobre la foto de Gunn).
   - **Subtítulos:** más abajo, debajo del panel de datos: palabra por palabra, en bloques de hasta 3 palabras, y≈1402–1580.
   - **Tarjeta de imagen:** 900×900 en y=240.
   - **Pausa antes del cierre:** inserta ~1,2 s de silencio en la voz antes de «Sigue a Movie Plus», para que el último dato se lea antes de que entre el panel rojo. Después vuelve a transcribir y alinear.
