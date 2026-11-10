@@ -71,8 +71,20 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 ## 6. Diseño del video
 **Identidad Movie Plus** (confirmada con el logo oficial):
 - Rojo `#ED1C24` (aro, punto, acentos, botones, barridos), carbón `#3A3A3C` (letras del logo sobre fondo claro), fondo negro cinematográfico `#0B0D12` con resplandor azul noche `#1A2236` y partículas suaves (como el ícono de la estrella). Sobre fondo oscuro las letras del logo van en **blanco**.
-- Logo: proyecto `movieplus-video/` del repo, con capas separadas en `public/logo/` (m, estrella, aro_sup, aro_inf, punto, v, i, e, p, l, u, s) y posiciones en `src/logo-layers.json`. Original en `public/logo/movieplus_original.png`; ícono en `movieplus_icono.jpg`.
-- Tipografías: **Saira Condensed** Black/Bold itálica (rótulos, botones, subtítulos; combina con el logo) y **Montserrat** (textos secundarios con espaciado amplio). Están en `public/fonts/` (OFL).
+- Logo: capas separadas en `assets/remotion/public/logo/` (m, estrella, aro_sup, aro_inf, punto, v, i, e, p, l, u, s), con sus posiciones en `assets/remotion/src/logo-layers.json`. El original está en `public/logo/movieplus_original.png` y el ícono en `movieplus_icono.jpg`.
+- Tipografías: **Saira Condensed** Black/Bold itálica (rótulos, botones, subtítulos; combina con el logo) y **Montserrat** (textos secundarios con espaciado amplio). Están en `assets/remotion/public/fonts/` (OFL).
+
+**Animaciones de inicio y cierre guardadas en la skill (aprobadas; no las rediseñes):**
+- `assets/render/movieplus_intro.mp4` (2,58 s) y `assets/render/movieplus_cierre.mp4` (3,24 s): renders finales listos, 1080×1920, 30 fps, H.264 yuv420p, con su sonido. Si no hay cambios, úsalos tal cual (concaténalos con ffmpeg o colócalos con `<OffthreadVideo>` en Remotion).
+- `assets/remotion/`: proyecto Remotion fuente.
+  - Composiciones `Intro` y `Cierre`.
+  - Animación del logo en `src/LogoAnim.tsx` y capas, fondo y estrella en `src/Logo.tsx`; colores y easings en `src/marca.ts`.
+  - Sonido en `scripts/sfx.py` (genera `public/sfx/*.wav`).
+- Para editarlas o montar el video completo:
+  1. Copia la carpeta: `cp -r <skill>/assets/remotion movieplus-video && cd movieplus-video && npm install`.
+  2. Renderiza: `npx remotion render Intro out/intro.mp4 --browser-executable=/opt/pw-browsers/chromium`.
+  3. Recodifica: `ffmpeg -i out/intro.mp4 -c:v libx264 -crf 16 -pix_fmt yuv420p -c:a copy -movflags +faststart movieplus_intro.mp4`.
+  4. Si cambian, actualiza también los MP4 de `assets/render/`.
 
 **Estructura** (igual en cada video):
 1. **Intro logo** (composición `Intro`, 2,5 s; aprobada por el usuario). Se inspira en la referencia de Pinterest (bloques planos de color que se expanden, letra gigante que se aleja y letras que encajan una a una):
@@ -98,7 +110,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 **Transiciones** entre noticias: corte con whip/zoom rápido (0,25 s) y leve desenfoque de movimiento.
 
 ## 7. Edición con Remotion
-- El usuario autoriza usar Remotion. Reusa el proyecto `movieplus-video/` del repo (`npm install`; Intro y Cierre ya hechos) y agrega ahí la composición del video. Renderiza siempre con `--browser-executable=/opt/pw-browsers/chromium` y recodifica a `yuv420p` con ffmpeg. Composición `MoviePlusNews` 1080×1920, 30 fps, duración = intro + voz + cierre.
+- El usuario autoriza usar Remotion. Parte de la plantilla `assets/remotion/` de la skill (copiada a `movieplus-video/`, `npm install`; Intro y Cierre ya hechos) y agrega ahí la composición del video. Renderiza siempre con `--browser-executable=/opt/pw-browsers/chromium` y recodifica a `yuv420p` con ffmpeg. Composición `MoviePlusNews` 1080×1920, 30 fps, duración = intro + voz + cierre.
 - Componentes: `Intro`, `Gancho`, `Noticia` (props: imágenes, rótulos con tiempos, índice), `Subtitulos` (lee `timing.json`), `Cierre`. Usa `interpolate`/`spring`, `<Img>` con `staticFile`, `<Audio>` para voz (con `startFrom`/`Sequence` tras la intro) y música.
 - **Música de fondo baja**: pista que dé el usuario o una sin derechos; volumen ≈ −22 dB bajo la voz (≈0,08–0,12 en Remotion) con ducking suave, fade in/out; whoosh en cada transición y golpe en el logo.
 - Revisión antes del render: renderiza fotogramas sueltos (`npx remotion still MoviePlusNews out/f.png --frame=N`) en 8–12 instantes clave y arma una hoja de contactos; corrige textos cortados y solapamientos.
