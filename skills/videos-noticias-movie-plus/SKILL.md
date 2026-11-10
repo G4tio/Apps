@@ -43,7 +43,14 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - Tono: animado, cercano, de fan informado; sin opiniones largas ni chistes intercalados (los memes del original se omiten). Un remate breve opcional de 2–4 palabras por noticia está bien si suena natural («Por fin.»).
 - **Sin línea de cierre hablada** (pedido del usuario): el guion termina con la última noticia; el cierre animado con «SÍGUENOS» entra solo, con su sonido, ~0,9 s después de la última palabra.
 - Escribe los números como se pronuncian en la versión para voz; mantén otra versión «para pantalla» con cifras (§5).
-- Títulos de películas: usa el título con el que se conoce en Latinoamérica; si difiere del original, menciona el original solo en pantalla.
+- **Títulos de películas y series: siempre el título oficial para Latinoamérica**, en el guion, los subtítulos y el panel.
+  - Verifícalo en la cartelera o los medios de la región (Cinépolis, Cinemex, SensaCine México, IGN Latam, La Covacha, Excélsior). No uses el título de España.
+  - Si no hay título localizado, usa el original tal cual, sin traducirlo por tu cuenta.
+  - Ejemplos verificados:
+    - *Ebenezer* → «Ebenezer: Los fantasmas de Navidad»
+    - *Sunrise on the Reaping* → «Los Juegos del Hambre: Amanecer en la cosecha»
+    - *Godzilla Minus Zero*, *Wicked* y *Man of Tomorrow* se quedan igual.
+  - Indícale al usuario en la tabla de noticias qué título usarás y de dónde sale.
 - Entrega al usuario: guion en bloques numerados, palabras totales y duración estimada (≈3,2 palabras/s, ritmo del video de referencia; apunta a ~170–180 palabras en total y 27–34 por noticia). Espera su aprobación.
 
 ## 3. Imágenes
@@ -68,11 +75,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - Clave: nunca en el chat ni en archivos. Si no hay credencial para `api.fish.audio`, pídela con `request_credential` (host `api.fish.audio`, tipo bearer) y luego ejecuta:
   `python3 scripts/fish_tts.py locucion.txt voz.mp3` (modelo `s1` por defecto; `--modelo speech-1.6` si el usuario lo prefiere).
 - `locucion.txt` = el texto aprobado tal como se verá en subtítulos, con números en palabras y una línea por bloque.
-- **Títulos de películas en inglés se pronuncian en inglés** (pedido del usuario; solo el título de la película, no estudios, plataformas ni personajes). Genera `locucion_tts.txt` reemplazando esos títulos por su escritura fonética en español y envía ese archivo a Fish Audio. Los subtítulos usan `locucion.txt`. Ejemplos usados:
-  - «Man of Tomorrow» → «Man of Tumórrou»
-  - «Godzilla Minus Zero» → «Gadsíla Máinus Zírou»
-  - «Wicked» → «Uíkid»
-  - «Ebenezer» → «Ebeníser»
+- **Audio solo en español** (pedido del usuario): no fuerces pronunciación en inglés ni escribas títulos de forma fonética; la voz lee todo con su lectura normal en español. `locucion.txt` va directo a Fish Audio.
 - **Espacio entre noticias:** después de la primera alineación, `scripts/pausas.py voz.mp3 <timing_provisional> voz/voz_limpia.wav 0.7 0.35` inserta 0,7 s de silencio antes de cada noticia (0,35 s tras el gancho). Luego vuelve a transcribir y alinear.
 - Escucha el resultado vía transcripción (§5): si una palabra sale mal, corrige la grafía solo en `locucion.txt` y regenera ese fragmento o todo.
 - **Revisa artefactos de Fish Audio:** a veces mete una sílaba suelta entre bloques (p. ej. «Oria» tras el gancho).

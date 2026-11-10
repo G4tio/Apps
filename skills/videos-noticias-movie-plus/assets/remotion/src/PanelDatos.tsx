@@ -45,7 +45,7 @@ const Titulo: React.FC<{d: Dato; f: number}> = ({d, f}) => (
       </div>
     ) : null}
     <Revela p={outExpo(prog(f, 4, 18))}>
-      <div style={{...SAIRA, fontSize: d.texto.length > 18 ? 74 : 88, lineHeight: 0.95, color: '#fff', whiteSpace: 'nowrap'}}>{d.texto}</div>
+      <div style={{...SAIRA, fontSize: d.texto.length > 18 ? Math.min(74, Math.round(800 / (d.texto.length * 0.42))) : 88, lineHeight: 0.95, color: '#fff', whiteSpace: 'nowrap'}}>{d.texto}</div>
     </Revela>
   </div>
 );
