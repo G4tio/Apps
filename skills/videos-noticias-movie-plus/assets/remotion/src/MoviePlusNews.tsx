@@ -35,6 +35,8 @@ const fr = (tv: number) => Math.round((VOZ + tv) * FPS);
 
 // ---------- estilos ----------
 const SAIRA: React.CSSProperties = {fontFamily: 'Saira Condensed', fontWeight: 900, fontStyle: 'italic'};
+// Tipografía de los subtítulos: Montserrat Black (distinta de los datos, que van en Bebas Neue).
+const SUBT: React.CSSProperties = {fontFamily: 'Montserrat', fontWeight: 900, fontStyle: 'normal', letterSpacing: '-0.01em'};
 const contorno = (px: number): React.CSSProperties => ({
   WebkitTextStroke: `${px}px #000`,
   paintOrder: 'stroke fill',
@@ -230,13 +232,13 @@ const Subtitulos: React.FC<{frame: number}> = ({frame}) => {
   if (!bl) return null;
   return (
     <div style={{position: 'absolute', left: 60, width: W - 120, top: 1402, minHeight: 180, display: 'flex',
-      flexWrap: 'wrap', justifyContent: 'center', alignContent: 'center', columnGap: 22, rowGap: 0}}>
+      flexWrap: 'wrap', justifyContent: 'center', alignContent: 'center', columnGap: 18, rowGap: 0}}>
       {bl.pal.map((p, i) => {
         const a = fr(p.t);
         const pp = prog(frame, a, a + 5);
-        if (frame < a) return <span key={i} style={{visibility: 'hidden', ...SAIRA, fontSize: 84}}>{p.w.toUpperCase()}</span>;
+        if (frame < a) return <span key={i} style={{visibility: 'hidden', ...SUBT, fontSize: 66}}>{p.w.toUpperCase()}</span>;
         return (
-          <span key={i} style={{...SAIRA, fontSize: 84, lineHeight: 1.08, textTransform: 'uppercase',
+          <span key={i} style={{...SUBT, fontSize: 66, lineHeight: 1.15, textTransform: 'uppercase',
             color: p.clave ? MARCA.rojo : '#fff', ...contorno(11), display: 'inline-block',
             transform: `scale(${lerp(0.75, 1, outBack(pp, 2))}) translateY(${lerp(14, 0, pp)}px)`, opacity: Math.min(1, pp * 2)}}>
             {p.w.toUpperCase()}

@@ -11,9 +11,10 @@ export type Dato = {
 
 export const PANEL = {x: 90, y: 1166, w: 900, h: 212};
 
-const SAIRA: React.CSSProperties = {fontFamily: 'Saira Condensed', fontWeight: 900, fontStyle: 'italic'};
+// Tipografía de los datos: Bebas Neue (distinta de los subtítulos, que van en Montserrat Black).
+const SAIRA: React.CSSProperties = {fontFamily: 'Bebas Neue', fontWeight: 400, fontStyle: 'normal', letterSpacing: '0.02em'};
 const SUB: React.CSSProperties = {
-  fontFamily: 'Montserrat', fontWeight: 600, fontSize: 23, letterSpacing: '0.16em', color: 'rgba(255,255,255,0.72)',
+  fontFamily: 'Bebas Neue', fontWeight: 400, fontSize: 30, letterSpacing: '0.14em', color: 'rgba(255,255,255,0.72)',
 };
 const ROJO = MARCA.rojo;
 
@@ -25,7 +26,7 @@ const Revela: React.FC<{p: number; children: React.ReactNode; style?: React.CSSP
 const Titular: React.FC<{f: number; texto: string; sub?: string; size?: number}> = ({f, texto, sub, size = 74}) => (
   <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 10, minWidth: 0}}>
     <Revela p={outExpo(prog(f, 2, 14))}>
-      <div style={{...SAIRA, fontSize: size, lineHeight: 0.95, color: '#fff', whiteSpace: 'nowrap'}}>{texto}</div>
+      <div style={{...SAIRA, fontSize: size * 1.12, lineHeight: 0.95, color: '#fff', whiteSpace: 'nowrap'}}>{texto}</div>
     </Revela>
     {sub ? (
       <div style={{...SUB, opacity: prog(f, 8, 16), transform: `translateX(${lerp(-20, 0, outCubic(prog(f, 8, 16)))}px)`}}>{sub}</div>
@@ -37,14 +38,14 @@ const Titular: React.FC<{f: number; texto: string; sub?: string; size?: number}>
 const Titulo: React.FC<{d: Dato; f: number}> = ({d, f}) => (
   <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 14, height: '100%'}}>
     {d.categoria ? (
-      <div style={{alignSelf: 'flex-start', background: ROJO, color: '#fff', ...SAIRA, fontWeight: 700, fontSize: 28,
-        letterSpacing: '0.08em', padding: '4px 20px 6px', borderRadius: 999,
+      <div style={{alignSelf: 'flex-start', background: ROJO, color: '#fff', ...SAIRA, fontSize: 30,
+        letterSpacing: '0.1em', padding: '4px 20px 6px', borderRadius: 999,
         transform: `scale(${outBack(prog(f, 0, 9), 2)})`, transformOrigin: 'left center'}}>
         {d.categoria}
       </div>
     ) : null}
     <Revela p={outExpo(prog(f, 4, 18))}>
-      <div style={{...SAIRA, fontSize: d.texto.length > 18 ? 64 : 78, lineHeight: 0.95, color: '#fff', whiteSpace: 'nowrap'}}>{d.texto}</div>
+      <div style={{...SAIRA, fontSize: d.texto.length > 18 ? 74 : 88, lineHeight: 0.95, color: '#fff', whiteSpace: 'nowrap'}}>{d.texto}</div>
     </Revela>
   </div>
 );
@@ -62,7 +63,7 @@ const Nombre: React.FC<{d: Dato; f: number}> = ({d, f}) => {
       </div>
       <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
         <Revela p={outExpo(prog(f, 3, 15))}>
-          <div style={{...SAIRA, fontSize: 78, lineHeight: 0.95, color: '#fff', whiteSpace: 'nowrap'}}>{d.texto}</div>
+          <div style={{...SAIRA, fontSize: 88, lineHeight: 0.95, color: '#fff', whiteSpace: 'nowrap'}}>{d.texto}</div>
         </Revela>
         <div style={{height: 5, width: `${outExpo(prog(f, 6, 18)) * 100}%`, background: ROJO, borderRadius: 3}} />
         <div style={{...SUB, opacity: prog(f, 10, 18)}}>{d.sub}</div>
@@ -95,7 +96,7 @@ const Contador: React.FC<{d: Dato; f: number}> = ({d, f}) => {
   const v = Math.round((d.valor ?? 0) * p);
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 34, height: '100%'}}>
-      <div style={{...SAIRA, fontSize: 132, lineHeight: 0.9, color: '#fff', whiteSpace: 'nowrap',
+      <div style={{...SAIRA, fontSize: 150, lineHeight: 0.9, color: '#fff', whiteSpace: 'nowrap',
         transform: `scale(${lerp(0.7, 1, outBack(prog(f, 0, 10), 2))})`, transformOrigin: 'left center', minWidth: 300}}>
         {d.prefijo}{v}<span style={{color: ROJO}}>{d.sufijo}</span>
       </div>
@@ -143,7 +144,7 @@ const Comparacion: React.FC<{d: Dato; f: number}> = ({d, f}) => {
   const check = outBack(prog(f, 22, 30), 2.5);
   const fila = (label: string, ancho: number, color: string, glow: boolean) => (
     <div style={{display: 'flex', alignItems: 'center', gap: 18}}>
-      <div style={{...SAIRA, fontWeight: 700, fontSize: 30, color: '#fff', width: 330, whiteSpace: 'nowrap', textAlign: 'right'}}>{label}</div>
+      <div style={{...SAIRA, fontSize: 34, color: '#fff', width: 330, whiteSpace: 'nowrap', textAlign: 'right'}}>{label}</div>
       <div style={{flex: 1, height: 34, borderRadius: 8, background: 'rgba(255,255,255,0.08)', overflow: 'hidden'}}>
         <div style={{width: `${ancho * 100}%`, height: '100%', borderRadius: 8, background: color,
           boxShadow: glow ? '0 0 18px rgba(237,28,36,0.7)' : 'none'}} />
@@ -169,10 +170,10 @@ const Salto: React.FC<{d: Dato; f: number}> = ({d, f}) => {
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 28, height: '100%'}}>
       <div style={{display: 'flex', flexDirection: 'column', gap: 6, minWidth: 300}}>
-        <div style={{...SAIRA, fontSize: 104, lineHeight: 0.9, color: '#fff', whiteSpace: 'nowrap'}}>
+        <div style={{...SAIRA, fontSize: 120, lineHeight: 0.9, color: '#fff', whiteSpace: 'nowrap'}}>
           {d.texto.startsWith('+') ? '+' : ''}{v}<span style={{color: ROJO}}> AÑOS</span>
         </div>
-        <div style={{...SUB, fontSize: 20, opacity: prog(f, 10, 18)}}>{d.sub}</div>
+        <div style={{...SUB, fontSize: 27, opacity: prog(f, 10, 18)}}>{d.sub}</div>
       </div>
       <svg width={W + 30} height="120" viewBox={`-15 -60 ${W + 30} 120`}>
         <line x1="0" y1="0" x2={W} y2="0" stroke="rgba(255,255,255,0.18)" strokeWidth="6" strokeLinecap="round" />
@@ -183,8 +184,8 @@ const Salto: React.FC<{d: Dato; f: number}> = ({d, f}) => {
           return <circle key={i} cx={x} cy="0" r={on ? 9 : 6} fill={on ? ROJO : 'rgba(255,255,255,0.35)'} />;
         })}
         <circle cx={W * p} cy="0" r="17" fill="#fff" stroke={ROJO} strokeWidth="6" />
-        <text x="0" y="44" fill="rgba(255,255,255,0.6)" fontFamily="Montserrat" fontWeight="600" fontSize="20">ANTES</text>
-        <text x={W} y="44" textAnchor="end" fill="#fff" fontFamily="Montserrat" fontWeight="700" fontSize="20">AHORA</text>
+        <text x="0" y="44" fill="rgba(255,255,255,0.6)" fontFamily="Bebas Neue" fontSize="24" letterSpacing="2">ANTES</text>
+        <text x={W} y="44" textAnchor="end" fill="#fff" fontFamily="Bebas Neue" fontSize="24" letterSpacing="2">AHORA</text>
       </svg>
     </div>
   );

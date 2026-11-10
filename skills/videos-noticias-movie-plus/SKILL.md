@@ -94,7 +94,11 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 **Identidad Movie Plus** (confirmada con el logo oficial):
 - Rojo `#ED1C24` (aro, punto, acentos, botones, barridos), carbón `#3A3A3C` (letras del logo sobre fondo claro), fondo negro cinematográfico `#0B0D12` con resplandor azul noche `#1A2236` y partículas suaves (como el ícono de la estrella). Sobre fondo oscuro las letras del logo van en **blanco**.
 - Logo: capas separadas en `assets/remotion/public/logo/` (m, estrella, aro_sup, aro_inf, punto, v, i, e, p, l, u, s), con sus posiciones en `assets/remotion/src/logo-layers.json`. El original está en `public/logo/movieplus_original.png` y el ícono en `movieplus_icono.jpg`.
-- Tipografías: **Saira Condensed** Black/Bold itálica (rótulos, botones, subtítulos; combina con el logo) y **Montserrat** (textos secundarios con espaciado amplio). Están en `assets/remotion/public/fonts/` (OFL).
+- Tipografías (OFL, en `assets/remotion/public/fonts/` e incrustadas en `src/fuentes.ts`). Datos y subtítulos van con letras distintas, por pedido del usuario:
+  - **Saira Condensed** Black/Bold itálica: gancho «5 NOTICIAS», contador «NOTICIA 0n / 05», botón SÍGUENOS. Combina con el logo.
+  - **Bebas Neue**: todo el panel de datos (cifras, nombres, fechas, etiquetas).
+  - **Montserrat Black (900)**: subtítulos en MAYÚSCULAS, ≈66 px, con contorno negro, nombres y cifras en rojo.
+  - **Montserrat 600**: textos secundarios del cierre.
 
 **Animaciones de inicio y cierre guardadas en la skill (aprobadas; no las rediseñes):**
 - `assets/render/movieplus_intro.mp4` (2,58 s) y `assets/render/movieplus_cierre.mp4` (3,24 s): renders finales listos, 1080×1920, 30 fps, H.264 yuv420p, con su sonido. Si no hay cambios, úsalos tal cual (concaténalos con ffmpeg o colócalos con `<OffthreadVideo>` en Remotion).

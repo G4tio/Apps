@@ -15,6 +15,8 @@ Promise.allSettled([
   document.fonts.load("900 italic 40px 'Saira Condensed'"),
   document.fonts.load("700 italic 40px 'Saira Condensed'"),
   document.fonts.load("600 40px 'Montserrat'"),
+  document.fonts.load("900 40px 'Montserrat'"),
+  document.fonts.load("400 40px 'Bebas Neue'"),
 ]).finally(() => continueRender(h));
 
 export const RemotionRoot: React.FC = () => (
