@@ -75,8 +75,14 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - Clave: nunca en el chat ni en archivos. Si no hay credencial para `api.fish.audio`, pídela con `request_credential` (host `api.fish.audio`, tipo bearer) y luego ejecuta:
   `python3 scripts/fish_tts.py locucion.txt voz.mp3` (modelo `s1` por defecto; `--modelo speech-1.6` si el usuario lo prefiere).
 - `locucion.txt` = el texto aprobado tal como se verá en subtítulos, con números en palabras y una línea por bloque.
-- **Audio solo en español** (pedido del usuario): no fuerces pronunciación en inglés ni escribas títulos de forma fonética; la voz lee todo con su lectura normal en español. `locucion.txt` va directo a Fish Audio.
-- **Espacio entre noticias:** después de la primera alineación, `scripts/pausas.py voz.mp3 <timing_provisional> voz/voz_limpia.wav 0.7 0.35` inserta 0,7 s de silencio antes de cada noticia (0,35 s tras el gancho). Luego vuelve a transcribir y alinear.
+- **Audio solo en español** (pedido del usuario): la voz lee todo con su lectura normal en español.
+- **Excepción, solo si el usuario la pide:** un ajuste puntual de pronunciación va en `locucion_tts.txt` (el texto que se envía a Fish Audio). `locucion.txt` se queda como el texto de los subtítulos. Ajustes pedidos:
+  - «Godzilla Minus Zero» → «Godzilla Máinus Zero».
+- **Genera la voz por bloques con `scripts/voz_por_bloques.py <carpeta_voz> <carpeta_que_contiene_el_modelo_asr> 0.7 1.0`.**
+  - Cada línea (gancho y cada noticia) se genera aparte; así se evitan las sílabas sueltas que Fish mete entre bloques («la Es oficial», «a su oficial»).
+  - Cada bloque se transcribe y se compara con el texto; repite solo el que salga mal (similitud < 0,8, inicio raro o palabras de más), hasta 4 tomas, y reutiliza las tomas ya generadas.
+  - Al unir, deja 1,0 s tras el gancho (para que se vea completo con la fecha) y 0,7 s entre noticias. Después: `transcribir.py` y `alinear.py`.
+- **Espacio entre noticias:** lo da `voz_por_bloques.py` al unir los bloques (`pausas.py` queda para voces que lleguen en un solo archivo).
 - Escucha el resultado vía transcripción (§5): si una palabra sale mal, corrige la grafía solo en `locucion.txt` y regenera ese fragmento o todo.
 - **Revisa artefactos de Fish Audio:** a veces mete una sílaba suelta entre bloques (p. ej. «Oria» tras el gancho).
   - Detéctala comparando la transcripción con el guion y midiendo el volumen por tramos de 0,1 s.
@@ -148,7 +154,11 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - El usuario autoriza usar Remotion. Parte de la plantilla `assets/remotion/` de la skill (copiada a `movieplus-video/`, `npm install`; Intro y Cierre ya hechos) y agrega ahí la composición del video. Renderiza siempre con `--browser-executable=/opt/pw-browsers/chromium` y recodifica a `yuv420p` con ffmpeg. Composición `MoviePlusNews` 1080×1920, 30 fps, duración = intro + voz + cierre.
 - **Composición `MoviePlusNews`** (`src/MoviePlusNews.tsx`, ya hecha). Lee el plan y el `timing` del día; para un día nuevo cambia los dos `import` de `./videos/…`.
   - **Intro:** el panel rojo final descubre el gancho; la voz entra a los 2,4 s.
-  - **Gancho:** «5» gigante en rojo y las líneas NOTICIAS / DE CINE / Y SERIES / DE HOY, que entran con su palabra.
+  - **Gancho centrado** (diseño aprobado):
+    - El «5» blanco gigante dentro del aro rojo de Movie Plus, que se dibuja con su punto.
+    - Detrás, en abanico, las 5 imágenes de las noticias atenuadas.
+    - Abajo, centrado, «NOTICIAS DE CINE / Y SERIES DE HOY», palabra por palabra, con CINE y SERIES en rojo.
+    - Al final, una píldora roja con la fecha (`fechaTexto` del plan, p. ej. «MARTES 10 DE NOVIEMBRE»).
   - **Noticias:**
     - Encabezado «NOTICIA 0n / 05» con la estrella y una barra de progreso de 5 segmentos.
     - Fondo: la imagen de la noticia desenfocada.

@@ -24,7 +24,7 @@ const TM = timing as unknown as {
   noticias: Noticia[];
   montaje: {fps: number; intro: number; vozOffset: number; cierreInicio: number; cierre: number; total: number};
 };
-const PLAN = plan as unknown as {voz: string; noticias: {n: number; fondo: string; titulo: string; categoria: string}[]};
+const PLAN = plan as unknown as {voz: string; fechaTexto: string; noticias: {n: number; fondo: string; titulo: string; categoria: string}[]};
 const FPS = TM.montaje.fps;
 const VOZ = TM.montaje.vozOffset;
 export const NEWS_DUR = TM.montaje.total;
@@ -169,36 +169,89 @@ const Encabezado: React.FC<{frame: number}> = ({frame}) => {
   );
 };
 
-// ---------- gancho «5 NOTICIAS DE CINE Y SERIES DE HOY» ----------
+// ---------- gancho «5 NOTICIAS DE CINE Y SERIES DE HOY» (centrado) ----------
+// El «5» dentro del aro rojo de Movie Plus, abanico con las imágenes de las 5 noticias detrás,
+// titular centrado palabra por palabra y la fecha del día.
 const Gancho: React.FC<{frame: number}> = ({frame}) => {
   const fin = fr(TM.bloques[1].inicio);
   const pal = TM.palabras.filter((p) => p.b === 0);
   const at = (w: string) => fr(pal.find((p) => p.w.toLowerCase() === w)!.t);
-  const lineas = [
-    {txt: 'NOTICIAS', a: at('noticias')},
-    {txt: 'DE CINE', a: at('cine')},
-    {txt: 'Y SERIES', a: at('series')},
-    {txt: 'DE HOY', a: at('hoy')},
-  ];
-  const p5 = prog(frame, at('5') - 2, at('5') + 10);
+  const a5 = at('5');
   const salida = prog(frame, fin - 6, fin);
+  const CX = W / 2;
+  const CY = 740;
+  const R = 235;
+  // abanico de imágenes
+  const fondos = PLAN.noticias.map((n) => n.fondo);
+  // aro que se dibuja
+  const pAro = outExpo(prog(frame, a5 - 2, a5 + 12));
+  const circ = 2 * Math.PI * R;
+  const p5 = outBack(prog(frame, a5, a5 + 10), 1.8);
+  const palabras: {txt: string; a: number; rojo?: boolean; linea: number}[] = [
+    {txt: 'NOTICIAS', a: at('noticias'), linea: 0},
+    {txt: 'DE', a: at('cine') - 2, linea: 0},
+    {txt: 'CINE', a: at('cine'), rojo: true, linea: 0},
+    {txt: 'Y', a: at('series') - 2, linea: 1},
+    {txt: 'SERIES', a: at('series'), rojo: true, linea: 1},
+    {txt: 'DE', a: at('hoy') - 2, linea: 1},
+    {txt: 'HOY', a: at('hoy'), linea: 1},
+  ];
+  const pFecha = outBack(prog(frame, at('hoy') + 4, at('hoy') + 13), 2);
   return (
-    <AbsoluteFill style={{opacity: 1 - salida, transform: `scale(${lerp(1, 1.08, salida)})`}}>
-      <div style={{position: 'absolute', left: 70, top: 600, height: 560, display: 'flex', alignItems: 'center', gap: 26}}>
-        <div style={{...SAIRA, fontSize: 600, lineHeight: 0.8, color: MARCA.rojo, ...contorno(14),
-          transform: `scale(${lerp(2.4, 1, outBack(p5, 1.4))}) rotate(-4deg)`, opacity: Math.min(1, p5 * 2)}}>
+    <AbsoluteFill style={{opacity: 1 - salida, transform: `scale(${lerp(1, 1.06, salida)})`}}>
+      {/* abanico de las 5 noticias */}
+      {fondos.map((src, i) => {
+        const k = i - 2;
+        const p = outExpo(prog(frame, a5 - 8 + i * 2, a5 + 6 + i * 2));
+        const deriva = prog(frame, a5, fin) * 14 * Math.sign(k || 1);
+        return (
+          <div key={i} style={{position: 'absolute', left: CX - 150 + k * 175 + deriva, top: CY - 210 + Math.abs(k) * 34,
+            width: 300, height: 420, borderRadius: 22, overflow: 'hidden', opacity: 0.42 * p,
+            transform: `translateY(${lerp(260, 0, p)}px) rotate(${k * 9}deg)`, boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
+            zIndex: 2 - Math.abs(k)}}>
+            <Img src={staticFile(src)} style={{width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.6) saturate(0.9)'}} />
+          </div>
+        );
+      })}
+      {/* viñeta para que el centro respire */}
+      <AbsoluteFill style={{zIndex: 5, background: `radial-gradient(circle at 50% ${CY / 19.2}%, rgba(11,13,18,0.92) 0%, rgba(11,13,18,0.55) 22%, rgba(11,13,18,0) 45%)`}} />
+      {/* aro rojo + «5» */}
+      <svg width={W} height={H} style={{position: 'absolute', inset: 0, zIndex: 10}}>
+        <circle cx={CX} cy={CY} r={R - 18} fill="rgba(11,13,18,0.88)" opacity={pAro} />
+        <circle cx={CX} cy={CY} r={R} fill="none" stroke={MARCA.rojo} strokeWidth={26} strokeLinecap="round"
+          strokeDasharray={`${circ * 0.84 * pAro} ${circ}`} transform={`rotate(${lerp(-200, -62, pAro)} ${CX} ${CY})`} />
+        <circle cx={CX + R * Math.cos((-50 * Math.PI) / 180)} cy={CY + R * Math.sin((-50 * Math.PI) / 180)}
+          r={15 * outBack(prog(frame, a5 + 8, a5 + 14), 3)} fill={MARCA.rojo} />
+      </svg>
+      <div style={{position: 'absolute', zIndex: 11, left: 0, width: W, top: CY - 215, height: 430, display: 'flex',
+        alignItems: 'center', justifyContent: 'center'}}>
+        <div style={{...SAIRA, fontSize: 380, lineHeight: 1, color: '#fff', ...contorno(10),
+          textShadow: `0 0 50px rgba(237,28,36,0.55), 0 12px 0 rgba(0,0,0,0.5)`,
+          transform: `scale(${lerp(2.2, 1, p5)}) translateX(-8px)`, opacity: Math.min(1, prog(frame, a5 - 1, a5 + 4))}}>
           5
         </div>
-        <div style={{display: 'flex', flexDirection: 'column', gap: 4}}>
-          {lineas.map((l, i) => {
-            const p = prog(frame, l.a - 3, l.a + 6);
+      </div>
+      {/* titular centrado */}
+      {[0, 1].map((linea) => (
+        <div key={linea} style={{position: 'absolute', zIndex: 11, left: 0, width: W, top: 1030 + linea * 128, display: 'flex',
+          justifyContent: 'center', gap: 22}}>
+          {palabras.filter((x) => x.linea === linea).map((x, i) => {
+            const p = prog(frame, x.a - 2, x.a + 6);
             return (
-              <div key={i} style={{...SAIRA, fontSize: 112, lineHeight: 1, color: '#fff', ...contorno(10),
-                opacity: p, transform: `translateX(${lerp(80, 0, outExpo(p))}px) rotate(-4deg)`}}>
-                {l.txt}
-              </div>
+              <span key={i} style={{...SAIRA, fontSize: 124, lineHeight: 1, color: x.rojo ? MARCA.rojo : '#fff', ...contorno(10),
+                display: 'inline-block', opacity: Math.min(1, p * 2),
+                transform: `translateY(${lerp(40, 0, outExpo(p))}px) scale(${lerp(1.3, 1, outBack(p, 2))})`}}>
+                {x.txt}
+              </span>
             );
           })}
+        </div>
+      ))}
+      {/* fecha del día */}
+      <div style={{position: 'absolute', zIndex: 11, left: 0, width: W, top: 1300, display: 'flex', justifyContent: 'center'}}>
+        <div style={{background: MARCA.rojo, color: '#fff', fontFamily: 'Bebas Neue', fontSize: 46, letterSpacing: '0.12em',
+          padding: '6px 34px 2px', borderRadius: 999, transform: `scale(${pFecha})`, boxShadow: '0 10px 30px rgba(237,28,36,0.4)'}}>
+          {PLAN.fechaTexto}
         </div>
       </div>
     </AbsoluteFill>
