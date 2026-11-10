@@ -156,7 +156,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - **Errores conocidos:**
   - `<OffthreadVideo>` debe ir dentro de un `<Sequence from={inicio}>`; si no, se ve negro.
   - No uses `playbackRate` con recortes: por eso los fragmentos se preparan con ffmpeg.
-  - Si la carga de fuentes da timeout con concurrencia alta, renderiza con `--concurrency=3 --timeout=180000`.
+  - Las fuentes van **incrustadas como data URI** en `src/fuentes.ts`; no las cargues desde `public/` con `FontFace(url)`. En renders largos el servidor local se satura con los videos, la petición de la fuente se cuelga y el render falla con «delayRender fuentes … not cleared».
 - **Render:** `bash scripts/render_por_partes.sh <total_cuadros> public/media/AAAA-MM-DD/mezcla.wav out/movieplus_AAAA-MM-DD.mp4` (total en `montaje.total` del timing). Renderiza en tramos de 460 cuadros sin audio (reintenta solo el tramo que falle), los une y les pone la mezcla; sale en yuv420p con `+faststart`. Unos 10–12 min por minuto de video.
 
 ## 8. Revisión y entrega
