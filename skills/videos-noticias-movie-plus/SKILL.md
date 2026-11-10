@@ -69,12 +69,18 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - Genera `src/timing.json` con `{palabras:[{w,pantalla,t}], noticias:[{inicio,fin}], cues:{}}`, sumando el desfase de la intro.
 
 ## 6. Diseño del video
-**Identidad Movie Plus** (pendiente de confirmar con el material del usuario):
-- Logo: pídelo en PNG/SVG con transparencia (y versión sobre fondo oscuro) si no está adjunto. Toma la paleta del propio logo (extrae 3–4 colores dominantes con numpy) y la tipografía de la web movieplusgt.com; si la web no es accesible desde la sesión, pide al usuario paleta y fuente o una captura. Una vez confirmadas, **escríbelas aquí** en la skill para que queden fijas.
-- Mientras tanto: fondo casi negro cinematográfico, un color de acento tomado del logo para subtítulos clave y barras, tipografía condensada pesada para rótulos (Anton o Bebas Neue) y Montserrat para textos secundarios (Google Fonts vía `git clone --depth 1 --filter=blob:none --sparse https://github.com/google/fonts.git` + `sparse-checkout set ofl/anton ofl/bebasneue ofl/montserrat`).
+**Identidad Movie Plus** (confirmada con el logo oficial):
+- Rojo `#ED1C24` (aro, punto, acentos, botones, barridos), carbón `#3A3A3C` (letras del logo sobre fondo claro), fondo negro cinematográfico `#0B0D12` con resplandor azul noche `#1A2236` y partículas suaves (como el ícono de la estrella). Sobre fondo oscuro las letras del logo van en **blanco**.
+- Logo: proyecto `movieplus-video/` del repo, con capas separadas en `public/logo/` (m, estrella, aro_sup, aro_inf, punto, v, i, e, p, l, u, s) y posiciones en `src/logo-layers.json`. Original en `public/logo/movieplus_original.png`; ícono en `movieplus_icono.jpg`.
+- Tipografías: **Saira Condensed** Black/Bold itálica (rótulos, botones, subtítulos; combina con el logo) y **Montserrat** (textos secundarios con espaciado amplio). Están en `public/fonts/` (OFL).
 
 **Estructura** (igual en cada video):
-1. **Intro logo** ≈1,8 s (más corta que la referencia de Pinterest del usuario): estilo de reveal cinematográfico — destello/lens flare que barre, el logo aparece con escala 1,15→1 y desenfoque que se aclara, brillo final; sale con zoom leve. Si el usuario comparte el video o GIF de referencia, iguala sus pasos y anótalos aquí.
+1. **Intro logo** (composición `Intro`, 2,5 s; primera versión, pendiente de aprobación del usuario). Se inspira en la referencia de Pinterest (bloques planos de color que se expanden, letra gigante que se aleja y letras que encajan una a una):
+   - Bloque rojo que se expande desde el centro (0–0,27 s).
+   - Estrella blanca gigante que se aleja ×11→×1 girando (0,17–0,67 s).
+   - El rojo se contrae hasta convertirse en el aro, que se abre con sus cortes y gira (0,33–0,77 s), y el punto rebota.
+   - El ícono viaja a su lugar mientras M, V, I y E entran por máscara, escalonadas, y luego aparece PLUS.
+   - Barrido de luz sobre la estrella; el panel rojo sube y descubre la primera noticia.
 2. **Gancho**: «5 NOTICIAS DE CINE DE HOY» con el «5» gigante a la izquierda y tres líneas apiladas a la derecha (como «8 NOTICIAS RANDOM DE HOY» de la referencia), con pop de escala; fondo desenfocado del primer póster.
 3. **Una escena por noticia** (≈8–11 s):
    - Fondo: la misma imagen, ampliada al 120 %, desenfoque fuerte (≈40 px) y oscurecida ~45 %.
@@ -82,7 +88,8 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
    - **Rótulo de dato** sobre la parte baja de la imagen, en MAYÚSCULAS, blanco con contorno negro/sombra dura (como «JEREMY LATCHMAN», «2028»): nombre de la persona, cifra, fecha o título. Máx. 4 palabras, entra con pop en su palabra.
    - Pequeño contador discreto arriba («1/5») con el acento de marca y barra de progreso fina.
    - Motion graphics simples cuando aporten dato: contador de taquilla que sube, calendario con la fecha que cae, estrellas/score que se rellenan, collage de pósters que se reparte.
-4. **Cierre**: «Sigue a Movie Plus» + logo animado (≈2,5 s) con el mismo lenguaje de la intro en reversa.
+4. **Cierre** (composición `Cierre`, 3,2 s). El panel rojo entra desde abajo y se contrae en el aro, la estrella entra con «pop» girando y el logo se arma. Luego el logo sube y aparecen la píldora roja «SÍGUENOS» y el texto «NOTICIAS DE CINE CADA DÍA». Termina con un fundido a negro.
+   - Diseño sonoro propio de ambos en `scripts/sfx.py`: whoosh, impacto al formarse el aro, clics por letra y brillo.
 
 **Subtítulos**: palabra por palabra, 2–4 palabras por bloque, en la franja y≈1250–1450 (por debajo de la imagen, por encima de la interfaz de TikTok), fuente condensada pesada ≈78 px, blanco con contorno; palabra activa y nombres/cifras en el color de acento. Cada palabra entra con escala 0,8→1 en 0,15 s.
 
@@ -91,7 +98,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 **Transiciones** entre noticias: corte con whip/zoom rápido (0,25 s) y leve desenfoque de movimiento.
 
 ## 7. Edición con Remotion
-- El usuario autoriza usar Remotion: `npx create-video@latest --blank movieplus` (o reusa el proyecto si ya existe en el repo). Composición `MoviePlusNews` 1080×1920, 30 fps, duración = intro + voz + cierre.
+- El usuario autoriza usar Remotion. Reusa el proyecto `movieplus-video/` del repo (`npm install`; Intro y Cierre ya hechos) y agrega ahí la composición del video. Renderiza siempre con `--browser-executable=/opt/pw-browsers/chromium` y recodifica a `yuv420p` con ffmpeg. Composición `MoviePlusNews` 1080×1920, 30 fps, duración = intro + voz + cierre.
 - Componentes: `Intro`, `Gancho`, `Noticia` (props: imágenes, rótulos con tiempos, índice), `Subtitulos` (lee `timing.json`), `Cierre`. Usa `interpolate`/`spring`, `<Img>` con `staticFile`, `<Audio>` para voz (con `startFrom`/`Sequence` tras la intro) y música.
 - **Música de fondo baja**: pista que dé el usuario o una sin derechos; volumen ≈ −22 dB bajo la voz (≈0,08–0,12 en Remotion) con ducking suave, fade in/out; whoosh en cada transición y golpe en el logo.
 - Revisión antes del render: renderiza fotogramas sueltos (`npx remotion still MoviePlusNews out/f.png --frame=N`) en 8–12 instantes clave y arma una hoja de contactos; corrige textos cortados y solapamientos.
