@@ -115,7 +115,7 @@ export const Recap: React.FC<{ desde?: number; dur?: number }> = ({ desde = 0, d
       <Fondo glowY={800} />
       {cierre && <Subtitulos frases={cierre.frases} desde={desde} fin={dur} />}
       {NOTICIAS.map((nt, i) => {
-        const at = 4 + i * 6;
+        const at = cierre ? 1 + i * 3 : 4 + i * 6; // con cierre hablado, las filas entran antes que los botones
         return (
           <div key={i} style={{
             position: "absolute", left: 70, width: W - 140, top: top0 + i * (rowH + gap), height: rowH, borderRadius: 34,

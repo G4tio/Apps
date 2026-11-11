@@ -1,0 +1,30 @@
+{
+ "pantalla": [
+  [["seis"], "6", "c"],
+  [["once","de","noviembre."], "11 de noviembre", "c"],
+  [["león","catorce"], "León XIV", "k"],
+  [["dieciséis","de","noviembre"], "16 de noviembre", "c"],
+  [["sesenta","y","ocho","días"], "68 días", "c"],
+  [["ochenta","y","un","años,"], "81 años", "c"],
+  [["veinticuatro","horas,"], "24 horas", "c"],
+  [["dos","mil","doce,"], "2012", "c"],
+  [["diez","años"], "10 años", "c"],
+  [["cuatrocientos","ochenta","firmantes"], "480 firmantes", "c"],
+  [["dos","mil","dieciséis."], "2016", "c"],
+  [["ocho","meses"], "8 meses", "c"]
+ ],
+ "claves": ["internacionales", "abu dabi", "rusia", "ucrania", "canje de prisioneros", "marco rubio", "moscú",
+            "perú", "lima", "chiclayo", "cusco", "pucallpa", "nicaragua", "daniel ortega", "vicepresidente",
+            "españa", "huelga general", "colombia", "acuerdo de paz", "farc", "asesinados", "irán", "teherán", "misiles", "drones",
+            "síguenos", "clave pública"],
+ "cues": {
+  "0": {"seis": "seis"},
+  "1": {"fin": "Terminó", "banderas": "Rusia", "usa": "mediación", "canje": "canje", "rubio": "Rubio", "moscu": "Moscú"},
+  "2": {"papa": "papa", "peru": "Perú", "fecha": "dieciséis", "lima": "Lima", "chiclayo": "Chiclayo", "cusco": "Cusco", "pucallpa": "Pucallpa", "misa": "misa"},
+  "3": {"ortega": "Ortega", "dias": "sesenta", "edad": "ochenta", "salud": "salud", "vice": "vicepresidente"},
+  "4": {"huelga": "huelga", "horas": "veinticuatro", "sindicatos": "sindicatos", "anio": "doce,", "vivienda": "vivienda", "transporte": "vuelos"},
+  "5": {"paz": "paz", "farc": "FARC", "defensoria": "Defensoría", "cifra": "cuatrocientos"},
+  "6": {"iran": "Irán", "misiles": "misiles", "drones": "drones", "guerra": "guerra", "fuerza": "fuerza"},
+  "7": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}

@@ -83,3 +83,29 @@ export const Iran: React.FC<B> = ({ w = 200, id }) => {
     </Marco>
   );
 };
+
+export const Peru: React.FC<B> = ({ w = 200, id }) => { const h = (w * 2) / 3; return <Marco w={w} h={h} id={id}>{tres(w, h, ["#D91023", "#FFFFFF", "#D91023"], true)}</Marco>; };
+
+/** Nicaragua: azul, blanco y azul con el triángulo del escudo (simplificado). */
+export const Nicaragua: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 3) / 5;
+  const r = h * 0.12;
+  return (
+    <Marco w={w} h={h} id={id}>
+      {tres(w, h, ["#0067C6", "#FFFFFF", "#0067C6"])}
+      <circle cx={w / 2} cy={h / 2} r={r * 1.25} fill="none" stroke="#C8A100" strokeWidth={Math.max(1, w / 140)} />
+      <path d={`M${w / 2} ${h / 2 - r * 0.8} L${w / 2 + r * 0.9} ${h / 2 + r * 0.65} H${w / 2 - r * 0.9} Z`} fill="#3E8EDE" stroke="#C8A100" strokeWidth={Math.max(1, w / 160)} />
+    </Marco>
+  );
+};
+
+/** España: rojo, amarillo (doble) y rojo (escudo omitido). */
+export const Espana: React.FC<B> = ({ w = 240, id }) => {
+  const h = (w * 2) / 3;
+  return <Marco w={w} h={h} id={id}><rect width={w} height={h} fill="#AA151B" /><rect y={h / 4} width={w} height={h / 2} fill="#F1BF00" /></Marco>;
+};
+
+export const Colombia: React.FC<B> = ({ w = 210, id }) => {
+  const h = (w * 2) / 3;
+  return <Marco w={w} h={h} id={id}><rect width={w} height={h / 2} fill="#FCD116" /><rect y={h / 2} width={w} height={h / 4} fill="#003893" /><rect y={(h * 3) / 4} width={w} height={h / 4 + 0.5} fill="#CE1126" /></Marco>;
+};
