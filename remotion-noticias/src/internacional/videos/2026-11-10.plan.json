@@ -1,0 +1,23 @@
+{
+ "pantalla": [
+  [["cinco"], "5", "c"],
+  [["diez","de","noviembre."], "10 de noviembre", "c"],
+  [["león","catorce"], "León XIV", "k"],
+  [["dos","millones","y","medio"], "2.5 millones", "c"],
+  [["diecisiete","de","noviembre"], "17 de noviembre", "c"],
+  [["dos","mil"], "2,000", "c"],
+  [["g","siete"], "G7", "k"],
+  [["siete","economías"], "7 economías", "c"]
+ ],
+ "claves": ["internacionales", "rusia", "ucrania", "abu dabi", "fin a la guerra", "sudamérica", "buenos aires", "córdoba", "perú",
+            "irán", "donald trump", "ganó la guerra", "marco rubio", "estancadas", "teherán", "niega",
+            "caravana", "tapachula", "guatemala", "parís", "medio oriente"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"banderas": "Rusia", "mesa": "negociar", "abudabi": "Abu", "usa": "mediación", "seguridad": "garantías", "tension": "tensión", "fin": "fin"},
+  "2": {"gira": "gira", "fieles": "millones", "cordoba": "Córdoba", "peru": "Perú"},
+  "3": {"trump": "Trump", "gano": "ganó", "rubio": "Rubio", "estancadas": "estancadas", "iran": "niega"},
+  "4": {"caravana": "caravana", "cifra": "mil", "tapachula": "Tapachula", "eeuu": "Unidos", "guatemala": "Guatemala"},
+  "5": {"paris": "París", "g7": "G", "temas": "Ucrania", "economias": "siete#2"}
+ }
+}
