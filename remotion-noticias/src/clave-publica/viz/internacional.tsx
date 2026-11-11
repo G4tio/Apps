@@ -7,28 +7,30 @@ import { Alemania, Canada, EEUU, Francia, Iran as BanderaIran, Italia, Japon, Re
 export type VizProps = { c: (nombre: string) => number; dur: number };
 
 // Lienzo 1080×800 centrado en el círculo del escenario (centro del lienzo = centro del círculo).
-const Lienzo: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+export const Lienzo: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <svg width={1080} height={800} viewBox="0 0 1080 800" style={{ overflow: "visible" }}>{children}</svg>
 );
 
-const pop = (f: number, at: number, d = 12) => P(f, at, d, outBack);
-const fade = (f: number, at: number, d = 8) => P(f, at, d);
+export const pop = (f: number, at: number, d = 12) => P(f, at, d, outBack);
+export const fade = (f: number, at: number, d = 8) => P(f, at, d);
 
 /** Foto recortada tipo sticker (borde blanco), con desvanecido inferior si el recorte es plano. */
-const Sticker: React.FC<{ src: string; x: number; y: number; w: number; h: number; id: string; k?: number; opacity?: number; fadeBottom?: boolean }> = ({ src, x, y, w, h, id, k = 1, opacity = 1, fadeBottom }) => (
+export const Sticker: React.FC<{ src: string; x: number; y: number; w: number; h: number; id: string; k?: number; opacity?: number; fadeBottom?: boolean; fadeLeft?: boolean }> = ({ src, x, y, w, h, id, k = 1, opacity = 1, fadeBottom, fadeLeft }) => (
   <g opacity={opacity} transform={`translate(${x + w / 2} ${y + h}) scale(${k}) translate(${-w / 2} ${-h})`}>
-    {fadeBottom && (
+    {(fadeBottom || fadeLeft) && (
       <defs>
-        <linearGradient id={`fg-${id}`} x1="0" y1="0" x2="0" y2="1"><stop offset="0.82" stopColor="#fff" /><stop offset="1" stopColor="#fff" stopOpacity="0" /></linearGradient>
-        <mask id={`fm-${id}`}><rect width={w} height={h} fill={`url(#fg-${id})`} /></mask>
+        <linearGradient id={`fg-${id}`} x1="0" y1="0" x2="0" y2="1"><stop offset={fadeBottom ? 0.82 : 1} stopColor="#fff" /><stop offset="1" stopColor="#fff" stopOpacity={fadeBottom ? 0 : 1} /></linearGradient>
+        <linearGradient id={`fl-${id}`} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#000" /><stop offset={fadeLeft ? 0.16 : 0} stopColor="#fff" /></linearGradient>
+        <mask id={`fl2-${id}`}><rect width={w} height={h} fill={`url(#fl-${id})`} /></mask>
+        <mask id={`fm-${id}`}><rect width={w} height={h} fill={`url(#fg-${id})`} mask={fadeLeft ? `url(#fl2-${id})` : undefined} /></mask>
       </defs>
     )}
-    <image href={staticFile(src)} width={w} height={h} mask={fadeBottom ? `url(#fm-${id})` : undefined} filter="drop-shadow(0 14px 26px rgba(0,0,0,0.45))" />
+    <image href={staticFile(src)} width={w} height={h} mask={fadeBottom || fadeLeft ? `url(#fm-${id})` : undefined} filter="drop-shadow(0 14px 26px rgba(0,0,0,0.45))" />
   </g>
 );
 
 /** Cifra grande + rótulo mono, como en el video de referencia. */
-const Cifra: React.FC<{ x: number; y: number; valor: string; rotulo: string; k: number; size?: number }> = ({ x, y, valor, rotulo, k, size = 150 }) => (
+export const Cifra: React.FC<{ x: number; y: number; valor: string; rotulo: string; k: number; size?: number }> = ({ x, y, valor, rotulo, k, size = 150 }) => (
   <g transform={`translate(${x} ${y}) scale(${0.6 + 0.4 * k})`} opacity={Math.min(1, k * 1.5)}>
     <text textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize={size} fill={C.claro} style={{ letterSpacing: "-0.02em" }}>{valor}</text>
     <text y={size * 0.42} textAnchor="middle" fontFamily={F.mono} fontWeight={700} fontSize={30} fill={C.suave} letterSpacing="3">{rotulo}</text>

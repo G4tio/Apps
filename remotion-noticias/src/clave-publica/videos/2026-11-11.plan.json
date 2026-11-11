@@ -1,0 +1,30 @@
+{
+ "pantalla": [
+  [["cinco"], "5", "c"],
+  [["once","de","noviembre."], "11 de noviembre", "c"],
+  [["metro","riel."], "MetroRiel", "k"],
+  [["veintiún","kilómetros"], "21 kilómetros", "c"],
+  [["novecientos","treinta","millones","de","dólares."], "US$930 millones", "c"],
+  [["ciento","treinta","y","dos","votos."], "132 votos", "c"],
+  [["cuarenta","punto","nueve","por","ciento"], "40.9 %", "c"],
+  [["trece","mil","trescientos","diez","casos,"], "13,310 casos", "c"],
+  [["veintidós","mil"], "22,000", "c"],
+  [["veinticinco","capturados,"], "25 capturados", "c"],
+  [["catorce","armas"], "14 armas", "c"],
+  [["seiscientos","sesenta","y","un","casos"], "661 casos", "c"],
+  [["quince","de","octubre."], "15 de octubre", "c"],
+  [["cuatrocientos","treinta","y","nueve"], "439", "c"],
+  [["dos","mil","veinticinco."], "2025", "c"]
+ ],
+ "claves": ["guatemala", "bernardo arévalo", "tren de pasajeros", "ferrocarriles de guatemala", "congreso", "ley de cine",
+            "instituto guatemalteco de cine", "extorsión", "no denuncian", "policía nacional civil", "ministerio público",
+            "alta verapaz", "zacapa", "chiquimula", "desnutrición infantil", "preocupa"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"arevalo": "Arévalo", "ley": "ley", "tren": "tren", "km": "veintiún", "inversion": "inversión", "fegua": "Ferrocarriles", "inicio": "construcción"},
+  "2": {"congreso": "Congreso", "cine": "Cine", "votos": "votos", "instituto": "Instituto", "fondo": "fondo", "ejecutivo": "Ejecutivo"},
+  "3": {"baja": "bajaron", "pct": "cuarenta", "actual": "trece", "anterior": "veintidós", "advierten": "advierten"},
+  "4": {"logos": "Policía", "mp": "Ministerio", "deptos": "Alta", "capturas": "veinticinco", "armas": "catorce"},
+  "5": {"cifra": "preocupa", "pgn": "Procuraduría", "actual": "seiscientos", "anterior": "cuatrocientos"}
+ }
+}

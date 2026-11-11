@@ -2,18 +2,20 @@ import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
 import { C, F, P, W, ent, inOut, lerp, outBack, outCubic } from "../theme";
 import { Encabezado, Escenario, Fondo, Subtitulos } from "./components";
-import { Globo, VIZ_INTERNACIONAL } from "./viz/internacional";
-import { VIDEO } from "./video-actual";
+import { Globo } from "./viz/internacional";
+import { VIZ } from "./viz";
+import { useVideo } from "./contexto";
 import { VOZ_DESDE, type NoticiaCP } from "./types";
 
-const NOTICIAS = VIDEO.noticias;
-const FUENTES = VIDEO.fuentes;
-const FECHA_REFERENCIA = VIDEO.fecha;
 /** segundos de voz → cuadro local de una escena que empieza en el cuadro global `desde` */
 const local = (t: number, desde: number) => Math.round(VOZ_DESDE + t * 30 - desde);
 
 /* ---------- Resumen inicial (como en el video de referencia) ---------- */
 export const Resumen: React.FC<{ dur: number; desde: number }> = ({ dur, desde }) => {
+  const VIDEO = useVideo();
+  const NOTICIAS = VIDEO.noticias;
+  const FUENTES = VIDEO.fuentes;
+  const FECHA_REFERENCIA = VIDEO.fecha;
   const f = useCurrentFrame();
   const total = NOTICIAS.length;
   const bl = VIDEO.timing.bloques[0];
@@ -49,10 +51,14 @@ export const Resumen: React.FC<{ dur: number; desde: number }> = ({ dur, desde }
 
 /* ---------- Escena de noticia ---------- */
 export const Noticia: React.FC<{ noticia: NoticiaCP; n: number; dur: number; desde: number }> = ({ noticia, n, dur, desde }) => {
+  const VIDEO = useVideo();
+  const NOTICIAS = VIDEO.noticias;
+  const FUENTES = VIDEO.fuentes;
+  const FECHA_REFERENCIA = VIDEO.fecha;
   const f = useCurrentFrame();
   const bl = VIDEO.timing.bloques[n];
   const cue = (nombre: string) => (nombre in bl.cues ? local(bl.cues[nombre], desde) : 9999);
-  const Viz = VIZ_INTERNACIONAL[noticia.viz];
+  const Viz = VIZ[noticia.viz];
   const etiquetas = noticia.etiquetas?.map(([k, text]) => ({ at: typeof k === "number" ? local(k, desde) : cue(k), text }));
   return (
     <AbsoluteFill>
@@ -84,6 +90,10 @@ const Icono = ({ tipo }: { tipo: "campana" | "compartir" | "seguir" }) => {
 };
 
 export const Recap: React.FC = () => {
+  const VIDEO = useVideo();
+  const NOTICIAS = VIDEO.noticias;
+  const FUENTES = VIDEO.fuentes;
+  const FECHA_REFERENCIA = VIDEO.fecha;
   const f = useCurrentFrame();
   const rowH = 86, gap = 17;
   const bloque = NOTICIAS.length * rowH + (NOTICIAS.length - 1) * gap + 56 + 168 + 70;
@@ -144,6 +154,10 @@ const Doc = () => (
 );
 
 export const Fuentes: React.FC = () => {
+  const VIDEO = useVideo();
+  const NOTICIAS = VIDEO.noticias;
+  const FUENTES = VIDEO.fuentes;
+  const FECHA_REFERENCIA = VIDEO.fecha;
   const f = useCurrentFrame();
   const rowH = 107, gap = 30;
   const listH = FUENTES.length * rowH + (FUENTES.length - 1) * gap;
