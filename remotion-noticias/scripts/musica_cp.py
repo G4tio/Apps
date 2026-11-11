@@ -1,21 +1,29 @@
 #!/usr/bin/env python3
 """Música de fondo para Clave Pública: pad Am–F–C–G + arpegio suave, ducking bajo la voz y whooshes en cada corte.
 
-Uso: python3 scripts/musica_cp.py <timing.json> <voz.wav> <salida.wav>
+Uso: python3 scripts/musica_cp.py <timing.json> <voz.wav> <salida.wav> [--cierre]
+  --cierre: el último bloque de la voz es el cierre hablado, que suena sobre la recapitulación.
 La pista empieza en el cuadro 90 (fin de la intro) y termina al empezar el cierre; los clips oficiales traen su propio audio.
 """
 import json, subprocess, sys
 import numpy as np
 
 timing_p, voz_p, out_p = sys.argv[1:4]
+CIERRE_HABLADO = "--cierre" in sys.argv[4:]
 SR = 44100
 T = json.load(open(timing_p))
 B = T["bloques"]
 VOZ = 96; INTRO = 90; RECAP = 195; FUENTES = 156; PAUSA = 27
 vozF = lambda t: round(VOZ + t * 30)
-fin_noticias = vozF(T["fin_voz"]) + PAUSA
-cortes = [vozF(b["inicio"]) for b in B[1:]] + [fin_noticias, fin_noticias + RECAP]
-fin = fin_noticias + RECAP + FUENTES  # empieza el cierre
+if CIERRE_HABLADO:
+    fin_noticias = vozF(B[-1]["inicio"])
+    recap = max(RECAP, vozF(T["fin_voz"]) + 36 - fin_noticias)
+    cortes = [vozF(b["inicio"]) for b in B[1:]] + [fin_noticias + recap]
+else:
+    fin_noticias = vozF(T["fin_voz"]) + PAUSA
+    recap = RECAP
+    cortes = [vozF(b["inicio"]) for b in B[1:]] + [fin_noticias, fin_noticias + recap]
+fin = fin_noticias + recap + FUENTES  # empieza el cierre
 dur = (fin - INTRO) / 30
 n = int(dur * SR); t = np.arange(n) / SR
 

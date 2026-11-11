@@ -20,13 +20,17 @@ export const crearVideo = (VIDEO: VideoCP) => {
   const esc: Esc[] = [];
   esc.push({ key: "intro", from: 0, dur: INTRO, el: () => <OffthreadVideo src={staticFile("marca/intro.mp4")} /> });
   esc.push({ key: "resumen", from: INTRO, dur: vozF(B[1].inicio) - INTRO, el: (d, fr) => <Resumen dur={d} desde={fr} /> });
+  const cierre = !!VIDEO.cierreHablado;
   VIDEO.noticias.forEach((n, i) => {
     const from = vozF(B[i + 1].inicio);
-    const to = i + 1 < VIDEO.noticias.length ? vozF(B[i + 2].inicio) : vozF(VIDEO.timing.fin_voz) + PAUSA_FINAL;
+    const ultima = i + 1 === VIDEO.noticias.length;
+    const to = !ultima ? vozF(B[i + 2].inicio) : cierre ? vozF(B[B.length - 1].inicio) : vozF(VIDEO.timing.fin_voz) + PAUSA_FINAL;
     esc.push({ key: `n${i + 1}`, from, dur: to - from, el: (d, fr) => <Noticia noticia={n} n={i + 1} dur={d} desde={fr} /> });
   });
   let t = esc[esc.length - 1].from + esc[esc.length - 1].dur;
-  esc.push({ key: "recap", from: t, dur: RECAP, el: () => <Recap /> }); t += RECAP;
+  // con cierre hablado, la recapitulación dura al menos lo que la frase + 1,2 s para leer los botones
+  const recapDur = cierre ? Math.max(RECAP, vozF(VIDEO.timing.fin_voz) + s(1.2) - t) : RECAP;
+  esc.push({ key: "recap", from: t, dur: recapDur, el: (d, fr) => <Recap desde={fr} dur={d} /> }); t += recapDur;
   esc.push({ key: "fuentes", from: t, dur: FUENTES_DUR, el: () => <Fuentes /> }); t += FUENTES_DUR;
   esc.push({ key: "cierre", from: t, dur: CIERRE, el: () => <OffthreadVideo src={staticFile("marca/cierre.mp4")} /> }); t += CIERRE;
   const cortes = esc.slice(1).map((e) => e.from);

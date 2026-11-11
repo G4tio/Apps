@@ -24,4 +24,7 @@ export type VideoCP = {
   voz: string; // ruta en public/
   musica?: string; // ruta en public/
   timing: Timing;
+  /** true: el último bloque de la voz es el cierre hablado («Infórmate, comparte y síguenos en Clave Pública»),
+   *  que suena sobre la recapitulación; en el plan, sus cues son informate, comparte y siguenos. */
+  cierreHablado?: boolean;
 };

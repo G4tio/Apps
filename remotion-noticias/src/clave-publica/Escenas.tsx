@@ -89,25 +89,31 @@ const Icono = ({ tipo }: { tipo: "campana" | "compartir" | "seguir" }) => {
   return (<g><circle cx="-8" cy="-14" r="16" {...st} /><path d="M-40 34 a32 26 0 0 1 64 0" {...st} /><path d="M30 -12 v28 M16 2 h28" {...st} /></g>);
 };
 
-export const Recap: React.FC = () => {
+export const Recap: React.FC<{ desde?: number; dur?: number }> = ({ desde = 0, dur = 195 }) => {
   const VIDEO = useVideo();
+  // cierre hablado («Infórmate, comparte y síguenos en Clave Pública»): último bloque de la voz
+  const cierre = VIDEO.cierreHablado ? VIDEO.timing.bloques[VIDEO.timing.bloques.length - 1] : null;
+  const cueC = (k: string, def: number) => (cierre && k in cierre.cues ? local(cierre.cues[k], desde) : def);
   const NOTICIAS = VIDEO.noticias;
   const FUENTES = VIDEO.fuentes;
   const FECHA_REFERENCIA = VIDEO.fecha;
   const f = useCurrentFrame();
   const rowH = 86, gap = 17;
   const bloque = NOTICIAS.length * rowH + (NOTICIAS.length - 1) * gap + 56 + 168 + 70;
-  const top0 = Math.round(130 + (1370 - bloque) / 2);
+  // con subtítulos del cierre, el bloque baja para dejarles su franja (y≈262–450)
+  const top0 = Math.max(cierre ? 480 : 0, Math.round(130 + (1370 - bloque) / 2));
   const rowsBottom = top0 + NOTICIAS.length * rowH + (NOTICIAS.length - 1) * gap;
   const btnCy = rowsBottom + 56 + 84;
-  const botones: { tipo: "campana" | "compartir" | "seguir"; label: string; x: number }[] = [
-    { tipo: "campana", label: "INFÓRMATE", x: W / 5 },
-    { tipo: "compartir", label: "COMPARTE", x: W / 2 },
-    { tipo: "seguir", label: "SÍGUENOS", x: (W * 4) / 5 },
+  const botones: { tipo: "campana" | "compartir" | "seguir"; label: string; x: number; at: number }[] = [
+    { tipo: "campana", label: "INFÓRMATE", x: W / 5, at: cueC("informate", 46) },
+    { tipo: "compartir", label: "COMPARTE", x: W / 2, at: cueC("comparte", 51) },
+    { tipo: "seguir", label: "SÍGUENOS", x: (W * 4) / 5, at: cueC("siguenos", 56) },
   ];
+  const pulsoDesde = cierre ? cueC("siguenos", 56) + 14 : 70;
   return (
     <AbsoluteFill>
       <Fondo glowY={800} />
+      {cierre && <Subtitulos frases={cierre.frases} desde={desde} fin={dur} />}
       {NOTICIAS.map((nt, i) => {
         const at = 4 + i * 6;
         return (
@@ -125,12 +131,15 @@ export const Recap: React.FC = () => {
       })}
       <svg width={W} height={1920} style={{ position: "absolute", left: 0, top: 0 }}>
         {botones.map((b, i) => {
-          const at = 46 + i * 5;
+          const at = cierre ? Math.min(b.at - 6, 46 + i * 5) : b.at;
           const k = P(f, at, 12, outBack);
-          const pulso = ((f - 70 - i * 10) % 45 + 45) % 45 / 45;
+          // al pronunciarse su palabra, el botón da un golpe de escala y se ilumina en celeste
+          const golpe = cierre ? P(f, b.at - 2, 6, outCubic) * (1 - P(f, b.at + 8, 10)) : 0;
+          const pulso = ((f - pulsoDesde - i * 10) % 45 + 45) % 45 / 45;
           return (
-            <g key={b.tipo} transform={`translate(${b.x} ${btnCy})`} opacity={P(f, at, 6)}>
-              {f > 70 && <circle r={84 * (1 + 0.18 * pulso)} fill={C.suave} opacity={0.35 * (1 - pulso)} />}
+            <g key={b.tipo} transform={`translate(${b.x} ${btnCy}) scale(${1 + 0.14 * golpe})`} opacity={P(f, at, 6)}>
+              {golpe > 0 && <circle r={100} fill="none" stroke={C.celeste} strokeWidth="6" opacity={golpe} />}
+              {f > pulsoDesde && <circle r={84 * (1 + 0.18 * pulso)} fill={C.suave} opacity={0.35 * (1 - pulso)} />}
               <circle r={92} fill="rgba(127,184,230,0.14)" />
               <g transform={`scale(${k})`}>
                 <circle r="84" fill={C.suave} />
