@@ -1,6 +1,6 @@
 ---
 name: "videos-noticias-tiktok-clave-publica"
-description: "Videos de noticias 9:16 para TikTok de Clave Pública, hechos con la plantilla de Remotion del repo g4tio/apps (remotion-noticias/): intro y cierre oficiales, encabezado GUATEMALA + NOTICIA n/6, recapitulación con checklist y botones, y pantalla FUENTES. Úsala en vez de videos-noticias-tiktok."
+description: "Videos de noticias 9:16 para TikTok de Clave Pública (nacionales o internacionales), hechos con la plantilla de Remotion del repo g4tio/apps (remotion-noticias/): busca las noticias en los medios autorizados de Guatemala, escribe el guion, genera la voz con Fish Audio y monta intro y cierre oficiales, encabezado GUATEMALA + NOTICIA n/N, recapitulación y FUENTES. Úsala para «N noticias nacionales/internacionales» y en vez de videos-noticias-tiktok."
 ---
 
 # Videos de noticias para TikTok (motion graphics de marca, diseños fijos)
@@ -11,21 +11,36 @@ Responde siempre en español.
 El video se construye con **Remotion** sobre la plantilla ya hecha en el repositorio **g4tio/apps**, carpeta **`remotion-noticias/`**. No la reconstruyas desde cero.
 - Si la carpeta no está en la rama por defecto, búscala en la rama `ccr-69630ccc-d6vuxw` (`git fetch origin ccr-69630ccc-d6vuxw` y `git checkout origin/ccr-69630ccc-d6vuxw -- remotion-noticias`). Si el repo no está en la sesión, añádelo con `add_repo`.
 - Instalación: `cd remotion-noticias && npm install` (Remotion 4.0.542, React 18). `remotion.config.ts` ya apunta al Chromium headless del entorno (`/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`); no descargues otro navegador ni ejecutes `playwright install`.
-- Estructura: `src/data.ts` (noticias, fuentes, fecha: **lo único que cambia en cada video**), `src/Video.tsx` (línea de tiempo y duraciones), `src/scenes/Escenas.tsx` (resumen, noticia, recapitulación, FUENTES), `src/components.tsx` (fondo, transición, encabezado, subtítulos, escenario), `src/viz/` (ilustraciones SVG por noticia; añade una nueva por cada tipo de noticia), `public/fonts/` (Exo 2, Inter, JetBrains Mono, Montserrat), `public/marca/`.
+- Estructura (motor por día en **`src/clave-publica/`**):
+  - `videos/AAAA-MM-DD.ts`: datos del día (fecha, «NOTICIAS DE GUATEMALA» o «NOTICIAS INTERNACIONALES», icono `bandera-gt` o `globo`, noticias con `seccion`, `titulo`, `viz` y `etiquetas` [cue, texto], fuentes, rutas de voz y música). **Es lo único que se crea en cada video**, junto con su `.plan.json` y `.timing.json`.
+  - `videos/index.ts`: registra cada día; cada entrada es una composición (`Nacional-AAAA-MM-DD`, `Internacional-AAAA-MM-DD`).
+  - `Video.tsx` (`crearVideo`: línea de tiempo desde los tiempos reales), `Escenas.tsx` (resumen, noticia, recapitulación, FUENTES), `components.tsx` (fondo, transición, encabezado, subtítulos, escenario), `contexto.ts`.
+  - `viz/`: ilustraciones por noticia (`internacional.tsx`, `nacional.tsx`, `banderas.tsx`) registradas en `viz/index.ts`. Ayudantes reutilizables: `Sticker` (foto recortada, con `fadeBottom`/`fadeLeft`), `Cifra` (número grande + rótulo mono), `Lienzo`, `pop`, `fade`. Cada ilustración recibe `c("cue")` = cuadro local de la palabra clave.
+  - La composición `Noticias` (src/Video.tsx, src/data.ts) es la edición nacional del 10 nov hecha en otra sesión: no la toques.
+  - `public/fonts/` (Exo 2, Inter, JetBrains Mono, Montserrat), `public/marca/`, `public/audio/AAAA-MM-DD/` y `public/fotos/AAAA-MM-DD/` (estas dos no se versionan).
 - **Intro y cierre oficiales**: `public/marca/intro.mp4` (90 cuadros = 3,0 s) y `public/marca/cierre.mp4` (108 cuadros = 3,6 s), recortados con su audio del video aprobado del 9 nov 2026. Se insertan tal cual con `<OffthreadVideo>`; no los reanimes ni los cambies. `public/marca/bandera-gt.png` es la bandera de Guatemala con escudo, para el resumen y las ilustraciones.
-- Comandos: `npx remotion bundle --out-dir=out/bundle` + `npx remotion still out/bundle Noticias out/stills/fN.jpg --frame=N --scale=0.5` para la hoja de contactos; `npx remotion render Noticias out/<nombre>.mp4` para el video completo (≈1 min por cada 50 s de video con 4 núcleos). `out/` y `node_modules/` no se suben al repo.
-- Al terminar, guarda los cambios de la plantilla (no los videos) con commit y push a la rama de trabajo.
+- Comandos: `npx remotion bundle --out-dir=out/bundle` + `npx remotion still out/bundle Nacional-AAAA-MM-DD out/stills/fN.jpg --frame=N --scale=0.5` para la hoja de contactos; `npx remotion render out/bundle Nacional-AAAA-MM-DD out/<nombre>.mp4` para el video completo y luego recodifica con `ffmpeg -c:v libx264 -crf 18 -pix_fmt yuv420p -color_range tv -c:a copy -movflags +faststart` (≈1 min por cada 50 s de video con 4 núcleos). `out/` y `node_modules/` no se suben al repo.
+- Al terminar, guarda los cambios de la plantilla (no los videos) con commit y push a la rama de trabajo. Antes de subir, haz `git fetch` de la rama: otras sesiones también trabajan en ella; integra sus cambios sin sobrescribirlos.
 
-Flujo probado: audio + guion + imágenes por noticia → video vertical 1080×1920, 30 fps, con logo animado al inicio y al cierre, subtítulos palabra por palabra sincronizados con la voz real, ilustraciones animadas y mezcla de audio.
+Flujo probado: noticias (buscadas o dadas por el usuario) → guion aprobado → voz con Fish Audio (o audio del usuario) + imágenes por noticia → video vertical 1080×1920, 30 fps, con logo animado al inicio y al cierre, subtítulos palabra por palabra sincronizados con la voz real, ilustraciones animadas y mezcla de audio.
 
-## 1. Entradas (el usuario siempre las trae)
-- **Audio**: MP3 o MP4 con la narración.
+## 1a. Búsqueda de noticias y guion (cuando el usuario pide «N noticias nacionales/internacionales»)
+- **Noticias de Guatemala: busca solo en los medios de `references/fuentes-guatemala.md`** (lista del usuario: medios nacionales, investigación, regionales, economía, deportes y fuentes oficiales). Léela antes de buscar. Para internacionales, usa agencias y medios en español (EFE vía Infobae, Euronews, Telemundo…); AP y Reuters no son accesibles desde el buscador.
+- Noticias de las últimas 24–48 h, que no repitan las del video anterior. Confirma cada cifra en dos medios de la lista o en la fuente oficial; si solo hay una fuente, márcalo en la tabla.
+- Entrega una tabla: n.º · noticia · dato clave · fuentes con enlace · fecha. Agrega 2–3 alternas. Después, el guion: intro «Estas son las cinco noticias más importantes de Guatemala de este <día> <fecha>.» + un bloque por noticia (≈ 35–50 palabras, una idea por frase, cifras y nombres completos, números escritos como se pronuncian). Incluye los títulos cortos de la recapitulación (≤ 28 caracteres) y las fuentes. **Espera la aprobación antes de generar la voz.**
+- **Voz** (si el usuario no trae audio): Fish Audio, voz **«Fernando Martínez – Noticias»** (`reference_id` `95619e57f2484596b3cfa3ffbe55f2da`, elegida por el usuario). `public/audio/AAAA-MM-DD/locucion.txt` con una línea por bloque (intro + noticias) → `python3 scripts/voz_por_bloques.py public/audio/AAAA-MM-DD <carpeta_modelo_asr> 0.7 1.0` (genera, verifica y une cada bloque; si falta la credencial de `api.fish.audio`, pídela con `request_credential`). Escribe «Metro Riel», «G siete», etc. separados para que la voz los pronuncie bien; en pantalla se unen con `pantalla` del plan.
+- **Sincronía**: `transcribir.py` → `palabras_asr.json`; luego `python3 scripts/timing_cp.py public/audio/AAAA-MM-DD src/clave-publica/videos/AAAA-MM-DD.plan.json src/clave-publica/videos/AAAA-MM-DD.timing.json`. El plan define `pantalla` (secuencias de palabras → cifra o nombre en pantalla), `claves` (palabras en celeste) y `cues` por bloque (nombre → palabra que dispara cada animación; `palabra#2` = segunda aparición).
+- **Música**: `python3 scripts/musica_cp.py <timing.json> <voz_limpia.wav> public/audio/AAAA-MM-DD/musica.wav`.
+
+## 1. Entradas
+- **Audio**: lo genera Claude con Fish Audio (§1a) o el usuario trae MP3/MP4 con la narración.
 - **Guion**: texto de las noticias. Puede diferir del audio (palabras de más, frases distintas): manda lo que realmente se dice (ver §4).
 - **Imágenes**: el usuario indica de qué noticia es cada una. Si no dice la noticia, pregúntalo en una línea.
 - **Fuentes y fecha de referencia**: medios consultados (en el orden que el usuario indique) y la fecha de las noticias. Si falta alguno de los dos, pregúntalo en una línea.
 - **Logo**: si no viene adjunto, pídelo. Marca vigente: **Clave Pública** (logo negativo sobre negro y versión clara; brandbook adjunto por el usuario). Si trae otra marca, pide logo, paleta y tipografía y aplica las mismas reglas.
 - Fotos de personas públicas: no las descargues de la web. Pide al usuario que las adjunte; mientras tanto usa un avatar genérico sin rostro con el nombre en una tarjeta.
 - Con una foto adjunta: tarjeta con esquinas redondeadas (38 px), borde celeste fino, sombra suave, entrada con el nombre de la persona y un leve zoom lento. No apliques efecto halftone ni borde de recorte blanco salvo que el usuario lo pida expresamente.
+- **Stickers del usuario** (ilustraciones halftone con borde blanco sobre fondo negro, como en los videos aprobados): quita el fondo negro rellenando desde los bordes superior, izquierdo y derecho los píxeles con `max(R,G,B) < 60` (no desde el borde inferior: si la figura está cortada abajo, el relleno se come la ropa), suaviza el alfa 1,2 px y recorta. Guárdalos en `public/fotos/AAAA-MM-DD/` y muéstralos con `Sticker` (con `fadeBottom` si el corte inferior es plano). Logos con fondo blanco y color marino (p. ej. MP) van sobre una tarjeta blanca; logos sobre fondo gris claro (p. ej. PNC) se recortan rellenando el gris desde los bordes.
 
 ## 2. Elementos mandatorios (nunca se cambian)
 - **Formato**: 9:16, 1080×1920, 30 fps, H.264 yuv420p. Zona útil: subtítulos y contenido entre y≈130 y y≈1500; deja libres los ~390 px inferiores (interfaz de TikTok) y ~120 px del borde derecho (salvo la recapitulación, que sigue su diseño fijo de §2b-B).
