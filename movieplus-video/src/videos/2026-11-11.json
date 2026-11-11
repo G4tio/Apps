@@ -1,0 +1,373 @@
+{
+ "fecha": "2026-11-11",
+ "fechaTexto": "MIÉRCOLES 11 DE NOVIEMBRE",
+ "voz": "media/2026-11-11/voz/voz_limpia.wav",
+ "pantalla": [
+  {
+   "bloque": 0,
+   "frase": "Seis",
+   "texto": "6"
+  },
+  {
+   "bloque": 2,
+   "frase": "dieciocho",
+   "texto": "18"
+  },
+  {
+   "bloque": 4,
+   "frase": "siete",
+   "texto": "7"
+  },
+  {
+   "bloque": 4,
+   "frase": "ochenta",
+   "texto": "80"
+  },
+  {
+   "bloque": 5,
+   "frase": "el millón y medio",
+   "texto": "1.5 millones"
+  },
+  {
+   "bloque": 5,
+   "frase": "trece millones y medio",
+   "texto": "13.5 millones"
+  },
+  {
+   "bloque": 6,
+   "frase": "doce",
+   "texto": "12"
+  },
+  {
+   "bloque": 6,
+   "frase": "siete",
+   "texto": "7"
+  },
+  {
+   "bloque": 6,
+   "frase": "tres por cuatro",
+   "texto": "3×4"
+  },
+  {
+   "bloque": 6,
+   "frase": "pagas tres",
+   "texto": "pagas 3"
+  },
+  {
+   "bloque": 6,
+   "frase": "entran cuatro",
+   "texto": "entran 4"
+  }
+ ],
+ "claves": [
+  "Hollywood",
+  "James",
+  "Bond",
+  "GQ",
+  "Denis",
+  "Villeneuve",
+  "Duna",
+  "Florence",
+  "Pugh",
+  "Elle",
+  "Nathan",
+  "Fielder",
+  "Elizabeth",
+  "Holmes",
+  "You",
+  "Can",
+  "See",
+  "Everything",
+  "NAZA",
+  "Venecia",
+  "Italia",
+  "Cinépolis",
+  "Cinebono",
+  "Tour",
+  "Francés",
+  "millones",
+  "dólares",
+  "apuestas"
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "titulo": "HOLLYWOOD PROHÍBE APOSTAR",
+   "categoria": "INDUSTRIA",
+   "fondo": "media/2026-11-11/n1_bond_canon.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n1_bond_canon.jpg",
+     "en": null,
+     "foco": "center 45%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n1_007_actores.png",
+     "en": "Hace",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n1_bond_craig.jpg",
+     "en": "James",
+     "foco": "55% center"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "insignia",
+     "icono": "prohibido",
+     "texto": "SIN APUESTAS",
+     "sub": "CASTINGS · ESTRENOS · GANANCIAS",
+     "en": "castings"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "APUESTAS RETIRADAS",
+     "categoria": "PRÓXIMO 007",
+     "en": "James"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titulo": "DENIS VILLENEUVE",
+   "categoria": "REVISTA GQ",
+   "fondo": "media/2026-11-11/n2_villeneuve_gq.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n2_villeneuve_gq.jpg",
+     "en": null,
+     "foco": "30% center"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n2_villeneuve_evento.jpg",
+     "en": "Está",
+     "foco": "center 25%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n2_villeneuve_retrato.jpg",
+     "en": "dirigirá",
+     "foco": "center 35%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "DIRECTOR DEL AÑO",
+     "sub": "GQ MEN OF THE YEAR",
+     "en": "director"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "18",
+     "texto": "DUNA: PARTE TRES",
+     "sub": "ESTRENO EN CINES",
+     "en": "dieciocho"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "PRÓXIMO: JAMES BOND",
+     "categoria": "LO QUE SIGUE",
+     "en": "dirigirá"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titulo": "FLORENCE PUGH",
+   "categoria": "ENTREVISTA CON ELLE",
+   "fondo": "media/2026-11-11/n3_pugh_pelicula.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n3_pugh_alfombra.jpg",
+     "en": null,
+     "foco": "center 25%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n3_pugh_pelicula.jpg",
+     "en": "Sus",
+     "foco": "center 35%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n3_pugh_retrato_bn.jpg",
+     "en": "cero",
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "lista",
+     "texto": "SUS REGLAS",
+     "en": "reglas",
+     "items": [
+      {
+       "texto": "LLEGAR A TIEMPO",
+       "en": "tiempo"
+      },
+      {
+       "texto": "NO SER GROSERO",
+       "en": "grosero"
+      },
+      {
+       "texto": "CERO MISOGINIA",
+       "en": "misoginia"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "YOU CAN SEE EVERYTHING",
+   "categoria": "DOCUMENTAL · A24",
+   "fondo": "media/2026-11-11/n4_you_can_see_everything_poster.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n4_you_can_see_everything_poster.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n4_ycse_still_1.jpg",
+     "en": "sorpresa",
+     "foco": "center 35%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n4_ycse_still_2.jpg",
+     "en": "ochenta",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "comparacion",
+     "texto": "COSTÓ 7 · RECAUDÓ 80",
+     "a": "RECAUDÓ $80M",
+     "b": "COSTÓ $7M",
+     "valorA": 80,
+     "valorB": 7,
+     "etiqueta": "×11",
+     "sub": "TAQUILLA EN EE. UU.",
+     "en": "Costó"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titulo": "NAZA",
+   "categoria": "DOCUMENTAL · PREMIADO EN VENECIA",
+   "fondo": "media/2026-11-11/n5_naza_poster.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n5_naza_poster.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n5_naza_directores_venecia.jpg",
+     "en": "Suma",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n5_naza_still.jpg",
+     "en": "Italia"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 1.5,
+     "decimales": 1,
+     "prefijo": "",
+     "sufijo": "M",
+     "texto": "1.5M",
+     "sub": "ESPECTADORES EN EL MUNDO",
+     "en": "millón"
+    },
+    {
+     "tipo": "contador",
+     "valor": 13.5,
+     "decimales": 1,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$13.5M",
+     "sub": "FUERA DE EE. UU.",
+     "en": "trece"
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "N.º 3 EN ITALIA",
+     "sub": "DOCUMENTALES MÁS VISTOS",
+     "en": "tercer"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "titulo": "TOUR DE CINE FRANCÉS",
+   "categoria": "CINÉPOLIS",
+   "fondo": "media/2026-11-11/n6_tour_cine_frances_cronograma.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n6_tour_cine_frances_cronograma.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n6_tour_cine_frances_cronograma.jpg",
+     "en": "siete",
+     "foco": "center 32%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n6_tour_cine_frances_cronograma.jpg",
+     "en": "Cinebono",
+     "foco": "center 72%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "12",
+     "texto": "DESDE ESTE JUEVES",
+     "sub": "EN CINÉPOLIS",
+     "en": "doce"
+    },
+    {
+     "tipo": "bloques",
+     "valor": 7,
+     "texto": "7 PELÍCULAS",
+     "sub": "FRANCESAS",
+     "en": "siete"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "CINEBONO 3×4",
+     "categoria": "PAGAS 3, ENTRAN 4",
+     "en": "Cinebono"
+    }
+   ]
+  }
+ ]
+}

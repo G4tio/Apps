@@ -178,7 +178,8 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 
 ## 7. Edición con Remotion
 - El usuario autoriza usar Remotion. Parte de la plantilla `assets/remotion/` de la skill (copiada a `movieplus-video/`, `npm install`; Intro y Cierre ya hechos) y agrega ahí la composición del video. Renderiza siempre con `--browser-executable=/opt/pw-browsers/chromium` y recodifica a `yuv420p` con ffmpeg. Composición `MoviePlusNews` 1080×1920, 30 fps, duración = intro + voz + cierre.
-- **Composición `MoviePlusNews`** (`src/MoviePlusNews.tsx`, ya hecha). Lee el plan y el `timing` del día; para un día nuevo cambia los dos `import` de `./videos/…`.
+- **Composición `MoviePlusNews`** (`src/MoviePlusNews.tsx`, ya hecha). Lee el plan y el `timing` del día desde `src/videos/actual.ts`; para un día nuevo cambia solo esas dos líneas.
+  - **Número de noticias variable:** el gancho toma el número y el texto de la primera línea de la voz («Seis noticias de cine de hoy» → «6», «NOTICIAS DE CINE / DE HOY»). El contador muestra «0n / 0N» y el abanico usa tantas imágenes como noticias. Si no hay series, el gancho dice «… de cine de hoy».
   - **Intro:** el panel rojo final descubre el gancho; la voz entra a los 2,4 s.
   - **Gancho centrado** (diseño aprobado):
     - El «5» blanco gigante dentro del aro rojo de Movie Plus, que se dibuja con su punto.
@@ -197,7 +198,11 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
       - `insignia`: trofeo con rayos.
       - `comparacion`: barras A contra B y «✓ SUPERA»; no inventes cifras.
       - `salto`: línea de tiempo «+N AÑOS».
-      - `bloques`: N fichas de episodio.
+      - `bloques`: N fichas (episodios o películas; con más de 4 se achican).
+      - `lista`: hasta 3 puntos que se marcan con ✓, cada uno en su palabra (`items: [{texto, en}]`).
+      - `insignia` con `icono: 'prohibido'` (signo de prohibido sobre $) o `'trofeo'`.
+      - `comparacion` con `valorA`/`valorB` reales (barras a escala) y `etiqueta` propia (p. ej. «×11»).
+      - `contador` con `decimales` (p. ej. 1.5 o 13.5).
     - Usa solo datos verificados en las fuentes; los textos `sub` son descriptivos y cortos.
     - **El dato debe coincidir con la imagen de arriba:** si un panel `nombre` dice «PETER SAFRAN», la tarjeta muestra a Safran. Ancla el cambio de imagen a la misma palabra que el dato siguiente; si queda una imagen sin dato propio, añádele uno (p. ej. `titulo` «SUPERMAN: EL HOMBRE DEL MAÑANA» sobre la foto de Gunn).
   - **Subtítulos:** debajo del panel de datos: palabra por palabra, en bloques de hasta 3 palabras, y≈1470–1640.

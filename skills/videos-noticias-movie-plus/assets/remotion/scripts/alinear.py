@@ -112,7 +112,12 @@ for nt in plan['noticias']:
     for m_ in nt['medios']:
         k = ancla(b, m_['en']) if m_.get('en') else bloques[b]['primera']
         medios.append({**m_, 't': round(guion[k]['t0'] - 0.04, 3) if k != bloques[b]['primera'] else bloques[b]['inicio']})
-    rot = [{**r, 't': guion[ancla(b, r['en'])]['t']} for r in nt.get('rotulos', [])]
+    rot = []
+    for r in nt.get('rotulos', []):
+        r2 = {**r, 't': guion[ancla(b, r['en'])]['t']}
+        if 'items' in r:
+            r2['items'] = [{**it, 't': guion[ancla(b, it['en'])]['t']} for it in r['items']]
+        rot.append(r2)
     noticias.append({'n': b, 'inicio': bloques[b]['inicio'], 'fin': bloques[b]['fin'], 'medios': medios, 'rotulos': rot})
 
 out = {

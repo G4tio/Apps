@@ -1,0 +1,1573 @@
+{
+ "palabras": [
+  {
+   "w": "6",
+   "t": 0.0,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "noticias",
+   "t": 0.32,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 0.8,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "cine",
+   "t": 0.88,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 1.28,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 1.36,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "Los",
+   "t": 2.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "estudios",
+   "t": 2.32,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 2.64,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Hollywood",
+   "t": 2.72,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "prohíben",
+   "t": 3.68,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 4.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "sus",
+   "t": 4.16,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "empleados",
+   "t": 4.24,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "apostar",
+   "t": 4.72,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "sobre",
+   "t": 5.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "castings",
+   "t": 5.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "estrenos",
+   "t": 5.92,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "o",
+   "t": 6.4,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "ganancias",
+   "t": 6.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Hace",
+   "t": 7.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "poco",
+   "t": 7.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "una",
+   "t": 7.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "casa",
+   "t": 8.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 8.24,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "apuestas",
+   "t": 8.32,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "retiró",
+   "t": 8.8,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "las",
+   "t": 9.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "apuestas",
+   "t": 9.36,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "sobre",
+   "t": 9.76,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 9.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "próximo",
+   "t": 10.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "James",
+   "t": 10.4,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Bond",
+   "t": 10.88,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "por",
+   "t": 11.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "temor",
+   "t": 11.36,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 11.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "una",
+   "t": 11.76,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "filtración",
+   "t": 11.92,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 12.72,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "revista",
+   "t": 12.96,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "GQ",
+   "t": 13.36,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "nombró",
+   "t": 14.08,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 14.24,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Denis",
+   "t": 14.4,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Villeneuve",
+   "t": 14.48,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "director",
+   "t": 15.28,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "del",
+   "t": 15.6,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "año",
+   "t": 15.76,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Está",
+   "t": 16.08,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "por",
+   "t": 16.24,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "estrenar",
+   "t": 16.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Duna",
+   "t": 16.8,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Parte",
+   "t": 17.2,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Tres",
+   "t": 17.52,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 17.84,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "18",
+   "t": 18.12,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 18.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "diciembre",
+   "t": 18.48,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 18.96,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "después",
+   "t": 19.04,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "dirigirá",
+   "t": 19.44,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 19.84,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "próxima",
+   "t": 19.92,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 20.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 20.8,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "James",
+   "t": 20.88,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Bond",
+   "t": 21.28,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Florence",
+   "t": 21.84,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Pugh",
+   "t": 22.32,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "dijo",
+   "t": 22.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 22.96,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 23.12,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "revista",
+   "t": 23.2,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Elle",
+   "t": 23.6,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "que",
+   "t": 23.76,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "ya",
+   "t": 23.92,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "no",
+   "t": 24.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "tolera",
+   "t": 24.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "malos",
+   "t": 24.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "comportamientos",
+   "t": 24.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 25.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 25.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "set",
+   "t": 25.84,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Sus",
+   "t": 26.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "reglas",
+   "t": 26.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "son",
+   "t": 27.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "simples",
+   "t": 27.2,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "llegar",
+   "t": 27.76,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 28.08,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "tiempo",
+   "t": 28.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "no",
+   "t": 28.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "ser",
+   "t": 28.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "grosero",
+   "t": 28.96,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 29.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 29.52,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "equipo",
+   "t": 29.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 30.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "cero",
+   "t": 30.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "misoginia",
+   "t": 30.48,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "El",
+   "t": 31.6,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "documental",
+   "t": 31.84,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 32.4,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Nathan",
+   "t": 32.48,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Fielder",
+   "t": 32.56,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "sobre",
+   "t": 33.52,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Elizabeth",
+   "t": 33.68,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Holmes",
+   "t": 34.24,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "You",
+   "t": 34.64,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Can",
+   "t": 34.72,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "See",
+   "t": 35.04,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Everything",
+   "t": 35.36,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "es",
+   "t": 36.0,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 36.08,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "sorpresa",
+   "t": 36.24,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "del",
+   "t": 36.64,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "año",
+   "t": 36.8,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Costó",
+   "t": 37.04,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "unos",
+   "t": 37.52,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "7",
+   "t": 37.76,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "millones",
+   "t": 38.0,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 38.4,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "dólares",
+   "t": 38.48,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 38.96,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "ya",
+   "t": 39.04,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "suma",
+   "t": 39.2,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "casi",
+   "t": 39.52,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "80",
+   "t": 39.76,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "millones",
+   "t": 40.16,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 40.64,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Estados",
+   "t": 40.88,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Unidos",
+   "t": 41.2,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "NAZA",
+   "t": 41.84,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "premiado",
+   "t": 42.48,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 42.88,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Venecia",
+   "t": 42.96,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "ya",
+   "t": 43.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "superó",
+   "t": 43.68,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "1.5 millones",
+   "t": 44.0,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 44.08,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 44.48,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 44.56,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 44.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "espectadores",
+   "t": 44.88,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Suma",
+   "t": 45.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "13.5 millones",
+   "t": 45.76,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 46.08,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 46.48,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 46.56,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 46.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "dólares",
+   "t": 46.88,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "fuera",
+   "t": 47.44,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 47.6,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Estados",
+   "t": 47.76,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Unidos",
+   "t": 48.08,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 48.4,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 48.56,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Italia",
+   "t": 48.64,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "es",
+   "t": 49.12,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 49.2,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "tercer",
+   "t": 49.28,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "documental",
+   "t": 49.6,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "más",
+   "t": 50.24,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "visto",
+   "t": 50.4,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 50.64,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 50.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "historia",
+   "t": 50.88,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Llega",
+   "t": 51.4,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 51.92,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Tour",
+   "t": 52.08,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 52.4,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Cine",
+   "t": 52.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Francés",
+   "t": 52.72,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "a",
+   "t": 53.2,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Cinépolis",
+   "t": 53.28,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Desde",
+   "t": 54.08,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "este",
+   "t": 54.32,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "jueves",
+   "t": 54.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "12",
+   "t": 54.8,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 55.12,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "noviembre",
+   "t": 55.2,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "7",
+   "t": 55.68,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "películas",
+   "t": 56.0,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "francesas",
+   "t": 56.4,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 56.96,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "pantalla",
+   "t": 57.04,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "grande",
+   "t": 57.52,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 57.84,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 57.92,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 58.0,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Cinebono",
+   "t": 58.08,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "3×4",
+   "t": 58.8,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 59.04,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 59.12,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "pagas 3",
+   "t": 59.44,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 59.84,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "boletos",
+   "t": 60.08,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 60.56,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "entran 4",
+   "t": 60.64,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 61.04,
+   "b": 6,
+   "clave": false
+  }
+ ],
+ "bloques": [
+  {
+   "bloque": 0,
+   "inicio": 0.0,
+   "primera": 0,
+   "ultima": 5,
+   "fin": 2.12
+  },
+  {
+   "bloque": 1,
+   "inicio": 2.12,
+   "primera": 6,
+   "ultima": 38,
+   "fin": 12.76
+  },
+  {
+   "bloque": 2,
+   "inicio": 12.76,
+   "primera": 39,
+   "ultima": 67,
+   "fin": 21.88
+  },
+  {
+   "bloque": 3,
+   "inicio": 21.88,
+   "primera": 68,
+   "ultima": 99,
+   "fin": 31.64
+  },
+  {
+   "bloque": 4,
+   "inicio": 31.64,
+   "primera": 100,
+   "ultima": 131,
+   "fin": 41.88
+  },
+  {
+   "bloque": 5,
+   "inicio": 41.88,
+   "primera": 132,
+   "ultima": 166,
+   "fin": 51.44
+  },
+  {
+   "bloque": 6,
+   "inicio": 51.44,
+   "primera": 167,
+   "ultima": 199,
+   "fin": 61.92
+  }
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "inicio": 2.12,
+   "fin": 12.76,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n1_bond_canon.jpg",
+     "en": null,
+     "foco": "center 45%",
+     "t": 2.12
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n1_007_actores.png",
+     "en": "Hace",
+     "ajuste": "contain",
+     "t": 7.24
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n1_bond_craig.jpg",
+     "en": "James",
+     "foco": "55% center",
+     "t": 10.44
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "insignia",
+     "icono": "prohibido",
+     "texto": "SIN APUESTAS",
+     "sub": "CASTINGS · ESTRENOS · GANANCIAS",
+     "en": "castings",
+     "t": 5.28
+    },
+    {
+     "tipo": "titulo",
+     "texto": "APUESTAS RETIRADAS",
+     "categoria": "PRÓXIMO 007",
+     "en": "James",
+     "t": 10.4
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "inicio": 12.76,
+   "fin": 21.88,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n2_villeneuve_gq.jpg",
+     "en": null,
+     "foco": "30% center",
+     "t": 12.76
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n2_villeneuve_evento.jpg",
+     "en": "Está",
+     "foco": "center 25%",
+     "t": 16.12
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n2_villeneuve_retrato.jpg",
+     "en": "dirigirá",
+     "foco": "center 35%",
+     "t": 19.48
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "DIRECTOR DEL AÑO",
+     "sub": "GQ MEN OF THE YEAR",
+     "en": "director",
+     "t": 15.28
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "18",
+     "texto": "DUNA: PARTE TRES",
+     "sub": "ESTRENO EN CINES",
+     "en": "dieciocho",
+     "t": 18.12
+    },
+    {
+     "tipo": "titulo",
+     "texto": "PRÓXIMO: JAMES BOND",
+     "categoria": "LO QUE SIGUE",
+     "en": "dirigirá",
+     "t": 19.44
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "inicio": 21.88,
+   "fin": 31.64,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n3_pugh_alfombra.jpg",
+     "en": null,
+     "foco": "center 25%",
+     "t": 21.88
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n3_pugh_pelicula.jpg",
+     "en": "Sus",
+     "foco": "center 35%",
+     "t": 26.36
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n3_pugh_retrato_bn.jpg",
+     "en": "cero",
+     "foco": "center 30%",
+     "t": 30.2
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "lista",
+     "texto": "SUS REGLAS",
+     "en": "reglas",
+     "items": [
+      {
+       "texto": "LLEGAR A TIEMPO",
+       "en": "tiempo",
+       "t": 28.16
+      },
+      {
+       "texto": "NO SER GROSERO",
+       "en": "grosero",
+       "t": 28.96
+      },
+      {
+       "texto": "CERO MISOGINIA",
+       "en": "misoginia",
+       "t": 30.48
+      }
+     ],
+     "t": 26.64
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "inicio": 31.64,
+   "fin": 41.88,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n4_you_can_see_everything_poster.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 31.64
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n4_ycse_still_1.jpg",
+     "en": "sorpresa",
+     "foco": "center 35%",
+     "t": 36.28
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n4_ycse_still_2.jpg",
+     "en": "ochenta",
+     "ajuste": "contain",
+     "t": 39.8
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "comparacion",
+     "texto": "COSTÓ 7 · RECAUDÓ 80",
+     "a": "RECAUDÓ $80M",
+     "b": "COSTÓ $7M",
+     "valorA": 80,
+     "valorB": 7,
+     "etiqueta": "×11",
+     "sub": "TAQUILLA EN EE. UU.",
+     "en": "Costó",
+     "t": 37.04
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "inicio": 41.88,
+   "fin": 51.44,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n5_naza_poster.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 41.88
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n5_naza_directores_venecia.jpg",
+     "en": "Suma",
+     "foco": "center 30%",
+     "t": 45.56
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n5_naza_still.jpg",
+     "en": "Italia",
+     "t": 48.68
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 1.5,
+     "decimales": 1,
+     "prefijo": "",
+     "sufijo": "M",
+     "texto": "1.5M",
+     "sub": "ESPECTADORES EN EL MUNDO",
+     "en": "millón",
+     "t": 44.08
+    },
+    {
+     "tipo": "contador",
+     "valor": 13.5,
+     "decimales": 1,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$13.5M",
+     "sub": "FUERA DE EE. UU.",
+     "en": "trece",
+     "t": 45.76
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "N.º 3 EN ITALIA",
+     "sub": "DOCUMENTALES MÁS VISTOS",
+     "en": "tercer",
+     "t": 49.28
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "inicio": 51.44,
+   "fin": 61.92,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n6_tour_cine_frances_cronograma.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 51.44
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n6_tour_cine_frances_cronograma.jpg",
+     "en": "siete",
+     "foco": "center 32%",
+     "t": 55.72
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-11/n6_tour_cine_frances_cronograma.jpg",
+     "en": "Cinebono",
+     "foco": "center 72%",
+     "t": 58.12
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "12",
+     "texto": "DESDE ESTE JUEVES",
+     "sub": "EN CINÉPOLIS",
+     "en": "doce",
+     "t": 54.8
+    },
+    {
+     "tipo": "bloques",
+     "valor": 7,
+     "texto": "7 PELÍCULAS",
+     "sub": "FRANCESAS",
+     "en": "siete",
+     "t": 55.68
+    },
+    {
+     "tipo": "titulo",
+     "texto": "CINEBONO 3×4",
+     "categoria": "PAGAS 3, ENTRAN 4",
+     "en": "Cinebono",
+     "t": 58.08
+    }
+   ]
+  }
+ ],
+ "duracionVoz": 62.12,
+ "montaje": {
+  "fps": 30,
+  "intro": 76,
+  "vozOffset": 2.4,
+  "cierreInicio": 1957,
+  "cierre": 96,
+  "total": 2053
+ }
+}

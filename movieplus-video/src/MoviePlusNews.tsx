@@ -6,9 +6,8 @@ import {Intro} from './Intro';
 import {Cierre} from './Cierre';
 import {Fondo} from './Logo';
 import {MARCA, W, H, prog, lerp, outBack, outCubic, outExpo, inOutCubic, clamp} from './marca';
-import plan from './videos/2026-11-10.json';
+import {plan, timing} from './videos/actual';
 import {PanelDatos, Dato} from './PanelDatos';
-import timing from './videos/2026-11-10.timing.json';
 
 // ---------- tipos ----------
 type Medio = {
@@ -173,39 +172,38 @@ const Encabezado: React.FC<{frame: number}> = ({frame}) => {
 // El «5» dentro del aro rojo de Movie Plus, abanico con las imágenes de las 5 noticias detrás,
 // titular centrado palabra por palabra y la fecha del día.
 const Gancho: React.FC<{frame: number}> = ({frame}) => {
-  const fin = fr(TM.bloques[1].inicio);
   const pal = TM.palabras.filter((p) => p.b === 0);
   const at = (w: string) => fr(pal.find((p) => p.w.toLowerCase() === w)!.t);
-  const a5 = at('5');
+  // primera palabra = el número («5», «6»…); el resto se reparte en dos líneas tras «cine»
+  const numero = pal[0].w;
+  const a5 = fr(pal[0].t);
+  const fin = fr(TM.bloques[1].inicio);
   const salida = prog(frame, fin - 6, fin);
   const CX = W / 2;
   const CY = 740;
   const R = 235;
-  // abanico de imágenes
   const fondos = PLAN.noticias.map((n) => n.fondo);
-  // aro que se dibuja
   const pAro = outExpo(prog(frame, a5 - 2, a5 + 12));
   const circ = 2 * Math.PI * R;
   const p5 = outBack(prog(frame, a5, a5 + 10), 1.8);
-  const palabras: {txt: string; a: number; rojo?: boolean; linea: number}[] = [
-    {txt: 'NOTICIAS', a: at('noticias'), linea: 0},
-    {txt: 'DE', a: at('cine') - 2, linea: 0},
-    {txt: 'CINE', a: at('cine'), rojo: true, linea: 0},
-    {txt: 'Y', a: at('series') - 2, linea: 1},
-    {txt: 'SERIES', a: at('series'), rojo: true, linea: 1},
-    {txt: 'DE', a: at('hoy') - 2, linea: 1},
-    {txt: 'HOY', a: at('hoy'), linea: 1},
-  ];
-  const pFecha = outBack(prog(frame, at('hoy') + 4, at('hoy') + 13), 2);
+  const resto = pal.slice(1).filter((p) => p.w);
+  const corte = Math.max(1, resto.findIndex((p) => p.w.toLowerCase() === 'cine') + 1);
+  const palabras: {txt: string; a: number; rojo?: boolean; linea: number}[] = resto.map((p, i) => ({
+    txt: p.w.toUpperCase().replace(/[.,]/g, ''), a: fr(p.t), linea: i < corte ? 0 : 1,
+    rojo: ['cine', 'series'].includes(p.w.toLowerCase().replace(/[.,]/g, '')),
+  }));
+  const ultima = palabras[palabras.length - 1].a;
+  const pFecha = outBack(prog(frame, ultima + 4, ultima + 13), 2);
   return (
     <AbsoluteFill style={{opacity: 1 - salida, transform: `scale(${lerp(1, 1.06, salida)})`}}>
       {/* abanico de las 5 noticias */}
       {fondos.map((src, i) => {
-        const k = i - 2;
+        const k = i - (fondos.length - 1) / 2;
+        const sep = fondos.length > 5 ? 150 : 175;
         const p = outExpo(prog(frame, a5 - 8 + i * 2, a5 + 6 + i * 2));
         const deriva = prog(frame, a5, fin) * 14 * Math.sign(k || 1);
         return (
-          <div key={i} style={{position: 'absolute', left: CX - 150 + k * 175 + deriva, top: CY - 210 + Math.abs(k) * 34,
+          <div key={i} style={{position: 'absolute', left: CX - 150 + k * sep + deriva, top: CY - 210 + Math.abs(k) * 34,
             width: 300, height: 420, borderRadius: 22, overflow: 'hidden', opacity: 0.42 * p,
             transform: `translateY(${lerp(260, 0, p)}px) rotate(${k * 9}deg)`, boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
             zIndex: 2 - Math.abs(k)}}>
@@ -228,7 +226,7 @@ const Gancho: React.FC<{frame: number}> = ({frame}) => {
         <div style={{...SAIRA, fontSize: 380, lineHeight: 1, color: '#fff', ...contorno(10),
           textShadow: `0 0 50px rgba(237,28,36,0.55), 0 12px 0 rgba(0,0,0,0.5)`,
           transform: `scale(${lerp(2.2, 1, p5)}) translateX(-8px)`, opacity: Math.min(1, prog(frame, a5 - 1, a5 + 4))}}>
-          5
+          {numero}
         </div>
       </div>
       {/* titular centrado */}

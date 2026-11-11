@@ -3,10 +3,14 @@ import {MARCA, prog, lerp, outBack, outCubic, outExpo, clamp} from './marca';
 
 // Panel de datos con motion graphics, debajo de la imagen de cada noticia.
 export type Dato = {
-  tipo: 'titulo' | 'nombre' | 'fecha' | 'contador' | 'insignia' | 'comparacion' | 'salto' | 'bloques';
+  tipo: 'titulo' | 'nombre' | 'fecha' | 'contador' | 'insignia' | 'comparacion' | 'salto' | 'bloques' | 'lista';
   texto: string; sub?: string; t: number;
   valor?: number; prefijo?: string; sufijo?: string; mes?: string; dia?: string; a?: string; b?: string;
   categoria?: string;
+  decimales?: number; // contador con decimales (p. ej. 1.5)
+  icono?: 'trofeo' | 'prohibido'; // insignia
+  valorA?: number; valorB?: number; etiqueta?: string; // comparación con valores reales
+  items?: {texto: string; t: number}[]; // lista: cada punto se marca en su palabra
 };
 
 export const PANEL = {x: 90, y: 1226, w: 900, h: 212};
@@ -93,7 +97,8 @@ const Fecha: React.FC<{d: Dato; f: number}> = ({d, f}) => {
 
 const Contador: React.FC<{d: Dato; f: number}> = ({d, f}) => {
   const p = outCubic(prog(f, 0, 22));
-  const v = Math.round((d.valor ?? 0) * p);
+  const dec = d.decimales ?? 0;
+  const v = ((d.valor ?? 0) * p).toFixed(dec);
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 34, height: '100%'}}>
       <div style={{...SAIRA, fontSize: 150, lineHeight: 0.9, color: '#fff', whiteSpace: 'nowrap',
@@ -125,6 +130,13 @@ const Insignia: React.FC<{d: Dato; f: number}> = ({d, f}) => {
             <polygon key={i} points="-6,-30 6,-30 0,-74" fill={ROJO} transform={`rotate(${i * 30})`} />
           ))}
         </svg>
+        {d.icono === 'prohibido' ? (
+          <svg width="150" height="150" viewBox="0 0 64 64" style={{position: 'absolute', inset: 0, transform: `scale(${p * 0.8})`}}>
+            <text x="32" y="43" textAnchor="middle" fontFamily="Bebas Neue" fontSize="34" fill="#fff">$</text>
+            <circle cx="32" cy="32" r="24" fill="none" stroke={ROJO} strokeWidth="7" />
+            <line x1="15" y1="49" x2="49" y2="15" stroke={ROJO} strokeWidth="7" strokeLinecap="round" />
+          </svg>
+        ) : (
         <svg width="150" height="150" viewBox="0 0 64 64" style={{position: 'absolute', inset: 0, transform: `scale(${p * 0.78})`}}>
           <path d="M18 8h28v10c0 9-6 16-14 16S18 27 18 18z" fill="#F5C443" />
           <path d="M18 12H9c0 8 4 13 10 13M46 12h9c0 8-4 13-10 13" fill="none" stroke="#F5C443" strokeWidth="4" />
@@ -132,6 +144,7 @@ const Insignia: React.FC<{d: Dato; f: number}> = ({d, f}) => {
           <rect x="20" y="43" width="24" height="7" rx="2" fill="#F5C443" />
           <path d="M32 14l2.4 5 5.4.6-4 3.7 1.1 5.3L32 26l-4.9 2.6 1.1-5.3-4-3.7 5.4-.6z" fill="#fff" />
         </svg>
+        )}
       </div>
       <Titular f={f} texto={d.texto} sub={d.sub} />
     </div>
@@ -140,7 +153,8 @@ const Insignia: React.FC<{d: Dato; f: number}> = ({d, f}) => {
 
 const Comparacion: React.FC<{d: Dato; f: number}> = ({d, f}) => {
   const pa = outExpo(prog(f, 4, 22));
-  const pb = outExpo(prog(f, 8, 24)) * 0.72;
+  const ratio = d.valorA && d.valorB !== undefined ? Math.max(0.04, d.valorB / d.valorA) : 0.72;
+  const pb = outExpo(prog(f, 8, 24)) * ratio;
   const check = outBack(prog(f, 22, 30), 2.5);
   const fila = (label: string, ancho: number, color: string, glow: boolean) => (
     <div style={{display: 'flex', alignItems: 'center', gap: 18}}>
@@ -157,7 +171,7 @@ const Comparacion: React.FC<{d: Dato; f: number}> = ({d, f}) => {
       {fila(d.a ?? '', pa, `linear-gradient(90deg, #8E0F14, ${ROJO})`, true)}
       {fila(d.b ?? '', pb, 'rgba(255,255,255,0.45)', false)}
       <div style={{position: 'absolute', right: 0, top: 6, background: '#fff', color: ROJO, ...SAIRA, fontSize: 30,
-        padding: '2px 16px 4px', borderRadius: 999, transform: `scale(${check})`}}>✓ SUPERA</div>
+        padding: '2px 16px 4px', borderRadius: 999, transform: `scale(${check})`}}>{d.etiqueta ?? '✓ SUPERA'}</div>
     </div>
   );
 };
@@ -193,19 +207,20 @@ const Salto: React.FC<{d: Dato; f: number}> = ({d, f}) => {
 
 const Bloques: React.FC<{d: Dato; f: number}> = ({d, f}) => {
   const n = d.valor ?? 1;
+  const ancho = Math.min(92, Math.floor(470 / n) - 10);
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 30, height: '100%'}}>
-      <div style={{display: 'flex', gap: 14}}>
+      <div style={{display: 'flex', gap: n > 4 ? 8 : 14}}>
         {Array.from({length: n}, (_, i) => {
           const p = outBack(prog(f, i * 4, i * 4 + 10), 2.4);
           return (
-            <div key={i} style={{width: 92, height: 120, borderRadius: 14, background: i === 0 ? ROJO : '#fff',
+            <div key={i} style={{width: ancho, height: n > 4 ? 96 : 120, borderRadius: n > 4 ? 10 : 14, background: i === 0 ? ROJO : '#fff',
               transform: `scale(${p}) translateY(${lerp(30, 0, p)}px)`, display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center', gap: 4, boxShadow: '0 10px 24px rgba(0,0,0,0.45)'}}>
-              <svg width="40" height="40" viewBox="0 0 24 24">
+              <svg width={n > 4 ? 28 : 40} height={n > 4 ? 28 : 40} viewBox="0 0 24 24">
                 <path d="M8 6l11 6-11 6z" fill={i === 0 ? '#fff' : ROJO} />
               </svg>
-              <div style={{...SAIRA, fontSize: 26, color: i === 0 ? '#fff' : '#111'}}>EP {i + 1}</div>
+              <div style={{...SAIRA, fontSize: n > 4 ? 20 : 26, color: i === 0 ? '#fff' : '#111'}}>{n > 4 ? i + 1 : `EP ${i + 1}`}</div>
             </div>
           );
         })}
@@ -215,9 +230,36 @@ const Bloques: React.FC<{d: Dato; f: number}> = ({d, f}) => {
   );
 };
 
+
+// lista con palomitas: cada punto se marca en su palabra (f0 = inicio del dato, fps 30)
+const Lista: React.FC<{d: Dato; f: number}> = ({d, f}) => {
+  const items = d.items ?? [];
+  const t0 = d.t;
+  return (
+    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6, height: '100%'}}>
+      {items.map((it, i) => {
+        const a = Math.max(0, Math.round((it.t - t0) * 30));
+        const p = outBack(prog(f, a, a + 8), 2.4);
+        const on = f >= a;
+        return (
+          <div key={i} style={{display: 'flex', alignItems: 'center', gap: 18, opacity: on ? 1 : 0.35}}>
+            <div style={{width: 50, height: 50, borderRadius: '50%', flex: 'none', border: `3px solid ${on ? ROJO : 'rgba(255,255,255,0.4)'}`,
+              background: on ? ROJO : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+              <svg width="30" height="30" viewBox="0 0 24 24" style={{transform: `scale(${on ? p : 0})`}}>
+                <path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#fff" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <div style={{...SAIRA, fontSize: 58, lineHeight: 1, color: '#fff', whiteSpace: 'nowrap'}}>{it.texto}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 const VISTAS: Record<Dato['tipo'], React.FC<{d: Dato; f: number}>> = {
   titulo: Titulo, nombre: Nombre, fecha: Fecha, contador: Contador, insignia: Insignia,
-  comparacion: Comparacion, salto: Salto, bloques: Bloques,
+  comparacion: Comparacion, salto: Salto, bloques: Bloques, lista: Lista,
 };
 
 /** Panel completo: caja + dato actual (entra desde la derecha, el anterior sale a la izquierda). */
