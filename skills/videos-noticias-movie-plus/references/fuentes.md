@@ -62,3 +62,9 @@ Espinof https://www.espinof.com/ · Fotogramas https://www.fotogramas.es/ · El 
 Cinépolis https://cinepolis.com.gt/ · Cinemark https://www.cinemarkca.com/guatemala/peliculas · Cineflick https://cineflick.com.gt/ · Cinestar https://www.cinestar.com.gt/ · Alba Cinema https://albacinema.com.gt/
 
 Cuando una noticia trate de un estreno, consulta aquí si ya tiene fecha o preventa en Guatemala y añádelo como dato local («llega a cines de Guatemala el 4 de diciembre»).
+
+## Canal propio: WhatsApp «Movieplus GT»
+Canal de WhatsApp de Movie Plus. No se puede leer en línea: el usuario manda capturas o el texto. Úsalo para **detectar** noticias (como nivel C).
+- Confirma cada publicación en un medio de nivel A antes de usarla.
+- Corrige las cifras con el dato más reciente del medio A. Ejemplo: el canal decía que *You Can See Everything* superaba los 45 millones de dólares y THR ya reportaba casi 80.
+- Las publicaciones sobre cines de Guatemala (p. ej. el Tour de Cine Francés en Cinépolis) sirven como dato local, junto con la cartelera oficial.
