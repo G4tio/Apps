@@ -11,6 +11,7 @@ export type Dato = {
   icono?: 'trofeo' | 'prohibido'; // insignia
   valorA?: number; valorB?: number; etiqueta?: string; // comparación con valores reales
   items?: {texto: string; t: number}[]; // lista: cada punto se marca en su palabra
+  etiquetaBloque?: string; // texto de cada ficha en `bloques` (por defecto «EP»)
 };
 
 export const PANEL = {x: 90, y: 1226, w: 900, h: 212};
@@ -220,7 +221,7 @@ const Bloques: React.FC<{d: Dato; f: number}> = ({d, f}) => {
               <svg width={n > 4 ? 28 : 40} height={n > 4 ? 28 : 40} viewBox="0 0 24 24">
                 <path d="M8 6l11 6-11 6z" fill={i === 0 ? '#fff' : ROJO} />
               </svg>
-              <div style={{...SAIRA, fontSize: n > 4 ? 20 : 26, color: i === 0 ? '#fff' : '#111'}}>{n > 4 ? i + 1 : `EP ${i + 1}`}</div>
+              <div style={{...SAIRA, fontSize: n > 4 ? 20 : 26, color: i === 0 ? '#fff' : '#111'}}>{n > 4 ? i + 1 : `${d.etiquetaBloque ?? 'EP'} ${i + 1}`}</div>
             </div>
           );
         })}

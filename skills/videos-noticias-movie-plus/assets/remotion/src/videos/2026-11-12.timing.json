@@ -1,0 +1,1709 @@
+{
+ "palabras": [
+  {
+   "w": "6",
+   "t": 0.0,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "noticias",
+   "t": 0.32,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 0.72,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "cine",
+   "t": 0.8,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 1.2,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "series",
+   "t": 1.36,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 1.76,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 1.92,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "Brad",
+   "t": 2.56,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Pitt",
+   "t": 3.04,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "protagonizará",
+   "t": 3.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Connector",
+   "t": 4.24,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "para",
+   "t": 4.64,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Apple",
+   "t": 4.8,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "dirigida",
+   "t": 5.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "por",
+   "t": 5.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Darius",
+   "t": 5.6,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Marder",
+   "t": 6.0,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "nominado",
+   "t": 6.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "al",
+   "t": 6.88,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Óscar",
+   "t": 7.04,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Será",
+   "t": 7.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 7.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "obrero",
+   "t": 7.92,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 8.24,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "las",
+   "t": 8.32,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "alturas",
+   "t": 8.4,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 8.88,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 8.96,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Nueva",
+   "t": 9.04,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "York",
+   "t": 9.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 9.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 9.68,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "años",
+   "t": 9.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "70",
+   "t": 10.0,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 10.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "podría",
+   "t": 10.64,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "rodarse",
+   "t": 11.04,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 11.44,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "2027",
+   "t": 11.78,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 12.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 12.46,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 12.8,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "revista",
+   "t": 13.04,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Empire",
+   "t": 13.52,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "reveló",
+   "t": 14.0,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "4",
+   "t": 14.48,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "portadas",
+   "t": 14.8,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 15.2,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Avengers",
+   "t": 15.28,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Doomsday",
+   "t": 15.84,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "una",
+   "t": 16.56,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "dedicada",
+   "t": 16.64,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "solo",
+   "t": 17.12,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "al",
+   "t": 17.28,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "villano",
+   "t": 17.44,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 17.92,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "edición",
+   "t": 18.08,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "también",
+   "t": 18.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "rinde",
+   "t": 18.72,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "homenaje",
+   "t": 19.04,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 19.44,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Patrick",
+   "t": 19.52,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Stewart",
+   "t": 20.0,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "cuyo",
+   "t": 20.64,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "último",
+   "t": 20.88,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "papel",
+   "t": 21.2,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "será",
+   "t": 21.44,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 21.68,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "esta",
+   "t": 21.84,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 21.92,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "que",
+   "t": 22.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "llega",
+   "t": 22.56,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 22.88,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "18",
+   "t": 23.2,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 23.52,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "diciembre",
+   "t": 23.68,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Por",
+   "t": 24.4,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 24.72,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "50",
+   "t": 24.88,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "aniversario",
+   "t": 25.28,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Star",
+   "t": 26.0,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Wars",
+   "t": 26.4,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Una",
+   "t": 26.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "nueva",
+   "t": 26.96,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "esperanza",
+   "t": 27.2,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "regresará",
+   "t": 27.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 27.92,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 28.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 28.24,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 28.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "19",
+   "t": 29.0,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 29.36,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "febrero",
+   "t": 29.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 29.84,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "2027",
+   "t": 30.0,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 30.347,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 30.693,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 31.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 31.12,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "versión",
+   "t": 31.2,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "original",
+   "t": 31.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 32.08,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "por",
+   "t": 32.24,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "primera",
+   "t": 32.4,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "vez",
+   "t": 32.72,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 32.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "IMAX",
+   "t": 33.04,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Emily",
+   "t": 33.76,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 34.32,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "París",
+   "t": 34.48,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "se",
+   "t": 34.8,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "despide",
+   "t": 34.88,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Netflix",
+   "t": 35.36,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "estrenará",
+   "t": 36.08,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 36.56,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "sexta",
+   "t": 36.64,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 36.88,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "última",
+   "t": 36.96,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "temporada",
+   "t": 37.36,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 37.76,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "24",
+   "t": 38.08,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 38.4,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "diciembre",
+   "t": 38.56,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 39.04,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 39.12,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "nuevo",
+   "t": 39.2,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "tráiler",
+   "t": 39.44,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "lleva",
+   "t": 40.0,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 40.16,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Emily",
+   "t": 40.24,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "hasta",
+   "t": 40.72,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Grecia",
+   "t": 40.96,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Ya",
+   "t": 41.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "hay",
+   "t": 41.76,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "tráiler",
+   "t": 41.92,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 42.48,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Ink",
+   "t": 42.56,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "la",
+   "t": 42.96,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 43.04,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 43.36,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Danny",
+   "t": 43.44,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Boyle",
+   "t": 43.92,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "sobre",
+   "t": 44.24,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "cómo",
+   "t": 44.4,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Rupert",
+   "t": 44.56,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Murdoch",
+   "t": 44.96,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "transformó",
+   "t": 45.44,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 45.92,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "periódico",
+   "t": 46.0,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "The",
+   "t": 46.28,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Sun",
+   "t": 46.56,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Guy",
+   "t": 46.8,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Pearce",
+   "t": 47.04,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "es",
+   "t": 47.28,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Murdoch",
+   "t": 47.52,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 48.0,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "llega",
+   "t": 48.08,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 48.24,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 48.32,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 48.64,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "11",
+   "t": 48.84,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 49.04,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "diciembre",
+   "t": 49.12,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 49.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 49.6,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Netflix",
+   "t": 49.76,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "el",
+   "t": 50.4,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "8",
+   "t": 50.56,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 50.72,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "enero",
+   "t": 50.88,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Ramayana",
+   "t": 51.44,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "El",
+   "t": 52.32,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "nacimiento",
+   "t": 52.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 52.88,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "una",
+   "t": 53.04,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "leyenda",
+   "t": 53.2,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "ya",
+   "t": 53.6,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "superó",
+   "t": 53.84,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 54.16,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "100",
+   "t": 54.32,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "millones",
+   "t": 54.56,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 54.88,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "dólares",
+   "t": 55.04,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 55.44,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 55.52,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "mundo",
+   "t": 55.68,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 55.92,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 56.0,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "llega",
+   "t": 56.24,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 56.36,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 56.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 56.56,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 56.88,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Latinoamérica",
+   "t": 57.04,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Además",
+   "t": 57.84,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "es",
+   "t": 58.4,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 58.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "primera",
+   "t": 58.64,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 58.96,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "india",
+   "t": 59.36,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 59.76,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "llegar",
+   "t": 59.92,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "al",
+   "t": 60.24,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "número",
+   "t": 60.32,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "uno",
+   "t": 60.72,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 60.96,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Reino",
+   "t": 61.12,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Unido",
+   "t": 61.44,
+   "b": 6,
+   "clave": true
+  }
+ ],
+ "bloques": [
+  {
+   "bloque": 0,
+   "inicio": 0.0,
+   "primera": 0,
+   "ultima": 7,
+   "fin": 2.6
+  },
+  {
+   "bloque": 1,
+   "inicio": 2.6,
+   "primera": 8,
+   "ultima": 41,
+   "fin": 12.84
+  },
+  {
+   "bloque": 2,
+   "inicio": 12.84,
+   "primera": 42,
+   "ultima": 76,
+   "fin": 24.44
+  },
+  {
+   "bloque": 3,
+   "inicio": 24.44,
+   "primera": 77,
+   "ultima": 107,
+   "fin": 33.8
+  },
+  {
+   "bloque": 4,
+   "inicio": 33.8,
+   "primera": 108,
+   "ultima": 132,
+   "fin": 41.56
+  },
+  {
+   "bloque": 5,
+   "inicio": 41.56,
+   "primera": 133,
+   "ultima": 170,
+   "fin": 51.48
+  },
+  {
+   "bloque": 6,
+   "inicio": 51.48,
+   "primera": 171,
+   "ultima": 208,
+   "fin": 62.32
+  }
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "inicio": 2.6,
+   "fin": 12.84,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n1_pitt_alfombra.jpg",
+     "en": null,
+     "foco": "center 25%",
+     "t": 2.6
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n1_pitt_cannes.jpg",
+     "en": "Será",
+     "foco": "center 30%",
+     "t": 7.56
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n1_pitt_lentes.jpg",
+     "en": "podría",
+     "foco": "center 25%",
+     "t": 10.68
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "BRAD PITT",
+     "sub": "PROTAGONISTA",
+     "en": "protagonizará",
+     "t": 3.52
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "DARIUS MARDER",
+     "sub": "DIRECTOR NOMINADO AL ÓSCAR",
+     "en": "Darius",
+     "t": 5.6
+    },
+    {
+     "tipo": "titulo",
+     "texto": "NUEVA YORK, AÑOS 70",
+     "categoria": "LA HISTORIA",
+     "en": "Nueva",
+     "t": 9.04
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "inicio": 12.84,
+   "fin": 24.44,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n2_empire_portada1.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 12.84
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n2_empire_portada2.jpg",
+     "en": "portadas",
+     "ajuste": "contain",
+     "t": 14.84
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n2_empire_portada3.jpg",
+     "en": "Doomsday",
+     "ajuste": "contain",
+     "t": 15.88
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n2_empire_portada4_doom.jpg",
+     "en": "villano",
+     "ajuste": "contain",
+     "t": 17.48
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n2_empire_tributo_stewart.jpg",
+     "en": "homenaje",
+     "ajuste": "contain",
+     "t": 19.08
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "bloques",
+     "valor": 4,
+     "etiquetaBloque": "#",
+     "texto": "4 PORTADAS",
+     "sub": "EMPIRE · ENERO 2027",
+     "en": "cuatro",
+     "t": 14.48
+    },
+    {
+     "tipo": "nombre",
+     "texto": "PATRICK STEWART",
+     "sub": "1940 – 2026 · HOMENAJE",
+     "en": "Patrick",
+     "t": 19.52
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "18",
+     "texto": "AVENGERS: DOOMSDAY",
+     "sub": "EN CINES",
+     "en": "dieciocho",
+     "t": 23.2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "inicio": 24.44,
+   "fin": 33.8,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n3_star_wars_50.mp4",
+     "desde": 1.0,
+     "hasta": 3.4,
+     "toma": "metal dorado",
+     "en": null,
+     "zoom": 1.0,
+     "t": 24.44,
+     "archivo": "media/2026-11-12/frag/n3_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n3_star_wars_50.mp4",
+     "desde": 6.0,
+     "hasta": 8.8,
+     "toma": "se forma el 50",
+     "en": "Star",
+     "zoom": 1.0,
+     "t": 26.04,
+     "archivo": "media/2026-11-12/frag/n3_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n3_star_wars_50.mp4",
+     "desde": 10.5,
+     "hasta": 13.8,
+     "toma": "logo 50 Star Wars",
+     "en": "diecinueve",
+     "zoom": 1.0,
+     "t": 29.04,
+     "archivo": "media/2026-11-12/frag/n3_2.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 50,
+     "prefijo": "",
+     "sufijo": "",
+     "texto": "50",
+     "sub": "AÑOS DE STAR WARS",
+     "en": "cincuenta",
+     "t": 24.88
+    },
+    {
+     "tipo": "fecha",
+     "mes": "FEB",
+     "dia": "19",
+     "texto": "REGRESA A CINES",
+     "sub": "2027 · VERSIÓN ORIGINAL",
+     "en": "diecinueve",
+     "t": 29.0
+    },
+    {
+     "tipo": "titulo",
+     "texto": "POR PRIMERA VEZ EN IMAX",
+     "categoria": "FORMATO",
+     "en": "IMAX",
+     "t": 33.04
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "inicio": 33.8,
+   "fin": 41.56,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n4_emily_poster.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 33.8
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n4_emily_poster.jpg",
+     "en": "tráiler",
+     "foco": "center 22%",
+     "t": 39.48
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "24",
+     "texto": "ÚLTIMA TEMPORADA",
+     "sub": "SOLO EN NETFLIX",
+     "en": "veinticuatro",
+     "t": 38.08
+    },
+    {
+     "tipo": "titulo",
+     "texto": "DESTINO: GRECIA",
+     "categoria": "NUEVO TRÁILER",
+     "en": "Grecia",
+     "t": 40.96
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "inicio": 41.56,
+   "fin": 51.48,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n5_ink_trailer.mp4",
+     "desde": 0.3,
+     "hasta": 3.6,
+     "toma": "primer plano",
+     "en": null,
+     "zoom": 1.0,
+     "t": 41.56,
+     "archivo": "media/2026-11-12/frag/n5_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n5_ink_trailer.mp4",
+     "desde": 10.9,
+     "hasta": 12.1,
+     "toma": "letrero SUN",
+     "en": "periódico",
+     "zoom": 1.0,
+     "t": 46.04,
+     "archivo": "media/2026-11-12/frag/n5_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n5_ink_trailer.mp4",
+     "desde": 9.45,
+     "hasta": 10.75,
+     "toma": "redacción",
+     "en": "Guy",
+     "zoom": 1.0,
+     "t": 46.84,
+     "archivo": "media/2026-11-12/frag/n5_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n5_ink_trailer.mp4",
+     "desde": 77.2,
+     "hasta": 79.0,
+     "toma": "Jack O'Connell de esmoquin",
+     "en": "once",
+     "zoom": 1.0,
+     "t": 48.88,
+     "archivo": "media/2026-11-12/frag/n5_3.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "GUY PEARCE",
+     "sub": "ES RUPERT MURDOCH",
+     "en": "Guy",
+     "t": 46.8
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "11",
+     "texto": "EN CINES",
+     "sub": "NETFLIX: 8 DE ENERO",
+     "en": "once",
+     "t": 48.84
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "inicio": 51.48,
+   "fin": 62.32,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n6_ramayana_trailer.mp4",
+     "desde": 15.9,
+     "hasta": 18.6,
+     "toma": "ciudad dorada",
+     "en": null,
+     "zoom": 1.0,
+     "t": 51.48,
+     "archivo": "media/2026-11-12/frag/n6_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n6_ramayana_trailer.mp4",
+     "desde": 32.2,
+     "hasta": 34.6,
+     "toma": "guerrero en la nieve",
+     "en": "cien",
+     "zoom": 1.0,
+     "t": 54.36,
+     "archivo": "media/2026-11-12/frag/n6_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n6_ramayana_trailer.mp4",
+     "desde": 47.4,
+     "hasta": 49.1,
+     "toma": "héroe en el templo",
+     "en": "hoy",
+     "zoom": 1.0,
+     "t": 56.04,
+     "archivo": "media/2026-11-12/frag/n6_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n6_ramayana_trailer.mp4",
+     "desde": 136.4,
+     "hasta": 139.4,
+     "toma": "arquero",
+     "en": "Además",
+     "zoom": 1.0,
+     "t": 57.88,
+     "archivo": "media/2026-11-12/frag/n6_3.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n6_ramayana_trailer.mp4",
+     "desde": 120.0,
+     "hasta": 122.8,
+     "toma": "título Ramayana",
+     "en": "número",
+     "zoom": 1.0,
+     "ajuste": "contain",
+     "t": 60.36,
+     "archivo": "media/2026-11-12/frag/n6_4.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 100,
+     "prefijo": "+$",
+     "sufijo": "M",
+     "texto": "+$100M",
+     "sub": "TAQUILLA MUNDIAL",
+     "en": "cien",
+     "t": 54.32
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "12",
+     "texto": "HOY EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "hoy",
+     "t": 56.0
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "N.º 1 EN REINO UNIDO",
+     "sub": "PRIMERA PELÍCULA INDIA",
+     "en": "número",
+     "t": 60.32
+    }
+   ]
+  }
+ ],
+ "duracionVoz": 62.52,
+ "montaje": {
+  "fps": 30,
+  "intro": 76,
+  "vozOffset": 2.4,
+  "cierreInicio": 1969,
+  "cierre": 96,
+  "total": 2065
+ }
+}

@@ -26,8 +26,11 @@ for nt in T['noticias']:
         rel = f"{carpeta}/frag/n{nt['n']}_{i}.mp4"
         out = f'public/{rel}'
         os.makedirs(os.path.dirname(out), exist_ok=True)
-        # borra las dos posiciones de la marca de agua de TikTok (video 576×1024)
-        logo = "delogo=x=1:y=440:w=158:h=132,delogo=x=428:y=752:w=146:h=140,"
+        # borra las dos posiciones de la marca de agua de TikTok (solo videos verticales 576×1024 de TikTok)
+        dims = subprocess.check_output(['ffprobe', '-v', 'error', '-select_streams', 'v', '-show_entries', 'stream=width,height',
+                                        '-of', 'csv=p=0', f"public/{m['src']}"]).decode().strip()
+        tiktok = m.get('marcaTikTok', dims == '576,1024')
+        logo = "delogo=x=1:y=440:w=158:h=132,delogo=x=428:y=752:w=146:h=140," if tiktok else ""
         vf = (f"trim=start={m['desde']}:end={m['hasta']},{logo}setpts=(PTS-STARTPTS)/{rate:.4f},fps={FPS},"
               f"tpad=stop_mode=clone:stop_duration={slot:.3f},trim=duration={slot:.3f}")
         subprocess.run(['ffmpeg', '-nostdin', '-v', 'error', '-y', '-i', f"public/{m['src']}", '-vf', vf, '-an',

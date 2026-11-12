@@ -1,0 +1,449 @@
+{
+ "fecha": "2026-11-12",
+ "fechaTexto": "JUEVES 12 DE NOVIEMBRE",
+ "voz": "media/2026-11-12/voz/voz_limpia.wav",
+ "pantalla": [
+  {
+   "bloque": 0,
+   "frase": "Seis",
+   "texto": "6"
+  },
+  {
+   "bloque": 1,
+   "frase": "setenta",
+   "texto": "70"
+  },
+  {
+   "bloque": 1,
+   "frase": "dos mil veintisiete",
+   "texto": "2027"
+  },
+  {
+   "bloque": 2,
+   "frase": "cuatro",
+   "texto": "4"
+  },
+  {
+   "bloque": 2,
+   "frase": "dieciocho",
+   "texto": "18"
+  },
+  {
+   "bloque": 3,
+   "frase": "cincuenta",
+   "texto": "50"
+  },
+  {
+   "bloque": 3,
+   "frase": "diecinueve",
+   "texto": "19"
+  },
+  {
+   "bloque": 3,
+   "frase": "dos mil veintisiete",
+   "texto": "2027"
+  },
+  {
+   "bloque": 4,
+   "frase": "veinticuatro",
+   "texto": "24"
+  },
+  {
+   "bloque": 5,
+   "frase": "once",
+   "texto": "11"
+  },
+  {
+   "bloque": 5,
+   "frase": "ocho",
+   "texto": "8"
+  },
+  {
+   "bloque": 6,
+   "frase": "cien",
+   "texto": "100"
+  }
+ ],
+ "claves": [
+  "Brad",
+  "Pitt",
+  "Connector",
+  "Apple",
+  "Darius",
+  "Marder",
+  "Óscar",
+  "Empire",
+  "Avengers",
+  "Doomsday",
+  "Patrick",
+  "Stewart",
+  "Star",
+  "Wars",
+  "IMAX",
+  "Emily",
+  "París",
+  "Netflix",
+  "Grecia",
+  "Ink",
+  "Danny",
+  "Boyle",
+  "Rupert",
+  "Murdoch",
+  "Sun",
+  "Guy",
+  "Pearce",
+  "Ramayana",
+  "Latinoamérica",
+  "millones",
+  "dólares",
+  "Reino",
+  "Unido"
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "titulo": "CONNECTOR",
+   "categoria": "APPLE ORIGINAL FILMS",
+   "fondo": "media/2026-11-12/n1_pitt_alfombra.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n1_pitt_alfombra.jpg",
+     "en": null,
+     "foco": "center 25%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n1_pitt_cannes.jpg",
+     "en": "Será",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n1_pitt_lentes.jpg",
+     "en": "podría",
+     "foco": "center 25%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "BRAD PITT",
+     "sub": "PROTAGONISTA",
+     "en": "protagonizará"
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "DARIUS MARDER",
+     "sub": "DIRECTOR NOMINADO AL ÓSCAR",
+     "en": "Darius"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "NUEVA YORK, AÑOS 70",
+     "categoria": "LA HISTORIA",
+     "en": "Nueva"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titulo": "AVENGERS: DOOMSDAY",
+   "categoria": "PORTADAS DE EMPIRE",
+   "fondo": "media/2026-11-12/n2_empire_portada4_doom.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n2_empire_portada1.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n2_empire_portada2.jpg",
+     "en": "portadas",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n2_empire_portada3.jpg",
+     "en": "Doomsday",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n2_empire_portada4_doom.jpg",
+     "en": "villano",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n2_empire_tributo_stewart.jpg",
+     "en": "homenaje",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "bloques",
+     "valor": 4,
+     "etiquetaBloque": "#",
+     "texto": "4 PORTADAS",
+     "sub": "EMPIRE · ENERO 2027",
+     "en": "cuatro"
+    },
+    {
+     "tipo": "nombre",
+     "texto": "PATRICK STEWART",
+     "sub": "1940 – 2026 · HOMENAJE",
+     "en": "Patrick"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "18",
+     "texto": "AVENGERS: DOOMSDAY",
+     "sub": "EN CINES",
+     "en": "dieciocho"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titulo": "STAR WARS: UNA NUEVA ESPERANZA",
+   "categoria": "50 ANIVERSARIO",
+   "fondo": "media/2026-11-12/n3_sw_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n3_star_wars_50.mp4",
+     "desde": 1.0,
+     "hasta": 3.4,
+     "toma": "metal dorado",
+     "en": null,
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n3_star_wars_50.mp4",
+     "desde": 6.0,
+     "hasta": 8.8,
+     "toma": "se forma el 50",
+     "en": "Star",
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n3_star_wars_50.mp4",
+     "desde": 10.5,
+     "hasta": 13.8,
+     "toma": "logo 50 Star Wars",
+     "en": "diecinueve",
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 50,
+     "prefijo": "",
+     "sufijo": "",
+     "texto": "50",
+     "sub": "AÑOS DE STAR WARS",
+     "en": "cincuenta"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "FEB",
+     "dia": "19",
+     "texto": "REGRESA A CINES",
+     "sub": "2027 · VERSIÓN ORIGINAL",
+     "en": "diecinueve"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "POR PRIMERA VEZ EN IMAX",
+     "categoria": "FORMATO",
+     "en": "IMAX"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "EMILY EN PARÍS",
+   "categoria": "NETFLIX · TEMPORADA FINAL",
+   "fondo": "media/2026-11-12/n4_emily_poster.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n4_emily_poster.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-12/n4_emily_poster.jpg",
+     "en": "tráiler",
+     "foco": "center 22%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "24",
+     "texto": "ÚLTIMA TEMPORADA",
+     "sub": "SOLO EN NETFLIX",
+     "en": "veinticuatro"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "DESTINO: GRECIA",
+     "categoria": "NUEVO TRÁILER",
+     "en": "Grecia"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titulo": "INK",
+   "categoria": "TRÁILER · DANNY BOYLE",
+   "fondo": "media/2026-11-12/n5_ink_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n5_ink_trailer.mp4",
+     "desde": 0.3,
+     "hasta": 3.6,
+     "toma": "primer plano",
+     "en": null,
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n5_ink_trailer.mp4",
+     "desde": 10.9,
+     "hasta": 12.1,
+     "toma": "letrero SUN",
+     "en": "periódico",
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n5_ink_trailer.mp4",
+     "desde": 9.45,
+     "hasta": 10.75,
+     "toma": "redacción",
+     "en": "Guy",
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n5_ink_trailer.mp4",
+     "desde": 77.2,
+     "hasta": 79.0,
+     "toma": "Jack O'Connell de esmoquin",
+     "en": "once",
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "GUY PEARCE",
+     "sub": "ES RUPERT MURDOCH",
+     "en": "Guy"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "11",
+     "texto": "EN CINES",
+     "sub": "NETFLIX: 8 DE ENERO",
+     "en": "once"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "titulo": "RAMAYANA",
+   "categoria": "EL NACIMIENTO DE UNA LEYENDA",
+   "fondo": "media/2026-11-12/n6_ram_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n6_ramayana_trailer.mp4",
+     "desde": 15.9,
+     "hasta": 18.6,
+     "toma": "ciudad dorada",
+     "en": null,
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n6_ramayana_trailer.mp4",
+     "desde": 32.2,
+     "hasta": 34.6,
+     "toma": "guerrero en la nieve",
+     "en": "cien",
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n6_ramayana_trailer.mp4",
+     "desde": 47.4,
+     "hasta": 49.1,
+     "toma": "héroe en el templo",
+     "en": "hoy",
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n6_ramayana_trailer.mp4",
+     "desde": 136.4,
+     "hasta": 139.4,
+     "toma": "arquero",
+     "en": "Además",
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-12/n6_ramayana_trailer.mp4",
+     "desde": 120.0,
+     "hasta": 122.8,
+     "toma": "título Ramayana",
+     "en": "número",
+     "zoom": 1.0,
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 100,
+     "prefijo": "+$",
+     "sufijo": "M",
+     "texto": "+$100M",
+     "sub": "TAQUILLA MUNDIAL",
+     "en": "cien"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "12",
+     "texto": "HOY EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "hoy"
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "N.º 1 EN REINO UNIDO",
+     "sub": "PRIMERA PELÍCULA INDIA",
+     "en": "número"
+    }
+   ]
+  }
+ ]
+}
