@@ -1,0 +1,31 @@
+{
+ "pantalla": [
+  [["seis"], "6", "c"],
+  [["doce","de","noviembre."], "12 de noviembre", "c"],
+  [["doce","horas"], "12 horas", "c"],
+  [["decreto","cincuenta","y","uno,","dos","mil","veintidós."], "Decreto 51-2022", "k"],
+  [["zona","cinco,"], "zona 5", "c"],
+  [["treinta","y","cinco","punto","un","millones","de","quetzales."], "Q35.1 millones", "c"],
+  [["tres","punto","tres"], "3.3", "c"],
+  [["cuatro","punto","cuatro"], "4.4", "c"],
+  [["cincuenta","y","ocho","sismos"], "58 sismos", "c"],
+  [["veinticuatro","horas."], "24 horas", "c"],
+  [["dos","mil","veintiocho."], "2028", "c"],
+  [["ocho","de","la","noche"], "8:00 p. m.", "c"],
+  [["dos","mil","veintisiete."], "2027", "c"]
+ ],
+ "claves": ["guatemala", "congreso", "luis contreras", "seguridad fue superada", "ministerio público", "en manos del ministerio público",
+            "orden de captura", "comité olímpico guatemalteco", "malversación", "gerardo aguirre", "arraigo",
+            "temblores", "zacapa", "océano pacífico", "insivumeh", "orgullo nacional", "adriana ruano", "plata", "los ángeles",
+            "selección", "canadá", "el trébol", "toronto", "copa oro", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"seis": "seis"},
+  "1": {"protesta": "rodearon", "horas": "doce", "decreto": "decreto", "sin": "retiraron", "contreras": "Contreras", "medidas": "medidas"},
+  "2": {"sala": "sala", "edificio": "edificio", "monto": "treinta", "fallo": "fallo", "mp": "manos"},
+  "3": {"orden": "orden", "cog": "Comité", "malversacion": "malversación", "aguirre": "Aguirre", "arraigo": "arraigo"},
+  "4": {"temblores": "temblores", "zacapa": "Zacapa", "pacifico": "Pacífico", "insivumeh": "Insivumeh", "sismos": "cincuenta"},
+  "5": {"orgullo": "Orgullo", "ruano": "Ruano", "plata": "plata", "doha": "Doha,", "la28": "Ángeles"},
+  "6": {"seleccion": "Selección", "canada": "Canadá", "hora": "ocho", "trebol": "Trébol,", "vuelta": "vuelta", "toronto": "Toronto,", "copa": "Copa"},
+  "7": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}
