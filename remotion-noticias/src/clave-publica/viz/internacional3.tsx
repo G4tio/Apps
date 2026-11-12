@@ -2,7 +2,7 @@ import React from "react";
 import { interpolate, staticFile, useCurrentFrame } from "remotion";
 import { C, F, P, inOut, lerp, outBack, outCubic } from "../../theme";
 import { Cifra, Lienzo, Sticker, fade, pop, type VizProps } from "./internacional";
-import { EEUU, Israel, Mexico, Peru, Rusia, Ucrania } from "./banderas";
+import { EEUU, Israel, Peru, Rusia, Ucrania } from "./banderas";
 
 // Ilustraciones de la edición internacional del 12 nov 2026.
 const FOTOS = "fotos/2026-11-12-int/";
@@ -20,29 +20,39 @@ const Bandera: React.FC<{ x: number; y: number; k: number; w: number; h: number;
   <g transform={`translate(${x} ${y}) scale(${k}) translate(${-w / 2} ${-h / 2})`} opacity={Math.min(1, k * 1.5)}>{children}</g>
 );
 
-/* ---------- 1. Trump amenaza con duplicar aranceles a México ---------- */
+/* ---------- 1. Trump amenaza con duplicar aranceles a México; Sheinbaum responde ---------- */
 export const Aranceles: React.FC<VizProps> = ({ c }) => {
   const f = useCurrentFrame();
   const k = P(f, 4, 18, outBack);
   const x2 = P(f, c("duplicar") - 6, 12, outBack);
+  const sh = P(f, c("sheinbaum") - 6, 16, outCubic); // entra Sheinbaum
+  const mx = pop(f, c("mexico") - 6);
   return (
     <Lienzo>
-      <Bandera x={230} y={120} k={pop(f, c("mexico") - 6)} w={220} h={126}><Mexico id="mx" w={220} /></Bandera>
-      <Sticker src={FOTOS + "trump.png"} id="trump12" x={420} y={260} w={580} h={454} k={k} opacity={Math.min(1, k * 2)} fadeBottom />
-      <g transform={`translate(240 400) scale(${0.6 + 0.4 * x2})`} opacity={Math.min(1, x2 * 1.5)}>
-        <text textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="170" fill="#F2B544">×2</text>
-        <text y="58" textAnchor="middle" fontFamily={F.mono} fontWeight={700} fontSize="30" fill={C.suave} letterSpacing="3">ARANCELES</text>
+      <g transform={`translate(230 120) scale(${mx}) translate(-115 -66)`} opacity={Math.min(1, mx * 1.5)}>
+        <image href={staticFile(FOTOS + "bandera-mx.png")} width="230" height="132" filter="drop-shadow(0 8px 16px rgba(0,0,0,0.35))" />
+        <rect width="230" height="132" rx="4" fill="none" stroke={C.claro} strokeOpacity="0.7" strokeWidth="2" />
       </g>
-      <Chip x={250} y={560} texto="1,500 MIGRANTES" k={pop(f, c("caravana") + 6)} />
-      <Chip x={250} y={650} texto="DESDE TAPACHULA" k={pop(f, c("tapachula") - 4)} size={24} />
+      <Sticker src={FOTOS + "trump.png"} id="trump12" x={420} y={260} w={580} h={454} k={k} opacity={Math.min(1, k * 2) * lerp(1, 0.3, sh)} fadeBottom />
+      <g opacity={1 - sh}>
+        <g transform={`translate(240 400) scale(${0.6 + 0.4 * x2})`} opacity={Math.min(1, x2 * 1.5)}>
+          <text textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="170" fill="#F2B544">×2</text>
+          <text y="58" textAnchor="middle" fontFamily={F.mono} fontWeight={700} fontSize="30" fill={C.suave} letterSpacing="3">ARANCELES</text>
+        </g>
+        <Chip x={250} y={560} texto="1,500 MIGRANTES" k={pop(f, c("caravana") + 6)} />
+        <Chip x={250} y={650} texto="DESDE TAPACHULA" k={pop(f, c("tapachula") - 4)} size={24} />
+      </g>
+      <Sticker src={FOTOS + "sheinbaum.png"} id="sheinbaum" x={lerp(-480, 60, sh)} y={250} w={350} h={466} k={1} opacity={sh} fadeBottom />
+      <Chip x={700} y={220} texto="«NINGUNA HA LLEGADO»" k={pop(f, c("sheinbaum") + 14)} color={C.claro} size={26} />
     </Lienzo>
   );
 };
 
-/* ---------- 2. Jensen Huang renuncia a Nvidia ---------- */
+/* ---------- 2. Jensen Huang renuncia a Nvidia; Colette Kress, interina ---------- */
 export const Nvidia: React.FC<VizProps> = ({ c }) => {
   const f = useCurrentFrame();
   const k = P(f, 4, 18, outBack);
+  const kr = P(f, c("kress") - 6, 16, outCubic); // Kress releva a Huang
   const cae = P(f, c("caida") - 10, 30, inOut);
   const pts = Array.from({ length: 24 }).map((_, i) => {
     const u = i / 23;
@@ -50,46 +60,43 @@ export const Nvidia: React.FC<VizProps> = ({ c }) => {
     const y = u < 0.6 ? base : base + (u - 0.6) / 0.4 * 220 * cae;
     return `${600 + u * 360},${y}`;
   });
+  const logo = pop(f, c("nvidia") - 6);
   return (
     <Lienzo>
-      <Sticker src={FOTOS + "huang.png"} id="huang" x={20} y={190} w={490} h={532} k={k} opacity={Math.min(1, k * 2)} fadeBottom />
-      <g transform={`translate(780 120) scale(${pop(f, c("nvidia") - 6)})`} opacity={fade(f, c("nvidia") - 6)}>
-        <rect x="-130" y="-40" width="260" height="80" rx="16" fill="#76B900" />
-        <text y="15" textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="44" fill="#FFFFFF" letterSpacing="2">NVIDIA</text>
+      <Sticker src={FOTOS + "huang.png"} id="huang" x={lerp(20, -200, kr)} y={190} w={490} h={532} k={k} opacity={Math.min(1, k * 2) * (1 - kr)} fadeBottom />
+      <Sticker src={FOTOS + "kress.png"} id="kress" x={lerp(-480, 30, kr)} y={250} w={420} h={469} k={1} opacity={kr} fadeBottom />
+      <g transform={`translate(780 120) scale(${logo})`} opacity={Math.min(1, logo * 1.5)}>
+        <rect x="-160" y="-46" width="320" height="92" rx="16" fill="#000000" stroke="#76B900" strokeWidth="6" />
+        <image href={staticFile(FOTOS + "nvidia-texto.png")} x="-130" y="-25" width="260" height="50" />
       </g>
       <g opacity={fade(f, c("nvidia"))}>
         <line x1="600" x2="960" y1="600" y2="600" stroke={C.suave} strokeOpacity="0.5" strokeWidth="3" />
         <polyline points={pts.join(" ")} fill="none" stroke={cae > 0.1 ? "#E5484D" : C.celeste} strokeWidth="6" strokeLinejoin="round" />
       </g>
       <Cifra x={780} y={720} valor={`−${Math.round(13 * cae)} %`} rotulo="ACCIONES" k={P(f, c("caida") - 10, 12, outBack)} size={96} />
-      <Chip x={780} y={220} texto="KRESS · CEO INTERINA" k={pop(f, c("kress") - 4)} size={22} />
+      <Chip x={780} y={230} texto="KRESS · CEO INTERINA" k={pop(f, c("kress") + 4)} size={22} />
     </Lienzo>
   );
 };
 
-/* ---------- 3. Enviados de Trump con Putin en Moscú ---------- */
+/* ---------- 3. Enviados de Trump con Putin en Moscú; luego, Zelenski en Dublín ---------- */
 export const PutinMoscu: React.FC<VizProps> = ({ c }) => {
   const f = useCurrentFrame();
   const k = P(f, 4, 18, outBack);
   const tropas = pop(f, c("tropas") - 4);
-  const avion = P(f, c("zelenski") - 4, 34, inOut);
+  const ze = P(f, c("zelenski") - 6, 16, outCubic); // entra Zelenski
   return (
     <Lienzo>
       <Bandera x={180} y={130} k={pop(f, c("moscu") - 8)} w={180} h={120}><Rusia id="ru12" w={180} /></Bandera>
       <Bandera x={900} y={130} k={pop(f, c("enviados") + 4)} w={170} h={89}><EEUU id="us12" w={170} /></Bandera>
-      <Sticker src={FOTOS + "putin.png"} id="putin" x={210} y={200} w={660} h={562} k={k} opacity={Math.min(1, k * 2)} fadeBottom />
+      <Sticker src={FOTOS + "putin.png"} id="putin" x={lerp(210, 20, ze)} y={200} w={lerp(660, 520, ze)} h={lerp(562, 443, ze)} k={k} opacity={Math.min(1, k * 2) * lerp(1, 0.35, ze)} fadeBottom />
       {/* «no» a tropas de paz extranjeras en Ucrania */}
-      <g transform={`translate(890 470) scale(${tropas})`} opacity={Math.min(1, tropas * 1.5)}>
+      <g transform={`translate(890 470) scale(${tropas})`} opacity={Math.min(1, tropas * 1.5) * (1 - ze)}>
         <g transform="translate(-80 -54)"><Ucrania id="ua12" w={160} /></g>
         <circle cx="70" cy="-50" r="34" fill="#E5484D" />
         <path d="M56 -64 L84 -36 M84 -64 L56 -36" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" />
       </g>
-      {/* avión a Dublín */}
-      <g opacity={fade(f, c("zelenski") - 4) * (1 - P(f, c("zelenski") + 60, 10))}>
-        <g transform={`translate(${lerp(140, 940, avion)} ${300 - 120 * Math.sin(Math.PI * avion)}) rotate(${lerp(-20, 20, avion)})`}>
-          <path d="M-34 0 L30 -6 Q42 0 30 6 Z M-6 -2 L-20 -30 L-10 -30 L12 -3 Z M-6 2 L-20 30 L-10 30 L12 3 Z M-30 0 L-40 -14 L-34 -14 L-22 -1 Z" fill={C.claro} transform="scale(1.5)" />
-        </g>
-      </g>
+      <Sticker src={FOTOS + "zelenski.png"} id="zelenski" x={lerp(1100, 500, ze)} y={260} w={460} h={459} k={1} opacity={ze} />
     </Lienzo>
   );
 };
