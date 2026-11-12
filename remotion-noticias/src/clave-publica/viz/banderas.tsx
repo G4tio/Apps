@@ -109,3 +109,34 @@ export const Colombia: React.FC<B> = ({ w = 210, id }) => {
   const h = (w * 2) / 3;
   return <Marco w={w} h={h} id={id}><rect width={w} height={h / 2} fill="#FCD116" /><rect y={h / 2} width={w} height={h / 4} fill="#003893" /><rect y={(h * 3) / 4} width={w} height={h / 4 + 0.5} fill="#CE1126" /></Marco>;
 };
+
+/** México: verde, blanco y rojo con el escudo simplificado (águila sobre nopal, en círculo). */
+export const Mexico: React.FC<B> = ({ w = 220, id }) => {
+  const h = (w * 4) / 7;
+  return (
+    <Marco w={w} h={h} id={id}>
+      {tres(w, h, ["#006847", "#FFFFFF", "#CE1126"], true)}
+      <circle cx={w / 2} cy={h / 2} r={h * 0.16} fill="#8C5A2B" opacity="0.85" />
+      <path d={`M${w / 2 - h * 0.16} ${h / 2 + h * 0.12} Q${w / 2} ${h / 2 + h * 0.24} ${w / 2 + h * 0.16} ${h / 2 + h * 0.12}`} fill="none" stroke="#2E7D32" strokeWidth={Math.max(1, w / 110)} />
+    </Marco>
+  );
+};
+
+/** Israel: blanco con franjas azules y la estrella de David. */
+export const Israel: React.FC<B> = ({ w = 220, id }) => {
+  const h = (w * 8) / 11;
+  const r = h * 0.2;
+  const tri = (rot: number) => [0, 1, 2].map((k) => {
+    const a = rot + (k * 2 * Math.PI) / 3;
+    return `${w / 2 + Math.cos(a) * r},${h / 2 + Math.sin(a) * r}`;
+  }).join(" ");
+  return (
+    <Marco w={w} h={h} id={id}>
+      <rect width={w} height={h} fill="#FFFFFF" />
+      <rect y={h * 0.1} width={w} height={h * 0.15} fill="#0038B8" />
+      <rect y={h * 0.75} width={w} height={h * 0.15} fill="#0038B8" />
+      <polygon points={tri(-Math.PI / 2)} fill="none" stroke="#0038B8" strokeWidth={Math.max(1.5, w / 55)} />
+      <polygon points={tri(Math.PI / 2)} fill="none" stroke="#0038B8" strokeWidth={Math.max(1.5, w / 55)} />
+    </Marco>
+  );
+};

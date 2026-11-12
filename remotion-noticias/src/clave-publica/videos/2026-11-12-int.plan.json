@@ -1,0 +1,26 @@
+{
+ "pantalla": [
+  [["seis"], "6", "c"],
+  [["doce","de","noviembre."], "12 de noviembre", "c"],
+  [["mil","quinientos","migrantes"], "1,500 migrantes", "c"],
+  [["trece","por","ciento."], "13 %", "c"],
+  [["seis","personas,"], "6 personas", "c"],
+  [["veinte","resultaron"], "20 resultaron", "c"],
+  [["león","catorce"], "León XIV", "k"],
+  [["seis","meses"], "6 meses", "c"]
+ ],
+ "claves": ["internacionales", "donald trump", "duplicar", "aranceles", "méxico", "caravanas migrantes", "tapachula", "claudia sheinbaum",
+            "jensen huang", "nvidia", "colette kress", "espionaje chino", "witkoff", "kushner", "vladimir putin", "moscú", "tropas de paz",
+            "zelenski", "dublín", "gaza", "hospital nasser", "jan yunis", "un niño", "hamás", "perú", "jóvenes",
+            "organización mundial de la salud", "ébola", "república democrática del congo", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"seis": "seis"},
+  "1": {"trump": "Trump", "duplicar": "duplicar", "mexico": "México", "caravana": "caravana", "tapachula": "Tapachula.", "sheinbaum": "Sheinbaum"},
+  "2": {"huang": "Huang", "nvidia": "Nvidia.", "kress": "Kress", "caida": "caer", "espionaje": "espionaje"},
+  "3": {"enviados": "enviados", "putin": "Putin", "moscu": "Moscú.", "tropas": "tropas", "zelenski": "Zelenski", "dublin": "Dublín."},
+  "4": {"gaza": "Gaza,", "hospital": "hospital", "muertos": "Murieron", "heridos": "heridas.", "israel": "Israel"},
+  "5": {"peru": "Perú,", "papa": "papa", "vigilia": "vigilia", "jovenes": "jóvenes"},
+  "6": {"oms": "Organización", "ebola": "ébola", "congo": "Congo,", "meses": "meses"},
+  "7": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}
