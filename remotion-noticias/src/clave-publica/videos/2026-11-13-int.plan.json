@@ -1,0 +1,29 @@
+{
+ "pantalla": [
+  [["seis"], "6", "c"],
+  [["trece","de","noviembre."], "13 de noviembre", "c"],
+  [["dos","drones,"], "2 drones", "c"],
+  [["cuatrocientos","kilos"], "400 kilos", "c"],
+  [["setenta","y","cuatro","países,"], "74 países", "c"],
+  [["catorce","horas."], "14 horas", "c"],
+  [["nueve","meses"], "9 meses", "c"],
+  [["ciento","cincuenta","mil","tiendas"], "150,000 tiendas", "c"],
+  [["medio","millón","de","mantas"], "500,000 mantas", "c"],
+  [["vuelo","quince"], "vuelo 15", "c"],
+  [["veintiséis","satélites"], "26 satélites", "c"]
+ ],
+ "claves": ["internacionales", "golfo", "guardia revolucionaria", "irán", "baréin", "comando central", "lo niega", "estrecho de ormuz",
+            "organismo internacional de energía atómica", "uranio muy enriquecido", "microsoft", "outlook", "teams", "copilot", "ciberataque",
+            "marco rubio", "nasry asfura", "honduras", "migración", "gaza", "hipotermia", "jan yunis", "onu", "bloqueadas",
+            "spacex", "starship", "atrapar", "starlink", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"seis": "seis"},
+  "1": {"guardia": "Guardia", "radar": "radar", "comando": "Comando", "drones": "drones,", "mina": "mina"},
+  "2": {"oiea": "Organismo", "saber": "saber", "kilos": "cuatrocientos"},
+  "3": {"falla": "falla", "apps": "Outlook,", "paises": "setenta", "horas": "catorce", "carga": "carga", "ciber": "ciberataque."},
+  "4": {"rubio": "Rubio,", "asfura": "Asfura.", "agenda": "agenda:", "fmi": "Fondo", "bid": "Banco"},
+  "5": {"gaza": "Gaza,", "bebe": "bebé", "hipotermia": "hipotermia", "janyunis": "Yunis.", "onu": "ONU", "tiendas": "ciento", "mantas": "mantas"},
+  "6": {"spacex": "SpaceX", "vuelo": "quince", "torre": "torre", "cohete": "cohete", "nave": "nave,", "sat": "veintiséis"},
+  "7": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}

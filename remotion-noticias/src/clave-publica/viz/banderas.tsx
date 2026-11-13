@@ -140,3 +140,20 @@ export const Israel: React.FC<B> = ({ w = 220, id }) => {
     </Marco>
   );
 };
+
+/** Honduras: azul turquesa, blanco y azul con cinco estrellas en el centro. */
+export const Honduras: React.FC<B> = ({ w = 200, id }) => {
+  const h = w / 2;
+  const est = (cx: number, cy: number, r: number) => Array.from({ length: 10 }).map((_, k) => {
+    const rr = k % 2 ? r * 0.42 : r, a = -Math.PI / 2 + (k * Math.PI) / 5;
+    return `${cx + Math.cos(a) * rr},${cy + Math.sin(a) * rr}`;
+  }).join(" ");
+  const r = h * 0.055, cx = w / 2, cy = h / 2;
+  const pos: [number, number][] = [[0, 0], [-w * 0.09, -h * 0.07], [w * 0.09, -h * 0.07], [-w * 0.09, h * 0.07], [w * 0.09, h * 0.07]];
+  return (
+    <Marco w={w} h={h} id={id}>
+      {tres(w, h, ["#0073CF", "#FFFFFF", "#0073CF"])}
+      {pos.map(([dx, dy], i) => <polygon key={i} points={est(cx + dx, cy + dy, r)} fill="#0073CF" />)}
+    </Marco>
+  );
+};
