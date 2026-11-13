@@ -1,0 +1,34 @@
+{
+ "pantalla": [
+  [["seis"], "6", "c"],
+  [["trece","de","noviembre."], "13 de noviembre", "c"],
+  [["diez","camionetas"], "10 camionetas", "c"],
+  [["cinco","personas,"], "5 personas", "c"],
+  [["tres","mujeres"], "3 mujeres", "c"],
+  [["dos","mil","cuatrocientos","sesenta","y","nueve","millones","de","dólares."], "US$2,469 millones", "c"],
+  [["veintidós","mil","cuatrocientos","millones,"], "US$22,400 millones", "c"],
+  [["cinco","punto","tres","por","ciento"], "5.3 %", "c"],
+  [["dos","mil","veinticinco."], "2025", "c"],
+  [["dos","mil","veintisiete."], "2027", "c"],
+  [["treinta","de","noviembre"], "30 de noviembre", "c"],
+  [["veinticuatro."], "24", "c"],
+  [["ciento","noventa","y","dos","mil","millones","de","quetzales,"], "Q192 mil millones", "c"],
+  [["decreto","veintiocho,","dos","mil","veintiséis,"], "Decreto 28-2026", "k"],
+  [["ciento","treinta","y","ocho","votos,"], "138 votos", "c"],
+  [["ocho","de","la","noche"], "8:00 p. m.", "c"]
+ ],
+ "claves": ["guatemala", "masacre en zacapa", "la majada", "murieron", "se llevaron a un hombre", "balazos",
+            "remesas", "nuevo récord", "presupuesto", "congreso", "el más alto de la historia",
+            "fondo nacional de becas", "política de estado", "casa blanca", "pedro cabrera", "embajador", "senado",
+            "selección", "canadá", "el trébol", "desvíos de tránsito", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"seis": "seis"},
+  "1": {"zacapa": "Zacapa.", "comando": "comando", "camionetas": "camionetas", "majada": "Majada", "muertos": "Murieron", "heridas": "heridas", "secuestro": "llevaron", "patrulla": "patrulla"},
+  "2": {"remesas": "remesas", "record": "récord:", "octubre": "octubre", "mes": "dos", "anio": "año", "pct": "punto"},
+  "3": {"plazo": "plazo", "congreso": "Congreso", "fecha": "treinta", "dictamen": "dictamen", "monto": "ciento", "alto": "alto"},
+  "4": {"ley": "ley", "decreto": "decreto", "votos": "votos,", "estado": "Estado"},
+  "5": {"casa": "Casa", "cabrera": "Cabrera", "embajador": "embajador", "doral": "Doral,", "senado": "Senado."},
+  "6": {"seleccion": "Selección:", "canada": "Canadá", "hora": "ocho", "trebol": "Trébol,", "transito": "tránsito"},
+  "7": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}

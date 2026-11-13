@@ -192,7 +192,7 @@ export const Ruano: React.FC<VizProps> = ({ c }) => {
 
 /* ---------- 6. Guatemala vs. Canadá ---------- */
 /** Escudo de Canada Soccer redibujado en vectores (blanco sobre rojo), a partir de la imagen del usuario. */
-const EscudoCanada: React.FC = () => (
+export const EscudoCanada: React.FC = () => (
   <g>
     <circle r="120" fill="#D52B1E" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.45))" />
     <g fill="#FFFFFF">
