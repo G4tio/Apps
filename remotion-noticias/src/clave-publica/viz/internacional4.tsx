@@ -51,35 +51,60 @@ export const Golfo: React.FC<VizProps> = ({ c }) => {
   return (
     <Lienzo>
       <Tarjeta x={290} k={ir} titulo="VERSIÓN DE IRÁN" bandera={<BanderaIran id="ir13" w={120} />}>
-        {/* antena de radar: emite ondas hasta que «se destruye» (se inclina, se agrieta y humea) */}
+        {/* antena de radar: emite ondas hasta que explota y el plato se parte en dos */}
         {(() => {
-          const roto = P(f, c("radar") - 2, 10, outBack);
-          const ondas = 1 - P(f, c("radar") - 4, 6);
+          const at = c("radar") - 2;
+          const t = Math.max(0, f - at); // cuadros desde la explosión
+          const roto = f >= at ? 1 : 0;
+          const ondas = 1 - P(f, at - 2, 6);
+          const flash = P(f, at, 3) * (1 - P(f, at + 4, 14));
+          const caida = P(f, at, 22, inOut);
+          const piezas = [
+            { d: "M-54 -30 Q-30 10 -4 6 L-2 -20 Q-26 -24 -54 -30 Z", dx: -52, dy: 12, rot: -40 },
+            { d: "M-4 6 Q20 10 54 -12 Q20 -12 -2 -20 Z", dx: 50, dy: 10, rot: 50 },
+          ];
           return (
             <g transform="translate(-10 52)">
-              {/* base y mástil */}
+              {/* base y mástil (el mástil queda doblado) */}
               <path d="M-46 46 L-30 22 H30 L46 46 Z" fill="#12345E" stroke={C.claro} strokeWidth="4" strokeLinejoin="round" />
-              <rect x="-6" y="-6" width="12" height="30" fill={C.claro} />
-              <g transform={`rotate(${lerp(-28, 22, roto)} 0 -6)`}>
-                {/* plato parabólico */}
-                <path d="M-54 -30 Q-10 40 54 -12 Q6 -10 -54 -30 Z" fill={C.claro} stroke={C.marinoOsc} strokeWidth="3" strokeLinejoin="round" />
-                <path d="M-36 -22 Q-6 22 38 -12" fill="none" stroke="#9AA7B8" strokeWidth="3" />
-                {/* brazo y emisor */}
-                <path d="M0 -6 L10 -44" stroke={C.claro} strokeWidth="4" strokeLinecap="round" />
-                <circle cx="10" cy="-48" r="7" fill={C.celeste} />
-                {/* grieta al destruirse */}
-                <path d="M-20 -14 L-6 -2 L-14 8 L2 20" fill="none" stroke="#1F2937" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity={roto} />
-              </g>
-              {/* ondas de señal */}
+              <path d={roto ? "M0 24 L0 4 L10 -8" : "M0 24 V-6"} stroke={C.claro} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              {!roto && (
+                <g transform="rotate(-28 0 -6)">
+                  <path d="M-54 -30 Q-10 40 54 -12 Q6 -10 -54 -30 Z" fill={C.claro} stroke={C.marinoOsc} strokeWidth="3" strokeLinejoin="round" />
+                  <path d="M-36 -22 Q-6 22 38 -12" fill="none" stroke="#9AA7B8" strokeWidth="3" />
+                  <path d="M0 -6 L10 -44" stroke={C.claro} strokeWidth="4" strokeLinecap="round" />
+                  <circle cx="10" cy="-48" r="7" fill={C.celeste} />
+                </g>
+              )}
+              {/* el plato partido en dos pedazos que caen girando */}
+              {roto ? piezas.map((pz, i) => (
+                <g key={i} transform={`translate(${pz.dx * caida} ${pz.dy * caida}) rotate(${-28 + pz.rot * caida} 0 -6)`}>
+                  <path d={pz.d} fill={C.claro} stroke={C.marinoOsc} strokeWidth="3" strokeLinejoin="round" />
+                </g>
+              )) : null}
+              {/* ondas de señal (antes de la explosión) */}
               {[0, 1, 2].map((i) => {
                 const u = (((f / 18) + i / 3) % 1);
                 return <path key={i} d={`M${24 + u * 40} ${-70 - u * 30} q ${14 + u * 10} ${16 + u * 6} 0 ${34 + u * 16}`} fill="none" stroke={C.celeste} strokeWidth="4" strokeLinecap="round" opacity={ondas * (1 - u)} transform="rotate(-30 30 -60)" />;
               })}
+              {/* explosión */}
+              {roto ? (
+                <g opacity={flash}>
+                  <circle cx="0" cy="-10" r={20 + 70 * P(f, at, 8, outCubic)} fill="#F2B544" />
+                  <circle cx="0" cy="-10" r={10 + 40 * P(f, at, 8, outCubic)} fill="#FFF3C4" />
+                </g>
+              ) : null}
+              {/* escombros */}
+              {roto ? Array.from({ length: 8 }).map((_, i) => {
+                const ang = (i / 8) * Math.PI * 2 + 0.3;
+                const d = Math.min(t, 24) * (3 + (i % 3));
+                return <rect key={i} x={Math.cos(ang) * d - 4} y={-10 + Math.sin(ang) * d + 0.04 * Math.min(t, 24) ** 2 - 4} width="8" height="8" fill={i % 2 ? C.claro : "#9AA7B8"} transform={`rotate(${t * 20 + i * 40} ${Math.cos(ang) * d} ${-10 + Math.sin(ang) * d})`} opacity={1 - P(f, at + 16, 10)} />;
+              }) : null}
               {/* humo */}
-              {roto > 0.05 && [0, 1, 2].map((i) => {
-                const u = (((f - c("radar")) / 40 + i / 3) % 1 + 1) % 1;
-                return <circle key={i} cx={-10 + Math.sin(i * 2 + f / 10) * 8} cy={-30 - u * 70} r={10 + u * 14} fill="#6B7280" opacity={0.5 * (1 - u) * roto} />;
-              })}
+              {roto ? [0, 1, 2, 3].map((i) => {
+                const u = ((t / 36 + i / 4) % 1);
+                return <circle key={i} cx={-6 + Math.sin(i * 2 + f / 10) * 12} cy={-20 - u * 80} r={14 + u * 20} fill="#4B5563" opacity={0.55 * (1 - u) * P(f, at + 4, 10)} />;
+              }) : null}
             </g>
           );
         })()}
