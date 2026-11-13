@@ -51,11 +51,38 @@ export const Golfo: React.FC<VizProps> = ({ c }) => {
   return (
     <Lienzo>
       <Tarjeta x={290} k={ir} titulo="VERSIÓN DE IRÁN" bandera={<BanderaIran id="ir13" w={120} />}>
-        {/* radar */}
-        <g transform="translate(0 50)">
-          <path d="M-50 40 H50 M0 40 V0 M-46 -6 Q0 -76 46 -6 Z" fill="none" stroke={C.claro} strokeWidth="7" strokeLinejoin="round" />
-          <circle cx="0" cy="-30" r="7" fill={C.claro} />
-        </g>
+        {/* antena de radar: emite ondas hasta que «se destruye» (se inclina, se agrieta y humea) */}
+        {(() => {
+          const roto = P(f, c("radar") - 2, 10, outBack);
+          const ondas = 1 - P(f, c("radar") - 4, 6);
+          return (
+            <g transform="translate(-10 52)">
+              {/* base y mástil */}
+              <path d="M-46 46 L-30 22 H30 L46 46 Z" fill="#12345E" stroke={C.claro} strokeWidth="4" strokeLinejoin="round" />
+              <rect x="-6" y="-6" width="12" height="30" fill={C.claro} />
+              <g transform={`rotate(${lerp(-28, 22, roto)} 0 -6)`}>
+                {/* plato parabólico */}
+                <path d="M-54 -30 Q-10 40 54 -12 Q6 -10 -54 -30 Z" fill={C.claro} stroke={C.marinoOsc} strokeWidth="3" strokeLinejoin="round" />
+                <path d="M-36 -22 Q-6 22 38 -12" fill="none" stroke="#9AA7B8" strokeWidth="3" />
+                {/* brazo y emisor */}
+                <path d="M0 -6 L10 -44" stroke={C.claro} strokeWidth="4" strokeLinecap="round" />
+                <circle cx="10" cy="-48" r="7" fill={C.celeste} />
+                {/* grieta al destruirse */}
+                <path d="M-20 -14 L-6 -2 L-14 8 L2 20" fill="none" stroke="#1F2937" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity={roto} />
+              </g>
+              {/* ondas de señal */}
+              {[0, 1, 2].map((i) => {
+                const u = (((f / 18) + i / 3) % 1);
+                return <path key={i} d={`M${24 + u * 40} ${-70 - u * 30} q ${14 + u * 10} ${16 + u * 6} 0 ${34 + u * 16}`} fill="none" stroke={C.celeste} strokeWidth="4" strokeLinecap="round" opacity={ondas * (1 - u)} transform="rotate(-30 30 -60)" />;
+              })}
+              {/* humo */}
+              {roto > 0.05 && [0, 1, 2].map((i) => {
+                const u = (((f - c("radar")) / 40 + i / 3) % 1 + 1) % 1;
+                return <circle key={i} cx={-10 + Math.sin(i * 2 + f / 10) * 8} cy={-30 - u * 70} r={10 + u * 14} fill="#6B7280" opacity={0.5 * (1 - u) * roto} />;
+              })}
+            </g>
+          );
+        })()}
         <X x={70} y={20} k={pop(f, c("radar") - 2)} r={26} />
         <text y="130" textAnchor="middle" fontFamily={F.exo} fontWeight={800} fontSize="28" fill={C.blanco}>«Radar destruido»</text>
       </Tarjeta>
