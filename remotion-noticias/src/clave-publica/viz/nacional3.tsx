@@ -8,7 +8,7 @@ import mapa from "./mapa-guatemala.json";
 
 // Ilustraciones de la edición nacional del 13 nov 2026.
 const FOTOS = "fotos/2026-11-13/";
-const MAPA = mapa as unknown as { w: number; h: number; deps: Record<string, string>; centros: Record<string, [number, number]> };
+export const MAPA = mapa as unknown as { w: number; h: number; deps: Record<string, string>; centros: Record<string, [number, number]> };
 const cuenta = (f: number, at: number, hasta: number, d = 22) =>
   Math.round(interpolate(f, [at, at + d], [0, hasta], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: outCubic }));
 
@@ -23,16 +23,16 @@ const Chip: React.FC<{ x: number; y: number; texto: string; k: number; color?: s
 };
 
 /** Mapa de Guatemala por departamentos (Natural Earth, simplificado) con uno resaltado. */
-export const MapaGuatemala: React.FC<{ resaltar?: string; on: number; f: number; idp: string }> = ({ resaltar, on, f, idp }) => (
+export const MapaGuatemala: React.FC<{ resaltar?: string | string[]; on: number; f: number; idp: string; color?: string }> = ({ resaltar, on, f, idp, color = "229,72,77" }) => (
   <g>
     {Object.entries(MAPA.deps).map(([n, d]) => {
-      const es = n === resaltar;
+      const es = Array.isArray(resaltar) ? resaltar.includes(n) : n === resaltar;
       return (
-        <path key={n} d={d} fill={es ? `rgba(229,72,77,${0.25 + 0.6 * on})` : "#1A4778"} stroke={es && on > 0 ? "#FFB3B5" : C.claro}
+        <path key={n} d={d} fill={es ? `rgba(${color},${0.25 + 0.6 * on})` : "#1A4778"} stroke={es && on > 0 ? "#FFB3B5" : C.claro}
           strokeOpacity={es && on > 0 ? 1 : 0.55} strokeWidth={es && on > 0 ? 3 : 1.4} strokeLinejoin="round" />
       );
     })}
-    {resaltar && on > 0 && (() => {
+    {typeof resaltar === "string" && on > 0 && (() => {
       const [cx, cy] = MAPA.centros[resaltar];
       const u = (f % 36) / 36;
       return (

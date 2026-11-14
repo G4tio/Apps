@@ -1,0 +1,25 @@
+{
+ "pantalla": [
+  [["cinco"], "5", "c"],
+  [["catorce","de","noviembre."], "14 de noviembre", "c"],
+  [["cincuenta","y","dos","años."], "52 años", "c"],
+  [["dos","a","tres"], "2-3", "c"],
+  [["tres","a","cero"], "3-0", "c"],
+  [["dos","goles"], "2 goles", "c"],
+  [["martes","diecisiete."], "martes 17", "c"],
+  [["décima","edición"], "10.ª edición", "c"]
+ ],
+ "claves": ["guatemala", "miguel ángel asturias", "premio nobel", "parís", "kaminaljuyú", "rigoberta menchú", "palacio nacional de la cultura",
+            "selección", "canadá", "el trébol", "óscar santis", "matt evans", "luis fernando tena", "toronto",
+            "canceló el vuelo", "chárter", "concacaf", "volcán de fuego", "insivumeh", "sacatepéquez", "ciudad de guatemala",
+            "antigua guatemala", "festival de las flores", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"nobel": "Nobel", "regreso": "regresaron", "anios": "cincuenta", "kaminaljuyu": "Kaminaljuyú,", "palacio": "Palacio", "sepultado": "sepultado"},
+  "2": {"marcador": "cayó", "descanso": "descanso,", "santis": "Santis", "evans": "Evans", "tena": "Tena", "necesita": "necesita"},
+  "3": {"cancelo": "canceló", "charter": "chárter", "martes": "martes"},
+  "4": {"volcan": "volcán", "insivumeh": "Insivumeh", "caer": "caer", "actividad": "actividad."},
+  "5": {"antigua": "Antigua", "festival": "Festival", "edicion": "décima"},
+  "6": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}
