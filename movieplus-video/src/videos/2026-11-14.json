@@ -139,9 +139,9 @@
     {
      "tipo": "video",
      "src": "media/2026-11-14/n1_robar_banco_trailer.mp4",
-     "desde": 26.2,
-     "hasta": 27.5,
-     "toma": "ladrón con máscara",
+     "desde": 100.6,
+     "hasta": 102.5,
+     "toma": "operativo en las escaleras",
      "en": "tropieza"
     }
    ],
@@ -254,13 +254,11 @@
      "hasta": 65.65,
      "toma": "llega en auto deportivo",
      "en": "Crown",
-     "borrar": [
-      [
-       120,
-       566,
-       336,
-       38
-      ]
+     "recorte": [
+      576,
+      560,
+      0,
+      0
      ]
     },
     {
@@ -270,13 +268,11 @@
      "hasta": 96.4,
      "toma": "casa en llamas",
      "en": "ladrón",
-     "borrar": [
-      [
-       120,
-       566,
-       336,
-       38
-      ]
+     "recorte": [
+      576,
+      560,
+      0,
+      0
      ]
     },
     {

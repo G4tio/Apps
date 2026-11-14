@@ -71,7 +71,7 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
   - Revisa el primer y el último cuadro de cada fragmento para que no se cuele otra toma.
   - Guarda la selección en `src/videos/AAAA-MM-DD.json` (fuente, `desde`, `hasta`, descripción de la toma).
 - **Videos de X/Twitter u otras fuentes** (horizontales, sin marca de TikTok): `fragmentos.py` solo aplica `delogo` a videos de 576×1024; en los demás no toca la imagen. Usa `"zoom": 1.0` en esos medios. Si son de baja resolución (640×360), elige tomas abiertas y cortas.
-- **Subtítulos quemados en una toma buena:** agrega al medio `"borrar": [[x, y, w, h]]`, en píxeles del video original; `fragmentos.py` los borra con `delogo`. Revisa siempre el primer y el último cuadro de cada fragmento a tamaño completo: en miniaturas los subtítulos se escapan.
+- **Subtítulos quemados en una toma buena:** usa primero `"recorte": [w, h, x, y]` para dejar el subtítulo fuera del cuadro (p. ej. `[576, 560, 0, 0]`, la mitad superior de un video vertical); `"borrar": [[x, y, w, h]]` (`delogo`) deja una mancha visible sobre fondos con detalle. Revisa siempre el primer y el último cuadro de cada fragmento a tamaño completo: en miniaturas los subtítulos se escapan.
 - **Marcas de agua de TikTok:** los tráileres llevan el logo y el @usuario en dos posiciones fijas: a la izquierda a media altura y abajo a la derecha. `scripts/fragmentos.py` las borra con `delogo` (coordenadas para videos 576×1024; verifica con una captura si el video tiene otro tamaño). En la tarjeta el clip va ampliado ×1,2; usa `"zoom": 1.0` en el medio si es una placa de título que no debe recortarse.
 - Mientras falte una imagen: tarjeta de marcador con el título de la película en tipografía de marca; avísalo en la entrega.
 

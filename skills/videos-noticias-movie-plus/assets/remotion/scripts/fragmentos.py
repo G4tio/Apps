@@ -32,6 +32,10 @@ for nt in T['noticias']:
         tiktok = m.get('marcaTikTok', dims == '576,1024')
         logo = "delogo=x=1:y=440:w=158:h=132,delogo=x=428:y=752:w=146:h=140," if tiktok else ""
         # subtítulos quemados: "borrar": [[x, y, w, h], ...] en píxeles del video original
+        # recorte [w, h, x, y]: deja fuera subtítulos quemados recortando el cuadro (mejor que borrar)
+        if m.get('recorte'):
+            w_, h_, x_, y_ = m['recorte']
+            logo += f"crop={w_}:{h_}:{x_}:{y_},"
         for x, y, w, h in m.get('borrar', []):
             logo += f"delogo=x={x}:y={y}:w={w}:h={h},"
         vf = (f"trim=start={m['desde']}:end={m['hasta']},{logo}setpts=(PTS-STARTPTS)/{rate:.4f},fps={FPS},"
