@@ -1,0 +1,382 @@
+{
+ "fecha": "2026-11-15",
+ "fechaTexto": "DOMINGO 15 DE NOVIEMBRE",
+ "voz": "media/2026-11-15/voz/voz_limpia.wav",
+ "pantalla": [
+  {
+   "bloque": 0,
+   "frase": "Cinco",
+   "texto": "5"
+  },
+  {
+   "bloque": 1,
+   "frase": "cinco",
+   "texto": "5"
+  },
+  {
+   "bloque": 3,
+   "frase": "tres",
+   "texto": "3"
+  },
+  {
+   "bloque": 4,
+   "frase": "dos mil noventa y nueve",
+   "texto": "2099"
+  },
+  {
+   "bloque": 4,
+   "frase": "veinticinco",
+   "texto": "25"
+  },
+  {
+   "bloque": 4,
+   "frase": "ocho",
+   "texto": "8"
+  },
+  {
+   "bloque": 5,
+   "frase": "veinticinco",
+   "texto": "25"
+  },
+  {
+   "bloque": 5,
+   "frase": "veintitrés",
+   "texto": "23"
+  }
+ ],
+ "claves": [
+  "Robert",
+  "Pattinson",
+  "Nicholas",
+  "Hoult",
+  "James",
+  "Bond",
+  "Gobernadores",
+  "Glenn",
+  "Close",
+  "Ridley",
+  "Scott",
+  "Floyd",
+  "Norman",
+  "Óscar",
+  "Disney",
+  "Chosen",
+  "Prime",
+  "Video",
+  "Jesús",
+  "Blade",
+  "Runner",
+  "Michelle",
+  "Yeoh",
+  "Hunter",
+  "Schafer",
+  "Brad",
+  "Pitt",
+  "Cliff",
+  "Booth",
+  "David",
+  "Fincher",
+  "IMAX",
+  "Netflix"
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "titulo": "EL NUEVO JAMES BOND",
+   "categoria": "SE REPORTA",
+   "fondo": "media/2026-11-15/n1_pattinson_1.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n1_bond_canon.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n1_pattinson_1.jpg",
+     "en": "Robert",
+     "foco": "60% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n1_hoult_1.jpg",
+     "en": "Nicholas",
+     "foco": "center 25%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n1_pattinson_2.jpg",
+     "en": "Son",
+     "foco": "center 35%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n1_hoult_2.jpg",
+     "en": "estudio",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "ROBERT PATTINSON",
+     "sub": "HIZO PRUEBA PARA 007",
+     "en": "Robert"
+    },
+    {
+     "tipo": "nombre",
+     "texto": "NICHOLAS HOULT",
+     "sub": "HIZO PRUEBA PARA 007",
+     "en": "Nicholas"
+    },
+    {
+     "tipo": "bloques",
+     "valor": 5,
+     "texto": "5 FINALISTAS",
+     "sub": "PARA SER JAMES BOND",
+     "en": "cinco"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "ANTES DE FIN DE AÑO",
+     "categoria": "LA DECISIÓN",
+     "en": "antes"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titulo": "PREMIOS DE LOS GOBERNADORES",
+   "categoria": "ÓSCAR HONORÍFICO",
+   "fondo": "media/2026-11-15/n2_estatuillas.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n2_estatuillas.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n2_glenn_close.jpg",
+     "en": "Glenn",
+     "foco": "45% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n2_ridley_scott.jpg",
+     "en": "Ridley",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n2_floyd_norman.jpg",
+     "en": "Floyd",
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "lista",
+     "texto": "HOMENAJEADOS",
+     "en": "Glenn",
+     "items": [
+      {
+       "texto": "GLENN CLOSE",
+       "en": "Glenn"
+      },
+      {
+       "texto": "RIDLEY SCOTT",
+       "en": "Ridley"
+      },
+      {
+       "texto": "FLOYD NORMAN",
+       "en": "Floyd"
+      }
+     ]
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "FLOYD NORMAN",
+     "sub": "PRIMER ANIMADOR AFROAMERICANO DE DISNEY",
+     "en": "primer"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titulo": "THE CHOSEN",
+   "categoria": "SERIE · TEMPORADA 6",
+   "fondo": "media/2026-11-15/n3_chosen_jesus_1.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n3_chosen_poster_cruz.jpg",
+     "en": null,
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n3_chosen_jesus_1.jpg",
+     "en": "últimos",
+     "foco": "70% center"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n3_chosen_discipulos.jpg",
+     "en": "Llegan",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n3_chosen_jesus_2.jpg",
+     "en": "película",
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "15",
+     "texto": "ESTRENO HOY",
+     "sub": "PRIME VIDEO",
+     "en": "estrena"
+    },
+    {
+     "tipo": "bloques",
+     "valor": 3,
+     "texto": "3 EPISODIOS",
+     "sub": "HOY",
+     "en": "tres"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "FINAL EN CINES · MARZO",
+     "categoria": "PELÍCULA",
+     "en": "película"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "BLADE RUNNER 2099",
+   "categoria": "SERIE · PRIME VIDEO",
+   "fondo": "media/2026-11-15/n4_br_schafer.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n4_br_schafer.jpg",
+     "en": null,
+     "foco": "45% center"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n4_br_yeoh_schafer.jpg",
+     "en": "Michelle",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n4_br_yeoh.jpg",
+     "en": "Son",
+     "foco": "75% center"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n4_br_empire.jpg",
+     "en": "Ridley",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "25",
+     "texto": "LLEGA A PRIME VIDEO",
+     "sub": "TODOS LOS EPISODIOS",
+     "en": "veinticinco"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "MICHELLE YEOH · HUNTER SCHAFER",
+     "categoria": "PROTAGONISTAS",
+     "en": "Michelle"
+    },
+    {
+     "tipo": "bloques",
+     "valor": 8,
+     "etiquetaBloque": "EP",
+     "texto": "8 EPISODIOS",
+     "sub": "PRODUCE RIDLEY SCOTT",
+     "en": "ocho"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titulo": "CLIFF BOOTH",
+   "categoria": "NUEVA PELÍCULA · NETFLIX",
+   "fondo": "media/2026-11-15/n5_cliff_poster.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n5_cliff_auto.jpg",
+     "en": null,
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n5_fincher.jpg",
+     "en": "dirigida",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n5_cliff_poster.jpg",
+     "en": "llega",
+     "foco": "center 25%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n5_cliff_lentes.jpg",
+     "en": "Netflix",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "BRAD PITT",
+     "sub": "ES CLIFF BOOTH",
+     "en": "Brad"
+    },
+    {
+     "tipo": "nombre",
+     "texto": "DAVID FINCHER",
+     "sub": "DIRECTOR",
+     "en": "dirigida"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "25",
+     "texto": "EN IMAX",
+     "sub": "DOS SEMANAS",
+     "en": "IMAX"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "23",
+     "texto": "EN NETFLIX",
+     "sub": "ESTRENO EN STREAMING",
+     "en": "Netflix"
+    }
+   ]
+  }
+ ]
+}

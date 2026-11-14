@@ -1,0 +1,1304 @@
+{
+ "palabras": [
+  {
+   "w": "5",
+   "t": 0.0,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "noticias",
+   "t": 0.4,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 0.88,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "cine",
+   "t": 1.04,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 1.36,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "series",
+   "t": 1.52,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 1.92,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 2.08,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "Se",
+   "t": 2.8,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "reporta",
+   "t": 3.04,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "que",
+   "t": 3.44,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Robert",
+   "t": 3.6,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Pattinson",
+   "t": 4.0,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 4.48,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Nicholas",
+   "t": 4.64,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Hoult",
+   "t": 5.04,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "hicieron",
+   "t": 5.36,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "prueba",
+   "t": 5.76,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "para",
+   "t": 6.16,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "ser",
+   "t": 6.24,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 6.4,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "nuevo",
+   "t": 6.48,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "James",
+   "t": 6.8,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Bond",
+   "t": 7.2,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Son",
+   "t": 7.68,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "parte",
+   "t": 7.92,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 8.16,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "5",
+   "t": 8.24,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "finalistas",
+   "t": 8.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 9.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 9.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "estudio",
+   "t": 9.36,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "quiere",
+   "t": 9.68,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "al",
+   "t": 10.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "actor",
+   "t": 10.16,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "antes",
+   "t": 10.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 10.8,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "fin",
+   "t": 10.88,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 11.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "año",
+   "t": 11.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Hoy",
+   "t": 11.76,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "son",
+   "t": 12.16,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 12.32,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Premios",
+   "t": 12.48,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 12.8,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 12.96,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Gobernadores",
+   "t": 13.04,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Glenn",
+   "t": 13.68,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Close",
+   "t": 14.08,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 14.48,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Ridley",
+   "t": 14.56,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Scott",
+   "t": 15.04,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "recibirán",
+   "t": 15.52,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 15.92,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Óscar",
+   "t": 16.0,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "honorífico",
+   "t": 16.48,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "igual",
+   "t": 17.04,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "que",
+   "t": 17.28,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Floyd",
+   "t": 17.44,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Norman",
+   "t": 17.84,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "el",
+   "t": 18.32,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "primer",
+   "t": 18.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "animador",
+   "t": 18.64,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "afroamericano",
+   "t": 19.12,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 19.84,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Disney",
+   "t": 19.92,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "The",
+   "t": 20.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Chosen",
+   "t": 20.96,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "estrena",
+   "t": 21.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 22.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 22.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "sexta",
+   "t": 22.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "temporada",
+   "t": 22.56,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 22.96,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Prime",
+   "t": 23.12,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Video",
+   "t": 23.52,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "con",
+   "t": 23.92,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 24.08,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "últimos",
+   "t": 24.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "días",
+   "t": 24.48,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 24.72,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Jesús",
+   "t": 24.8,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Llegan",
+   "t": 25.36,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "3",
+   "t": 25.76,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "episodios",
+   "t": 26.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 26.56,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 26.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "historia",
+   "t": 26.72,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "cerrará",
+   "t": 27.12,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 27.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "una",
+   "t": 27.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 27.76,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 28.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 28.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 28.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "marzo",
+   "t": 28.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Blade",
+   "t": 29.44,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Runner",
+   "t": 30.0,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "2099",
+   "t": 30.267,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 30.533,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 30.8,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 31.12,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 31.2,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "llega",
+   "t": 31.6,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 31.84,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "25",
+   "t": 32.16,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 32.48,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "noviembre",
+   "t": 32.56,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 32.96,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Prime",
+   "t": 33.2,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Video",
+   "t": 33.44,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "con",
+   "t": 33.76,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Michelle",
+   "t": 33.84,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Yeoh",
+   "t": 34.16,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 34.48,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Hunter",
+   "t": 34.56,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Schafer",
+   "t": 34.96,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Son",
+   "t": 35.6,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "8",
+   "t": 35.76,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "episodios",
+   "t": 35.92,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 36.4,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Ridley",
+   "t": 36.56,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Scott",
+   "t": 37.04,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "es",
+   "t": 37.52,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "productor",
+   "t": 37.68,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 38.32,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "nueva",
+   "t": 38.56,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 38.88,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 39.2,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Brad",
+   "t": 39.36,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Pitt",
+   "t": 39.72,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "como",
+   "t": 40.08,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Cliff",
+   "t": 40.16,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Booth",
+   "t": 40.56,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "dirigida",
+   "t": 40.96,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "por",
+   "t": 41.2,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "David",
+   "t": 41.28,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Fincher",
+   "t": 41.68,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "llega",
+   "t": 42.24,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 42.32,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "IMAX",
+   "t": 42.4,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "el",
+   "t": 42.96,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "25",
+   "t": 43.24,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 43.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "noviembre",
+   "t": 43.68,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 44.0,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 44.16,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Netflix",
+   "t": 44.24,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "el",
+   "t": 44.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "23",
+   "t": 45.12,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 45.44,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "diciembre",
+   "t": 45.52,
+   "b": 5,
+   "clave": false
+  }
+ ],
+ "bloques": [
+  {
+   "bloque": 0,
+   "inicio": 0.0,
+   "primera": 0,
+   "ultima": 7,
+   "fin": 2.84
+  },
+  {
+   "bloque": 1,
+   "inicio": 2.84,
+   "primera": 8,
+   "ultima": 39,
+   "fin": 11.8
+  },
+  {
+   "bloque": 2,
+   "inicio": 11.8,
+   "primera": 40,
+   "ultima": 65,
+   "fin": 20.48
+  },
+  {
+   "bloque": 3,
+   "inicio": 20.48,
+   "primera": 66,
+   "ultima": 95,
+   "fin": 29.48
+  },
+  {
+   "bloque": 4,
+   "inicio": 29.48,
+   "primera": 96,
+   "ultima": 124,
+   "fin": 38.36
+  },
+  {
+   "bloque": 5,
+   "inicio": 38.36,
+   "primera": 125,
+   "ultima": 151,
+   "fin": 46.4
+  }
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "inicio": 2.84,
+   "fin": 11.8,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n1_bond_canon.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 2.84
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n1_pattinson_1.jpg",
+     "en": "Robert",
+     "foco": "60% 30%",
+     "t": 3.64
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n1_hoult_1.jpg",
+     "en": "Nicholas",
+     "foco": "center 25%",
+     "t": 4.68
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n1_pattinson_2.jpg",
+     "en": "Son",
+     "foco": "center 35%",
+     "t": 7.72
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n1_hoult_2.jpg",
+     "en": "estudio",
+     "ajuste": "contain",
+     "t": 9.4
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "ROBERT PATTINSON",
+     "sub": "HIZO PRUEBA PARA 007",
+     "en": "Robert",
+     "t": 3.6
+    },
+    {
+     "tipo": "nombre",
+     "texto": "NICHOLAS HOULT",
+     "sub": "HIZO PRUEBA PARA 007",
+     "en": "Nicholas",
+     "t": 4.64
+    },
+    {
+     "tipo": "bloques",
+     "valor": 5,
+     "texto": "5 FINALISTAS",
+     "sub": "PARA SER JAMES BOND",
+     "en": "cinco",
+     "t": 8.24
+    },
+    {
+     "tipo": "titulo",
+     "texto": "ANTES DE FIN DE AÑO",
+     "categoria": "LA DECISIÓN",
+     "en": "antes",
+     "t": 10.56
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "inicio": 11.8,
+   "fin": 20.48,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n2_estatuillas.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 11.8
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n2_glenn_close.jpg",
+     "en": "Glenn",
+     "foco": "45% 30%",
+     "t": 13.72
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n2_ridley_scott.jpg",
+     "en": "Ridley",
+     "foco": "center 30%",
+     "t": 14.6
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n2_floyd_norman.jpg",
+     "en": "Floyd",
+     "foco": "center 30%",
+     "t": 17.48
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "lista",
+     "texto": "HOMENAJEADOS",
+     "en": "Glenn",
+     "items": [
+      {
+       "texto": "GLENN CLOSE",
+       "en": "Glenn",
+       "t": 13.68
+      },
+      {
+       "texto": "RIDLEY SCOTT",
+       "en": "Ridley",
+       "t": 14.56
+      },
+      {
+       "texto": "FLOYD NORMAN",
+       "en": "Floyd",
+       "t": 17.44
+      }
+     ],
+     "t": 13.68
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "FLOYD NORMAN",
+     "sub": "PRIMER ANIMADOR AFROAMERICANO DE DISNEY",
+     "en": "primer",
+     "t": 18.4
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "inicio": 20.48,
+   "fin": 29.48,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n3_chosen_poster_cruz.jpg",
+     "en": null,
+     "foco": "center 30%",
+     "t": 20.48
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n3_chosen_jesus_1.jpg",
+     "en": "últimos",
+     "foco": "70% center",
+     "t": 24.2
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n3_chosen_discipulos.jpg",
+     "en": "Llegan",
+     "foco": "center 30%",
+     "t": 25.4
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n3_chosen_jesus_2.jpg",
+     "en": "película",
+     "foco": "center 30%",
+     "t": 27.8
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "15",
+     "texto": "ESTRENO HOY",
+     "sub": "PRIME VIDEO",
+     "en": "estrena",
+     "t": 21.6
+    },
+    {
+     "tipo": "bloques",
+     "valor": 3,
+     "texto": "3 EPISODIOS",
+     "sub": "HOY",
+     "en": "tres",
+     "t": 25.76
+    },
+    {
+     "tipo": "titulo",
+     "texto": "FINAL EN CINES · MARZO",
+     "categoria": "PELÍCULA",
+     "en": "película",
+     "t": 27.76
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "inicio": 29.48,
+   "fin": 38.36,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n4_br_schafer.jpg",
+     "en": null,
+     "foco": "45% center",
+     "t": 29.48
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n4_br_yeoh_schafer.jpg",
+     "en": "Michelle",
+     "ajuste": "contain",
+     "t": 33.88
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n4_br_yeoh.jpg",
+     "en": "Son",
+     "foco": "75% center",
+     "t": 35.64
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n4_br_empire.jpg",
+     "en": "Ridley",
+     "ajuste": "contain",
+     "t": 36.6
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "25",
+     "texto": "LLEGA A PRIME VIDEO",
+     "sub": "TODOS LOS EPISODIOS",
+     "en": "veinticinco",
+     "t": 32.16
+    },
+    {
+     "tipo": "titulo",
+     "texto": "MICHELLE YEOH · HUNTER SCHAFER",
+     "categoria": "PROTAGONISTAS",
+     "en": "Michelle",
+     "t": 33.84
+    },
+    {
+     "tipo": "bloques",
+     "valor": 8,
+     "etiquetaBloque": "EP",
+     "texto": "8 EPISODIOS",
+     "sub": "PRODUCE RIDLEY SCOTT",
+     "en": "ocho",
+     "t": 35.76
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "inicio": 38.36,
+   "fin": 46.4,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n5_cliff_auto.jpg",
+     "en": null,
+     "foco": "center 30%",
+     "t": 38.36
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n5_fincher.jpg",
+     "en": "dirigida",
+     "foco": "center 30%",
+     "t": 41.0
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n5_cliff_poster.jpg",
+     "en": "llega",
+     "foco": "center 25%",
+     "t": 42.28
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-15/n5_cliff_lentes.jpg",
+     "en": "Netflix",
+     "ajuste": "contain",
+     "t": 44.28
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "BRAD PITT",
+     "sub": "ES CLIFF BOOTH",
+     "en": "Brad",
+     "t": 39.36
+    },
+    {
+     "tipo": "nombre",
+     "texto": "DAVID FINCHER",
+     "sub": "DIRECTOR",
+     "en": "dirigida",
+     "t": 40.96
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "25",
+     "texto": "EN IMAX",
+     "sub": "DOS SEMANAS",
+     "en": "IMAX",
+     "t": 42.4
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "23",
+     "texto": "EN NETFLIX",
+     "sub": "ESTRENO EN STREAMING",
+     "en": "Netflix",
+     "t": 44.24
+    }
+   ]
+  }
+ ],
+ "duracionVoz": 46.6,
+ "montaje": {
+  "fps": 30,
+  "intro": 76,
+  "vozOffset": 2.4,
+  "cierreInicio": 1491,
+  "cierre": 96,
+  "total": 1587
+ }
+}
