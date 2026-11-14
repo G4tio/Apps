@@ -1,0 +1,397 @@
+{
+ "fecha": "2026-11-14",
+ "fechaTexto": "SÁBADO 14 DE NOVIEMBRE",
+ "voz": "media/2026-11-14/voz/voz_limpia.wav",
+ "pantalla": [
+  {
+   "bloque": 0,
+   "frase": "Cinco",
+   "texto": "5"
+  },
+  {
+   "bloque": 1,
+   "frase": "siete",
+   "texto": "7"
+  },
+  {
+   "bloque": 1,
+   "frase": "veinte",
+   "texto": "20"
+  },
+  {
+   "bloque": 1,
+   "frase": "cuatro",
+   "texto": "4"
+  },
+  {
+   "bloque": 2,
+   "frase": "Disney Plus",
+   "texto": "Disney+"
+  },
+  {
+   "bloque": 2,
+   "frase": "cuatro",
+   "texto": "4"
+  },
+  {
+   "bloque": 2,
+   "frase": "dieciocho",
+   "texto": "18"
+  },
+  {
+   "bloque": 3,
+   "frase": "cinco",
+   "texto": "5"
+  },
+  {
+   "bloque": 3,
+   "frase": "dos mil veintisiete",
+   "texto": "2027"
+  },
+  {
+   "bloque": 4,
+   "frase": "A veinticuatro",
+   "texto": "A24"
+  },
+  {
+   "bloque": 4,
+   "frase": "trece",
+   "texto": "13"
+  }
+ ],
+ "claves": [
+  "Ebenezer",
+  "Navidad",
+  "Cómo",
+  "robar",
+  "banco",
+  "millones",
+  "Avengers",
+  "Endgame",
+  "Encore",
+  "Disney",
+  "Doomsday",
+  "Michael",
+  "Jordan",
+  "Thomas",
+  "Crown",
+  "Affair",
+  "Claire",
+  "Danes",
+  "Ewan",
+  "McGregor",
+  "Spot",
+  "A24",
+  "FKA",
+  "Twigs",
+  "Josephine",
+  "Baker",
+  "Maïmouna",
+  "Doucouré"
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "titulo": "TAQUILLA DEL FIN DE SEMANA",
+   "categoria": "ESTADOS UNIDOS",
+   "fondo": "media/2026-11-14/n1_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_ebenezer_trailer.mp4",
+     "desde": 1.4,
+     "hasta": 2.7,
+     "toma": "Scrooge mirando",
+     "en": null
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_ebenezer_trailer.mp4",
+     "desde": 19.5,
+     "hasta": 21.6,
+     "toma": "Scrooge con monedas",
+     "en": "Navidad"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_ebenezer_trailer.mp4",
+     "desde": 62.0,
+     "hasta": 63.4,
+     "toma": "Scrooge asustado",
+     "en": "viernes"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_ebenezer_trailer.mp4",
+     "desde": 116.3,
+     "hasta": 117.4,
+     "toma": "Scrooge riendo",
+     "en": "apunta"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_robar_banco_trailer.mp4",
+     "desde": 52.0,
+     "hasta": 53.4,
+     "toma": "ladrones corriendo",
+     "en": "Cómo"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_robar_banco_trailer.mp4",
+     "desde": 26.2,
+     "hasta": 27.5,
+     "toma": "ladrón con máscara",
+     "en": "tropieza"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 7,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$7M",
+     "sub": "EBENEZER · VIERNES",
+     "en": "siete"
+    },
+    {
+     "tipo": "comparacion",
+     "texto": "EBENEZER VS. CÓMO ROBAR UN BANCO",
+     "a": "EBENEZER +$20M",
+     "b": "CÓMO ROBAR UN BANCO $4M",
+     "valorA": 20,
+     "valorB": 4,
+     "etiqueta": "N.º 1",
+     "sub": "ESTIMADO DEL FIN DE SEMANA",
+     "en": "veinte"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titulo": "AVENGERS: ENDGAME ENCORE",
+   "categoria": "YA EN DISNEY+",
+   "fondo": "media/2026-11-14/n2_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n2_endgame_encore_promo.mp4",
+     "desde": 38.6,
+     "hasta": 40.7,
+     "toma": "ejército de héroes",
+     "en": null
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n2_endgame_encore_promo.mp4",
+     "desde": 64.4,
+     "hasta": 66.0,
+     "toma": "Hulk",
+     "en": "Trae"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n2_endgame_encore_promo.mp4",
+     "desde": 70.2,
+     "hasta": 71.6,
+     "toma": "Thanos",
+     "en": "preparan"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n2_endgame_encore_promo.mp4",
+     "desde": 75.4,
+     "hasta": 76.8,
+     "toma": "Thor y Capitana Marvel",
+     "en": "llega"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n2_endgame_encore_promo.mp4",
+     "desde": 81.6,
+     "hasta": 84.4,
+     "toma": "logo Avengers",
+     "en": "dieciocho",
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "bloques",
+     "valor": 4,
+     "etiquetaBloque": "#",
+     "texto": "4 ESCENAS",
+     "sub": "NUEVAS · VERSIÓN EXTENDIDA",
+     "en": "cuatro"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "18",
+     "texto": "AVENGERS: DOOMSDAY",
+     "sub": "EN CINES",
+     "en": "dieciocho"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titulo": "THE THOMAS CROWN AFFAIR",
+   "categoria": "NUEVO TRÁILER",
+   "fondo": "media/2026-11-14/n3_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n3_fondo.jpg",
+     "en": null,
+     "foco": "center 40%"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n3_thomas_crown_trailer.mp4",
+     "desde": 64.4,
+     "hasta": 65.65,
+     "toma": "llega en auto deportivo",
+     "en": "Crown",
+     "borrar": [
+      [
+       120,
+       566,
+       336,
+       38
+      ]
+     ]
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n3_thomas_crown_trailer.mp4",
+     "desde": 94.6,
+     "hasta": 96.4,
+     "toma": "casa en llamas",
+     "en": "ladrón",
+     "borrar": [
+      [
+       120,
+       566,
+       336,
+       38
+      ]
+     ]
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n3_thomas_crown_trailer.mp4",
+     "desde": 120.1,
+     "hasta": 121.7,
+     "toma": "Branagh en sala de arte",
+     "en": "estrena"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "MICHAEL B. JORDAN",
+     "sub": "PROTAGONISTA Y DIRECTOR",
+     "en": "Michael"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "LADRÓN DE ARTE MILLONARIO",
+     "categoria": "SU PAPEL",
+     "en": "ladrón"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "MAR",
+     "dia": "5",
+     "texto": "ESTRENO EN CINES",
+     "sub": "2027",
+     "en": "cinco"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "THE SPOT",
+   "categoria": "SERIE · THRILLER PSICOLÓGICO",
+   "fondo": "media/2026-11-14/n4_spot_danes_mcgregor.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n4_spot_danes_mcgregor.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n4_spot_danes.jpg",
+     "en": "thriller",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n4_spot_abrazo.jpg",
+     "en": "serie",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n4_spot_mcgregor.jpg",
+     "en": "trece",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "CLAIRE DANES · EWAN MCGREGOR",
+     "categoria": "PROTAGONISTAS",
+     "en": "Claire"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "ENE",
+     "dia": "13",
+     "texto": "ESTRENO",
+     "sub": "PRODUCCIÓN DE A24",
+     "en": "trece"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titulo": "JOSEPHINE BAKER",
+   "categoria": "PRIMERA IMAGEN",
+   "fondo": "media/2026-11-14/n5_twigs_baker.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n5_twigs_baker.jpg",
+     "en": null,
+     "foco": "center 20%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n5_twigs_comparacion.jpg",
+     "en": "legendaria",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "FKA TWIGS",
+     "sub": "ES JOSEPHINE BAKER",
+     "en": "FKA"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "MAÏMOUNA DOUCOURÉ",
+     "categoria": "DIRECTORA",
+     "en": "Maïmouna"
+    }
+   ]
+  }
+ ]
+}

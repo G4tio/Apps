@@ -1,0 +1,1279 @@
+{
+ "palabras": [
+  {
+   "w": "5",
+   "t": 0.0,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "noticias",
+   "t": 0.4,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 0.88,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "cine",
+   "t": 0.96,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 1.36,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "series",
+   "t": 1.52,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 1.92,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 2.08,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "Ebenezer",
+   "t": 3.2,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Los",
+   "t": 3.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "fantasmas",
+   "t": 4.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 4.48,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Navidad",
+   "t": 4.56,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "lidera",
+   "t": 5.04,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 5.44,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "taquilla",
+   "t": 5.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "del",
+   "t": 6.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "fin",
+   "t": 6.16,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 6.4,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "semana",
+   "t": 6.48,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Hizo",
+   "t": 6.88,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "7",
+   "t": 7.28,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "millones",
+   "t": 7.52,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "el",
+   "t": 8.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "viernes",
+   "t": 8.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 8.48,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "apunta",
+   "t": 8.64,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 8.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "más",
+   "t": 9.04,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 9.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "20",
+   "t": 9.28,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "millones",
+   "t": 9.52,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "mientras",
+   "t": 10.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Cómo",
+   "t": 10.4,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "robar",
+   "t": 10.64,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "un",
+   "t": 10.96,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "banco",
+   "t": 11.04,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "tropieza",
+   "t": 11.36,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 11.92,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "unos",
+   "t": 12.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "4",
+   "t": 12.24,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "millones",
+   "t": 12.56,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Avengers",
+   "t": 13.36,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Endgame",
+   "t": 13.68,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Encore",
+   "t": 14.0,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "ya",
+   "t": 14.8,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "está",
+   "t": 14.88,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 14.96,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Disney+",
+   "t": 15.12,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 15.52,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Trae",
+   "t": 15.92,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "4",
+   "t": 16.16,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "escenas",
+   "t": 16.32,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "nuevas",
+   "t": 16.64,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "que",
+   "t": 17.04,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "preparan",
+   "t": 17.12,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Avengers",
+   "t": 17.52,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Doomsday",
+   "t": 18.08,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "que",
+   "t": 18.64,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "llega",
+   "t": 18.8,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 18.96,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 19.04,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 19.36,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "18",
+   "t": 19.68,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 20.0,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "diciembre",
+   "t": 20.16,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Michael",
+   "t": 20.88,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "B",
+   "t": 21.12,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Jordan",
+   "t": 21.36,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "protagoniza",
+   "t": 22.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 22.72,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "dirige",
+   "t": 22.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "The",
+   "t": 23.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Thomas",
+   "t": 23.2,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Crown",
+   "t": 23.627,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Affair",
+   "t": 24.053,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 24.48,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "ya",
+   "t": 24.56,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "hay",
+   "t": 24.72,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "nuevo",
+   "t": 24.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "tráiler",
+   "t": 25.12,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Será",
+   "t": 25.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 25.84,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "ladrón",
+   "t": 26.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 26.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "arte",
+   "t": 26.4,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "millonario",
+   "t": 26.72,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 27.28,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 27.36,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "estrena",
+   "t": 27.52,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 27.92,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "5",
+   "t": 28.12,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 28.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "marzo",
+   "t": 28.4,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 28.72,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "2027",
+   "t": 28.88,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 29.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 29.387,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Claire",
+   "t": 29.733,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Danes",
+   "t": 30.08,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 30.96,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Ewan",
+   "t": 31.24,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "McGregor",
+   "t": 31.52,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "protagonizan",
+   "t": 32.0,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "The",
+   "t": 32.32,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Spot",
+   "t": 32.64,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "un",
+   "t": 33.12,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "thriller",
+   "t": 33.2,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "psicológico",
+   "t": 33.6,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 34.24,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "A24",
+   "t": 34.613,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 34.987,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 35.36,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "serie",
+   "t": 35.44,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "ya",
+   "t": 35.84,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "tiene",
+   "t": 36.0,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "primeras",
+   "t": 36.16,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "imágenes",
+   "t": 36.56,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 37.12,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 37.2,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "estrena",
+   "t": 37.36,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 37.76,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "13",
+   "t": 38.0,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 38.24,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "enero",
+   "t": 38.4,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Ya",
+   "t": 38.96,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "hay",
+   "t": 39.28,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "primera",
+   "t": 39.44,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "imagen",
+   "t": 39.76,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 40.16,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "FKA",
+   "t": 40.24,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Twigs",
+   "t": 40.64,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "como",
+   "t": 41.28,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Josephine",
+   "t": 41.36,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Baker",
+   "t": 41.92,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "la",
+   "t": 42.48,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "legendaria",
+   "t": 42.56,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "artista",
+   "t": 43.04,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 43.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 43.6,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "nueva",
+   "t": 43.68,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 43.92,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "biográfica",
+   "t": 44.24,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 44.96,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Maïmouna",
+   "t": 45.04,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Doucouré",
+   "t": 45.19,
+   "b": 5,
+   "clave": true
+  }
+ ],
+ "bloques": [
+  {
+   "bloque": 0,
+   "inicio": 0.0,
+   "primera": 0,
+   "ultima": 7,
+   "fin": 3.24
+  },
+  {
+   "bloque": 1,
+   "inicio": 3.24,
+   "primera": 8,
+   "ultima": 41,
+   "fin": 13.4
+  },
+  {
+   "bloque": 2,
+   "inicio": 13.4,
+   "primera": 42,
+   "ultima": 65,
+   "fin": 20.92
+  },
+  {
+   "bloque": 3,
+   "inicio": 20.92,
+   "primera": 66,
+   "ultima": 97,
+   "fin": 29.773
+  },
+  {
+   "bloque": 4,
+   "inicio": 29.773,
+   "primera": 98,
+   "ultima": 124,
+   "fin": 39.0
+  },
+  {
+   "bloque": 5,
+   "inicio": 39.0,
+   "primera": 125,
+   "ultima": 145,
+   "fin": 46.07
+  }
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "inicio": 3.24,
+   "fin": 13.4,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_ebenezer_trailer.mp4",
+     "desde": 1.4,
+     "hasta": 2.7,
+     "toma": "Scrooge mirando",
+     "en": null,
+     "t": 3.24,
+     "archivo": "media/2026-11-14/frag/n1_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_ebenezer_trailer.mp4",
+     "desde": 19.5,
+     "hasta": 21.6,
+     "toma": "Scrooge con monedas",
+     "en": "Navidad",
+     "t": 4.6,
+     "archivo": "media/2026-11-14/frag/n1_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_ebenezer_trailer.mp4",
+     "desde": 62.0,
+     "hasta": 63.4,
+     "toma": "Scrooge asustado",
+     "en": "viernes",
+     "t": 8.12,
+     "archivo": "media/2026-11-14/frag/n1_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_ebenezer_trailer.mp4",
+     "desde": 116.3,
+     "hasta": 117.4,
+     "toma": "Scrooge riendo",
+     "en": "apunta",
+     "t": 8.68,
+     "archivo": "media/2026-11-14/frag/n1_3.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_robar_banco_trailer.mp4",
+     "desde": 52.0,
+     "hasta": 53.4,
+     "toma": "ladrones corriendo",
+     "en": "Cómo",
+     "t": 10.44,
+     "archivo": "media/2026-11-14/frag/n1_4.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n1_robar_banco_trailer.mp4",
+     "desde": 26.2,
+     "hasta": 27.5,
+     "toma": "ladrón con máscara",
+     "en": "tropieza",
+     "t": 11.4,
+     "archivo": "media/2026-11-14/frag/n1_5.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 7,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$7M",
+     "sub": "EBENEZER · VIERNES",
+     "en": "siete",
+     "t": 7.28
+    },
+    {
+     "tipo": "comparacion",
+     "texto": "EBENEZER VS. CÓMO ROBAR UN BANCO",
+     "a": "EBENEZER +$20M",
+     "b": "CÓMO ROBAR UN BANCO $4M",
+     "valorA": 20,
+     "valorB": 4,
+     "etiqueta": "N.º 1",
+     "sub": "ESTIMADO DEL FIN DE SEMANA",
+     "en": "veinte",
+     "t": 9.28
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "inicio": 13.4,
+   "fin": 20.92,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n2_endgame_encore_promo.mp4",
+     "desde": 38.6,
+     "hasta": 40.7,
+     "toma": "ejército de héroes",
+     "en": null,
+     "t": 13.4,
+     "archivo": "media/2026-11-14/frag/n2_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n2_endgame_encore_promo.mp4",
+     "desde": 64.4,
+     "hasta": 66.0,
+     "toma": "Hulk",
+     "en": "Trae",
+     "t": 15.96,
+     "archivo": "media/2026-11-14/frag/n2_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n2_endgame_encore_promo.mp4",
+     "desde": 70.2,
+     "hasta": 71.6,
+     "toma": "Thanos",
+     "en": "preparan",
+     "t": 17.16,
+     "archivo": "media/2026-11-14/frag/n2_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n2_endgame_encore_promo.mp4",
+     "desde": 75.4,
+     "hasta": 76.8,
+     "toma": "Thor y Capitana Marvel",
+     "en": "llega",
+     "t": 18.84,
+     "archivo": "media/2026-11-14/frag/n2_3.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n2_endgame_encore_promo.mp4",
+     "desde": 81.6,
+     "hasta": 84.4,
+     "toma": "logo Avengers",
+     "en": "dieciocho",
+     "zoom": 1.0,
+     "t": 19.72,
+     "archivo": "media/2026-11-14/frag/n2_4.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "bloques",
+     "valor": 4,
+     "etiquetaBloque": "#",
+     "texto": "4 ESCENAS",
+     "sub": "NUEVAS · VERSIÓN EXTENDIDA",
+     "en": "cuatro",
+     "t": 16.16
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "18",
+     "texto": "AVENGERS: DOOMSDAY",
+     "sub": "EN CINES",
+     "en": "dieciocho",
+     "t": 19.68
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "inicio": 20.92,
+   "fin": 29.773,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n3_fondo.jpg",
+     "en": null,
+     "foco": "center 40%",
+     "t": 20.92
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n3_thomas_crown_trailer.mp4",
+     "desde": 64.4,
+     "hasta": 65.65,
+     "toma": "llega en auto deportivo",
+     "en": "Crown",
+     "borrar": [
+      [
+       120,
+       566,
+       336,
+       38
+      ]
+     ],
+     "t": 23.667,
+     "archivo": "media/2026-11-14/frag/n3_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n3_thomas_crown_trailer.mp4",
+     "desde": 94.6,
+     "hasta": 96.4,
+     "toma": "casa en llamas",
+     "en": "ladrón",
+     "borrar": [
+      [
+       120,
+       566,
+       336,
+       38
+      ]
+     ],
+     "t": 26.04,
+     "archivo": "media/2026-11-14/frag/n3_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-14/n3_thomas_crown_trailer.mp4",
+     "desde": 120.1,
+     "hasta": 121.7,
+     "toma": "Branagh en sala de arte",
+     "en": "estrena",
+     "t": 27.56,
+     "archivo": "media/2026-11-14/frag/n3_3.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "MICHAEL B. JORDAN",
+     "sub": "PROTAGONISTA Y DIRECTOR",
+     "en": "Michael",
+     "t": 20.88
+    },
+    {
+     "tipo": "titulo",
+     "texto": "LADRÓN DE ARTE MILLONARIO",
+     "categoria": "SU PAPEL",
+     "en": "ladrón",
+     "t": 26.0
+    },
+    {
+     "tipo": "fecha",
+     "mes": "MAR",
+     "dia": "5",
+     "texto": "ESTRENO EN CINES",
+     "sub": "2027",
+     "en": "cinco",
+     "t": 28.12
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "inicio": 29.773,
+   "fin": 39.0,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n4_spot_danes_mcgregor.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 29.773
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n4_spot_danes.jpg",
+     "en": "thriller",
+     "ajuste": "contain",
+     "t": 33.24
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n4_spot_abrazo.jpg",
+     "en": "serie",
+     "ajuste": "contain",
+     "t": 35.48
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n4_spot_mcgregor.jpg",
+     "en": "trece",
+     "ajuste": "contain",
+     "t": 38.04
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "CLAIRE DANES · EWAN MCGREGOR",
+     "categoria": "PROTAGONISTAS",
+     "en": "Claire",
+     "t": 29.733
+    },
+    {
+     "tipo": "fecha",
+     "mes": "ENE",
+     "dia": "13",
+     "texto": "ESTRENO",
+     "sub": "PRODUCCIÓN DE A24",
+     "en": "trece",
+     "t": 38.0
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "inicio": 39.0,
+   "fin": 46.07,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n5_twigs_baker.jpg",
+     "en": null,
+     "foco": "center 20%",
+     "t": 39.0
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-14/n5_twigs_comparacion.jpg",
+     "en": "legendaria",
+     "ajuste": "contain",
+     "t": 42.6
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "FKA TWIGS",
+     "sub": "ES JOSEPHINE BAKER",
+     "en": "FKA",
+     "t": 40.24
+    },
+    {
+     "tipo": "titulo",
+     "texto": "MAÏMOUNA DOUCOURÉ",
+     "categoria": "DIRECTORA",
+     "en": "Maïmouna",
+     "t": 45.04
+    }
+   ]
+  }
+ ],
+ "duracionVoz": 46.27,
+ "montaje": {
+  "fps": 30,
+  "intro": 76,
+  "vozOffset": 2.4,
+  "cierreInicio": 1481,
+  "cierre": 96,
+  "total": 1577
+ }
+}

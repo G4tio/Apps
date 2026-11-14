@@ -58,7 +58,10 @@ for i, texto in enumerate(lineas):
         esperado = norm(texto)
         sim = difflib.SequenceMatcher(None, ' '.join(esperado), ' '.join(oido), autojunk=False).ratio()
         # palabras de más al inicio (sílabas sueltas): la primera palabra oída debe parecerse a la esperada
-        inicio_ok = bool(oido) and difflib.SequenceMatcher(None, oido[0], esperado[0]).ratio() >= 0.5
+        # nombres en inglés escritos de forma fonética engañan al ASR: compara las 3 primeras palabras juntas
+        ini_esp = ''.join(esperado[:3]); ini_oid = ''.join(oido[:3])
+        inicio_ok = bool(oido) and (difflib.SequenceMatcher(None, oido[0], esperado[0]).ratio() >= 0.5
+                                    or difflib.SequenceMatcher(None, ini_esp, ini_oid).ratio() >= 0.45)
         extra = len(oido) - len(esperado)
         ok = sim >= 0.80 and inicio_ok and extra <= 2
         print(f'bloque {i} intento {intento}: similitud {sim:.2f}, inicio {"ok" if inicio_ok else "MAL"}, '
