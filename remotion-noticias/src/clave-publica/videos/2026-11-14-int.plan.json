@@ -1,0 +1,27 @@
+{
+ "pantalla": [
+  [["cinco"], "5", "c"],
+  [["catorce","de","noviembre."], "14 de noviembre", "c"],
+  [["tres","petroleros"], "3 petroleros", "c"],
+  [["martes","diecisiete."], "martes 17", "c"],
+  [["veinte","mil","policías"], "20,000 policías", "c"],
+  [["siete","mil","vuelos"], "7,000 vuelos", "c"],
+  [["diecisiete","de","noviembre."], "17 de noviembre", "c"],
+  [["veintitrés","vehículos."], "23 vehículos", "c"],
+  [["catorce","personas"], "14 personas", "c"],
+  [["treinta","resultaron"], "30 resultaron", "c"]
+ ],
+ "claves": ["internacionales", "irán", "petroleros", "minas", "estrecho de ormuz", "reuters", "trump", "frenar nuevos ataques",
+            "manila", "asean", "donald trump", "policías", "estados unidos", "parálisis nacional", "falla de comunicaciones", "normalidad",
+            "chile", "josé antonio kast", "vietnam", "to lam", "emiratos árabes unidos", "fujairah", "choque múltiple", "murieron",
+            "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"minas": "minas", "reuters": "Reuters", "trump": "Trump", "frenar": "frenar"},
+  "2": {"domingo": "domingo", "trump": "Trump", "martes": "martes#2", "policias": "veinte"},
+  "3": {"normaliza": "normaliza", "detuvo": "detuvo", "falla": "falla", "vuelos": "siete", "normalidad": "normalidad"},
+  "4": {"chile": "Chile,", "kast": "Kast,", "vietnam": "Vietnam,", "tolam": "To", "fecha": "diecisiete"},
+  "5": {"emiratos": "Emiratos", "choque": "choque", "vehiculos": "veintitrés", "muertos": "Murieron", "heridos": "treinta"},
+  "6": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}

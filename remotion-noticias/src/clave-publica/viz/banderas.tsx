@@ -157,3 +157,45 @@ export const Honduras: React.FC<B> = ({ w = 200, id }) => {
     </Marco>
   );
 };
+
+/** Chile: blanco y rojo con cantón azul y estrella blanca. */
+export const Chile: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 2) / 3;
+  const r = h * 0.14, cy = h / 4;
+  const est = Array.from({ length: 10 }).map((_, k) => {
+    const rr = k % 2 ? r * 0.4 : r, a = -Math.PI / 2 + (k * Math.PI) / 5;
+    return `${h / 4 + Math.cos(a) * rr},${cy + Math.sin(a) * rr}`;
+  }).join(" ");
+  return (
+    <Marco w={w} h={h} id={id}>
+      <rect width={w} height={h / 2} fill="#FFFFFF" />
+      <rect y={h / 2} width={w} height={h / 2} fill="#D52B1E" />
+      <rect width={h / 2} height={h / 2} fill="#0039A6" />
+      <polygon points={est} fill="#FFFFFF" />
+    </Marco>
+  );
+};
+
+/** Vietnam: rojo con estrella amarilla. */
+export const Vietnam: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 2) / 3;
+  const r = h * 0.3;
+  const est = Array.from({ length: 10 }).map((_, k) => {
+    const rr = k % 2 ? r * 0.38 : r, a = -Math.PI / 2 + (k * Math.PI) / 5;
+    return `${w / 2 + Math.cos(a) * rr},${h / 2 + Math.sin(a) * rr}`;
+  }).join(" ");
+  return <Marco w={w} h={h} id={id}><rect width={w} height={h} fill="#DA251D" /><polygon points={est} fill="#FFCD00" /></Marco>;
+};
+
+/** Emiratos Árabes Unidos: franja roja vertical y verde, blanco y negro horizontales. */
+export const EAU: React.FC<B> = ({ w = 200, id }) => {
+  const h = w / 2;
+  return (
+    <Marco w={w} h={h} id={id}>
+      <rect width={w} height={h / 3 + 0.5} fill="#00732F" />
+      <rect y={h / 3} width={w} height={h / 3 + 0.5} fill="#FFFFFF" />
+      <rect y={(2 * h) / 3} width={w} height={h / 3} fill="#000000" />
+      <rect width={w / 4} height={h} fill="#FF0000" />
+    </Marco>
+  );
+};
