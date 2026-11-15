@@ -86,7 +86,7 @@
   },
   {
    "w": "Nicholas",
-   "t": 4.64,
+   "t": 4.56,
    "b": 1,
    "clave": true
   },
@@ -236,175 +236,175 @@
   },
   {
    "w": "año",
-   "t": 11.2,
+   "t": 11.28,
    "b": 1,
    "clave": false
   },
   {
-   "w": "Hoy",
-   "t": 11.76,
+   "w": "Mañana",
+   "t": 11.84,
    "b": 2,
    "clave": false
   },
   {
    "w": "son",
-   "t": 12.16,
+   "t": 12.4,
    "b": 2,
    "clave": false
   },
   {
    "w": "los",
-   "t": 12.32,
+   "t": 12.64,
    "b": 2,
    "clave": false
   },
   {
    "w": "Premios",
-   "t": 12.48,
+   "t": 12.72,
    "b": 2,
    "clave": false
   },
   {
    "w": "de",
-   "t": 12.8,
+   "t": 13.04,
    "b": 2,
    "clave": false
   },
   {
    "w": "los",
-   "t": 12.96,
+   "t": 13.2,
    "b": 2,
    "clave": false
   },
   {
    "w": "Gobernadores",
-   "t": 13.04,
+   "t": 13.28,
    "b": 2,
    "clave": true
   },
   {
    "w": "Glenn",
-   "t": 13.68,
+   "t": 13.92,
    "b": 2,
    "clave": true
   },
   {
    "w": "Close",
-   "t": 14.08,
+   "t": 14.4,
    "b": 2,
    "clave": true
   },
   {
    "w": "y",
-   "t": 14.48,
+   "t": 14.72,
    "b": 2,
    "clave": false
   },
   {
    "w": "Ridley",
-   "t": 14.56,
+   "t": 14.8,
    "b": 2,
    "clave": true
   },
   {
    "w": "Scott",
-   "t": 15.04,
+   "t": 15.28,
    "b": 2,
    "clave": true
   },
   {
    "w": "recibirán",
-   "t": 15.52,
+   "t": 15.76,
    "b": 2,
    "clave": false
   },
   {
    "w": "un",
-   "t": 15.92,
+   "t": 16.08,
    "b": 2,
    "clave": false
   },
   {
    "w": "Óscar",
-   "t": 16.0,
+   "t": 16.16,
    "b": 2,
    "clave": true
   },
   {
    "w": "honorífico",
-   "t": 16.48,
+   "t": 16.64,
    "b": 2,
    "clave": false
   },
   {
    "w": "igual",
-   "t": 17.04,
+   "t": 17.2,
    "b": 2,
    "clave": false
   },
   {
    "w": "que",
-   "t": 17.28,
+   "t": 17.44,
    "b": 2,
    "clave": false
   },
   {
    "w": "Floyd",
-   "t": 17.44,
+   "t": 17.52,
    "b": 2,
    "clave": true
   },
   {
    "w": "Norman",
-   "t": 17.84,
+   "t": 17.92,
    "b": 2,
    "clave": true
   },
   {
    "w": "el",
-   "t": 18.32,
-   "b": 2,
-   "clave": false
-  },
-  {
-   "w": "primer",
    "t": 18.4,
    "b": 2,
    "clave": false
   },
   {
+   "w": "primer",
+   "t": 18.48,
+   "b": 2,
+   "clave": false
+  },
+  {
    "w": "animador",
-   "t": 18.64,
+   "t": 18.8,
    "b": 2,
    "clave": false
   },
   {
    "w": "afroamericano",
-   "t": 19.12,
+   "t": 19.2,
    "b": 2,
    "clave": false
   },
   {
    "w": "de",
-   "t": 19.84,
+   "t": 19.92,
    "b": 2,
    "clave": false
   },
   {
    "w": "Disney",
-   "t": 19.92,
+   "t": 20.0,
    "b": 2,
    "clave": true
   },
   {
    "w": "The",
-   "t": 20.44,
+   "t": 20.68,
    "b": 3,
    "clave": false
   },
   {
    "w": "Chosen",
-   "t": 20.96,
+   "t": 21.36,
    "b": 3,
    "clave": true
   },
@@ -415,50 +415,50 @@
    "clave": false
   },
   {
-   "w": "hoy",
+   "w": "mañana",
    "t": 22.0,
    "b": 3,
    "clave": false
   },
   {
    "w": "su",
-   "t": 22.16,
-   "b": 3,
-   "clave": false
-  },
-  {
-   "w": "sexta",
    "t": 22.32,
    "b": 3,
    "clave": false
   },
   {
+   "w": "sexta",
+   "t": 22.48,
+   "b": 3,
+   "clave": false
+  },
+  {
    "w": "temporada",
-   "t": 22.56,
+   "t": 22.72,
    "b": 3,
    "clave": false
   },
   {
    "w": "en",
-   "t": 22.96,
+   "t": 23.2,
    "b": 3,
    "clave": false
   },
   {
    "w": "Prime",
-   "t": 23.12,
+   "t": 23.24,
    "b": 3,
    "clave": true
   },
   {
    "w": "Video",
-   "t": 23.52,
+   "t": 23.28,
    "b": 3,
    "clave": true
   },
   {
    "w": "con",
-   "t": 23.92,
+   "t": 24.0,
    "b": 3,
    "clave": false
   },
@@ -482,31 +482,31 @@
   },
   {
    "w": "de",
-   "t": 24.72,
+   "t": 24.8,
    "b": 3,
    "clave": false
   },
   {
    "w": "Jesús",
-   "t": 24.8,
+   "t": 24.88,
    "b": 3,
    "clave": true
   },
   {
    "w": "Llegan",
-   "t": 25.36,
+   "t": 25.44,
    "b": 3,
    "clave": false
   },
   {
    "w": "3",
-   "t": 25.76,
+   "t": 25.84,
    "b": 3,
    "clave": true
   },
   {
    "w": "episodios",
-   "t": 26.0,
+   "t": 26.08,
    "b": 3,
    "clave": false
   },
@@ -518,13 +518,13 @@
   },
   {
    "w": "la",
-   "t": 26.64,
+   "t": 26.72,
    "b": 3,
    "clave": false
   },
   {
    "w": "historia",
-   "t": 26.72,
+   "t": 26.8,
    "b": 3,
    "clave": false
   },
@@ -548,13 +548,13 @@
   },
   {
    "w": "película",
-   "t": 27.76,
+   "t": 27.84,
    "b": 3,
    "clave": false
   },
   {
    "w": "en",
-   "t": 28.16,
+   "t": 28.24,
    "b": 3,
    "clave": false
   },
@@ -572,7 +572,7 @@
   },
   {
    "w": "marzo",
-   "t": 28.88,
+   "t": 28.96,
    "b": 3,
    "clave": false
   },
@@ -584,25 +584,25 @@
   },
   {
    "w": "Runner",
-   "t": 30.0,
+   "t": 29.58,
    "b": 4,
    "clave": true
   },
   {
    "w": "2099",
-   "t": 30.267,
+   "t": 29.72,
    "b": 4,
    "clave": true
   },
   {
    "w": "",
-   "t": 30.533,
+   "t": 29.86,
    "b": 4,
    "clave": false
   },
   {
    "w": "",
-   "t": 30.8,
+   "t": 30.0,
    "b": 4,
    "clave": false
   },
@@ -656,13 +656,13 @@
   },
   {
    "w": "Prime",
-   "t": 33.2,
+   "t": 33.04,
    "b": 4,
    "clave": true
   },
   {
    "w": "Video",
-   "t": 33.44,
+   "t": 33.12,
    "b": 4,
    "clave": true
   },
@@ -926,18 +926,18 @@
    "inicio": 2.84,
    "primera": 8,
    "ultima": 39,
-   "fin": 11.8
+   "fin": 11.88
   },
   {
    "bloque": 2,
-   "inicio": 11.8,
+   "inicio": 11.88,
    "primera": 40,
    "ultima": 65,
-   "fin": 20.48
+   "fin": 20.72
   },
   {
    "bloque": 3,
-   "inicio": 20.48,
+   "inicio": 20.72,
    "primera": 66,
    "ultima": 95,
    "fin": 29.48
@@ -961,7 +961,7 @@
   {
    "n": 1,
    "inicio": 2.84,
-   "fin": 11.8,
+   "fin": 11.88,
    "medios": [
     {
      "tipo": "imagen",
@@ -982,7 +982,7 @@
      "src": "media/2026-11-15/n1_hoult_1.jpg",
      "en": "Nicholas",
      "foco": "center 25%",
-     "t": 4.68
+     "t": 4.6
     },
     {
      "tipo": "imagen",
@@ -1012,7 +1012,7 @@
      "texto": "NICHOLAS HOULT",
      "sub": "HIZO PRUEBA PARA 007",
      "en": "Nicholas",
-     "t": 4.64
+     "t": 4.56
     },
     {
      "tipo": "bloques",
@@ -1033,36 +1033,36 @@
   },
   {
    "n": 2,
-   "inicio": 11.8,
-   "fin": 20.48,
+   "inicio": 11.88,
+   "fin": 20.72,
    "medios": [
     {
      "tipo": "imagen",
      "src": "media/2026-11-15/n2_estatuillas.jpg",
      "en": null,
      "ajuste": "contain",
-     "t": 11.8
+     "t": 11.88
     },
     {
      "tipo": "imagen",
      "src": "media/2026-11-15/n2_glenn_close.jpg",
      "en": "Glenn",
      "foco": "45% 30%",
-     "t": 13.72
+     "t": 13.96
     },
     {
      "tipo": "imagen",
      "src": "media/2026-11-15/n2_ridley_scott.jpg",
      "en": "Ridley",
      "foco": "center 30%",
-     "t": 14.6
+     "t": 14.84
     },
     {
      "tipo": "imagen",
      "src": "media/2026-11-15/n2_floyd_norman.jpg",
      "en": "Floyd",
      "foco": "center 30%",
-     "t": 17.48
+     "t": 17.56
     }
    ],
    "rotulos": [
@@ -1074,20 +1074,20 @@
       {
        "texto": "GLENN CLOSE",
        "en": "Glenn",
-       "t": 13.68
+       "t": 13.92
       },
       {
        "texto": "RIDLEY SCOTT",
        "en": "Ridley",
-       "t": 14.56
+       "t": 14.8
       },
       {
        "texto": "FLOYD NORMAN",
        "en": "Floyd",
-       "t": 17.44
+       "t": 17.52
       }
      ],
-     "t": 13.68
+     "t": 13.92
     },
     {
      "tipo": "insignia",
@@ -1095,13 +1095,13 @@
      "texto": "FLOYD NORMAN",
      "sub": "PRIMER ANIMADOR AFROAMERICANO DE DISNEY",
      "en": "primer",
-     "t": 18.4
+     "t": 18.48
     }
    ]
   },
   {
    "n": 3,
-   "inicio": 20.48,
+   "inicio": 20.72,
    "fin": 29.48,
    "medios": [
     {
@@ -1109,7 +1109,7 @@
      "src": "media/2026-11-15/n3_chosen_poster_cruz.jpg",
      "en": null,
      "foco": "center 30%",
-     "t": 20.48
+     "t": 20.72
     },
     {
      "tipo": "imagen",
@@ -1123,14 +1123,14 @@
      "src": "media/2026-11-15/n3_chosen_discipulos.jpg",
      "en": "Llegan",
      "foco": "center 30%",
-     "t": 25.4
+     "t": 25.48
     },
     {
      "tipo": "imagen",
      "src": "media/2026-11-15/n3_chosen_jesus_2.jpg",
      "en": "película",
      "foco": "center 30%",
-     "t": 27.8
+     "t": 27.88
     }
    ],
    "rotulos": [
@@ -1138,7 +1138,7 @@
      "tipo": "fecha",
      "mes": "NOV",
      "dia": "15",
-     "texto": "ESTRENO HOY",
+     "texto": "ESTRENO MAÑANA",
      "sub": "PRIME VIDEO",
      "en": "estrena",
      "t": 21.6
@@ -1147,16 +1147,16 @@
      "tipo": "bloques",
      "valor": 3,
      "texto": "3 EPISODIOS",
-     "sub": "HOY",
+     "sub": "EN EL ESTRENO",
      "en": "tres",
-     "t": 25.76
+     "t": 25.84
     },
     {
      "tipo": "titulo",
      "texto": "FINAL EN CINES · MARZO",
      "categoria": "PELÍCULA",
      "en": "película",
-     "t": 27.76
+     "t": 27.84
     }
    ]
   },

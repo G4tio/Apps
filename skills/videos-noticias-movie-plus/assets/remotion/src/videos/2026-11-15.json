@@ -241,7 +241,7 @@
      "tipo": "fecha",
      "mes": "NOV",
      "dia": "15",
-     "texto": "ESTRENO HOY",
+     "texto": "ESTRENO MAÑANA",
      "sub": "PRIME VIDEO",
      "en": "estrena"
     },
@@ -249,7 +249,7 @@
      "tipo": "bloques",
      "valor": 3,
      "texto": "3 EPISODIOS",
-     "sub": "HOY",
+     "sub": "EN EL ESTRENO",
      "en": "tres"
     },
     {
