@@ -1,0 +1,292 @@
+{
+ "fecha": "2026-11-16",
+ "fechaTexto": "LUNES 16 DE NOVIEMBRE",
+ "voz": "media/2026-11-16/voz/voz_limpia.wav",
+ "pantalla": [
+  {
+   "bloque": 0,
+   "frase": "Cinco",
+   "texto": "5"
+  },
+  {
+   "bloque": 2,
+   "frase": "ocho",
+   "texto": "8"
+  },
+  {
+   "bloque": 4,
+   "frase": "nueve",
+   "texto": "9"
+  },
+  {
+   "bloque": 4,
+   "frase": "diez",
+   "texto": "10"
+  },
+  {
+   "bloque": 5,
+   "frase": "tres",
+   "texto": "3"
+  },
+  {
+   "bloque": 5,
+   "frase": "catorce",
+   "texto": "14"
+  }
+ ],
+ "claves": [
+  "Robert",
+  "Pattinson",
+  "James",
+  "Bond",
+  "Amazon",
+  "MGM",
+  "Denis",
+  "Villeneuve",
+  "Steven",
+  "Knight",
+  "Peaky",
+  "Blinders",
+  "Glenn",
+  "Close",
+  "Óscar",
+  "Gobernadores",
+  "Annie",
+  "Ridley",
+  "Scott",
+  "Tony",
+  "Slow",
+  "Horses",
+  "Apple",
+  "Gary",
+  "Oldman",
+  "Jackson",
+  "Lamb",
+  "Netflix",
+  "cuerpos"
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "titulo": "EL NUEVO JAMES BOND",
+   "categoria": "ES OFICIAL",
+   "fondo": "media/2026-11-16/n1_pattinson_pistola.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n1_pattinson_pistola.jpg",
+     "en": null,
+     "foco": "65% 35%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n1_pattinson_ia_rosario3.jpg",
+     "en": "anunció",
+     "foco": "center 25%",
+     "etiqueta": "IMAGEN ILUSTRATIVA · IA"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n1_villeneuve.jpg",
+     "en": "Denis",
+     "foco": "center 25%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n1_pattinson_ia_poster.jpg",
+     "en": "Steven",
+     "foco": "center 20%",
+     "etiqueta": "IMAGEN ILUSTRATIVA · IA"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "ROBERT PATTINSON",
+     "sub": "EL NUEVO 007",
+     "en": "Robert"
+    },
+    {
+     "tipo": "nombre",
+     "texto": "DENIS VILLENEUVE",
+     "sub": "DIRECTOR",
+     "en": "Denis"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "GUION: STEVEN KNIGHT",
+     "categoria": "CREADOR DE PEAKY BLINDERS",
+     "en": "Steven"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titulo": "GLENN CLOSE",
+   "categoria": "PREMIOS DE LOS GOBERNADORES",
+   "fondo": "media/2026-11-16/n2_close_oscars.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n2_close_oscars.jpg",
+     "en": null,
+     "foco": "70% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n2_close_escenario.jpg",
+     "en": "Gobernadores",
+     "foco": "35% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n2_close_alfombra.jpg",
+     "en": "dedicó",
+     "foco": "30% 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "ÓSCAR HONORÍFICO",
+     "sub": "POR FIN TIENE SU ÓSCAR",
+     "en": "Óscar"
+    },
+    {
+     "tipo": "contador",
+     "valor": 8,
+     "prefijo": "",
+     "sufijo": "",
+     "texto": "8",
+     "sub": "NOMINACIONES SIN GANAR",
+     "en": "ocho"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "PARA SU HIJA ANNIE",
+     "categoria": "DEDICATORIA",
+     "en": "dedicó"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titulo": "RIDLEY SCOTT",
+   "categoria": "ÓSCAR HONORÍFICO",
+   "fondo": "media/2026-11-16/n3_scott_oscar.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n3_scott_pantalla.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n3_scott_oscar.jpg",
+     "en": "mensaje",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "RIDLEY SCOTT",
+     "sub": "MENSAJE GRABADO",
+     "en": "mensaje"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "PARA SU HERMANO TONY",
+     "categoria": "DEDICATORIA",
+     "en": "hermano"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "SLOW HORSES",
+   "categoria": "SERIE · APPLE TV",
+   "fondo": "media/2026-11-16/n4_slow_horses_poster.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n4_slow_horses_poster.jpg",
+     "en": null,
+     "foco": "center 15%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n4_slow_horses_funeral.jpg",
+     "en": "Gary",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n4_slow_horses_escena.jpg",
+     "en": "aunque",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "bloques",
+     "valor": 2,
+     "etiquetaBloque": "T",
+     "texto": "TEMPORADAS 9 Y 10",
+     "sub": "RENOVADA",
+     "en": "nueve"
+    },
+    {
+     "tipo": "nombre",
+     "texto": "GARY OLDMAN",
+     "sub": "ES JACKSON LAMB",
+     "en": "Gary"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titulo": "EL PROBLEMA DE LOS 3 CUERPOS",
+   "categoria": "SERIE · NETFLIX",
+   "fondo": "media/2026-11-16/n5_3cuerpos_escena2.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n5_3cuerpos_escena2.jpg",
+     "en": null,
+     "foco": "55% center"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n5_3cuerpos_poster.jpg",
+     "en": "segunda",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n5_3cuerpos_escena1.jpg",
+     "en": "adelanto",
+     "foco": "60% 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "ENE",
+     "dia": "14",
+     "texto": "TEMPORADA 2",
+     "sub": "SOLO EN NETFLIX",
+     "en": "catorce"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "ADELANTO: MAÑANA",
+     "categoria": "TEASER",
+     "en": "adelanto"
+    }
+   ]
+  }
+ ]
+}

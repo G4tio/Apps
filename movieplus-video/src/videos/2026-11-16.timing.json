@@ -1,0 +1,1197 @@
+{
+ "palabras": [
+  {
+   "w": "5",
+   "t": 0.0,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "noticias",
+   "t": 0.4,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 0.8,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "cine",
+   "t": 0.88,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 1.28,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "series",
+   "t": 1.44,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 1.92,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 2.08,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "Es",
+   "t": 2.72,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "oficial",
+   "t": 3.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Robert",
+   "t": 3.6,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Pattinson",
+   "t": 4.0,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "es",
+   "t": 4.64,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 4.72,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "nuevo",
+   "t": 4.8,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "James",
+   "t": 5.04,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Bond",
+   "t": 5.44,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Lo",
+   "t": 5.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "anunció",
+   "t": 5.92,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Amazon",
+   "t": 6.4,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "MGM",
+   "t": 6.72,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 7.36,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 7.44,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 7.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 7.92,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "dirigirá",
+   "t": 8.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Denis",
+   "t": 8.32,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Villeneuve",
+   "t": 8.88,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "con",
+   "t": 9.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "guion",
+   "t": 9.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 9.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Steven",
+   "t": 9.68,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Knight",
+   "t": 10.0,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "el",
+   "t": 10.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "creador",
+   "t": 10.64,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 10.88,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Peaky",
+   "t": 11.04,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Blinders",
+   "t": 11.44,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Glenn",
+   "t": 11.8,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Close",
+   "t": 12.16,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "por",
+   "t": 13.12,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "fin",
+   "t": 13.2,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "tiene",
+   "t": 13.44,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 13.68,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Óscar",
+   "t": 13.76,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Lo",
+   "t": 14.32,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "recibió",
+   "t": 14.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 14.8,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 14.88,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Premios",
+   "t": 14.96,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 15.28,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 15.36,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Gobernadores",
+   "t": 15.44,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "tras",
+   "t": 16.16,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "8",
+   "t": 16.4,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "nominaciones",
+   "t": 16.56,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "sin",
+   "t": 17.12,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "ganar",
+   "t": 17.28,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 17.6,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "una",
+   "t": 17.76,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "larga",
+   "t": 17.92,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "ovación",
+   "t": 18.16,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 18.56,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "pie",
+   "t": 18.64,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 18.96,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 19.04,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "lo",
+   "t": 19.12,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "dedicó",
+   "t": 19.28,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 19.68,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 19.76,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "hija",
+   "t": 19.84,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Annie",
+   "t": 20.08,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Ridley",
+   "t": 20.8,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Scott",
+   "t": 21.44,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "no",
+   "t": 22.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "pudo",
+   "t": 22.08,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "viajar",
+   "t": 22.24,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "por",
+   "t": 22.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "recomendación",
+   "t": 22.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "médica",
+   "t": 23.28,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "pero",
+   "t": 23.84,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 24.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 24.08,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "mensaje",
+   "t": 24.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "grabado",
+   "t": 24.56,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "dedicó",
+   "t": 25.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 25.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Óscar",
+   "t": 25.52,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "honorífico",
+   "t": 25.92,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 26.48,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 26.56,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "fallecido",
+   "t": 26.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "hermano",
+   "t": 27.12,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Tony",
+   "t": 27.52,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Scott",
+   "t": 28.0,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Slow",
+   "t": 28.56,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Horses",
+   "t": 29.12,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "fue",
+   "t": 29.68,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "renovada",
+   "t": 29.76,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "para",
+   "t": 30.24,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "las",
+   "t": 30.32,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "temporadas",
+   "t": 30.48,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "9",
+   "t": 30.88,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 31.28,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "10",
+   "t": 31.36,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 31.6,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Apple",
+   "t": 31.68,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "TV",
+   "t": 32.08,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Gary",
+   "t": 32.48,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Oldman",
+   "t": 32.8,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "regresa",
+   "t": 33.36,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "como",
+   "t": 33.68,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Jackson",
+   "t": 33.76,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Lamb",
+   "t": 34.32,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "aunque",
+   "t": 34.64,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "aún",
+   "t": 34.88,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "no",
+   "t": 35.12,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 35.2,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "confirma",
+   "t": 35.28,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 35.76,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "resto",
+   "t": 35.84,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "del",
+   "t": 36.08,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "elenco",
+   "t": 36.24,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "El",
+   "t": 37.04,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "problema",
+   "t": 37.28,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 37.68,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 37.84,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "3",
+   "t": 38.0,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "cuerpos",
+   "t": 38.24,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "ya",
+   "t": 38.64,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "tiene",
+   "t": 38.88,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "fecha",
+   "t": 39.12,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 39.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "segunda",
+   "t": 39.76,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "temporada",
+   "t": 40.08,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "llega",
+   "t": 40.56,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 40.72,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Netflix",
+   "t": 40.88,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "el",
+   "t": 41.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "14",
+   "t": 41.8,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 42.08,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "enero",
+   "t": 42.24,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 42.48,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 42.64,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "primer",
+   "t": 42.72,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "adelanto",
+   "t": 42.96,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 43.44,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "estrena",
+   "t": 43.6,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "mañana",
+   "t": 44.0,
+   "b": 5,
+   "clave": false
+  }
+ ],
+ "bloques": [
+  {
+   "bloque": 0,
+   "inicio": 0.0,
+   "primera": 0,
+   "ultima": 7,
+   "fin": 2.76
+  },
+  {
+   "bloque": 1,
+   "inicio": 2.76,
+   "primera": 8,
+   "ultima": 37,
+   "fin": 11.84
+  },
+  {
+   "bloque": 2,
+   "inicio": 11.84,
+   "primera": 38,
+   "ultima": 71,
+   "fin": 20.84
+  },
+  {
+   "bloque": 3,
+   "inicio": 20.84,
+   "primera": 72,
+   "ultima": 94,
+   "fin": 28.6
+  },
+  {
+   "bloque": 4,
+   "inicio": 28.6,
+   "primera": 95,
+   "ultima": 122,
+   "fin": 37.08
+  },
+  {
+   "bloque": 5,
+   "inicio": 37.08,
+   "primera": 123,
+   "ultima": 148,
+   "fin": 44.88
+  }
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "inicio": 2.76,
+   "fin": 11.84,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n1_pattinson_pistola.jpg",
+     "en": null,
+     "foco": "65% 35%",
+     "t": 2.76
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n1_pattinson_ia_rosario3.jpg",
+     "en": "anunció",
+     "foco": "center 25%",
+     "etiqueta": "IMAGEN ILUSTRATIVA · IA",
+     "t": 5.96
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n1_villeneuve.jpg",
+     "en": "Denis",
+     "foco": "center 25%",
+     "t": 8.36
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n1_pattinson_ia_poster.jpg",
+     "en": "Steven",
+     "foco": "center 20%",
+     "etiqueta": "IMAGEN ILUSTRATIVA · IA",
+     "t": 9.72
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "ROBERT PATTINSON",
+     "sub": "EL NUEVO 007",
+     "en": "Robert",
+     "t": 3.6
+    },
+    {
+     "tipo": "nombre",
+     "texto": "DENIS VILLENEUVE",
+     "sub": "DIRECTOR",
+     "en": "Denis",
+     "t": 8.32
+    },
+    {
+     "tipo": "titulo",
+     "texto": "GUION: STEVEN KNIGHT",
+     "categoria": "CREADOR DE PEAKY BLINDERS",
+     "en": "Steven",
+     "t": 9.68
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "inicio": 11.84,
+   "fin": 20.84,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n2_close_oscars.jpg",
+     "en": null,
+     "foco": "70% 30%",
+     "t": 11.84
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n2_close_escenario.jpg",
+     "en": "Gobernadores",
+     "foco": "35% 30%",
+     "t": 15.48
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n2_close_alfombra.jpg",
+     "en": "dedicó",
+     "foco": "30% 30%",
+     "t": 19.32
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "ÓSCAR HONORÍFICO",
+     "sub": "POR FIN TIENE SU ÓSCAR",
+     "en": "Óscar",
+     "t": 13.76
+    },
+    {
+     "tipo": "contador",
+     "valor": 8,
+     "prefijo": "",
+     "sufijo": "",
+     "texto": "8",
+     "sub": "NOMINACIONES SIN GANAR",
+     "en": "ocho",
+     "t": 16.4
+    },
+    {
+     "tipo": "titulo",
+     "texto": "PARA SU HIJA ANNIE",
+     "categoria": "DEDICATORIA",
+     "en": "dedicó",
+     "t": 19.28
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "inicio": 20.84,
+   "fin": 28.6,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n3_scott_pantalla.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 20.84
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n3_scott_oscar.jpg",
+     "en": "mensaje",
+     "ajuste": "contain",
+     "t": 24.2
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "RIDLEY SCOTT",
+     "sub": "MENSAJE GRABADO",
+     "en": "mensaje",
+     "t": 24.16
+    },
+    {
+     "tipo": "titulo",
+     "texto": "PARA SU HERMANO TONY",
+     "categoria": "DEDICATORIA",
+     "en": "hermano",
+     "t": 27.12
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "inicio": 28.6,
+   "fin": 37.08,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n4_slow_horses_poster.jpg",
+     "en": null,
+     "foco": "center 15%",
+     "t": 28.6
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n4_slow_horses_funeral.jpg",
+     "en": "Gary",
+     "ajuste": "contain",
+     "t": 32.52
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n4_slow_horses_escena.jpg",
+     "en": "aunque",
+     "ajuste": "contain",
+     "t": 34.68
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "bloques",
+     "valor": 2,
+     "etiquetaBloque": "T",
+     "texto": "TEMPORADAS 9 Y 10",
+     "sub": "RENOVADA",
+     "en": "nueve",
+     "t": 30.88
+    },
+    {
+     "tipo": "nombre",
+     "texto": "GARY OLDMAN",
+     "sub": "ES JACKSON LAMB",
+     "en": "Gary",
+     "t": 32.48
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "inicio": 37.08,
+   "fin": 44.88,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n5_3cuerpos_escena2.jpg",
+     "en": null,
+     "foco": "55% center",
+     "t": 37.08
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n5_3cuerpos_poster.jpg",
+     "en": "segunda",
+     "ajuste": "contain",
+     "t": 39.8
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-16/n5_3cuerpos_escena1.jpg",
+     "en": "adelanto",
+     "foco": "60% 30%",
+     "t": 43.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "ENE",
+     "dia": "14",
+     "texto": "TEMPORADA 2",
+     "sub": "SOLO EN NETFLIX",
+     "en": "catorce",
+     "t": 41.8
+    },
+    {
+     "tipo": "titulo",
+     "texto": "ADELANTO: MAÑANA",
+     "categoria": "TEASER",
+     "en": "adelanto",
+     "t": 42.96
+    }
+   ]
+  }
+ ],
+ "duracionVoz": 45.08,
+ "montaje": {
+  "fps": 30,
+  "intro": 76,
+  "vozOffset": 2.4,
+  "cierreInicio": 1445,
+  "cierre": 96,
+  "total": 1541
+ }
+}
