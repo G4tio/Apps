@@ -12,7 +12,7 @@ import {PanelDatos, Dato} from './PanelDatos';
 // ---------- tipos ----------
 type Medio = {
   tipo: 'imagen' | 'video'; src: string; t: number; desde?: number; hasta?: number;
-  ajuste?: 'contain' | 'cover'; foco?: string; archivo?: string; zoom?: number;
+  ajuste?: 'contain' | 'cover'; foco?: string; archivo?: string; zoom?: number; etiqueta?: string;
 };
 type Rotulo = {texto: string; t: number; contador?: number; prefijo?: string; sufijo?: string};
 type Noticia = {n: number; inicio: number; fin: number; medios: Medio[]; rotulos: Rotulo[]};
@@ -77,7 +77,17 @@ const VistaMedio: React.FC<{m: Medio; dur: number; f: number}> = ({m, dur, f}) =
     );
   }
   return (
-    <AbsoluteFill style={{opacity: pIn, transform: `scale(${lerp(1.07, 1, pIn)})`}}>{contenido}</AbsoluteFill>
+    <AbsoluteFill style={{opacity: pIn, transform: `scale(${lerp(1.07, 1, pIn)})`}}>
+      {contenido}
+      {/* etiqueta visible para imágenes no oficiales (p. ej. hechas con IA) */}
+      {m.etiqueta ? (
+        <div style={{position: 'absolute', left: 24, top: 24, zIndex: 60, background: 'rgba(0,0,0,0.72)', color: '#fff',
+          fontFamily: 'Bebas Neue', fontSize: 34, letterSpacing: '0.1em', padding: '6px 18px 4px', borderRadius: 10,
+          border: '2px solid rgba(255,255,255,0.35)'}}>
+          {m.etiqueta}
+        </div>
+      ) : null}
+    </AbsoluteFill>
   );
 };
 
