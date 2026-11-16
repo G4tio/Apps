@@ -1,0 +1,25 @@
+{
+ "pantalla": [
+  [["cinco"], "5", "c"],
+  [["dieciséis","de","noviembre."], "16 de noviembre", "c"],
+  [["treinta","días."], "30 días", "c"],
+  [["cuarenta","y","una","millas","náuticas"], "41 millas náuticas", "c"],
+  [["quinientos","cincuenta","paquetes"], "550 paquetes", "c"],
+  [["tres","tripulantes"], "3 tripulantes", "c"],
+  [["seis","mil","cuatrocientos","dieciséis."], "6416", "c"],
+  [["dos","goles"], "2 goles", "c"]
+ ],
+ "claves": ["guatemala", "estado de sitio", "zacapa", "izabal", "bernardo arévalo", "estructuras criminales", "puestos de registro",
+            "narcotráfico", "ejército", "lancha", "pacífico", "cocaína", "detenidos", "veteranos militares", "bloqueos", "congreso",
+            "miguel ángel asturias", "centro cultural", "tumba", "selección", "toronto", "canadá", "liga de naciones",
+            "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"sitio": "sitio", "zacapa": "Zacapa", "izabal": "Izabal,", "dias": "treinta", "arevalo": "Arévalo", "registro": "registro,", "majada": "Majada."},
+  "2": {"golpe": "Golpe", "ejercito": "Ejército", "lancha": "lancha", "millas": "cuarenta", "paquetes": "quinientos", "detenidos": "detenidos."},
+  "3": {"veteranos": "Veteranos", "bloqueos": "bloqueos", "congreso": "Congreso,", "iniciativa": "iniciativa"},
+  "4": {"asturias": "Asturias", "cenizas": "cenizas", "centro": "Centro", "tumba": "tumba."},
+  "5": {"noche": "noche,", "toronto": "Toronto.", "charter": "chárter,", "goles": "dos", "canada": "Canadá"},
+  "6": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}
