@@ -1,0 +1,27 @@
+{
+ "pantalla": [
+  [["cinco"], "5", "c"],
+  [["dieciséis","de","noviembre."], "16 de noviembre", "c"],
+  [["jueves","diecinueve"], "jueves 19", "c"],
+  [["mil","trescientos","treinta","y","seis","drones"], "1,336 drones", "c"],
+  [["dieciséis","regiones,"], "16 regiones", "c"],
+  [["tres","días."], "3 días", "c"],
+  [["león","catorce"], "León XIV", "k"],
+  [["un","millón","y","medio"], "1.5 millones", "c"],
+  [["mil","quinientos","migrantes"], "1,500 migrantes", "c"],
+  [["catorce","embarcaciones."], "14 embarcaciones", "c"],
+  [["dos","mil","veinte."], "2020", "c"]
+ ],
+ "claves": ["internacionales", "donald trump", "xi jinping", "vladimir putin", "shenzhen", "china", "apec", "asia",
+            "ucrania", "rusia", "puente de crimea", "irán", "baréin", "interceptaron", "superpetrolero", "mina",
+            "perú", "lima", "vaticano", "pobres", "españa", "islas canarias", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"trump": "Trump,", "xi": "Xi", "putin": "Putin", "shenzhen": "Shenzhen,"},
+  "2": {"ataque": "ataque", "cifra": "mil", "regiones": "regiones,", "puente": "puente"},
+  "3": {"ataco": "atacó", "segunda": "segunda", "interceptaron": "interceptaron", "hundio": "hundió"},
+  "4": {"peru": "Perú", "fieles": "millón", "mensaje": "mensaje:"},
+  "5": {"canarias": "Canarias", "cifra": "mil", "embarcaciones": "embarcaciones."},
+  "6": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}

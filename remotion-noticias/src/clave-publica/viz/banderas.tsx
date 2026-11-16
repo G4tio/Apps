@@ -199,3 +199,32 @@ export const EAU: React.FC<B> = ({ w = 200, id }) => {
     </Marco>
   );
 };
+
+/** China: rojo con una estrella grande y cuatro pequeñas amarillas. */
+export const China: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 2) / 3;
+  const u = w / 30;
+  const est = (cx: number, cy: number, r: number, rot = 0) => Array.from({ length: 10 }).map((_, k) => {
+    const rr = k % 2 ? r * 0.38 : r, a = -Math.PI / 2 + rot + (k * Math.PI) / 5;
+    return `${cx + Math.cos(a) * rr},${cy + Math.sin(a) * rr}`;
+  }).join(" ");
+  return (
+    <Marco w={w} h={h} id={id}>
+      <rect width={w} height={h} fill="#EE1C25" />
+      <polygon points={est(5 * u, 5 * u, 3 * u)} fill="#FFFF00" />
+      {[[10, 2], [12, 4], [12, 7], [10, 9]].map(([x, y], i) => <polygon key={i} points={est(x * u, y * u, u, 0.6 - i * 0.3)} fill="#FFFF00" />)}
+    </Marco>
+  );
+};
+
+/** Baréin: blanco a la izquierda con borde de cinco puntas y rojo a la derecha. */
+export const Barein: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 3) / 5;
+  const x0 = w * 0.25, d = w * 0.12, n = 5;
+  const pts = [`0,0`, `${x0},0`];
+  for (let i = 0; i < n; i++) {
+    pts.push(`${x0 + d},${(h / n) * (i + 0.5)}`, `${x0},${(h / n) * (i + 1)}`);
+  }
+  pts.push(`0,${h}`);
+  return <Marco w={w} h={h} id={id}><rect width={w} height={h} fill="#CE1126" /><polygon points={pts.join(" ")} fill="#FFFFFF" /></Marco>;
+};
