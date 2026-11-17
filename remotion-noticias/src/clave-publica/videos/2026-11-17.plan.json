@@ -1,0 +1,27 @@
+{
+ "pantalla": [
+  [["cinco"], "5", "c"],
+  [["diecisiete","de","noviembre."], "17 de noviembre", "c"],
+  [["ocho","años"], "8 años", "c"],
+  [["trescientos","mil","quetzales,"], "Q300 mil", "c"],
+  [["treinta","días"], "30 días", "c"],
+  [["dos","mil","veintisiete."], "2027", "c"],
+  [["siete","departamentos:"], "7 departamentos:", "c"],
+  [["trescientas","cincuenta","sesiones"], "350 sesiones", "c"]
+ ],
+ "claves": ["guatemala", "bernardo arévalo", "ley marco de ciberseguridad", "fraude informático", "prisión", "ministerio público",
+            "fiscalía especializada", "tribunal supremo electoral", "juntas electorales departamentales", "título universitario",
+            "diciembre", "ministerio de gobernación", "energía y minas", "minería ilegal", "izabal", "jade", "oro",
+            "órdenes judiciales", "bajas temperaturas", "ministerio de agricultura", "cultivos", "animales", "hospital roosevelt",
+            "semana del cuidado renal infantil", "pruebas gratuitas", "enfermedad renal crónica", "hemodiálisis",
+            "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"arevalo": "Arévalo", "ley": "Ciberseguridad.", "acceso": "acceso", "intercepta": "interceptación", "fraude": "fraude", "anios": "ocho", "empresas": "empresas", "multa": "trescientos", "fiscalia": "fiscalía", "dias": "treinta"},
+  "2": {"tse": "Tribunal", "juntas": "juntas", "elecciones": "elecciones", "titulo": "título", "fondos": "fondos", "diciembre": "diciembre."},
+  "3": {"mingob": "Gobernación", "mem": "Energía", "mp": "Público", "izabal": "Izabal.", "jade": "jade", "oro": "oro", "estado": "Estado", "privadas": "privadas"},
+  "4": {"temp": "temperaturas,", "maga": "Agricultura", "siete": "siete", "huehue": "Huehuetenango,", "mallas": "mallas", "paja": "paja", "ganado": "ganado"},
+  "5": {"roosevelt": "Roosevelt", "renal": "Renal", "pruebas": "pruebas", "sintomas": "síntomas", "sesiones": "trescientas", "hemo": "hemodiálisis"},
+  "6": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}
