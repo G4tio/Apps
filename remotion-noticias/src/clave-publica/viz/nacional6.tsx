@@ -88,7 +88,7 @@ export const Ciberseguridad: React.FC<VizProps> = ({ c }) => {
         })}
         <Cifra x={840} y={380} valor={`${cuenta(f, c("anios") - 6, 8, 14)} AÑOS`} rotulo="DE PRISIÓN (MÁX.)" k={P(f, c("anios") - 8, 12, outBack)} size={110} />
         {/* barrotes */}
-        <g opacity={P(f, c("anios"), 12)} transform="translate(840 500)">
+        <g opacity={P(f, c("anios"), 12)} transform="translate(840 560)">
           {[-90, -45, 0, 45, 90].map((x, i) => <rect key={x} x={x - 7} y={lerp(-60, 0, P(f, c("anios") + i * 2, 10))} width="14" height="110" rx="6" fill={C.suave} />)}
           <rect x="-120" y="-8" width="240" height="14" rx="6" fill={C.claro} />
         </g>

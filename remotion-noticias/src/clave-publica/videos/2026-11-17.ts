@@ -10,6 +10,7 @@ export const VIDEO: VideoCP = {
   musica: "audio/2026-11-17/musica.wav",
   timing: timing as unknown as Timing,
   cierreHablado: true,
+  escenaCy: 1050,
   noticias: [
     { seccion: "GUATEMALA", titulo: "Sancionan Ley de Ciberseguridad", viz: "ciberseguridad", etiquetas: [["ley", "DECRETO 26-2026"]] },
     { seccion: "GUATEMALA", titulo: "TSE define perfil de juntas", viz: "juntastse", etiquetas: [["juntas", "ELECCIONES 2027"]] },

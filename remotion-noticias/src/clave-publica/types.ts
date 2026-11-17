@@ -27,4 +27,6 @@ export type VideoCP = {
   /** true: el último bloque de la voz es el cierre hablado («Infórmate, comparte y síguenos en Clave Pública»),
    *  que suena sobre la recapitulación; en el plan, sus cues son informate, comparte y siguenos. */
   cierreHablado?: boolean;
+  /** Centro vertical del escenario de ilustraciones (por defecto 917). Más alto = más abajo, lejos de los subtítulos. */
+  escenaCy?: number;
 };

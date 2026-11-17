@@ -62,10 +62,10 @@ export const Noticia: React.FC<{ noticia: NoticiaCP; n: number; dur: number; des
   const etiquetas = noticia.etiquetas?.map(([k, text]) => ({ at: typeof k === "number" ? local(k, desde) : cue(k), text }));
   return (
     <AbsoluteFill>
-      <Fondo glowY={917} />
+      <Fondo glowY={VIDEO.escenaCy ?? 917} />
       <Encabezado seccion={noticia.seccion} n={n} total={NOTICIAS.length} avance={f / dur} />
       <Subtitulos frases={bl.frases} desde={desde} fin={dur} />
-      <Escenario etiquetas={etiquetas}>
+      <Escenario etiquetas={etiquetas} cy={VIDEO.escenaCy}>
         {Viz ? <Viz c={cue} dur={dur} /> : null}
       </Escenario>
     </AbsoluteFill>
