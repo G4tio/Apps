@@ -62,7 +62,7 @@ export const Ciberseguridad: React.FC<VizProps> = ({ c }) => {
     <Lienzo>
       {/* Fase A */}
       <g opacity={a}>
-        <Sticker src={FOTOS + "presidente.png"} id="pres" x={-10} y={250} w={630} h={420} k={k} opacity={Math.min(1, k * 2)} />
+        <Sticker src={FOTOS + "presidente.png"} id="pres" x={10} y={220} w={540} h={456} k={k} opacity={Math.min(1, k * 2)} />
         <g transform={`translate(830 300) scale(${pop(f, 10, 14)})`}>
           {Array.from({ length: 6 }).map((_, i) => (
             <text key={i} x={-150 + i * 60} y={-150 + ((f * 3 + i * 47) % 120)} fontFamily={F.mono} fontWeight={700} fontSize="26" fill={C.suave} opacity={0.5} textAnchor="middle">{(i + Math.floor(f / 6)) % 2 ? "1" : "0"}</text>
@@ -279,7 +279,7 @@ export const RenalRoosevelt: React.FC<VizProps> = ({ c }) => {
   const kr = pop(f, c("renal") - 8, 14);
   return (
     <Lienzo>
-      <Sticker src={FOTOS + "roosevelt.png"} id="roos" x={60} y={0} w={570} h={380} k={k} opacity={Math.min(1, k * 2)} />
+      <Sticker src={FOTOS + "roosevelt.png"} id="roos" x={50} y={0} w={570} h={382} k={k} opacity={Math.min(1, k * 2)} />
       <g transform={`translate(860 200) scale(${kr * late})`} opacity={Math.min(1, kr * 1.5)}>
         <circle r="150" fill="rgba(229,72,77,0.12)" stroke="#E5484D" strokeWidth="3" strokeDasharray="10 10" transform={`rotate(${f})`} />
         <Rinon />
