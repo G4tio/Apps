@@ -1,13 +1,13 @@
 import type { Timing, VideoCP } from "../types";
-import timing from "./2026-11-18-int.timing.json";
+import timing from "./2026-11-17-int.timing.json";
 
-// Clave Pública · 5 noticias internacionales · miércoles 18 de noviembre de 2026 (con cierre hablado)
+// Clave Pública · 5 noticias internacionales · miércoles 17 de noviembre de 2026 (con cierre hablado)
 export const VIDEO: VideoCP = {
-  fecha: "18 de noviembre de 2026",
+  fecha: "17 de noviembre de 2026",
   resumen: "NOTICIAS INTERNACIONALES",
   resumenIcono: "globo",
-  voz: "audio/2026-11-18-int/voz_limpia.wav",
-  musica: "audio/2026-11-18-int/musica.wav",
+  voz: "audio/2026-11-17-int/voz_limpia.wav",
+  musica: "audio/2026-11-17-int/musica.wav",
   timing: timing as unknown as Timing,
   cierreHablado: true,
   escenaCy: 1050,

@@ -4,8 +4,8 @@ import { C, F, P, inOut, lerp, outBack, outCubic } from "../../theme";
 import { Cifra, Lienzo, Sticker, fade, pop, type VizProps } from "./internacional";
 import { Bolivia, Chequia, Dinamarca, EEUU, ElSalvador, Haiti, Mexico, Noruega } from "./banderas";
 
-// Ilustraciones de la edición internacional del 18 nov 2026.
-const FOTOS = "fotos/2026-11-18-int/";
+// Ilustraciones de la edición internacional del 17 nov 2026.
+const FOTOS = "fotos/2026-11-17-int/";
 const cuenta = (f: number, at: number, hasta: number, d = 22) =>
   Math.round(interpolate(f, [at, at + d], [0, hasta], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: outCubic }));
 const fase = (f: number, a: number, b: number) => Math.min(P(f, a, 10), 1 - P(f, b, 10));
