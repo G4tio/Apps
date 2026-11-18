@@ -69,11 +69,21 @@ const VistaMedio: React.FC<{m: Medio; dur: number; f: number}> = ({m, dur, f}) =
   } else {
     // fragmento preparado por scripts/fragmentos.py con la duración exacta de su espacio
     contenido = (
-      <OffthreadVideo
-        src={staticFile(m.archivo!)}
-        muted
-        style={{...base, objectPosition: 'center center', transform: `scale(${(m.zoom ?? ZOOM_VIDEO) * zoom})`}}
-      />
+      m.ajuste === 'contain' ? (
+        <>
+          {/* cuadro completo (p. ej. placas de texto horizontales) sobre su propio fondo desenfocado */}
+          <OffthreadVideo src={staticFile(m.archivo!)} muted
+            style={{...base, objectFit: 'cover', filter: 'blur(28px) brightness(0.45)', transform: 'scale(1.2)'}} />
+          <OffthreadVideo src={staticFile(m.archivo!)} muted
+            style={{...base, objectFit: 'contain', transform: `scale(${zoom})`}} />
+        </>
+      ) : (
+        <OffthreadVideo
+          src={staticFile(m.archivo!)}
+          muted
+          style={{...base, objectPosition: 'center center', transform: `scale(${(m.zoom ?? ZOOM_VIDEO) * zoom})`}}
+        />
+      )
     );
   }
   return (

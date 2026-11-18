@@ -1,0 +1,419 @@
+{
+ "fecha": "2026-11-17",
+ "fechaTexto": "MARTES 17 DE NOVIEMBRE",
+ "voz": "media/2026-11-17/voz/voz_limpia.wav",
+ "pantalla": [
+  {
+   "bloque": 0,
+   "frase": "Cinco",
+   "texto": "5"
+  },
+  {
+   "bloque": 1,
+   "frase": "cinco",
+   "texto": "5"
+  },
+  {
+   "bloque": 2,
+   "frase": "tres",
+   "texto": "3"
+  },
+  {
+   "bloque": 2,
+   "frase": "catorce",
+   "texto": "14"
+  },
+  {
+   "bloque": 2,
+   "frase": "seis",
+   "texto": "6"
+  },
+  {
+   "bloque": 3,
+   "frase": "cuatro",
+   "texto": "4"
+  },
+  {
+   "bloque": 3,
+   "frase": "diez",
+   "texto": "10"
+  },
+  {
+   "bloque": 4,
+   "frase": "diecinueve",
+   "texto": "19"
+  },
+  {
+   "bloque": 5,
+   "frase": "catorce",
+   "texto": "14"
+  }
+ ],
+ "claves": [
+  "Jeff",
+  "Bezos",
+  "Robert",
+  "Pattinson",
+  "James",
+  "Bond",
+  "famoso",
+  "cuerpos",
+  "San-Ti",
+  "aquí",
+  "Netflix",
+  "Spider-Man",
+  "Rosario",
+  "Dawson",
+  "Juegos",
+  "Hambre",
+  "Amanecer",
+  "cosecha",
+  "Nueva",
+  "York",
+  "Latinoamérica",
+  "Traitors"
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "titulo": "EL NUEVO JAMES BOND",
+   "categoria": "AMAZON MGM",
+   "fondo": "media/2026-11-17/n1_bezos_alfombra.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n1_bezos_conferencia.jpg",
+     "en": null,
+     "foco": "55% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n1_007_oficial.jpg",
+     "en": "Robert",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n1_bezos_alfombra.jpg",
+     "en": "Hubo",
+     "foco": "50% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n1_pattinson_abrigo.jpg",
+     "en": "dudaron",
+     "foco": "55% 35%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n1_pattinson_traje.jpg",
+     "en": "famoso",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "JEFF BEZOS",
+     "sub": "\"MUY INVOLUCRADO\"",
+     "en": "Jeff"
+    },
+    {
+     "tipo": "nombre",
+     "texto": "ROBERT PATTINSON",
+     "sub": "EL NUEVO 007",
+     "en": "Robert"
+    },
+    {
+     "tipo": "bloques",
+     "valor": 5,
+     "texto": "5 FINALISTAS",
+     "sub": "PRUEBAS DE CÁMARA",
+     "en": "cinco"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "\"DEMASIADO FAMOSO\"",
+     "categoria": "LA DUDA INICIAL",
+     "en": "dudaron"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titulo": "EL PROBLEMA DE LOS 3 CUERPOS",
+   "categoria": "PRIMER ADELANTO · T2",
+   "fondo": "media/2026-11-17/n2_3cuerpos_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n2_3cuerpos_teaser_full.mp4",
+     "desde": 15.0,
+     "hasta": 17.0,
+     "toma": "planeta rojo",
+     "en": null
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n2_3cuerpos_teaser_full.mp4",
+     "desde": 41.0,
+     "hasta": 42.5,
+     "toma": "astronauta",
+     "en": "segunda"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n2_3cuerpos_teaser_full.mp4",
+     "desde": 42.6,
+     "hasta": 43.7,
+     "toma": "grúa y helicóptero",
+     "en": "Los"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n2_3cuerpos_teaser_full.mp4",
+     "desde": 67.4,
+     "hasta": 69.2,
+     "toma": "WE ARE HERE",
+     "en": "escriben",
+     "zoom": 1.0,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n2_3cuerpos_teaser_full.mp4",
+     "desde": 77.6,
+     "hasta": 79.6,
+     "toma": "multitud mirando al cielo",
+     "en": "Llega"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n2_3cuerpos_teaser_full.mp4",
+     "desde": 85.6,
+     "hasta": 87.6,
+     "toma": "título 3 Body Problem",
+     "en": "seis",
+     "zoom": 1.0,
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "\"ESTAMOS AQUÍ\"",
+     "categoria": "LOS SAN-TI",
+     "en": "escriben"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "ENE",
+     "dia": "14",
+     "texto": "TEMPORADA 2",
+     "sub": "NETFLIX",
+     "en": "catorce"
+    },
+    {
+     "tipo": "bloques",
+     "valor": 6,
+     "etiquetaBloque": "EP",
+     "texto": "6 EPISODIOS",
+     "sub": "TODOS EL MISMO DÍA",
+     "en": "seis"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titulo": "SPIDER-MAN: UN NUEVO DÍA",
+   "categoria": "VERSIÓN EXTENDIDA",
+   "fondo": "media/2026-11-17/n3_spidey_zendaya.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n3_spidey_poster_latam.jpg",
+     "en": null,
+     "foco": "center 45%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n3_spidey_zendaya.jpg",
+     "en": "versión",
+     "foco": "60% center"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n3_spidey_calle.jpg",
+     "en": "diez",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n3_spidey_poster_ninjas.jpg",
+     "en": "Rosario",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "4",
+     "texto": "REGRESA A CINES",
+     "sub": "VERSIÓN EXTENDIDA",
+     "en": "cuatro"
+    },
+    {
+     "tipo": "contador",
+     "valor": 10,
+     "prefijo": "+",
+     "sufijo": " MIN",
+     "texto": "+10 MIN",
+     "sub": "DE ESCENAS NUEVAS",
+     "en": "diez"
+    },
+    {
+     "tipo": "nombre",
+     "texto": "ROSARIO DAWSON",
+     "sub": "ESCENA INÉDITA",
+     "en": "Rosario"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "LOS JUEGOS DEL HAMBRE",
+   "categoria": "AMANECER EN LA COSECHA",
+   "fondo": "media/2026-11-17/n4_jh_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n4_juegos_hambre_full.mp4",
+     "desde": 0.35,
+     "hasta": 0.95,
+     "toma": "Haymitch corriendo",
+     "en": null,
+     "recorte": [
+      1244,
+      536,
+      0,
+      90
+     ]
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n4_jh_fondo.jpg",
+     "en": "Juegos"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n4_juegos_hambre_full.mp4",
+     "desde": 7.2,
+     "hasta": 8.5,
+     "toma": "Haymitch en la arena",
+     "en": "premiere",
+     "recorte": [
+      1244,
+      536,
+      0,
+      90
+     ]
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n4_juegos_hambre_full.mp4",
+     "desde": 15.4,
+     "hasta": 16.35,
+     "toma": "tributos mirando",
+     "en": "críticas",
+     "recorte": [
+      1244,
+      536,
+      0,
+      90
+     ]
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n4_juegos_hambre_full.mp4",
+     "desde": 16.45,
+     "hasta": 18.2,
+     "toma": "Effie",
+     "en": "Llega",
+     "recorte": [
+      1244,
+      536,
+      0,
+      90
+     ]
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-17/n4_juegos_hambre_full.mp4",
+     "desde": 25.9,
+     "hasta": 27.9,
+     "toma": "arena en llamas",
+     "en": "jueves",
+     "recorte": [
+      1244,
+      536,
+      0,
+      90
+     ]
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "PREMIERE EN NUEVA YORK",
+     "categoria": "ESTRENO MUNDIAL",
+     "en": "premiere"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "19",
+     "texto": "EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "diecinueve"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titulo": "THE TRAITORS",
+   "categoria": "REALITY · PEACOCK",
+   "fondo": "media/2026-11-17/n5_traitors_cumming.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n5_traitors_cumming.jpg",
+     "en": null,
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-17/n5_traitors_elenco.jpg",
+     "en": "quinta",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "RENOVADA HASTA LA T8",
+     "categoria": "TRES TEMPORADAS MÁS",
+     "en": "renovada"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "ENE",
+     "dia": "14",
+     "texto": "TEMPORADA 5",
+     "sub": "ESTRENO",
+     "en": "catorce"
+    }
+   ]
+  }
+ ]
+}
