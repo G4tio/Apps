@@ -1,0 +1,29 @@
+{
+ "pantalla": [
+  [["cinco"], "5", "c"],
+  [["dieciocho","de","noviembre."], "18 de noviembre", "c"],
+  [["doce","meses."], "12 meses.", "c"],
+  [["veintiséis","años"], "26 años", "c"],
+  [["noventa","y","cinco","por","ciento"], "95 %", "c"],
+  [["dos","dosis."], "2 dosis.", "c"],
+  [["doscientos","sitios"], "200 sitios", "c"],
+  [["cuarenta","y","seis","heridos,"], "46 heridos,", "c"],
+  [["cuatro","de","ellos"], "4 de ellos", "c"],
+  [["dos","a","cero"], "2-0", "c"],
+  [["tres","a","dos"], "3-2", "c"]
+ ],
+ "claves": ["organización panamericana de la salud", "méxico", "bolivia", "estados unidos", "sarampión", "ops", "ciberataque",
+            "bbc", "ikea", "air france", "código malicioso", "tarjetas de crédito", "criptomonedas", "haitianos", "puerto príncipe",
+            "nayib bukele", "el salvador", "haití", "pandillas", "amnistía internacional", "derechos humanos", "república checa",
+            "praga", "estación central", "heridos", "noruega", "dinamarca", "copenhague", "erling haaland", "cuartos de final",
+            "liga de naciones", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"ops": "Organización", "mexico": "México,", "bolivia": "Bolivia", "eeuu": "Estados", "meses": "doce", "llevaba": "veintiséis", "pide": "pide", "porciento": "noventa", "dosis": "dosis."},
+  "2": {"ciber": "ciberataque", "sitios": "doscientos", "bbc": "BBC,", "ikea": "IKEA", "airfrance": "Air", "atacantes": "atacantes", "codigo": "código", "tarjetas": "tarjetas", "cripto": "criptomonedas.", "bloqueo": "bloqueó"},
+  "3": {"haitianos": "haitianos", "principe": "Príncipe", "bukele": "Bukele", "soldados": "soldados", "pandillas": "pandillas.", "continuidad": "continuidad", "amnistia": "Amnistía"},
+  "4": {"checa": "Checa,", "chocaron": "chocaron", "praga": "Praga", "heridos": "cuarenta", "graves": "graves.", "senal": "señal", "investigan": "investigan"},
+  "5": {"noruega": "Noruega", "copenhague": "Copenhague.", "perdia": "Perdía", "haaland": "Haaland", "penal": "penal", "tres": "tres", "cuartos": "cuartos"},
+  "6": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}

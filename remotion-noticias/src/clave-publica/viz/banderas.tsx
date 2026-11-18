@@ -228,3 +228,56 @@ export const Barein: React.FC<B> = ({ w = 200, id }) => {
   pts.push(`0,${h}`);
   return <Marco w={w} h={h} id={id}><rect width={w} height={h} fill="#CE1126" /><polygon points={pts.join(" ")} fill="#FFFFFF" /></Marco>;
 };
+
+export const Bolivia: React.FC<B> = ({ w = 200, id }) => { const h = (w * 2) / 3; return <Marco w={w} h={h} id={id}>{tres(w, h, ["#D52B1E", "#F9E300", "#007934"])}</Marco>; };
+/** Haití: azul sobre rojo con panel blanco al centro (escudo simplificado). */
+export const Haiti: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 3) / 5;
+  return (
+    <Marco w={w} h={h} id={id}>
+      <rect width={w} height={h / 2} fill="#00209F" /><rect y={h / 2} width={w} height={h / 2} fill="#D21034" />
+      <rect x={w * 0.36} y={h * 0.3} width={w * 0.28} height={h * 0.4} fill="#FFFFFF" />
+      <path d={`M${w / 2} ${h * 0.36} v${h * 0.22}`} stroke="#016A16" strokeWidth={w * 0.012} />
+      <circle cx={w / 2} cy={h * 0.37} r={w * 0.03} fill="#016A16" />
+    </Marco>
+  );
+};
+/** El Salvador: azul, blanco, azul con el escudo simplificado. */
+export const ElSalvador: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 3) / 5;
+  return (
+    <Marco w={w} h={h} id={id}>
+      {tres(w, h, ["#0047AB", "#FFFFFF", "#0047AB"])}
+      <circle cx={w / 2} cy={h / 2} r={h * 0.12} fill="none" stroke="#C9A227" strokeWidth={w * 0.012} />
+      <path d={`M${w / 2 - h * 0.07} ${h / 2 + h * 0.05} L${w / 2} ${h / 2 - h * 0.07} L${w / 2 + h * 0.07} ${h / 2 + h * 0.05} Z`} fill="#0047AB" />
+    </Marco>
+  );
+};
+export const Chequia: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 2) / 3;
+  return (
+    <Marco w={w} h={h} id={id}>
+      <rect width={w} height={h / 2} fill="#FFFFFF" /><rect y={h / 2} width={w} height={h / 2} fill="#D7141A" />
+      <path d={`M0 0 L${w / 2} ${h / 2} L0 ${h} Z`} fill="#11457E" />
+    </Marco>
+  );
+};
+export const Noruega: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 16) / 22, u = w / 22;
+  return (
+    <Marco w={w} h={h} id={id}>
+      <rect width={w} height={h} fill="#BA0C2F" />
+      <rect x={6 * u} width={4 * u} height={h} fill="#FFFFFF" /><rect y={6 * u} width={w} height={4 * u} fill="#FFFFFF" />
+      <rect x={7 * u} width={2 * u} height={h} fill="#00205B" /><rect y={7 * u} width={w} height={2 * u} fill="#00205B" />
+    </Marco>
+  );
+};
+export const Dinamarca: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 28) / 37, u = w / 37;
+  return (
+    <Marco w={w} h={h} id={id}>
+      <rect width={w} height={h} fill="#C8102E" />
+      <rect x={12 * u} width={4 * u} height={h} fill="#FFFFFF" /><rect y={12 * u} width={w} height={4 * u} fill="#FFFFFF" />
+    </Marco>
+  );
+};
