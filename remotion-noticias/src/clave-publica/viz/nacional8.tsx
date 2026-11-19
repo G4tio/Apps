@@ -152,55 +152,89 @@ export const Homicidios: React.FC<VizProps> = ({ c }) => {
 
 /* ---------- 3. Baldetti, al Hospital San Juan de Dios ---------- */
 const Hospital: React.FC = () => (
-  <g filter="drop-shadow(0 8px 16px rgba(0,0,0,0.4))">
-    <rect x="-120" y="-80" width="240" height="160" rx="12" fill={C.grisClaro} />
-    <rect x="-60" y="-130" width="120" height="60" rx="10" fill={C.grisClaro} />
-    <rect x="-14" y="-122" width="28" height="44" fill={ROJO} /><rect x="-22" y="-114" width="44" height="28" fill={ROJO} />
-    {[-80, -30, 30, 80].map((x) => <rect key={x} x={x - 16} y="-50" width="32" height="34" rx="4" fill="#9CC9EC" />)}
-    <rect x="-24" y="20" width="48" height="60" rx="6" fill={C.marino} />
+  <g filter="drop-shadow(0 10px 18px rgba(0,0,0,0.45))">
+    <rect x="-150" y="-70" width="300" height="160" rx="10" fill={C.grisClaro} />
+    <rect x="-150" y="-70" width="300" height="34" rx="10" fill={C.suave} />
+    <rect x="-150" y="-46" width="300" height="10" fill={C.suave} />
+    <text y="-46" textAnchor="middle" fontFamily={F.mono} fontWeight={800} fontSize="22" fill={C.marino} letterSpacing="3">HOSPITAL</text>
+    {[-1, 1].map((r) => [-110, -60, 60, 110].map((x) => (
+      <rect key={`${r}${x}`} x={x - 17} y={r < 0 ? -22 : 26} width="34" height="30" rx="4" fill="#9CC9EC" stroke="#6E9CC4" strokeWidth="2" />
+    )))}
+    <rect x="-30" y="22" width="60" height="68" rx="6" fill={C.marino} />
+    <line x1="0" y1="26" x2="0" y2="90" stroke={C.suave} strokeWidth="3" />
+    <g transform="translate(0 -102)">
+      <circle r="34" fill="#FFFFFF" stroke={ROJO} strokeWidth="5" />
+      <rect x="-9" y="-22" width="18" height="44" rx="3" fill={ROJO} /><rect x="-22" y="-9" width="44" height="18" rx="3" fill={ROJO} />
+    </g>
   </g>
 );
 const Carcel: React.FC = () => (
-  <g filter="drop-shadow(0 8px 16px rgba(0,0,0,0.4))">
-    <rect x="-110" y="-70" width="220" height="140" rx="12" fill="#5B6B80" stroke={C.claro} strokeWidth="3" />
-    {[-70, -35, 0, 35, 70].map((x) => <rect key={x} x={x - 6} y="-60" width="12" height="120" rx="4" fill="#1F2937" />)}
+  <g filter="drop-shadow(0 10px 18px rgba(0,0,0,0.45))">
+    {/* alambre de púas */}
+    <path d="M-140 -78 l14 -12 l14 12 l14 -12 l14 12 l14 -12 l14 12 l14 -12 l14 12 l14 -12 l14 12 l14 -12 l14 12 l14 -12 l14 12 l14 -12 l14 12 l14 -12 l14 12 l14 -12 l14 12" fill="none" stroke="#A9B4C2" strokeWidth="3" />
+    <rect x="-140" y="-74" width="280" height="150" rx="6" fill="#5B6676" />
+    {[-44, -6, 32].map((y) => <line key={y} x1="-140" y1={y} x2="140" y2={y} stroke="#4A5462" strokeWidth="3" />)}
+    {[-100, -40, 20, 80].map((x, i) => <line key={x} x1={x + (i % 2) * 20} y1="-74" x2={x + (i % 2) * 20} y2="-44" stroke="#4A5462" strokeWidth="3" />)}
+    <rect x="-60" y="-46" width="120" height="96" rx="8" fill="#1F2937" stroke="#A9B4C2" strokeWidth="4" />
+    {[-36, -12, 12, 36].map((x) => <rect key={x} x={x - 4} y="-46" width="8" height="96" fill="#A9B4C2" />)}
   </g>
 );
 const Mazo: React.FC<{ golpe: number }> = ({ golpe }) => (
   <g>
-    <rect x="-60" y="44" width="120" height="20" rx="6" fill="#8A5A3B" />
-    <g transform={`rotate(${-35 + 35 * golpe} 40 40)`}>
-      <rect x="-10" y="-60" width="20" height="100" rx="6" fill="#B07A52" transform="rotate(-45)" />
-      <rect x="-50" y="-40" width="100" height="44" rx="10" fill="#8A5A3B" transform="rotate(-45)" />
+    {/* base */}
+    <rect x="-70" y="58" width="110" height="18" rx="6" fill="#8A5A3B" />
+    <rect x="-60" y="48" width="90" height="12" rx="5" fill="#B07A52" />
+    {golpe > 0.05 && [-1, 1].map((d) => (
+      <path key={d} d={`M${-15 + d * 62} 40 l${d * 18} -14 M${-15 + d * 66} 54 l${d * 22} 0`} stroke={C.claro} strokeWidth="5" strokeLinecap="round" opacity={1 - golpe * 0.3} />
+    ))}
+    {/* mazo: el mango apunta arriba a la derecha y gira para golpear la base */}
+    <g transform={`translate(-15 24) rotate(${-28 * (1 - golpe)} 60 -60)`}>
+      <line x1="0" y1="0" x2="64" y2="-64" stroke="#B07A52" strokeWidth="14" strokeLinecap="round" />
+      <g transform="rotate(45)">
+        <rect x="-26" y="-50" width="52" height="100" rx="12" fill="#8A5A3B" />
+        <rect x="-30" y="-50" width="60" height="16" rx="7" fill="#C9935F" />
+        <rect x="-30" y="34" width="60" height="16" rx="7" fill="#C9935F" />
+      </g>
     </g>
+  </g>
+);
+const Palomita: React.FC<{ k: number }> = ({ k }) => (
+  <g transform={`scale(${k})`} opacity={Math.min(1, k * 1.5)}>
+    <circle r="30" fill={C.menta} />
+    <path d="M-13 1 L-3 11 L14 -9" fill="none" stroke={C.marino} strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
   </g>
 );
 export const BaldettiHospital: React.FC<VizProps> = ({ c }) => {
   const f = useCurrentFrame();
   const k = pop(f, 4, 16);
   const kh = pop(f, c("hospital") - 6, 14);
-  const kc = pop(f, c("jueza") - 2, 14);
-  const golpe = P(f, c("efecto") - 6, 5) * (1 - P(f, c("efecto") - 1, 6));
-  const tacha = P(f, c("santateresa") - 6, 10);
-  const flecha = P(f, c("santateresa") + 2, 18, inOut);
+  const vaH = P(f, c("hospital") - 2, 22, inOut);
+  const kc = pop(f, c("jueza") - 6, 14);
+  const vaC = P(f, c("jueza") - 2, 18, inOut);
+  const golpe = P(f, c("efecto") - 6, 5) * (1 - P(f, c("efecto") - 1, 8));
+  const tacha = P(f, c("santateresa") - 8, 10);
+  const kp = pop(f, c("santateresa") + 6, 12);
   return (
     <Lienzo>
-      <Sticker src={FOTOS + "baldetti.png"} id="baldetti" x={30} y={110} w={450} h={600} k={k} opacity={Math.min(1, k * 2)} />
-      <g transform={`translate(760 160) scale(${kh})`} opacity={Math.min(1, kh * 1.5)}><Hospital /></g>
-      <g transform={`translate(760 520) scale(${kc})`} opacity={Math.min(1, kc * 1.5)}>
-        <Carcel />
-        <g opacity={tacha} stroke={ROJO} strokeWidth="16" strokeLinecap="round">
-          <line x1={-100} y1={-80} x2={-100 + 200 * tacha} y2={-80 + 160 * tacha} />
-          <line x1={100} y1={-80} x2={100 - 200 * P(f, c("santateresa") - 2, 8)} y2={-80 + 160 * P(f, c("santateresa") - 2, 8)} />
-        </g>
+      <Sticker src={FOTOS + "baldetti.png"} id="baldetti" x={20} y={120} w={420} h={560} k={k} opacity={Math.min(1, k * 2)} />
+      {/* destino 1: hospital (sí) */}
+      <path d="M440 300 C520 240 560 190 610 190" fill="none" stroke={C.celeste} strokeWidth="9" strokeLinecap="round" pathLength={1} strokeDasharray={`${vaH} 1`} />
+      <path d="M592 172 L614 190 L590 206" fill="none" stroke={C.celeste} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" opacity={P(f, c("hospital") + 16, 6)} />
+      <g transform={`translate(790 200) scale(${kh})`} opacity={Math.min(1, kh * 1.5)}><Hospital /></g>
+      <g transform="translate(925 120)"><Palomita k={kp} /></g>
+      {/* destino 2: cárcel de Santa Teresa (orden sin efecto) */}
+      <g opacity={1 - 0.45 * tacha}>
+        <path d="M440 470 C520 500 570 520 615 520" fill="none" stroke={C.suave} strokeWidth="8" strokeLinecap="round" strokeDasharray="14 12" pathLength={undefined}
+          opacity={Math.min(1, vaC * 3)} style={{ clipPath: `inset(0 ${100 - vaC * 100}% 0 0)` }} />
+        <g transform={`translate(790 530) scale(${kc})`} opacity={Math.min(1, kc * 1.5)}><Carcel /></g>
       </g>
-      <Chip x={760} y={650} texto="SANTA TERESA" k={kc} size={24} />
-      {/* traslado: de la cárcel al hospital */}
-      <g opacity={Math.min(1, flecha * 3)}>
-        <path d="M890 440 Q940 340 890 260" fill="none" stroke={C.celeste} strokeWidth="8" pathLength={1} strokeDasharray={`${flecha} 1`} strokeLinecap="round" />
-        <path d="M890 260 l6 30 m-6 -30 l-26 16" stroke={C.celeste} strokeWidth="8" strokeLinecap="round" opacity={P(f, c("santateresa") + 16, 6)} />
+      <g transform="translate(790 530)" stroke={ROJO} strokeWidth="16" strokeLinecap="round" opacity={tacha}>
+        <line x1={-120} y1={-90} x2={-120 + 240 * tacha} y2={-90 + 170 * tacha} />
+        <line x1={120} y1={-90} x2={120 - 240 * P(f, c("santateresa") - 4, 10)} y2={-90 + 170 * P(f, c("santateresa") - 4, 10)} />
       </g>
-      <g transform={`translate(575 335) scale(${pop(f, c("jueza") - 4, 12) * 1.25})`}><Mazo golpe={golpe} /></g>
+      <Chip x={790} y={660} texto="SANTA TERESA" k={kc} size={24} />
+      <g transform={`translate(540 355) scale(${pop(f, c("jueza") - 4, 12) * 0.95})`} opacity={Math.min(1, pop(f, c("jueza") - 4, 12) * 1.5)}><Mazo golpe={golpe} /></g>
+      <Chip x={540} y={760} texto="PRISIÓN PREVENTIVA" k={pop(f, c("preventiva") - 6)} color={AMARILLO} size={24} />
     </Lienzo>
   );
 };

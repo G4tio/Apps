@@ -60,11 +60,19 @@ for i, texto in enumerate(lineas):
         # palabras de más al inicio (sílabas sueltas): la primera palabra oída debe parecerse a la esperada
         inicio_ok = bool(oido) and difflib.SequenceMatcher(None, oido[0], esperado[0]).ratio() >= 0.5
         extra = len(oido) - len(esperado)
-        ok = sim >= 0.80 and inicio_ok and extra <= 2
+        # final cortado: Fish a veces entrega el MP3 a media palabra (la voz sigue fuerte en los últimos 150 ms)
+        xx = leer(mp3)
+        cola = 20 * np.log10(np.sqrt(np.mean(xx[-int(0.15 * SR):] ** 2)) + 1e-9)
+        final_ok = cola < -24
+        ok = sim >= 0.80 and inicio_ok and extra <= 2 and final_ok
         print(f'bloque {i} intento {intento}: similitud {sim:.2f}, inicio {"ok" if inicio_ok else "MAL"}, '
-              f'palabras {len(oido)}/{len(esperado)} -> {"OK" if ok else "repetir"}')
-        if mejor is None or sim > mejor[0]:
-            mejor = (sim, mp3)
+              f'palabras {len(oido)}/{len(esperado)}, final {cola:.0f} dB{"" if final_ok else " CORTADO"} -> {"OK" if ok else "repetir"}')
+        if final_ok and (mejor is None or sim > mejor[0] or not mejor[2]):
+            mejor = (sim, mp3, True)
+        elif mejor is None:
+            mejor = (sim, mp3, False)
+        if False:
+            pass
         if ok:
             break
     x = recortar(leer(mejor[1]))
