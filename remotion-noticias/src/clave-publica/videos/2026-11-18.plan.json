@@ -1,0 +1,30 @@
+{
+ "pantalla": [
+  [["seis"], "6", "c"],
+  [["dieciocho","de","noviembre."], "18 de noviembre", "c"],
+  [["dos","mil","veintiocho","a","dos","mil","treinta","y","tres."], "2028 a 2033.", "c"],
+  [["dos","mil","veintisiete."], "2027.", "c"],
+  [["siete","jueces,"], "7 jueces,", "c"],
+  [["quinientas","cámaras"], "500 cámaras", "c"],
+  [["veinte","millones"], "20 millones", "c"],
+  [["cinco","mil","quetzales"], "Q5 mil", "c"],
+  [["cuarenta","y","cinco","mil","agentes,"], "45 mil agentes,", "c"],
+  [["cuatro","mil","guardias."], "4 mil guardias.", "c"],
+  [["veintitrés","por","ciento"], "23 %", "c"],
+  [["trescientas","treinta","libras"], "330 libras", "c"]
+ ],
+ "claves": ["guatemala", "marco antonio villeda", "corte interamericana de derechos humanos", "oea", "ministerio de gobernación",
+            "cámaras corporales", "pnc", "karen ortiz", "bono navideño", "guardias penitenciarios", "sistema penitenciario",
+            "ministerio de la defensa", "el triunfo", "izabal", "enero", "georgia", "estados unidos", "los pochos", "cocaína",
+            "atlanta", "fianza", "david illescas", "reelección", "raíces", "aislamiento penitenciario", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "seis"},
+  "1": {"villeda": "Villeda,", "corte": "Corte", "periodo": "veintiocho", "oea": "OEA,", "junio": "junio", "siete": "siete", "pais": "país."},
+  "2": {"mingob": "Gobernación", "detuvo": "detuvo", "camaras": "cámaras", "quinientas": "quinientas", "millones": "veinte", "ortiz": "Ortiz", "noviembre": "noviembre"},
+  "3": {"bono": "bono", "cinco": "cinco", "acuerdo": "acuerdo", "diciembre": "diciembre.", "pnc": "PNC", "agentes": "cuarenta", "guardias": "cuatro"},
+  "4": {"mindef": "Defensa", "triunfo": "Triunfo,", "izabal": "Izabal,", "avance": "veintitrés", "tierras": "tierras,", "enero": "enero.", "entrega": "entregaría"},
+  "5": {"guate": "guatemalteco", "georgia": "Georgia,", "pochos": "Pochos", "libras": "trescientas", "atlanta": "Atlanta.", "fianza": "fianza."},
+  "6": {"illescas": "Illescas", "reeleccion": "reelección", "raices": "Raíces.", "independencia": "independencia,", "ley": "ley"},
+  "7": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}
