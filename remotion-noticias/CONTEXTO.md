@@ -66,6 +66,8 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Personas: Trump, Putin, Xi, el papa León XIV, Arévalo (`2026-11-17/presidente.png`), Bukele, Haaland, Villeda, Karen Ortiz e Illescas.
   - Edificios: Hospital Roosevelt.
   - Logos: TSE, MP, MAGA, MEM, Mingob, Mindef, BBC, IKEA, Air France y Fedefut.
+  - 19 nov: Baldetti (`2026-11-19/baldetti.png`), góndola del AeroMetro (`aerometro.png`) y mazorcas de maíz (`maiz.png`). Congreso: `2026-11-16/congreso.png`.
+- **Más piezas** en `viz/nacional8.tsx`: billetes de quetzal (`Billete`), hojas de calendario (`Dia`), hospital, cárcel, mazo, sol, casas, conos y carros sobre un bulevar.
 
 ## Temas ya cubiertos (no repetir)
 
@@ -73,6 +75,8 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Estado de sitio en Zacapa e Izabal, veteranos y bloqueos, allanamiento al COG, Selección eliminada ante Canadá, Asturias.
   - 17 nov: Ley de Ciberseguridad, juntas del TSE, minería en Izabal, frío (MAGA), semana renal del Roosevelt.
   - 18 nov: Villeda a la Corte IDH, cámaras corporales, bono de Q5 mil, cárcel El Triunfo, extraditados a Atlanta, Illescas.
+  - 19 nov: Presupuesto 2027 sin dictamen, homicidios de octubre (CIEN), Baldetti al San Juan de Dios, sequía y maíz (Oxfam), carriles reducidos en el bulevar Liberación (AeroMetro).
+  - Propuestas el 19 nov pero no usadas: capturas por fentanilo (Maaz Cruz y García Chacón), extorsiones a la baja (13 226 denuncias), EE. UU. condena el ataque a la fiscal.
   - Propuestas el 18 nov pero no usadas: exención de combustibles hasta junio 2027, reformas a la prisión preventiva, ataque a la fiscal electoral, Ley de Contrataciones, zafra y El Niño, ranking FIFA 97.
 - **Internacionales:**
   - Rusia-Ucrania (negociación, drones, puente de Crimea), el Papa en Perú, Irán y Baréin, cumbre Trump-Xi-Putin, G7, ASEAN, Canarias.
@@ -84,4 +88,8 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Nacional 17 nov: `Nacional-2026-11-17`.
   - Internacional 17 nov: `Internacional-2026-11-17`.
   - Nacional 18 nov (6 noticias): `Nacional-2026-11-18`.
+  - Nacional 19 nov: `Nacional-2026-11-19`.
+- La credencial de Fish Audio está guardada en el entorno «Htmls» (no en «Default»): si `api.fish.audio` da 403, se cambia la sesión a ese entorno (`switch_environment`, solo red).
+- El modelo ASR se pasa como la carpeta que **contiene** `sherpa-onnx-nemo-fast-conformer-ctc-es-1424`.
+- `timing_cp.py` ahora corta la frase tras puntuación también cuando lleva ≥ 18 caracteres (evita subtítulos de tres líneas como «36,431 hogares guatemaltecos. 8 de cada 10…»).
 - Corrección reciente: `timing_cp.py` ya no duplica la puntuación («45 mil agentes,,») al cambiar palabras por cifras.

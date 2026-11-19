@@ -1,0 +1,277 @@
+{
+ "pantalla": [
+  [
+   [
+    "treinta",
+    "y",
+    "seis",
+    "mil",
+    "cuatrocientos",
+    "treinta",
+    "y",
+    "un",
+    "hogares"
+   ],
+   "36,431 hogares",
+   "c"
+  ],
+  [
+   [
+    "ciento",
+    "noventa",
+    "y",
+    "dos",
+    "mil",
+    "millones",
+    "de",
+    "quetzales,"
+   ],
+   "Q192 mil millones,",
+   "c"
+  ],
+  [
+   [
+    "dos",
+    "mil",
+    "seiscientos",
+    "dieciséis",
+    "casos,"
+   ],
+   "2,616 casos,",
+   "c"
+  ],
+  [
+   [
+    "cuarenta",
+    "y",
+    "cuatro",
+    "asesinatos"
+   ],
+   "44 asesinatos",
+   "c"
+  ],
+  [
+   [
+    "ocho",
+    "de",
+    "cada",
+    "diez"
+   ],
+   "8 de cada 10",
+   "c"
+  ],
+  [
+   [
+    "diecinueve",
+    "de",
+    "noviembre."
+   ],
+   "19 de noviembre.",
+   "c"
+  ],
+  [
+   [
+    "dos",
+    "mil",
+    "veintisiete"
+   ],
+   "2027",
+   "c"
+  ],
+  [
+   [
+    "veinticinco",
+    "de",
+    "noviembre."
+   ],
+   "25 de noviembre.",
+   "c"
+  ],
+  [
+   [
+    "dos",
+    "mil",
+    "veinticinco."
+   ],
+   "2025.",
+   "c"
+  ],
+  [
+   [
+    "setenta",
+    "y",
+    "cinco"
+   ],
+   "75",
+   "c"
+  ],
+  [
+   [
+    "cien",
+    "por",
+    "ciento"
+   ],
+   "100 %",
+   "c"
+  ],
+  [
+   [
+    "veinte",
+    "de",
+    "noviembre"
+   ],
+   "20 de noviembre",
+   "c"
+  ],
+  [
+   [
+    "diecinueve",
+    "de",
+    "diciembre."
+   ],
+   "19 de diciembre.",
+   "c"
+  ],
+  [
+   [
+    "cuarenta",
+    "calle",
+    "C."
+   ],
+   "40 calle C.",
+   "c"
+  ],
+  [
+   [
+    "estación",
+    "tres"
+   ],
+   "Estación 3",
+   "c"
+  ],
+  [
+   [
+    "once",
+    "avenida"
+   ],
+   "11 avenida",
+   "c"
+  ],
+  [
+   [
+    "zona",
+    "ocho."
+   ],
+   "zona 8.",
+   "c"
+  ],
+  [
+   [
+    "veinticuatro"
+   ],
+   "24",
+   "c"
+  ],
+  [
+   [
+    "treinta,"
+   ],
+   "30,",
+   "c"
+  ],
+  [
+   [
+    "quince"
+   ],
+   "15",
+   "c"
+  ]
+ ],
+ "claves": [
+  "guatemala",
+  "presupuesto",
+  "dictamen",
+  "congreso",
+  "comisión de finanzas",
+  "recorte",
+  "homicidios",
+  "cien",
+  "quinto mes",
+  "roxana baldetti",
+  "hospital san juan de dios",
+  "abelina cruz",
+  "santa teresa",
+  "cooptación del estado",
+  "sequía",
+  "maíz",
+  "oxfam",
+  "jalapa",
+  "chiquimula",
+  "bulevar liberación",
+  "carriles reducidos",
+  "aerometro",
+  "atanasio tzul",
+  "ruta alterna",
+  "síguenos",
+  "clave pública"
+ ],
+ "cues": {
+  "0": {
+   "cinco": "cinco"
+  },
+  "1": {
+   "presupuesto": "Presupuesto",
+   "dictamen": "dictamen",
+   "monto": "ciento",
+   "recorte": "recorte.",
+   "pleno": "pleno",
+   "veinticuatro": "veinticuatro",
+   "treinta": "treinta,",
+   "vigente": "vigente"
+  },
+  "2": {
+   "homicidios": "homicidios",
+   "cien": "CIEN,",
+   "cuarenta": "cuarenta",
+   "quinto": "quinto",
+   "enero": "enero",
+   "dosmil": "seiscientos",
+   "quince": "quince"
+  },
+  "3": {
+   "baldetti": "Baldetti",
+   "hospital": "Hospital",
+   "jueza": "jueza",
+   "efecto": "efecto",
+   "santateresa": "Teresa.",
+   "preventiva": "preventiva",
+   "cooptacion": "Cooptación"
+  },
+  "4": {
+   "sequia": "sequía",
+   "maiz": "maíz.",
+   "oxfam": "Oxfam",
+   "hogares": "treinta",
+   "ocho": "Ocho",
+   "setenta": "setenta",
+   "jalapa": "Jalapa",
+   "chiquimula": "Chiquimula"
+  },
+  "5": {
+   "bulevar": "bulevar",
+   "viernes": "viernes",
+   "carriles": "carriles",
+   "aerometro": "AeroMetro,",
+   "once": "once",
+   "atanasio": "Atanasio",
+   "diciembre": "diciembre.",
+   "ruta": "ruta",
+   "cuarenta": "cuarenta"
+  },
+  "6": {
+   "informate": "Infórmate,",
+   "comparte": "comparte",
+   "siguenos": "síguenos"
+  }
+ }
+}

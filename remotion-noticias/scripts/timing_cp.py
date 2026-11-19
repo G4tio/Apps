@@ -95,7 +95,7 @@ for b in range(len(lineas)):
     frases, cur = [], []
     for w in words:
         cur.append(w)
-        if (w["end"] and len(cur) >= 3) or len(cur) >= 7:
+        if (w["end"] and (len(cur) >= 3 or sum(len(x["w"]) for x in cur) >= 18)) or len(cur) >= 7:
             frases.append(cur); cur = []
     if cur:
         if frases and len(cur) <= 2: frases[-1] += cur
