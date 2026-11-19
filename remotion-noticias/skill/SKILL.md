@@ -17,7 +17,7 @@ El video se construye con **Remotion** sobre la plantilla ya hecha en el reposit
   - `Video.tsx` (`crearVideo`: línea de tiempo desde los tiempos reales), `Escenas.tsx` (resumen, noticia, recapitulación, FUENTES), `components.tsx` (fondo, transición, encabezado, subtítulos, escenario), `contexto.ts`.
   - `viz/`: ilustraciones por noticia (`internacional.tsx`, `nacional.tsx`, `banderas.tsx`) registradas en `viz/index.ts`. Ayudantes reutilizables: `Sticker` (foto recortada, con `fadeBottom`/`fadeLeft`), `Cifra` (número grande + rótulo mono), `Lienzo`, `pop`, `fade`. Cada ilustración recibe `c("cue")` = cuadro local de la palabra clave.
   - La composición `Noticias` (src/Video.tsx, src/data.ts) es la edición nacional del 10 nov hecha en otra sesión: no la toques.
-  - `public/fonts/` (Exo 2, Inter, JetBrains Mono, Montserrat), `public/marca/`, `public/audio/AAAA-MM-DD/` y `public/fotos/AAAA-MM-DD/` (estas dos no se versionan).
+  - `public/fonts/` (Exo 2, Inter, JetBrains Mono, Montserrat), `public/marca/`, `public/fotos/AAAA-MM-DD[-int]/` (sí se versiona: fotos y logos reutilizables de días anteriores) y `public/audio/AAAA-MM-DD[-int]/` (no se versiona: pesa mucho).
 - **Intro y cierre oficiales**: `public/marca/intro.mp4` (90 cuadros = 3,0 s) y `public/marca/cierre.mp4` (108 cuadros = 3,6 s), recortados con su audio del video aprobado del 9 nov 2026. Se insertan tal cual con `<OffthreadVideo>`; no los reanimes ni los cambies. `public/marca/bandera-gt.png` es la bandera de Guatemala con escudo, para el resumen y las ilustraciones.
 - Comandos: `npx remotion bundle --out-dir=out/bundle` + `npx remotion still out/bundle Nacional-AAAA-MM-DD out/stills/fN.jpg --frame=N --scale=0.5` para la hoja de contactos; `npx remotion render out/bundle Nacional-AAAA-MM-DD out/<nombre>.mp4` para el video completo y luego recodifica con `ffmpeg -c:v libx264 -crf 18 -pix_fmt yuv420p -color_range tv -c:a copy -movflags +faststart` (≈1 min por cada 50 s de video con 4 núcleos). `out/` y `node_modules/` no se suben al repo.
 - Al terminar, guarda los cambios de la plantilla (no los videos) con commit y push a la rama de trabajo. Antes de subir, haz `git fetch` de la rama: otras sesiones también trabajan en ella; integra sus cambios sin sobrescribirlos.
@@ -32,6 +32,40 @@ Flujo probado: noticias (buscadas o dadas por el usuario) → guion aprobado →
 - **Sincronía**: `transcribir.py` → `palabras_asr.json`; luego `python3 scripts/timing_cp.py public/audio/AAAA-MM-DD src/clave-publica/videos/AAAA-MM-DD.plan.json src/clave-publica/videos/AAAA-MM-DD.timing.json`. El plan define `pantalla` (secuencias de palabras → cifra o nombre en pantalla), `claves` (palabras en celeste) y `cues` por bloque (nombre → palabra que dispara cada animación; `palabra#2` = segunda aparición).
 - **Música**: `python3 scripts/musica_cp.py <timing.json> <voz_limpia.wav> public/audio/AAAA-MM-DD/musica.wav`.
 
+## Acuerdos vigentes con el usuario (mandan sobre lo anterior donde choquen)
+Estos acuerdos se tomaron en las ediciones de noviembre de 2026. **Lee también `remotion-noticias/CONTEXTO.md`** (temas ya cubiertos, fotos disponibles, últimos videos) y **actualízalo al entregar cada video** (añade los temas del día a «Temas ya cubiertos» y el id al «Último estado»).
+
+**Fecha y búsqueda**
+- La fecha del video es la de Guatemala: `TZ=America/Guatemala date` (el reloj del contenedor va en UTC y suele ir un día adelantado de noche). Si el usuario dice otra fecha, usa la suya.
+- No repitas temas de videos anteriores (lista en `CONTEXTO.md`); si el usuario pide «actualizadas», busca notas más recientes que la última propuesta y no repitas ninguna de ella.
+- Las internacionales también se buscan en los medios guatemaltecos de la lista (Prensa Libre, La Hora, Soy502, Publinews, Emisoras Unidas…), que republican EFE, BBC y AP.
+- En la tabla, avisa cuando una noticia tenga una sola fuente o cifras distintas entre medios, y deja fuera del guion el dato dudoso.
+
+**Material por nota**
+- Tras aprobar el guion, el usuario manda el material **nota por nota** («Nota 1, foto de X», «Nota 3, motion graphics», «usa el logo de … que ya tenemos») y al final dice **«listo»**. Confirma cada nota en una línea (guardada y recortada) y no generes la voz hasta el «listo».
+- A veces una imagen adjunta no llega al disco (no aparece en la carpeta de imágenes ni en `/root/.claude/uploads/`): avísalo de inmediato y pide que la reenvíe; mientras tanto puedes avanzar con lo demás.
+- «Que ya tenemos» = reutiliza de `public/fotos/` (copia el archivo a la carpeta del día). Logos con fondo: recorta solo la zona del logo; logos oscuros van en `LogoCard` (tarjeta blanca).
+
+**Voz**
+- Cierre hablado siempre: última línea de `locucion.txt` = «Infórmate, comparte y síguenos en Clave Pública.» y `cierreHablado: true` en el video (sus cues: `informate`, `comparte`, `siguenos`).
+- Números escritos en palabras en `locucion.txt`; en pantalla se convierten con `pantalla` del plan (incluye la puntuación final de la última palabra en la secuencia; `timing_cp.py` ya no la duplica).
+- Siglas y nombres extranjeros: crea `locucion_tts.txt` (misma estructura) con la pronunciación («la o pe ese», «la pe ene ce», «la o e a», «be be ce», «Er Frans», «Érlin Jáland», «Átlanta»); los subtítulos salen de `locucion.txt`.
+- Para cambiar solo un bloque (p. ej. la fecha de la intro), edita la línea, borra `bloques/bNN_*` y vuelve a correr `voz_por_bloques.py`: reutiliza los demás bloques sin gastar créditos.
+- El ASR a veces omite números o deforma palabras («Xvi» por «diecisiete»): si el hueco de tiempo cuadra, la palabra sí se dijo.
+- Con 6 noticias, la intro dice «seis» pero el cue del bloque 0 se sigue llamando `cinco`: `"0": {"cinco": "seis"}`.
+
+**Composición**
+- **Todo el contenido más abajo, lejos de los subtítulos**: pon `escenaCy: 1050` en cada video nuevo (centro del escenario; el `Lienzo` de 1080×800 queda entre y≈650 y y≈1450 y la etiqueta debajo). Con subtítulos de tres líneas sigue habiendo ≈ 120 px libres.
+- Una ilustración por noticia en un archivo nuevo por edición (`viz/nacionalN.tsx` o `viz/internacionalN.tsx`), registrado en `viz/index.ts`. Usa fases (entra/sale según cues) cuando la noticia tiene varias ideas, en vez de amontonar todo.
+- Fotos de personas = `Sticker`; logos = `LogoCard`; datos = `Cifra` o contadores; chips de 2–5 palabras.
+- Piezas reutilizables: banderas en `viz/banderas.tsx` (lista en `CONTEXTO.md`; la de Guatemala es `BanderaGT` en `viz/nacional7.tsx`), mapa de Guatemala por departamentos (`MAPA`, `MapaGuatemala` en `viz/nacional3.tsx`; zoom a un departamento con `clipPath`, ejemplo en `nacional6.tsx`/`nacional7.tsx`), virus, balanza, candado, cámara, regalo, tren, avión, portería, urna, etc. en los `viz` anteriores.
+- **Nada se puede encimar**: antes de renderizar, revisa una hoja de contactos de **todo** el video (un cuadro cada ~3 s, recortando la zona entre el encabezado y la etiqueta) y corrige textos que se tocan, rótulos tapados, elementos que salen del borde o que chocan con los subtítulos. Si el usuario marca un solapamiento, revisa el video completo, no solo esa escena. En los `remotion still` sueltos un `Sticker` puede verse incompleto (la imagen aún no carga); confírmalo en un cuadro del MP4 final antes de «arreglarlo».
+
+**Entrega**
+- Nombre del archivo: `out/clave-publica-nacional-AAAA-MM-DD.mp4` o `out/clave-publica-internacional-AAAA-MM-DD.mp4`; envíalo con `SendUserFile`. No copies MP4 dentro de la carpeta del repo fuera de `out/` (quedan como archivos sin seguimiento).
+- Commit y push de `src/`, `scripts/`, `public/fotos/` y `CONTEXTO.md`; `git fetch` y merge antes del push.
+- Si cambia la fecha o una regla de subtítulos, regenera también los videos afectados y reenvíalos.
+
 ## 1. Entradas
 - **Audio**: lo genera Claude con Fish Audio (§1a) o el usuario trae MP3/MP4 con la narración.
 - **Guion**: texto de las noticias. Puede diferir del audio (palabras de más, frases distintas): manda lo que realmente se dice (ver §4).
@@ -40,7 +74,7 @@ Flujo probado: noticias (buscadas o dadas por el usuario) → guion aprobado →
 - **Logo**: si no viene adjunto, pídelo. Marca vigente: **Clave Pública** (logo negativo sobre negro y versión clara; brandbook adjunto por el usuario). Si trae otra marca, pide logo, paleta y tipografía y aplica las mismas reglas.
 - Fotos de personas públicas: no las descargues de la web. Pide al usuario que las adjunte; mientras tanto usa un avatar genérico sin rostro con el nombre en una tarjeta.
 - Con una foto adjunta: tarjeta con esquinas redondeadas (38 px), borde celeste fino, sombra suave, entrada con el nombre de la persona y un leve zoom lento. No apliques efecto halftone ni borde de recorte blanco salvo que el usuario lo pida expresamente.
-- **Stickers del usuario** (ilustraciones halftone con borde blanco sobre fondo negro, como en los videos aprobados): quita el fondo negro rellenando desde los bordes superior, izquierdo y derecho los píxeles con `max(R,G,B) < 60` (no desde el borde inferior: si la figura está cortada abajo, el relleno se come la ropa), suaviza el alfa 1,2 px y recorta. Guárdalos en `public/fotos/AAAA-MM-DD/` y muéstralos con `Sticker` (con `fadeBottom` si el corte inferior es plano). Logos con fondo blanco y color marino (p. ej. MP) van sobre una tarjeta blanca; logos sobre fondo gris claro (p. ej. PNC) se recortan rellenando el gris desde los bordes.
+- **Stickers del usuario** (ilustraciones halftone con borde blanco sobre fondo negro, como en los videos aprobados): `python3 scripts/recortar_sticker.py <entrada> public/fotos/AAAA-MM-DD/<nombre>.png` quita el negro (`max(R,G,B) < 60`) conectado a los bordes, suaviza el alfa 1,2 px y recorta. Si la figura está cortada abajo sin contorno blanco en la base, añade `--sin-abajo` (si no, el relleno se come la ropa). Revisa que el porcentaje de fondo que imprime no sea 0 %. Guárdalos en `public/fotos/AAAA-MM-DD/` y muéstralos con `Sticker` (con `fadeBottom` si el corte inferior es plano). Logos con fondo blanco y color marino (p. ej. MP) van sobre una tarjeta blanca; logos sobre fondo gris claro (p. ej. PNC) se recortan rellenando el gris desde los bordes.
 
 ## 2. Elementos mandatorios (nunca se cambian)
 - **Formato**: 9:16, 1080×1920, 30 fps, H.264 yuv420p. Zona útil: subtítulos y contenido entre y≈130 y y≈1500; deja libres los ~390 px inferiores (interfaz de TikTok) y ~120 px del borde derecho (salvo la recapitulación, que sigue su diseño fijo de §2b-B).

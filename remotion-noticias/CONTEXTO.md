@@ -1,5 +1,7 @@
 # Clave Pública: contexto para continuar los videos de noticias
 
+Las reglas fijas están en la skill `videos-noticias-tiktok-clave-publica` (copia en `skill/`, sección «Acuerdos vigentes»). Este archivo guarda lo que cambia cada día: **actualízalo al entregar cada video**.
+
 Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de Guatemala), hechos con Remotion en este repo (`g4tio/apps`, carpeta `remotion-noticias/`, rama de trabajo `ccr-69630ccc-d6vuxw`). La skill `videos-noticias-tiktok-clave-publica` describe la plantilla; este archivo agrega lo acordado en el día a día.
 
 ## Flujo de cada video
@@ -11,7 +13,7 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
    - La fecha se toma **en hora de Guatemala**: `TZ=America/Guatemala date`. El reloj del contenedor va adelantado (UTC).
 2. **Proponer.** Una tabla con las noticias y enlaces a las fuentes, el guion completo, los títulos del recap y la línea FUENTES. Avisar si una noticia tiene una sola fuente o cifras que no coinciden entre medios.
 3. **Recibir material.** El usuario aprueba y manda el material **por nota**: «Nota 1, foto de X», «Nota 3, motion graphics», etc., y al final dice **«listo»**.
-   - Las fotos suelen ser **stickers** en blanco y negro (borde blanco sobre fondo negro). Se recortan con `python3 scripts/recortar_sticker.py <entrada> public/fotos/AAAA-MM-DD[-int]/<nombre>.png`.
+   - Las fotos suelen ser **stickers** en blanco y negro (borde blanco sobre fondo negro). Se recortan con `python3 scripts/recortar_sticker.py <entrada> public/fotos/AAAA-MM-DD[-int]/<nombre>.png` (añade `--sin-abajo` si la figura está cortada abajo sin contorno).
    - Los logos se guardan tal cual; si traen fondo, se recorta la zona del logo.
    - A veces una imagen no se guarda en disco. Hay que avisar al usuario para que la reenvíe.
    - Cuando dice «que ya tenemos», se reutilizan fotos o logos de días anteriores (`public/fotos/...`).
@@ -42,7 +44,7 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - `claves`: palabras resaltadas.
   - `cues`: palabra exacta del guion que dispara cada animación. El bloque 0 necesita el cue **`cinco`**, aunque sean 6 noticias (en ese caso se escribe `"cinco": "seis"`).
 - `...timing.json`: lo genera el script.
-- `public/audio/` y `public/fotos/` **no están en git** (están en `.gitignore`).
+- `public/fotos/` **sí está en git** (fotos y logos reutilizables); `public/audio/` no (pesa mucho; se regenera).
 
 ## Preferencias del usuario
 
