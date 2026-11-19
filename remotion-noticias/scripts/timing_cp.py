@@ -80,7 +80,7 @@ for b in range(len(lineas)):
         if hit:
             L, txt, kind = hit
             punct = re.sub(r"^.*?([.,:;]*)$", r"\1", bt[i + L - 1]["raw"])
-            words.append({"w": txt + punct, "k": kind, "t": bt[i]["t"], "end": bool(punct)})
+            words.append({"w": re.sub(r"[.,:;]+$", "", txt) + punct, "k": kind, "t": bt[i]["t"], "end": bool(punct)})
             i += L; continue
         k = "n"
         for c in claves:
