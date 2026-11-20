@@ -1,0 +1,25 @@
+{
+ "pantalla": [
+  [["diecinueve","de","noviembre."], "19 de noviembre.", "c"],
+  [["nueve","votos","contra","seis."], "9 votos contra 6.", "c"],
+  [["casi","doscientos","países"], "Casi 200 países", "c"],
+  [["más","de","cuatro","horas."], "más de 4 horas.", "c"],
+  [["nueve","años"], "9 años", "c"],
+  [["unos","once","días."], "unos 11 días.", "c"],
+  [["dos","mil","diecisiete."], "2017.", "c"]
+ ],
+ "claves": ["corte internacional de justicia", "birmania", "genocidio", "rohinyás", "primera vez", "indemnizar",
+            "pete hegseth", "caracas", "delcy rodríguez", "cooperación militar", "pentágono",
+            "cop31", "turquía", "borrador", "petróleo", "gas", "carbón",
+            "donald trump", "fallos tecnológicos", "control aéreo", "marco rubio", "ciberataque",
+            "fiona", "cincinnati", "gorro de lana", "viral", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"corte": "Corte", "birmania": "Birmania", "genocidio": "genocidio", "primera": "primera", "votos": "nueve", "investigar": "investigar", "indemnizar": "indemnizar", "regreso": "regreso"},
+  "2": {"hegseth": "Hegseth,", "caracas": "Caracas.", "delcy": "Delcy", "acuerdo": "acuerdo", "pentagono": "Pentágono", "organizacion": "organización", "clausulas": "cláusulas."},
+  "3": {"cop": "COP31,", "turquia": "Turquía,", "borrador": "borrador", "petroleo": "petróleo,", "gas": "gas", "carbon": "carbón.", "paises": "doscientos", "viernes": "viernes", "retroceso": "retroceso."},
+  "4": {"trump": "Trump", "fallos": "fallos", "bancos": "bancos,", "redes": "redes", "aereo": "aéreo,", "horas": "cuatro", "agua": "agua", "rubio": "Rubio", "ciberataque": "ciberataque."},
+  "5": {"fiona": "Fiona,", "cincinnati": "Cincinnati,", "nueve": "nueve", "gorro": "gorro", "once": "once", "veterinarios": "veterinarios", "salvarla": "salvarla.", "viral": "viral", "dosmil": "diecisiete."},
+  "6": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}

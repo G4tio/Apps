@@ -60,12 +60,13 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - `Lienzo` es el área de animación: 1080×800.
   - `Sticker`, `Cifra` (número grande con rótulo), `pop` y `fade`.
   - Cada archivo define su propio `Chip` y `LogoCard`.
-- **Banderas** en `viz/banderas.tsx`: Rusia, Ucrania, Alemania, Francia, Italia, Japón, Canadá, Reino Unido, EE. UU., Irán, Perú, Nicaragua, España, Colombia, México, Israel, Honduras, Chile, Vietnam, EAU, China, Baréin, Bolivia, Haití, El Salvador, Chequia, Noruega y Dinamarca. La de Guatemala está dibujada en `nacional7.tsx` (`BanderaGT`).
+- **Banderas** en `viz/banderas.tsx`: Rusia, Ucrania, Alemania, Francia, Italia, Japón, Canadá, Reino Unido, EE. UU., Irán, Perú, Nicaragua, España, Colombia, México, Israel, Honduras, Chile, Vietnam, EAU, China, Baréin, Bolivia, Haití, El Salvador, Chequia, Noruega, Dinamarca, Venezuela, Birmania y Turquía. La de Guatemala está dibujada en `nacional7.tsx` (`BanderaGT`).
 - **Mapa de Guatemala** por departamentos: `MAPA` y `MapaGuatemala` en `viz/nacional3.tsx`. Para hacer zoom a una zona hay un ejemplo en `nacional6.tsx` (Izabal) y en `nacional7.tsx`.
 - **Fotos y logos ya usados**, en `public/fotos/<fecha>/`:
   - Personas: Trump, Putin, Xi, el papa León XIV, Arévalo (`2026-11-17/presidente.png`), Bukele, Haaland, Villeda, Karen Ortiz e Illescas.
   - Edificios: Hospital Roosevelt.
   - Logos: TSE, MP, MAGA, MEM, Mingob, Mindef, BBC, IKEA, Air France y Fedefut.
+  - 19 nov int: Hegseth, Delcy Rodríguez, Trump con las manos abiertas, Rubio, la hipopótamo Fiona y el logo de la COP31 (`2026-11-19-int/`).
   - 19 nov: Baldetti (`2026-11-19/baldetti.png`), góndola del AeroMetro (`aerometro.png`) y mazorcas de maíz (`maiz.png`). Congreso: `2026-11-16/congreso.png`.
 - **Más piezas** en `viz/nacional8.tsx`: billetes de quetzal (`Billete`), hojas de calendario (`Dia`), hospital, cárcel, mazo, sol, casas, conos y carros sobre un bulevar.
 
@@ -80,6 +81,8 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Propuestas el 18 nov pero no usadas: exención de combustibles hasta junio 2027, reformas a la prisión preventiva, ataque a la fiscal electoral, Ley de Contrataciones, zafra y El Niño, ranking FIFA 97.
 - **Internacionales:**
   - Rusia-Ucrania (negociación, drones, puente de Crimea), el Papa en Perú, Irán y Baréin, cumbre Trump-Xi-Putin, G7, ASEAN, Canarias.
+  - 19 nov: CIJ declara a Birmania responsable de genocidio rohinyá, Hegseth firma acuerdo militar en Caracas, COP31 borra los fósiles del borrador, Trump pide calma ante los fallos tecnológicos (Rubio: sin ciberataque), muere la hipopótamo Fiona.
+  - Propuestas el 19 nov pero no usadas: Senado de EE. UU. y poderes de guerra en Irán (48-51), declaración final de la cumbre Trump-Xi-Putin, debate Sánchez-Feijóo (elecciones 29N).
   - 17 nov: sarampión (OPS), ciberataque a BBC, IKEA y Air France, Haití y Bukele, choque de trenes en Praga, Noruega y Haaland.
 
 ## Último estado
@@ -88,8 +91,12 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Nacional 17 nov: `Nacional-2026-11-17`.
   - Internacional 17 nov: `Internacional-2026-11-17`.
   - Nacional 18 nov (6 noticias): `Nacional-2026-11-18`.
-  - Nacional 19 nov: `Nacional-2026-11-19`.
+  - Nacional 19 nov: `Nacional-2026-11-19` (corregido: final de la nota 5 y gráfica de Baldetti).
+  - Internacional 19 nov: `Internacional-2026-11-19`.
 - La credencial de Fish Audio está guardada en el entorno «Htmls» (no en «Default»): si `api.fish.audio` da 403, se cambia la sesión a ese entorno (`switch_environment`, solo red).
+- `voz_por_bloques.py` repite los bloques que Fish entrega cortados (cola > −24 dB). Si un bloque se corta siempre, cambia el final de la frase (Fish se come una sílaba suelta final como «calle ce»).
+- `timing_cp.py` corta las frases a ~46 caracteres (dos líneas de subtítulo).
+- Para recortar stickers con trajes oscuros o ventanas, usa la silueta exterior (rellenar desde fuera el contorno blanco) en vez de `recortar_sticker.py`, que puede vaciar zonas negras internas.
 - El modelo ASR se pasa como la carpeta que **contiene** `sherpa-onnx-nemo-fast-conformer-ctc-es-1424`.
 - `timing_cp.py` ahora corta la frase tras puntuación también cuando lleva ≥ 18 caracteres (evita subtítulos de tres líneas como «36,431 hogares guatemaltecos. 8 de cada 10…»).
 - Corrección reciente: `timing_cp.py` ya no duplica la puntuación («45 mil agentes,,») al cambiar palabras por cifras.

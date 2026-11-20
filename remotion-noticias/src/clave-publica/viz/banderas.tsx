@@ -281,3 +281,46 @@ export const Dinamarca: React.FC<B> = ({ w = 200, id }) => {
     </Marco>
   );
 };
+
+/** Estrella de cinco puntas centrada en (cx, cy) con radio exterior r. */
+const estrella = (cx: number, cy: number, r: number, rot = -90) =>
+  Array.from({ length: 10 }, (_, i) => {
+    const a = ((rot + i * 36) * Math.PI) / 180, rr = i % 2 ? r * 0.382 : r;
+    return `${(cx + rr * Math.cos(a)).toFixed(2)},${(cy + rr * Math.sin(a)).toFixed(2)}`;
+  }).join(" ");
+
+// Venezuela: amarillo, azul y rojo con 8 estrellas blancas en arco sobre la franja azul.
+export const Venezuela: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 2) / 3;
+  return (
+    <Marco w={w} h={h} id={id}>
+      {tres(w, h, ["#FFCC00", "#00247D", "#CF142B"])}
+      {Array.from({ length: 8 }, (_, i) => {
+        const a = ((-160 + (i * 140) / 7) * Math.PI) / 180;
+        return <polygon key={i} points={estrella(w / 2 + Math.cos(a) * h * 0.3, h * 0.66 + Math.sin(a) * h * 0.3, h * 0.045)} fill="#FFFFFF" />;
+      })}
+    </Marco>
+  );
+};
+// Birmania (Myanmar): amarillo, verde y rojo con una gran estrella blanca al centro.
+export const Birmania: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 2) / 3;
+  return (
+    <Marco w={w} h={h} id={id}>
+      {tres(w, h, ["#FECB00", "#34B233", "#EA2839"])}
+      <polygon points={estrella(w / 2, h * 0.56, h * 0.46)} fill="#FFFFFF" />
+    </Marco>
+  );
+};
+// Turquía: rojo con media luna y estrella blancas.
+export const Turquia: React.FC<B> = ({ w = 200, id }) => {
+  const h = (w * 2) / 3;
+  return (
+    <Marco w={w} h={h} id={id}>
+      <rect width={w} height={h} fill="#E30A17" />
+      <circle cx={h * 0.5} cy={h / 2} r={h * 0.25} fill="#FFFFFF" />
+      <circle cx={h * 0.5625} cy={h / 2} r={h * 0.2} fill="#E30A17" />
+      <polygon points={estrella(h * 0.86, h / 2, h * 0.125, 180)} fill="#FFFFFF" />
+    </Marco>
+  );
+};

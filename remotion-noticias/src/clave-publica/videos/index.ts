@@ -14,6 +14,7 @@ import { VIDEO as NAC_2026_11_17 } from "./2026-11-17";
 import { VIDEO as INT_2026_11_17 } from "./2026-11-17-int";
 import { VIDEO as NAC_2026_11_18 } from "./2026-11-18";
 import { VIDEO as NAC_2026_11_19 } from "./2026-11-19";
+import { VIDEO as INT_2026_11_19 } from "./2026-11-19-int";
 
 /** Videos de Clave Pública: cada entrada es una composición en Remotion (id = clave). */
 export const VIDEOS: Record<string, VideoCP> = {
@@ -32,4 +33,5 @@ export const VIDEOS: Record<string, VideoCP> = {
   "Internacional-2026-11-17": INT_2026_11_17,
   "Nacional-2026-11-18": NAC_2026_11_18,
   "Nacional-2026-11-19": NAC_2026_11_19,
+  "Internacional-2026-11-19": INT_2026_11_19,
 };

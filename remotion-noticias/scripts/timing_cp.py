@@ -94,6 +94,9 @@ for b in range(len(lineas)):
     # frases: corta tras puntuación (≥3 palabras) o a las 7 palabras
     frases, cur = [], []
     for w in words:
+        # tope de ~46 caracteres por frase (dos líneas de subtítulo)
+        if cur and sum(len(x["w"]) + 1 for x in cur) + len(w["w"]) > 46:
+            frases.append(cur); cur = []
         cur.append(w)
         if (w["end"] and (len(cur) >= 3 or sum(len(x["w"]) for x in cur) >= 18)) or len(cur) >= 7:
             frases.append(cur); cur = []
