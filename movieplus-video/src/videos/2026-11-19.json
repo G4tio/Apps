@@ -1,0 +1,504 @@
+{
+ "fecha": "2026-11-19",
+ "fechaTexto": "JUEVES 19 DE NOVIEMBRE",
+ "voz": "media/2026-11-19/voz/voz_limpia.wav",
+ "pantalla": [
+  {
+   "bloque": 0,
+   "frase": "Seis",
+   "texto": "6"
+  },
+  {
+   "bloque": 1,
+   "frase": "cien",
+   "texto": "100"
+  },
+  {
+   "bloque": 2,
+   "frase": "veinticinco",
+   "texto": "25"
+  },
+  {
+   "bloque": 2,
+   "frase": "veintitrés",
+   "texto": "23"
+  },
+  {
+   "bloque": 3,
+   "frase": "diecinueve",
+   "texto": "19"
+  },
+  {
+   "bloque": 4,
+   "frase": "trece",
+   "texto": "13"
+  },
+  {
+   "bloque": 4,
+   "frase": "trece de agosto",
+   "texto": "13 de agosto"
+  },
+  {
+   "bloque": 4,
+   "frase": "dos mil veintisiete",
+   "texto": "2027"
+  },
+  {
+   "bloque": 5,
+   "frase": "diecinueve",
+   "texto": "19"
+  },
+  {
+   "bloque": 5,
+   "frase": "veinticinco",
+   "texto": "25"
+  },
+  {
+   "bloque": 6,
+   "frase": "tres de diciembre",
+   "texto": "3 de diciembre"
+  },
+  {
+   "bloque": 6,
+   "frase": "diez de diciembre",
+   "texto": "10 de diciembre"
+  }
+ ],
+ "claves": [
+  "Juegos",
+  "Hambre",
+  "Amanecer",
+  "cosecha",
+  "cines",
+  "Brad",
+  "Pitt",
+  "Cliff",
+  "Booth",
+  "mejor",
+  "actuación",
+  "IMAX",
+  "Netflix",
+  "Elle",
+  "Dakota",
+  "Fanning",
+  "Nightingale",
+  "tráiler",
+  "hermanas",
+  "Francia",
+  "Jason",
+  "agosto",
+  "Recen",
+  "Francisco",
+  "Cinépolis",
+  "Guatemala",
+  "Duna",
+  "exclusivo"
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "titulo": "LOS JUEGOS DEL HAMBRE",
+   "categoria": "AMANECER EN LA COSECHA",
+   "fondo": "media/2026-11-19/n1_jh_haymitch.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n1_jh_spot_latam.mp4",
+     "desde": 0.0,
+     "hasta": 0.9,
+     "toma": "insignia del sinsajo",
+     "en": null
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n1_jh_spot_latam.mp4",
+     "desde": 4.8,
+     "hasta": 6.0,
+     "toma": "campo en llamas",
+     "en": "Amanecer"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n1_jh_poster_latam.jpg",
+     "en": "ya",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n1_jh_spot_latam.mp4",
+     "desde": 10.2,
+     "hasta": 11.6,
+     "toma": "escenario del Capitolio",
+     "en": "Estados"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n1_jh_haymitch.jpg",
+     "en": "cien",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n1_jh_spot_latam.mp4",
+     "desde": 23.2,
+     "hasta": 25.8,
+     "toma": "título",
+     "en": "primer",
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "19",
+     "texto": "YA EN CINES",
+     "sub": "ESTRENO EN LATINOAMÉRICA",
+     "en": "ya"
+    },
+    {
+     "tipo": "contador",
+     "valor": 100,
+     "prefijo": "+$",
+     "sufijo": "M",
+     "texto": "+$100M",
+     "sub": "PRIMER FIN DE SEMANA · EE. UU.",
+     "en": "cien"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titulo": "CLIFF BOOTH",
+   "categoria": "PRIMERAS REACCIONES",
+   "fondo": "media/2026-11-19/n2_cliff_bar.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n2_cliff_oficina.jpg",
+     "en": null,
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n2_cliff_bar.jpg",
+     "en": "dicen",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n2_cliff_poster.jpg",
+     "en": "Llega",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "BRAD PITT",
+     "sub": "ES CLIFF BOOTH",
+     "en": "Brad"
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "\"SU MEJOR ACTUACIÓN\"",
+     "sub": "EN AÑOS, SEGÚN LA CRÍTICA",
+     "en": "dicen"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "25",
+     "texto": "EN IMAX",
+     "sub": "POR TIEMPO LIMITADO",
+     "en": "veinticinco"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "23",
+     "texto": "EN NETFLIX",
+     "sub": "ESTRENO MUNDIAL",
+     "en": "veintitrés"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titulo": "THE NIGHTINGALE",
+   "categoria": "PRIMER TRÁILER",
+   "fondo": "media/2026-11-19/n3_nightingale_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 0.0,
+     "hasta": 1.15,
+     "toma": "las dos hermanas",
+     "en": null,
+     "ajuste": "contain",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 17.1,
+     "hasta": 19.4,
+     "toma": "Dakota",
+     "en": "actúan",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 53.3,
+     "hasta": 55.0,
+     "toma": "Elle en la calle",
+     "en": "tráiler",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 15.0,
+     "hasta": 16.15,
+     "toma": "hermanas en la mesa",
+     "en": "Son",
+     "ajuste": "contain",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 94.8,
+     "hasta": 96.2,
+     "toma": "calle ocupada",
+     "en": "Segunda",
+     "ajuste": "contain",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 144.4,
+     "hasta": 147.0,
+     "toma": "título",
+     "en": "estrena",
+     "ajuste": "contain",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "ELLE Y DAKOTA FANNING",
+     "categoria": "JUNTAS POR PRIMERA VEZ",
+     "en": "Elle"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "FRANCIA · 2.ª GUERRA MUNDIAL",
+     "categoria": "DOS HERMANAS",
+     "en": "Francia"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "MAR",
+     "dia": "19",
+     "texto": "EN CINES",
+     "sub": "2027",
+     "en": "diecinueve"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "JASON",
+   "categoria": "VIERNES 13",
+   "fondo": "media/2026-11-19/n4_jason_lluvia.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n4_jason_mascara.jpg",
+     "en": null,
+     "foco": "center 35%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n4_jason_guion.jpg",
+     "en": "llamará",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n4_jason_lluvia.jpg",
+     "en": "llegará",
+     "foco": "center 35%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n4_jason_cementerio.jpg",
+     "en": "agosto",
+     "foco": "center 40%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "JASON",
+     "categoria": "NUEVA PELÍCULA",
+     "en": "llamará"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "AGO",
+     "dia": "13",
+     "texto": "EN CINES",
+     "sub": "2027",
+     "en": "agosto"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titulo": "RECEN POR MÍ",
+   "categoria": "DOCUMENTAL",
+   "fondo": "media/2026-11-19/n5_francisco_noche.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n5_francisco_saludo.jpg",
+     "en": null,
+     "foco": "center 25%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n5_francisco_perfil.jpg",
+     "en": "documental",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n5_francisco_mexico.jpg",
+     "en": "Cinépolis",
+     "foco": "center 35%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n5_francisco_noche.jpg",
+     "en": "diecinueve",
+     "foco": "center 35%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "PAPA FRANCISCO",
+     "categoria": "DOCUMENTAL",
+     "en": "documental"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "19",
+     "texto": "AL 25 DE NOVIEMBRE",
+     "sub": "CINÉPOLIS GUATEMALA",
+     "en": "Cinépolis"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "titulo": "DUNA EN IMAX",
+   "categoria": "REESTRENO",
+   "fondo": "media/2026-11-19/n6_duna_paul.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n6_duna_poster_imax.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n6_duna_paul_capucha.jpg",
+     "en": "Parte",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n6_duna_paul.jpg",
+     "en": "diez",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n6_duna_feyd_margot.jpg",
+     "en": "avance",
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "3",
+     "texto": "PARTE UNO",
+     "sub": "1 SEMANA EN IMAX",
+     "en": "tres"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "10",
+     "texto": "PARTE DOS",
+     "sub": "1 SEMANA EN IMAX",
+     "en": "diez"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "AVANCE EXCLUSIVO",
+     "categoria": "DUNA: PARTE TRES",
+     "en": "avance"
+    }
+   ]
+  }
+ ]
+}

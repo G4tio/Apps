@@ -1,0 +1,1622 @@
+{
+ "palabras": [
+  {
+   "w": "6",
+   "t": 0.0,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "noticias",
+   "t": 0.32,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 0.8,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "cine",
+   "t": 0.88,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 1.28,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "series",
+   "t": 1.44,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 1.84,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 2.0,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "Los",
+   "t": 2.72,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Juegos",
+   "t": 3.04,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "del",
+   "t": 3.44,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Hambre",
+   "t": 3.6,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Amanecer",
+   "t": 4.0,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 4.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 4.64,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "cosecha",
+   "t": 4.72,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "ya",
+   "t": 5.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "está",
+   "t": 5.44,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 5.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 5.68,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "En",
+   "t": 6.24,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Estados",
+   "t": 6.48,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Unidos",
+   "t": 6.72,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "apunta",
+   "t": 7.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 7.36,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "más",
+   "t": 7.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 7.68,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "100",
+   "t": 7.76,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "millones",
+   "t": 8.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 8.4,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "dólares",
+   "t": 8.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 9.04,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 9.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "primer",
+   "t": 9.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "fin",
+   "t": 9.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 9.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "semana",
+   "t": 9.92,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Ya",
+   "t": 10.48,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "hay",
+   "t": 10.8,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "primeras",
+   "t": 10.96,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "reacciones",
+   "t": 11.36,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 11.84,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 12.0,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "nueva",
+   "t": 12.08,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 12.32,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 12.64,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Brad",
+   "t": 12.8,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Pitt",
+   "t": 13.12,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "como",
+   "t": 13.44,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Cliff",
+   "t": 13.6,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Booth",
+   "t": 14.0,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "dicen",
+   "t": 14.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "que",
+   "t": 14.56,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "es",
+   "t": 14.72,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 14.8,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "mejor",
+   "t": 14.96,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "actuación",
+   "t": 15.2,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 15.6,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "años",
+   "t": 15.76,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Llega",
+   "t": 16.08,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 16.28,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "IMAX",
+   "t": 16.48,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "el",
+   "t": 17.04,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "25",
+   "t": 17.36,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 17.68,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "noviembre",
+   "t": 17.76,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 18.24,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 18.32,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Netflix",
+   "t": 18.4,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "el",
+   "t": 19.12,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "23",
+   "t": 19.48,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 19.84,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "diciembre",
+   "t": 20.0,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Elle",
+   "t": 20.64,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 20.76,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Dakota",
+   "t": 20.88,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Fanning",
+   "t": 21.44,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "actúan",
+   "t": 21.92,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "juntas",
+   "t": 22.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "por",
+   "t": 22.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "primera",
+   "t": 22.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "vez",
+   "t": 23.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 23.2,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "The",
+   "t": 23.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Nightingale",
+   "t": 23.44,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 24.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "ya",
+   "t": 24.48,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "salió",
+   "t": 24.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 24.96,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "primer",
+   "t": 25.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "tráiler",
+   "t": 25.28,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Son",
+   "t": 25.84,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "dos",
+   "t": 26.08,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "hermanas",
+   "t": 26.16,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 26.56,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 26.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Francia",
+   "t": 26.72,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 27.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 27.12,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Segunda",
+   "t": 27.2,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Guerra",
+   "t": 27.52,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Mundial",
+   "t": 27.84,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 28.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 28.4,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "estrena",
+   "t": 28.48,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 28.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "19",
+   "t": 29.24,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 29.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "marzo",
+   "t": 29.76,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Viernes",
+   "t": 30.24,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "13",
+   "t": 30.8,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "tendrá",
+   "t": 31.28,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "nueva",
+   "t": 31.68,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 31.92,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 32.4,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "llamará",
+   "t": 32.48,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Jason",
+   "t": 32.88,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 33.52,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "llegará",
+   "t": 33.6,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 33.92,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 34.0,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "el",
+   "t": 34.4,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "13 de agosto",
+   "t": 34.6,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 34.8,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 34.96,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 35.36,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "2027",
+   "t": 35.52,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 35.973,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 36.427,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Recen",
+   "t": 36.88,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "por",
+   "t": 37.44,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "mí",
+   "t": 37.6,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 37.84,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "documental",
+   "t": 38.0,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "sobre",
+   "t": 38.48,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 38.64,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "vida",
+   "t": 38.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "del",
+   "t": 38.96,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Papa",
+   "t": 39.12,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Francisco",
+   "t": 39.36,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "llega",
+   "t": 40.0,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 40.12,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Cinépolis",
+   "t": 40.24,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Guatemala",
+   "t": 40.88,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "del",
+   "t": 41.36,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "19",
+   "t": 41.72,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "al",
+   "t": 42.08,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "25",
+   "t": 42.44,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 42.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "noviembre",
+   "t": 42.96,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Y",
+   "t": 43.6,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Duna",
+   "t": 43.76,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "regresa",
+   "t": 44.16,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 44.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "IMAX",
+   "t": 44.64,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "la",
+   "t": 45.12,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Parte",
+   "t": 45.2,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Uno",
+   "t": 45.44,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 45.68,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "3 de diciembre",
+   "t": 45.84,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 46.0,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 46.16,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 46.56,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 46.64,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Parte",
+   "t": 46.72,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Dos",
+   "t": 46.96,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 47.2,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "10 de diciembre",
+   "t": 47.4,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 47.6,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 47.68,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "cada",
+   "t": 48.24,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "una",
+   "t": 48.4,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "por",
+   "t": 48.64,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "una",
+   "t": 48.72,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "semana",
+   "t": 48.88,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 49.28,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 49.44,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 49.52,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "avance",
+   "t": 49.6,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "exclusivo",
+   "t": 50.0,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 50.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Duna",
+   "t": 50.56,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Parte",
+   "t": 51.04,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Tres",
+   "t": 51.19,
+   "b": 6,
+   "clave": false
+  }
+ ],
+ "bloques": [
+  {
+   "bloque": 0,
+   "inicio": 0.0,
+   "primera": 0,
+   "ultima": 7,
+   "fin": 2.76
+  },
+  {
+   "bloque": 1,
+   "inicio": 2.76,
+   "primera": 8,
+   "ultima": 36,
+   "fin": 10.52
+  },
+  {
+   "bloque": 2,
+   "inicio": 10.52,
+   "primera": 37,
+   "ultima": 72,
+   "fin": 20.68
+  },
+  {
+   "bloque": 3,
+   "inicio": 20.68,
+   "primera": 73,
+   "ultima": 108,
+   "fin": 30.28
+  },
+  {
+   "bloque": 4,
+   "inicio": 30.28,
+   "primera": 109,
+   "ultima": 128,
+   "fin": 36.92
+  },
+  {
+   "bloque": 5,
+   "inicio": 36.92,
+   "primera": 129,
+   "ultima": 149,
+   "fin": 43.64
+  },
+  {
+   "bloque": 6,
+   "inicio": 43.64,
+   "primera": 150,
+   "ultima": 183,
+   "fin": 52.07
+  }
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "inicio": 2.76,
+   "fin": 10.52,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n1_jh_spot_latam.mp4",
+     "desde": 0.0,
+     "hasta": 0.9,
+     "toma": "insignia del sinsajo",
+     "en": null,
+     "t": 2.76,
+     "archivo": "media/2026-11-19/frag/n1_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n1_jh_spot_latam.mp4",
+     "desde": 4.8,
+     "hasta": 6.0,
+     "toma": "campo en llamas",
+     "en": "Amanecer",
+     "t": 4.04,
+     "archivo": "media/2026-11-19/frag/n1_1.mp4"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n1_jh_poster_latam.jpg",
+     "en": "ya",
+     "ajuste": "contain",
+     "t": 5.32
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n1_jh_spot_latam.mp4",
+     "desde": 10.2,
+     "hasta": 11.6,
+     "toma": "escenario del Capitolio",
+     "en": "Estados",
+     "t": 6.52,
+     "archivo": "media/2026-11-19/frag/n1_3.mp4"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n1_jh_haymitch.jpg",
+     "en": "cien",
+     "foco": "center 30%",
+     "t": 7.8
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n1_jh_spot_latam.mp4",
+     "desde": 23.2,
+     "hasta": 25.8,
+     "toma": "título",
+     "en": "primer",
+     "zoom": 1.0,
+     "t": 9.32,
+     "archivo": "media/2026-11-19/frag/n1_5.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "19",
+     "texto": "YA EN CINES",
+     "sub": "ESTRENO EN LATINOAMÉRICA",
+     "en": "ya",
+     "t": 5.28
+    },
+    {
+     "tipo": "contador",
+     "valor": 100,
+     "prefijo": "+$",
+     "sufijo": "M",
+     "texto": "+$100M",
+     "sub": "PRIMER FIN DE SEMANA · EE. UU.",
+     "en": "cien",
+     "t": 7.76
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "inicio": 10.52,
+   "fin": 20.68,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n2_cliff_oficina.jpg",
+     "en": null,
+     "foco": "center 30%",
+     "t": 10.52
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n2_cliff_bar.jpg",
+     "en": "dicen",
+     "foco": "center 30%",
+     "t": 14.44
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n2_cliff_poster.jpg",
+     "en": "Llega",
+     "ajuste": "contain",
+     "t": 16.12
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "BRAD PITT",
+     "sub": "ES CLIFF BOOTH",
+     "en": "Brad",
+     "t": 12.8
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "\"SU MEJOR ACTUACIÓN\"",
+     "sub": "EN AÑOS, SEGÚN LA CRÍTICA",
+     "en": "dicen",
+     "t": 14.4
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "25",
+     "texto": "EN IMAX",
+     "sub": "POR TIEMPO LIMITADO",
+     "en": "veinticinco",
+     "t": 17.36
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "23",
+     "texto": "EN NETFLIX",
+     "sub": "ESTRENO MUNDIAL",
+     "en": "veintitrés",
+     "t": 19.48
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "inicio": 20.68,
+   "fin": 30.28,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 0.0,
+     "hasta": 1.15,
+     "toma": "las dos hermanas",
+     "en": null,
+     "ajuste": "contain",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0,
+     "t": 20.68,
+     "archivo": "media/2026-11-19/frag/n3_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 17.1,
+     "hasta": 19.4,
+     "toma": "Dakota",
+     "en": "actúan",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0,
+     "t": 21.96,
+     "archivo": "media/2026-11-19/frag/n3_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 53.3,
+     "hasta": 55.0,
+     "toma": "Elle en la calle",
+     "en": "tráiler",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0,
+     "t": 25.32,
+     "archivo": "media/2026-11-19/frag/n3_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 15.0,
+     "hasta": 16.15,
+     "toma": "hermanas en la mesa",
+     "en": "Son",
+     "ajuste": "contain",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0,
+     "t": 25.88,
+     "archivo": "media/2026-11-19/frag/n3_3.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 94.8,
+     "hasta": 96.2,
+     "toma": "calle ocupada",
+     "en": "Segunda",
+     "ajuste": "contain",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0,
+     "t": 27.24,
+     "archivo": "media/2026-11-19/frag/n3_4.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-19/n3_nightingale_trailer.mp4",
+     "desde": 144.4,
+     "hasta": 147.0,
+     "toma": "título",
+     "en": "estrena",
+     "ajuste": "contain",
+     "recorte": [
+      1280,
+      528,
+      0,
+      96
+     ],
+     "zoom": 1.0,
+     "t": 28.52,
+     "archivo": "media/2026-11-19/frag/n3_5.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "ELLE Y DAKOTA FANNING",
+     "categoria": "JUNTAS POR PRIMERA VEZ",
+     "en": "Elle",
+     "t": 20.64
+    },
+    {
+     "tipo": "titulo",
+     "texto": "FRANCIA · 2.ª GUERRA MUNDIAL",
+     "categoria": "DOS HERMANAS",
+     "en": "Francia",
+     "t": 26.72
+    },
+    {
+     "tipo": "fecha",
+     "mes": "MAR",
+     "dia": "19",
+     "texto": "EN CINES",
+     "sub": "2027",
+     "en": "diecinueve",
+     "t": 29.24
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "inicio": 30.28,
+   "fin": 36.92,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n4_jason_mascara.jpg",
+     "en": null,
+     "foco": "center 35%",
+     "t": 30.28
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n4_jason_guion.jpg",
+     "en": "llamará",
+     "ajuste": "contain",
+     "t": 32.52
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n4_jason_lluvia.jpg",
+     "en": "llegará",
+     "foco": "center 35%",
+     "t": 33.64
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n4_jason_cementerio.jpg",
+     "en": "agosto",
+     "foco": "center 40%",
+     "t": 35.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "JASON",
+     "categoria": "NUEVA PELÍCULA",
+     "en": "llamará",
+     "t": 32.48
+    },
+    {
+     "tipo": "fecha",
+     "mes": "AGO",
+     "dia": "13",
+     "texto": "EN CINES",
+     "sub": "2027",
+     "en": "agosto",
+     "t": 34.96
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "inicio": 36.92,
+   "fin": 43.64,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n5_francisco_saludo.jpg",
+     "en": null,
+     "foco": "center 25%",
+     "t": 36.92
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n5_francisco_perfil.jpg",
+     "en": "documental",
+     "foco": "center 30%",
+     "t": 38.04
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n5_francisco_mexico.jpg",
+     "en": "Cinépolis",
+     "foco": "center 35%",
+     "t": 40.28
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n5_francisco_noche.jpg",
+     "en": "diecinueve",
+     "foco": "center 35%",
+     "t": 41.76
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "PAPA FRANCISCO",
+     "categoria": "DOCUMENTAL",
+     "en": "documental",
+     "t": 38.0
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "19",
+     "texto": "AL 25 DE NOVIEMBRE",
+     "sub": "CINÉPOLIS GUATEMALA",
+     "en": "Cinépolis",
+     "t": 40.24
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "inicio": 43.64,
+   "fin": 52.07,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n6_duna_poster_imax.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 43.64
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n6_duna_paul_capucha.jpg",
+     "en": "Parte",
+     "foco": "center 30%",
+     "t": 45.24
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n6_duna_paul.jpg",
+     "en": "diez",
+     "foco": "center 30%",
+     "t": 47.44
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-19/n6_duna_feyd_margot.jpg",
+     "en": "avance",
+     "foco": "center 30%",
+     "t": 49.64
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "3",
+     "texto": "PARTE UNO",
+     "sub": "1 SEMANA EN IMAX",
+     "en": "tres",
+     "t": 45.84
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "10",
+     "texto": "PARTE DOS",
+     "sub": "1 SEMANA EN IMAX",
+     "en": "diez",
+     "t": 47.4
+    },
+    {
+     "tipo": "titulo",
+     "texto": "AVANCE EXCLUSIVO",
+     "categoria": "DUNA: PARTE TRES",
+     "en": "avance",
+     "t": 49.6
+    }
+   ]
+  }
+ ],
+ "duracionVoz": 52.27,
+ "montaje": {
+  "fps": 30,
+  "intro": 76,
+  "vozOffset": 2.4,
+  "cierreInicio": 1661,
+  "cierre": 96,
+  "total": 1757
+ }
+}
