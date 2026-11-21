@@ -15,6 +15,7 @@ import { VIZ_INTERNACIONAL_7 } from "./internacional7";
 import { VIZ_NACIONAL_7 } from "./nacional7";
 import { VIZ_NACIONAL_8 } from "./nacional8";
 import { VIZ_INTERNACIONAL_8 } from "./internacional8";
+import { VIZ_NACIONAL_9 } from "./nacional9";
 
 /** Registro de ilustraciones disponibles: la clave es el campo `viz` de cada noticia. */
-export const VIZ: Record<string, React.FC<VizProps>> = { ...VIZ_INTERNACIONAL, ...VIZ_NACIONAL, ...VIZ_INTERNACIONAL_2, ...VIZ_NACIONAL_2, ...VIZ_INTERNACIONAL_3, ...VIZ_NACIONAL_3, ...VIZ_INTERNACIONAL_4, ...VIZ_NACIONAL_4, ...VIZ_INTERNACIONAL_5, ...VIZ_NACIONAL_5, ...VIZ_INTERNACIONAL_6, ...VIZ_NACIONAL_6, ...VIZ_INTERNACIONAL_7, ...VIZ_NACIONAL_7, ...VIZ_NACIONAL_8, ...VIZ_INTERNACIONAL_8 };
+export const VIZ: Record<string, React.FC<VizProps>> = { ...VIZ_INTERNACIONAL, ...VIZ_NACIONAL, ...VIZ_INTERNACIONAL_2, ...VIZ_NACIONAL_2, ...VIZ_INTERNACIONAL_3, ...VIZ_NACIONAL_3, ...VIZ_INTERNACIONAL_4, ...VIZ_NACIONAL_4, ...VIZ_INTERNACIONAL_5, ...VIZ_NACIONAL_5, ...VIZ_INTERNACIONAL_6, ...VIZ_NACIONAL_6, ...VIZ_INTERNACIONAL_7, ...VIZ_NACIONAL_7, ...VIZ_NACIONAL_8, ...VIZ_INTERNACIONAL_8, ...VIZ_NACIONAL_9 };
