@@ -94,14 +94,14 @@ for b in range(len(lineas)):
     # frases: corta tras puntuación (≥3 palabras) o a las 7 palabras
     frases, cur = [], []
     for w in words:
-        # tope de ~46 caracteres por frase (dos líneas de subtítulo)
-        if cur and sum(len(x["w"]) + 1 for x in cur) + len(w["w"]) > 46:
+        # tope de ~40 caracteres por frase (dos líneas de subtítulo)
+        if cur and sum(len(x["w"]) + 1 for x in cur) + len(w["w"]) > 40:
             frases.append(cur); cur = []
         cur.append(w)
         if (w["end"] and (len(cur) >= 3 or sum(len(x["w"]) for x in cur) >= 18)) or len(cur) >= 7:
             frases.append(cur); cur = []
     if cur:
-        if frases and len(cur) <= 2: frases[-1] += cur
+        if frases and len(cur) <= 2 and (sum(len(x["w"]) + 1 for x in frases[-1] + cur) <= 46 or (len(cur) == 1 and len(cur[0]["w"]) < 10)): frases[-1] += cur
         else: frases.append(cur)
     frases = [[{"w": w["w"], "k": w["k"], "t": round(w["t"] - 0.08, 3)} for w in f] for f in frases]
     # cues: nombre -> palabra (usa "palabra#2" para la segunda aparición)

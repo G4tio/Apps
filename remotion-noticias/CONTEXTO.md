@@ -99,7 +99,9 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Nacional 20 nov: `Nacional-2026-11-20`.
 - La credencial de Fish Audio está guardada en el entorno «Htmls» (no en «Default»): si `api.fish.audio` da 403, se cambia la sesión a ese entorno (`switch_environment`, solo red).
 - `voz_por_bloques.py` repite los bloques que Fish entrega cortados (cola > −24 dB). Si un bloque se corta siempre, cambia el final de la frase (Fish se come una sílaba suelta final como «calle ce»).
-- `timing_cp.py` corta las frases a ~46 caracteres (dos líneas de subtítulo).
+- `timing_cp.py` corta las frases a ~40 caracteres (dos líneas de subtítulo) y solo pega el fragmento final si la frase cabe; una palabra corta suelta («Pública.») siempre se pega. En `pantalla`, evita fundir frases largas en un solo bloque («entre 6 mil y 8 mil pasajeros»): convierte solo los números.
+- En escenas con fases, la fase 2 entra cuando la 1 ya salió (sin fundido cruzado), para que nada se encime en la transición.
+- Si una cifra lleva «Q», deja más aire bajo ella (`CifraQ` en `viz/nacional9.tsx`): la cola de la Q de Exo 2 toca el rótulo de `Cifra`.
 - Para recortar stickers con trajes oscuros o ventanas, usa la silueta exterior (rellenar desde fuera el contorno blanco) en vez de `recortar_sticker.py`, que puede vaciar zonas negras internas.
 - El modelo ASR se pasa como la carpeta que **contiene** `sherpa-onnx-nemo-fast-conformer-ctc-es-1424`.
 - `timing_cp.py` ahora corta la frase tras puntuación también cuando lleva ≥ 18 caracteres (evita subtítulos de tres líneas como «36,431 hogares guatemaltecos. 8 de cada 10…»).

@@ -8,6 +8,13 @@ import { MAPA, MapaGuatemala } from "./nacional3";
 const cuenta = (f: number, at: number, desde: number, hasta: number, d = 22) =>
   Math.round(interpolate(f, [at, at + d], [desde, hasta], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: outCubic }));
 const ROJO = "#E5484D";
+/** Cifra con rótulo más separado: la cola de la «Q» de Exo 2 no toca el rótulo. */
+const CifraQ: React.FC<{ x: number; y: number; valor: string; rotulo: string; k: number; size?: number }> = ({ x, y, valor, rotulo, k, size = 96 }) => (
+  <g transform={`translate(${x} ${y}) scale(${0.6 + 0.4 * k})`} opacity={Math.min(1, k * 1.5)}>
+    <text textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize={size} fill={C.claro} style={{ letterSpacing: "-0.02em" }}>{valor}</text>
+    <text y={size * 0.62} textAnchor="middle" fontFamily={F.mono} fontWeight={700} fontSize={28} fill={C.suave} letterSpacing="3">{rotulo}</text>
+  </g>
+);
 const AMARILLO = "#F2B544";
 
 const Chip: React.FC<{ x: number; y: number; texto: string; k: number; color?: string; size?: number }> = ({ x, y, texto, k, color = C.blanco, size = 26 }) => {
@@ -46,7 +53,8 @@ const Pensamiento: React.FC = () => (
 export const LeyContrataciones: React.FC<VizProps> = ({ c }) => {
   const f = useCurrentFrame();
   const k = P(f, 4, 18, outBack);
-  const fb = P(f, c("comision") - 8, 14, inOut); // fase 2: dictamen y revisión
+  const sale1 = P(f, c("comision") - 14, 8); // sale el medidor
+  const fb = P(f, c("comision") - 6, 10, inOut); // fase 2: dictamen y revisión
   const X0 = 150, X1 = 930; // escala de Q0 a Q2.4 millones
   const xq = (m: number) => X0 + ((X1 - X0) * m) / 2.4;
   const mueve = P(f, c("dos") - 4, 22, inOut);
@@ -56,7 +64,7 @@ export const LeyContrataciones: React.FC<VizProps> = ({ c }) => {
     <Lienzo>
       <Sticker src="fotos/2026-11-16/congreso.png" id="cong20" x={240} y={0} w={600} h={400} k={k} opacity={Math.min(1, k * 2)} fadeBottom fadeLeft />
       {/* escala del umbral de licitación */}
-      <g opacity={Math.min(1, km * 1.5) * (1 - fb)}>
+      <g opacity={Math.min(1, km * 1.5) * (1 - sale1)}>
         <rect x={X0} y="560" width={X1 - X0} height="22" rx="11" fill="rgba(127,184,230,0.25)" />
         <rect x={X0} y="560" width={xq(umbral) - X0} height="22" rx="11" fill={C.celeste} />
         <rect x={xq(umbral)} y="560" width={X1 - xq(umbral)} height="22" rx="11" fill={AMARILLO} opacity="0.85" />
@@ -96,7 +104,7 @@ const PROPUESTAS = [
 export const SalarioMinimo: React.FC<VizProps> = ({ c }) => {
   const f = useCurrentFrame();
   const k = pop(f, 6, 16);
-  const X0 = 480, PX = 44; // 0 % en x=480, 44 px por punto
+  const X0 = 470, PX = 38; // 0 % en x=480, 44 px por punto
   const kj = pop(f, c("junta") - 6);
   const kd = pop(f, c("diciembre") - 8);
   return (
@@ -165,20 +173,21 @@ const Distribuidora: React.FC<{ multa: number }> = ({ multa }) => (
 export const GasPropano: React.FC<VizProps> = ({ c }) => {
   const f = useCurrentFrame();
   const kc = pop(f, 4, 18);
-  const fm = P(f, c("multo") - 8, 14, inOut); // fase de multas
+  const sale1 = P(f, c("multo") - 14, 8); // salen los precios
+  const fm = P(f, c("multo") - 6, 10, inOut); // fase de multas
   return (
     <Lienzo>
       <g transform={`translate(260 430) scale(${kc * 0.95})`} opacity={Math.min(1, kc * 1.5)}><Cilindro f={f} /></g>
-      <g opacity={1 - fm}>
-        <Cifra x={730} y={180} valor="Q138–140" rotulo="EN DISTRIBUIDORAS" k={P(f, c("precio") - 6, 12, outBack)} size={96} />
+      <g opacity={1 - sale1}>
+        <CifraQ x={730} y={170} valor="Q138–140" rotulo="EN DISTRIBUIDORAS" k={P(f, c("precio") - 6, 12, outBack)} size={96} />
         <LogoCard src="fotos/2026-11-17/logo-mem.png" x={730} y={360} w={300} h={106} k={pop(f, c("referencia") - 8, 14)} />
-        <Cifra x={730} y={560} valor={`Q${cuenta(f, c("veinte") - 10, 0, 120, 16)}`} rotulo="PRECIO DE REFERENCIA" k={P(f, c("veinte") - 12, 12, outBack)} size={96} />
+        <CifraQ x={730} y={545} valor={`Q${cuenta(f, c("veinte") - 10, 0, 120, 16)}`} rotulo="PRECIO DE REFERENCIA" k={P(f, c("veinte") - 12, 12, outBack)} size={96} />
         {/* diferencia */}
-        <Chip x={730} y={690} texto="+Q18 SOBRE LA REFERENCIA" k={pop(f, c("veinte") + 6)} color={AMARILLO} size={22} />
+        <Chip x={730} y={700} texto="+Q18 SOBRE LA REFERENCIA" k={pop(f, c("veinte") + 6)} color={AMARILLO} size={22} />
       </g>
       <g opacity={fm}>
         <LogoCard src="fotos/2026-11-17/logo-mem.png" x={730} y={90} w={250} h={88} k={fm} />
-        <Cifra x={730} y={290} valor={`+Q${cuenta(f, c("millones") - 4, 0, 39, 22)} M`} rotulo="EN MULTAS" k={P(f, c("millones") - 8, 12, outBack)} size={110} />
+        <CifraQ x={730} y={280} valor={`+Q${cuenta(f, c("millones") - 4, 0, 39, 22)} M`} rotulo="EN MULTAS" k={P(f, c("millones") - 8, 12, outBack)} size={110} />
         {Array.from({ length: 4 }).map((_, i) => (
           <g key={i} transform={`translate(${600 + (i % 2) * 260 - (i >= 2 ? 0 : 0)} ${470 + Math.floor(i / 2) * 140}) scale(${pop(f, c("distribuidoras") - 10 + i * 3, 10)})`}>
             <Distribuidora multa={P(f, c("distribuidoras") + i * 4, 8, outBack)} />
@@ -206,14 +215,15 @@ const Persona: React.FC<{ on: number }> = ({ on }) => (
 );
 export const LaAurora: React.FC<VizProps> = ({ c }) => {
   const f = useCurrentFrame();
-  const fd = P(f, c("destinos") - 8, 14, inOut);
-  const ORIGEN: [number, number] = [190, 470];
-  const destinos = Array.from({ length: 10 }, (_, i) => [430 + (i % 5) * 120, 250 + Math.floor(i / 5) * 110 + (i % 2) * 30] as [number, number]);
+  const sale1 = P(f, c("destinos") - 16, 8);
+  const fd = P(f, c("destinos") - 8, 10, inOut);
+  const ORIGEN: [number, number] = [250, 470];
+  const destinos = Array.from({ length: 10 }, (_, i) => [430 + (i % 5) * 115, 320 + Math.floor(i / 5) * 95 + (i % 2) * 25] as [number, number]);
   return (
     <Lienzo>
       <Cifra x={540} y={140} valor={`${cuenta(f, c("sesenta") - 2, 65, 95, 34)}`} rotulo="VUELOS DIARIOS" k={P(f, c("vuelos") - 6, 12, outBack)} size={150} />
       {/* fase 1: pasajeros por día */}
-      <g opacity={1 - fd}>
+      <g opacity={1 - sale1}>
         {Array.from({ length: 8 }).map((_, i) => (
           <g key={i} transform={`translate(${190 + i * 100} 360) scale(${pop(f, c("pasajeros") - 8 + i * 2, 10) * 1.4})`}>
             <Persona on={P(f, c("pasajeros") + 4 + i * 2, 6)} />
@@ -227,7 +237,7 @@ export const LaAurora: React.FC<VizProps> = ({ c }) => {
         <text x={ORIGEN[0]} y={ORIGEN[1] + 46} textAnchor="middle" fontFamily={F.mono} fontWeight={800} fontSize="22" fill={C.claro} letterSpacing="2">GUA</text>
         {destinos.map(([x, y], i) => {
           const t = P(f, c("destinos") - 4 + i * 3, 14, inOut);
-          const mx = (ORIGEN[0] + x) / 2, my = Math.min(ORIGEN[1], y) - 70;
+          const mx = (ORIGEN[0] + x) / 2, my = Math.max(270, Math.min(ORIGEN[1], y) - 50);
           return (
             <g key={i}>
               <path d={`M${ORIGEN[0]} ${ORIGEN[1]} Q${mx} ${my} ${x} ${y}`} fill="none" stroke={C.suave} strokeWidth="3" strokeDasharray={`${t} 1`} pathLength={1} />
@@ -235,7 +245,7 @@ export const LaAurora: React.FC<VizProps> = ({ c }) => {
             </g>
           );
         })}
-        <Chip x={780} y={490} texto="HASTA EL 31 DE ENERO" k={pop(f, c("enero") - 8)} color={AMARILLO} size={24} />
+        <Chip x={700} y={555} texto="HASTA EL 31 DE ENERO" k={pop(f, c("enero") - 8)} color={AMARILLO} size={24} />
       </g>
       {/* pista con despegues continuos */}
       <g opacity={P(f, c("aurora") - 10, 12)}>
@@ -251,7 +261,7 @@ export const LaAurora: React.FC<VizProps> = ({ c }) => {
           const per = 70;
           const t = ((f + j * 23) % per) / per;
           const x = 260 + t * 680;
-          const y = 670 - Math.max(0, t - 0.35) * 160;
+          const y = 670 - Math.max(0, t - 0.35) * 90;
           const ang = t > 0.35 ? -18 : 0;
           return <g key={j} transform={`translate(${x} ${y}) rotate(${ang})`} opacity={Math.min(1, t * 8) * (1 - P(t * 100, 75, 20))}><AvionMini /></g>;
         })}

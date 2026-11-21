@@ -1,36 +1,273 @@
 {
  "pantalla": [
-  [["ciento","treinta","y","ocho","y","ciento","cuarenta","quetzales."], "Q138 y Q140.", "c"],
-  [["más","de","treinta","y","nueve","millones","de","quetzales"], "más de Q39 millones", "c"],
-  [["novecientos","mil","a","dos","millones","de","quetzales."], "Q900 mil a Q2 millones.", "c"],
-  [["entre","seis","mil","y","ocho","mil","pasajeros"], "entre 6 mil y 8 mil pasajeros", "c"],
-  [["sesenta","y","cinco","a","noventa","y","cinco,"], "65 a 95,", "c"],
-  [["kilómetro","setenta","y","siete"], "kilómetro 77", "c"],
-  [["treinta","y","uno","de","enero."], "31 de enero.", "c"],
-  [["veinte","de","noviembre."], "20 de noviembre.", "c"],
-  [["dos","mil","veintisiete"], "2027", "c"],
-  [["veinticinco","libras"], "25 libras", "c"],
-  [["cuatro","y","siete","por","ciento."], "4 y 7 %.", "c"],
-  [["tres","y","cuatro,"], "3 y 4 %,", "c"],
-  [["piden","diez."], "piden 10 %.", "c"],
-  [["ciento","veinte."], "Q120.", "c"],
-  [["cuatro","distribuidoras"], "4 distribuidoras", "c"],
-  [["diez","nuevos","destinos"], "10 nuevos destinos", "c"],
-  [["catorce","personas"], "14 personas", "c"],
-  [["siete","centros"], "7 centros", "c"]
+  [
+   [
+    "ciento",
+    "treinta",
+    "y",
+    "ocho",
+    "y",
+    "ciento",
+    "cuarenta",
+    "quetzales."
+   ],
+   "Q138 y Q140.",
+   "c"
+  ],
+  [
+   [
+    "más",
+    "de",
+    "treinta",
+    "y",
+    "nueve",
+    "millones",
+    "de",
+    "quetzales"
+   ],
+   "más de Q39 millones",
+   "c"
+  ],
+  [
+   [
+    "novecientos",
+    "mil",
+    "a",
+    "dos",
+    "millones",
+    "de",
+    "quetzales."
+   ],
+   "Q900 mil a Q2 millones.",
+   "c"
+  ],
+  [
+   [
+    "sesenta",
+    "y",
+    "cinco",
+    "a",
+    "noventa",
+    "y",
+    "cinco,"
+   ],
+   "65 a 95,",
+   "c"
+  ],
+  [
+   [
+    "treinta",
+    "y",
+    "uno",
+    "de",
+    "enero."
+   ],
+   "31 de enero.",
+   "c"
+  ],
+  [
+   [
+    "cuatro",
+    "y",
+    "siete",
+    "por",
+    "ciento."
+   ],
+   "4 y 7 %.",
+   "c"
+  ],
+  [
+   [
+    "kilómetro",
+    "setenta",
+    "y",
+    "siete"
+   ],
+   "kilómetro 77",
+   "c"
+  ],
+  [
+   [
+    "veinte",
+    "de",
+    "noviembre."
+   ],
+   "20 de noviembre.",
+   "c"
+  ],
+  [
+   [
+    "dos",
+    "mil",
+    "veintisiete"
+   ],
+   "2027",
+   "c"
+  ],
+  [
+   [
+    "tres",
+    "y",
+    "cuatro,"
+   ],
+   "3 y 4 %,",
+   "c"
+  ],
+  [
+   [
+    "veinticinco",
+    "libras"
+   ],
+   "25 libras",
+   "c"
+  ],
+  [
+   [
+    "piden",
+    "diez."
+   ],
+   "piden 10 %.",
+   "c"
+  ],
+  [
+   [
+    "ciento",
+    "veinte."
+   ],
+   "Q120.",
+   "c"
+  ],
+  [
+   [
+    "cuatro",
+    "distribuidoras"
+   ],
+   "4 distribuidoras",
+   "c"
+  ],
+  [
+   [
+    "catorce",
+    "personas"
+   ],
+   "14 personas",
+   "c"
+  ],
+  [
+   [
+    "siete",
+    "centros"
+   ],
+   "7 centros",
+   "c"
+  ],
+  [
+   [
+    "seis",
+    "mil"
+   ],
+   "6 mil",
+   "c"
+  ],
+  [
+   [
+    "ocho",
+    "mil"
+   ],
+   "8 mil",
+   "c"
+  ],
+  [
+   [
+    "diez",
+    "nuevos"
+   ],
+   "10 nuevos",
+   "c"
+  ]
  ],
- "claves": ["congreso", "ley de contrataciones públicas", "licitar", "comisión de economía", "revisión técnica",
-            "salario mínimo", "bernardo arévalo", "junta monetaria", "diciembre",
-            "gas propano", "ministerio de energía y minas", "multó", "concertar precios",
-            "la aurora", "temporada alta", "nuevos destinos", "aeronáutica civil",
-            "ruta interamericana", "tecpán", "chimaltenango", "heridas", "chirijuyú", "síguenos", "clave pública"],
+ "claves": [
+  "congreso",
+  "ley de contrataciones públicas",
+  "licitar",
+  "comisión de economía",
+  "revisión técnica",
+  "salario mínimo",
+  "bernardo arévalo",
+  "junta monetaria",
+  "diciembre",
+  "gas propano",
+  "ministerio de energía y minas",
+  "multó",
+  "concertar precios",
+  "la aurora",
+  "temporada alta",
+  "nuevos destinos",
+  "aeronáutica civil",
+  "ruta interamericana",
+  "tecpán",
+  "chimaltenango",
+  "heridas",
+  "chirijuyú",
+  "síguenos",
+  "clave pública"
+ ],
  "cues": {
-  "0": {"cinco": "cinco"},
-  "1": {"congreso": "Congreso", "ley": "Ley", "licitar": "licitar", "novecientos": "novecientos", "dos": "dos", "comision": "Comisión", "lunes": "lunes.", "centros": "centros", "revision": "revisión"},
-  "2": {"salario": "salario", "arevalo": "Arévalo.", "gobierno": "Gobierno", "empleadores": "empleadores", "trabajadores": "trabajadores", "junta": "Junta", "diciembre": "diciembre."},
-  "3": {"cilindro": "cilindro", "precio": "ciento", "referencia": "referencia", "veinte": "veinte.", "multo": "multó", "millones": "treinta#2", "distribuidoras": "distribuidoras"},
-  "4": {"aurora": "Aurora", "temporada": "temporada", "vuelos": "vuelos", "sesenta": "sesenta", "pasajeros": "pasajeros", "destinos": "destinos", "enero": "enero.", "anticipacion": "anticipación."},
-  "5": {"bus": "bus", "kilometro": "kilómetro", "tecpan": "Tecpán,", "catorce": "catorce", "hospitales": "hospitales", "hondonada": "hondonada,", "chirijuyu": "Chirijuyú."},
-  "6": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+  "0": {
+   "cinco": "cinco"
+  },
+  "1": {
+   "congreso": "Congreso",
+   "ley": "Ley",
+   "licitar": "licitar",
+   "novecientos": "novecientos",
+   "dos": "dos",
+   "comision": "Comisión",
+   "lunes": "lunes.",
+   "centros": "centros",
+   "revision": "revisión"
+  },
+  "2": {
+   "salario": "salario",
+   "arevalo": "Arévalo.",
+   "gobierno": "Gobierno",
+   "empleadores": "empleadores",
+   "trabajadores": "trabajadores",
+   "junta": "Junta",
+   "diciembre": "diciembre."
+  },
+  "3": {
+   "cilindro": "cilindro",
+   "precio": "ciento",
+   "referencia": "referencia",
+   "veinte": "veinte.",
+   "multo": "multó",
+   "millones": "treinta#2",
+   "distribuidoras": "distribuidoras"
+  },
+  "4": {
+   "aurora": "Aurora",
+   "temporada": "temporada",
+   "vuelos": "vuelos",
+   "sesenta": "sesenta",
+   "pasajeros": "pasajeros",
+   "destinos": "destinos",
+   "enero": "enero.",
+   "anticipacion": "anticipación."
+  },
+  "5": {
+   "bus": "bus",
+   "kilometro": "kilómetro",
+   "tecpan": "Tecpán,",
+   "catorce": "catorce",
+   "hospitales": "hospitales",
+   "hondonada": "hondonada,",
+   "chirijuyu": "Chirijuyú."
+  },
+  "6": {
+   "informate": "Infórmate,",
+   "comparte": "comparte",
+   "siguenos": "síguenos"
+  }
  }
 }
