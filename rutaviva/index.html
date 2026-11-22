@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="es-GT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E5EFF">
+<meta name="description" content="RutaViva: asistente de movilidad urbana para la Ciudad de Guatemala (demo con datos simulados, app no oficial).">
+<title>RutaViva</title>
+
+<!-- Única dependencia externa: Leaflet (mapa) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+/* =========================================================
+   1. VARIABLES DE TEMA (claro / oscuro)
+   ========================================================= */
+:root {
+  --primario: #1E5EFF;
+  --primario-suave: #E8EEFF;
+  --amarillo: #FFC93C;
+  --amarillo-suave: #FFF6DB;
+  --rojo: #E5484D;
+  --rojo-suave: #FDECEC;
+  --verde: #2BA84A;
+  --verde-suave: #E5F6EA;
+
+  --fondo: #F4F6FB;
+  --superficie: #FFFFFF;
+  --superficie-2: #F0F2F8;
+  --texto: #111827;
+  --texto-2: #5B6475;
+  --borde: #E3E7F0;
+  --sombra: 0 4px 16px rgba(17, 24, 39, .07), 0 1px 3px rgba(17, 24, 39, .05);
+  --sombra-fuerte: 0 10px 30px rgba(17, 24, 39, .18);
+
+  --radio: 18px;
+  --radio-sm: 12px;
+  --nav-alto: 68px;
+  --top-alto: 60px;
+}
+html[data-theme="dark"] {
+  --primario: #4D7FFF;
+  --primario-suave: #1A2647;
+  --amarillo-suave: #3A3217;
+  --rojo-suave: #3D1E20;
+  --verde-suave: #183324;
+
+  --fondo: #0D1117;
+  --superficie: #161B24;
+  --superficie-2: #1F2632;
+  --texto: #ECEFF5;
+  --texto-2: #9AA4B5;
+  --borde: #2A3240;
+  --sombra: 0 4px 16px rgba(0, 0, 0, .35);
+  --sombra-fuerte: 0 10px 30px rgba(0, 0, 0, .55);
+}
+
+/* =========================================================
+   2. BASE
+   ========================================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  font-size: 15px;
+  line-height: 1.45;
+  transition: background .3s, color .3s;
+  overflow: hidden;
+}
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; border: none; background: none; }
+svg { flex-shrink: 0; }
+
+/* Contenedor que simula el ancho de un celular en pantallas grandes */
+.app {
+  position: relative;
+  max-width: 430px;
+  height: 100%;
+  margin: 0 auto;
+  background: var(--fondo);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+@media (min-width: 431px) {
+  .app { box-shadow: 0 0 0 1px var(--borde), var(--sombra-fuerte); }
+}
+
+/* =========================================================
+   3. BARRA SUPERIOR
+   ========================================================= */
+.topbar {
+  height: var(--top-alto);
+  padding: 0 16px;
+  padding-top: env(safe-area-inset-top);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--superficie);
+  border-bottom: 1px solid var(--borde);
+  flex-shrink: 0;
+  z-index: 20;
+}
+.marca { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 19px; letter-spacing: -.3px; }
+.marca span b { color: var(--primario); }
+.icon-btn {
+  width: 40px; height: 40px; border-radius: 12px;
+  display: grid; place-items: center;
+  background: var(--superficie-2);
+  color: var(--texto);
+  transition: transform .15s;
+}
+.icon-btn:active { transform: scale(.92); }
+
+/* =========================================================
+   4. PANTALLAS Y ANIMACIONES ENTRE PESTAÑAS
+   ========================================================= */
+.pantallas { position: relative; flex: 1; overflow: hidden; }
+.pantalla {
+  position: absolute; inset: 0;
+  overflow-y: auto;
+  padding: 16px 16px calc(var(--nav-alto) + 24px);
+  display: none;
+  -webkit-overflow-scrolling: touch;
+}
+.pantalla.activa { display: block; animation: entrar .32s cubic-bezier(.2, .8, .2, 1); }
+.pantalla.activa.desde-izq { animation-name: entrarIzq; }
+@keyframes entrar    { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@keyframes entrarIzq { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
+
+/* =========================================================
+   5. COMPONENTES GENERALES
+   ========================================================= */
+h1 { font-size: 24px; letter-spacing: -.4px; line-height: 1.2; }
+h2 { font-size: 17px; margin: 22px 0 10px; display: flex; align-items: center; justify-content: space-between; }
+h2 small { font-size: 13px; color: var(--texto-2); font-weight: 500; }
+.sub { color: var(--texto-2); font-size: 14px; }
+
+.tarjeta {
+  background: var(--superficie);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 14px;
+  border: 1px solid var(--borde);
+}
+.pila > * + * { margin-top: 10px; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 9px; border-radius: 999px;
+  font-size: 12px; font-weight: 700;
+  white-space: nowrap;
+}
+.nivel-alto  { background: var(--rojo-suave); color: var(--rojo); }
+.nivel-medio { background: var(--amarillo-suave); color: #B07D00; }
+.nivel-bajo  { background: var(--verde-suave); color: var(--verde); }
+html[data-theme="dark"] .nivel-medio { color: var(--amarillo); }
+
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 18px; border-radius: 14px;
+  background: var(--primario); color: #fff; font-weight: 700;
+  transition: transform .15s, opacity .2s;
+  width: 100%;
+}
+.boton:active { transform: scale(.97); }
+.boton.secundario { background: var(--primario-suave); color: var(--primario); }
+.boton:disabled { opacity: .6; }
+
+.aviso-demo {
+  margin-top: 26px; text-align: center; font-size: 12px; color: var(--texto-2);
+}
+
+/* =========================================================
+   6. INICIO
+   ========================================================= */
+.hero {
+  background: linear-gradient(135deg, var(--primario), #0B3FD1);
+  color: #fff; border-radius: 22px; padding: 18px;
+  box-shadow: 0 10px 24px rgba(30, 94, 255, .3);
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ""; position: absolute; right: -40px; top: -40px;
+  width: 150px; height: 150px; border-radius: 50%;
+  background: rgba(255, 201, 60, .22);
+}
+.hero .saludo { font-size: 14px; opacity: .9; }
+.hero h1 { color: #fff; margin: 2px 0 12px; }
+.trafico {
+  display: flex; gap: 10px; align-items: center;
+  background: rgba(255, 255, 255, .14); border-radius: 14px; padding: 10px 12px;
+  position: relative; z-index: 1;
+}
+.trafico .punto { width: 10px; height: 10px; border-radius: 50%; background: var(--amarillo); box-shadow: 0 0 0 4px rgba(255, 201, 60, .3); animation: latir 1.8s infinite; }
+@keyframes latir { 50% { box-shadow: 0 0 0 8px rgba(255, 201, 60, 0); } }
+.trafico b { display: block; font-size: 15px; }
+.trafico small { opacity: .85; font-size: 12.5px; }
+
+.accesos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+.acceso {
+  background: var(--superficie); border: 1px solid var(--borde);
+  border-radius: var(--radio); box-shadow: var(--sombra);
+  padding: 14px 6px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-size: 12.5px; font-weight: 700; text-align: center; line-height: 1.2;
+  transition: transform .15s;
+}
+.acceso:active { transform: scale(.95); }
+.acceso .ico { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; }
+
+.alerta { display: flex; gap: 12px; align-items: flex-start; }
+.alerta .ico { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; color: #fff; }
+.alerta .cuerpo { flex: 1; min-width: 0; }
+.alerta .fila { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.alerta b { font-size: 15px; }
+.alerta p { font-size: 13.5px; color: var(--texto-2); margin-top: 2px; }
+.meta { display: flex; gap: 12px; font-size: 12px; color: var(--texto-2); margin-top: 6px; flex-wrap: wrap; }
+.meta span { display: inline-flex; align-items: center; gap: 4px; }
+
+/* =========================================================
+   7. MAPA
+   ========================================================= */
+#pantalla-mapa { padding: 0; overflow: hidden; }
+#mapa { position: absolute; inset: 0; bottom: var(--nav-alto); background: var(--superficie-2); }
+html[data-theme="dark"] #mapa .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(.9); }
+.filtros {
+  position: absolute; top: 12px; left: 0; right: 0; z-index: 500;
+  display: flex; gap: 8px; overflow-x: auto; padding: 0 12px 4px;
+  scrollbar-width: none;
+}
+.filtros::-webkit-scrollbar { display: none; }
+.filtro {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 12px; border-radius: 999px; white-space: nowrap;
+  background: var(--superficie); color: var(--texto);
+  font-size: 13px; font-weight: 600; box-shadow: var(--sombra);
+  border: 1.5px solid transparent;
+  transition: all .2s;
+}
+.filtro .dot { width: 10px; height: 10px; border-radius: 50%; }
+.filtro.off { opacity: .5; text-decoration: line-through; }
+.contador-mapa {
+  position: absolute; left: 12px; bottom: calc(var(--nav-alto) + 14px); z-index: 500;
+  background: var(--superficie); padding: 8px 12px; border-radius: 12px;
+  font-size: 13px; font-weight: 600; box-shadow: var(--sombra);
+}
+.marcador {
+  width: 34px; height: 34px; border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: grid; place-items: center;
+  border: 3px solid #fff; box-shadow: 0 3px 8px rgba(0, 0, 0, .35);
+}
+.marcador svg { transform: rotate(45deg); color: #fff; }
+.marcador.nuevo { animation: rebote .6s ease 3; }
+@keyframes rebote { 50% { transform: rotate(-45deg) translate(4px, -4px); } }
+
+.leaflet-popup-content-wrapper { border-radius: 16px; background: var(--superficie); color: var(--texto); box-shadow: var(--sombra-fuerte); }
+.leaflet-popup-tip { background: var(--superficie); }
+.leaflet-popup-content { margin: 14px 16px; font-family: inherit; min-width: 210px; }
+.pop-tipo { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; }
+.pop-titulo { font-size: 15px; font-weight: 700; margin: 3px 0 4px; }
+.pop-desc { font-size: 13px; color: var(--texto-2); margin-bottom: 8px; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--texto-2); }
+.leaflet-control-attribution { font-size: 10px; }
+
+/* =========================================================
+   8. ASISTENTE (CHAT)
+   ========================================================= */
+#pantalla-asistente { padding: 0; display: none; flex-direction: column; }
+#pantalla-asistente.activa { display: flex; }
+.chat-cab {
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  background: var(--superficie); border-bottom: 1px solid var(--borde);
+}
+.avatar-viva {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primario), var(--amarillo));
+  display: grid; place-items: center; color: #fff; font-weight: 800;
+}
+.chat-cab small { color: var(--verde); font-size: 12px; font-weight: 600; }
+.mensajes { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.msg {
+  max-width: 84%; padding: 10px 13px; border-radius: 18px;
+  font-size: 14.5px; animation: aparecer .25s ease; white-space: pre-line;
+  word-wrap: break-word;
+}
+@keyframes aparecer { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.msg.viva { align-self: flex-start; background: var(--superficie); border: 1px solid var(--borde); border-bottom-left-radius: 6px; box-shadow: var(--sombra); }
+.msg.yo   { align-self: flex-end; background: var(--primario); color: #fff; border-bottom-right-radius: 6px; }
+.msg .hora { display: block; font-size: 10.5px; opacity: .6; margin-top: 4px; text-align: right; }
+.escribiendo { display: inline-flex; gap: 4px; padding: 14px 16px; }
+.escribiendo i { width: 7px; height: 7px; border-radius: 50%; background: var(--texto-2); animation: puntos 1.2s infinite; }
+.escribiendo i:nth-child(2) { animation-delay: .15s; }
+.escribiendo i:nth-child(3) { animation-delay: .3s; }
+@keyframes puntos { 0%, 60%, 100% { opacity: .3; transform: none; } 30% { opacity: 1; transform: translateY(-4px); } }
+.sugerencias { display: flex; gap: 8px; overflow-x: auto; padding: 8px 16px; scrollbar-width: none; }
+.sugerencias::-webkit-scrollbar { display: none; }
+.sugerencia {
+  white-space: nowrap; padding: 8px 13px; border-radius: 999px;
+  background: var(--primario-suave); color: var(--primario);
+  font-size: 13px; font-weight: 600;
+}
+.chat-entrada {
+  display: flex; gap: 8px; padding: 10px 12px;
+  padding-bottom: calc(var(--nav-alto) + 10px);
+  background: var(--superficie); border-top: 1px solid var(--borde);
+}
+.chat-entrada input {
+  flex: 1; min-width: 0; padding: 12px 16px; border-radius: 999px;
+  border: 1px solid var(--borde); background: var(--superficie-2); outline: none;
+}
+.chat-entrada input:focus { border-color: var(--primario); }
+.chat-entrada button { width: 46px; height: 46px; border-radius: 50%; background: var(--primario); color: #fff; display: grid; place-items: center; }
+
+/* =========================================================
+   9. FORMULARIOS (Reportar y Perfil)
+   ========================================================= */
+.campo { margin-bottom: 14px; }
+.campo label.etq { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 6px; }
+.campo input[type=text], .campo select, .campo textarea {
+  width: 100%; padding: 12px 14px; border-radius: var(--radio-sm);
+  border: 1.5px solid var(--borde); background: var(--superficie-2);
+  outline: none; transition: border-color .2s;
+}
+.campo textarea { resize: vertical; min-height: 92px; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: var(--primario); }
+.campo.error input, .campo.error select, .campo.error textarea, .campo.error .adjunto { border-color: var(--rojo); }
+.msg-error { display: none; color: var(--rojo); font-size: 12.5px; margin-top: 5px; font-weight: 600; }
+.campo.error .msg-error { display: block; }
+.ubic { display: flex; gap: 8px; }
+.ubic input { flex: 1; min-width: 0; }
+.ubic button {
+  flex-shrink: 0; padding: 0 12px; border-radius: var(--radio-sm);
+  background: var(--primario-suave); color: var(--primario);
+  font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 5px;
+}
+.ubic-estado { font-size: 12px; color: var(--texto-2); margin-top: 5px; min-height: 16px; }
+.adjunto {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  border: 2px dashed var(--borde); border-radius: var(--radio); padding: 18px;
+  color: var(--texto-2); font-size: 13.5px; text-align: center; cursor: pointer;
+}
+.adjunto input { display: none; }
+.vista-previa { margin-top: 10px; position: relative; display: none; }
+.vista-previa.visible { display: block; }
+.vista-previa img, .vista-previa video { width: 100%; max-height: 220px; object-fit: cover; border-radius: var(--radio-sm); background: #000; }
+.vista-previa button {
+  position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(0, 0, 0, .6); color: #fff; display: grid; place-items: center;
+}
+
+/* Interruptor (switch) */
+.fila-opcion { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
+.fila-opcion + .fila-opcion { border-top: 1px solid var(--borde); }
+.fila-opcion b { display: block; font-size: 14.5px; }
+.fila-opcion small { color: var(--texto-2); font-size: 12.5px; }
+.switch { position: relative; width: 50px; height: 30px; flex-shrink: 0; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch .riel { position: absolute; inset: 0; border-radius: 999px; background: var(--borde); transition: .25s; cursor: pointer; }
+.switch .riel::before {
+  content: ""; position: absolute; width: 24px; height: 24px; left: 3px; top: 3px;
+  border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); transition: .25s;
+}
+.switch input:checked + .riel { background: var(--primario); }
+.switch input:checked + .riel::before { transform: translateX(20px); }
+.switch input:focus-visible + .riel { outline: 2px solid var(--primario); outline-offset: 2px; }
+
+.check { display: flex; gap: 10px; align-items: center; font-size: 14.5px; font-weight: 600; cursor: pointer; }
+.check input { width: 20px; height: 20px; accent-color: var(--primario); }
+
+.reporte-item { display: flex; gap: 12px; align-items: center; }
+.reporte-item .cuerpo { flex: 1; min-width: 0; }
+.reporte-item b { font-size: 14.5px; }
+.reporte-item p { font-size: 12.5px; color: var(--texto-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.estado-Recibido    { background: var(--primario-suave); color: var(--primario); }
+.estado-En-revisión { background: var(--amarillo-suave); color: #B07D00; }
+.estado-Atendido    { background: var(--verde-suave); color: var(--verde); }
+html[data-theme="dark"] .estado-En-revisión { color: var(--amarillo); }
+.vacio { text-align: center; color: var(--texto-2); font-size: 14px; padding: 18px; }
+
+/* Perfil */
+.perfil-cab { display: flex; gap: 14px; align-items: center; }
+.perfil-cab .avatar { width: 58px; height: 58px; border-radius: 50%; background: var(--primario-suave); color: var(--primario); display: grid; place-items: center; font-weight: 800; font-size: 20px; }
+.favorita { display: flex; gap: 10px; align-items: center; }
+.favorita .ico { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: var(--primario-suave); color: var(--primario); }
+.favorita input { flex: 1; min-width: 0; padding: 10px 12px; border-radius: var(--radio-sm); border: 1.5px solid var(--borde); background: var(--superficie-2); outline: none; }
+.favorita input:focus { border-color: var(--primario); }
+.multa .fila { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.multa .montos { text-align: right; }
+.multa .antes { font-size: 12.5px; color: var(--texto-2); text-decoration: line-through; }
+.multa .ahora { font-size: 18px; font-weight: 800; color: var(--primario); }
+.multa .barra { height: 6px; border-radius: 6px; background: var(--superficie-2); margin-top: 10px; overflow: hidden; }
+.multa .barra i { display: block; height: 100%; background: var(--amarillo); border-radius: 6px; }
+
+/* =========================================================
+   10. NAVEGACIÓN INFERIOR
+   ========================================================= */
+.nav {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1000;
+  height: calc(var(--nav-alto) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--superficie);
+  border-top: 1px solid var(--borde);
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, .05);
+}
+.nav button {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  font-size: 11px; font-weight: 600; color: var(--texto-2);
+  position: relative; transition: color .2s;
+}
+.nav button .pill { padding: 4px 16px; border-radius: 999px; transition: background .25s; display: grid; place-items: center; }
+.nav button.activo { color: var(--primario); }
+.nav button.activo .pill { background: var(--primario-suave); }
+.nav .badge {
+  position: absolute; top: 8px; left: calc(50% + 8px);
+  min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px;
+  background: var(--rojo); color: #fff; font-size: 10px; font-weight: 800;
+  display: grid; place-items: center; border: 2px solid var(--superficie);
+}
+
+/* =========================================================
+   11. AVISOS EMERGENTES Y MODAL
+   ========================================================= */
+.toast-zona {
+  position: absolute; top: calc(var(--top-alto) + 10px); left: 12px; right: 12px;
+  z-index: 2000; display: flex; flex-direction: column; gap: 8px; pointer-events: none;
+}
+.toast {
+  pointer-events: auto;
+  display: flex; gap: 12px; align-items: flex-start;
+  background: var(--superficie); border: 1px solid var(--borde);
+  border-left: 5px solid var(--rojo);
+  border-radius: 16px; padding: 12px 14px; box-shadow: var(--sombra-fuerte);
+  animation: bajar .4s cubic-bezier(.2, .8, .2, 1);
+}
+.toast.saliendo { animation: subir .3s ease forwards; }
+@keyframes bajar { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: none; } }
+@keyframes subir { to { opacity: 0; transform: translateY(-20px); } }
+.toast .cuerpo { flex: 1; font-size: 13.5px; }
+.toast b { display: block; font-size: 14px; }
+.toast .cerrar { color: var(--texto-2); padding: 2px; }
+
+.modal-fondo {
+  position: absolute; inset: 0; z-index: 3000; background: rgba(10, 15, 30, .55);
+  display: none; align-items: center; justify-content: center; padding: 24px;
+}
+.modal-fondo.visible { display: flex; animation: aparecer .2s ease; }
+.modal {
+  background: var(--superficie); border-radius: 24px; padding: 24px 20px; width: 100%;
+  text-align: center; box-shadow: var(--sombra-fuerte); animation: zoom .3s cubic-bezier(.2, .8, .2, 1.2);
+}
+@keyframes zoom { from { transform: scale(.85); opacity: 0; } to { transform: none; opacity: 1; } }
+.modal .ok { width: 64px; height: 64px; border-radius: 50%; background: var(--verde-suave); color: var(--verde); display: grid; place-items: center; margin: 0 auto 12px; }
+.modal h3 { font-size: 20px; margin-bottom: 6px; }
+.modal .folio { display: inline-block; margin: 12px 0 16px; padding: 8px 16px; border-radius: 12px; background: var(--primario-suave); color: var(--primario); font-weight: 800; font-size: 18px; letter-spacing: .5px; }
+.modal .acciones { display: flex; gap: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- ============ BARRA SUPERIOR ============ -->
+  <header class="topbar">
+    <div class="marca">
+      <!-- Logo propio de RutaViva (no oficial) -->
+      <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="10" fill="#1E5EFF"/>
+        <path d="M9 23c0-5 3-6 7-6s7-1 7-6" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="9" cy="23" r="2.6" fill="#FFC93C"/>
+        <circle cx="23" cy="11" r="2.6" fill="#FFC93C"/>
+      </svg>
+      <span>Ruta<b>Viva</b></span>
+    </div>
+    <button class="icon-btn" id="btn-tema" aria-label="Cambiar modo claro u oscuro"></button>
+  </header>
+
+  <div class="toast-zona" id="toasts" aria-live="polite"></div>
+
+  <main class="pantallas">
+
+    <!-- ============ 1. INICIO ============ -->
+    <section class="pantalla" id="pantalla-inicio" data-tab="inicio">
+      <div class="hero">
+        <div class="saludo" id="saludo">Buenos días</div>
+        <h1 id="saludo-nombre">¿Para dónde vamos hoy?</h1>
+        <div class="trafico">
+          <div class="punto"></div>
+          <div>
+            <b id="trafico-titulo"></b>
+            <small id="trafico-detalle"></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="accesos">
+        <button class="acceso" data-accion="como-llego">
+          <span class="ico" style="background:var(--primario-suave);color:var(--primario)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7"/></svg>
+          </span>¿Cómo llego?
+        </button>
+        <button class="acceso" data-accion="reportar">
+          <span class="ico" style="background:var(--rojo-suave);color:var(--rojo)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+          </span>Reportar
+        </button>
+        <button class="acceso" data-accion="multas">
+          <span class="ico" style="background:var(--amarillo-suave);color:#C58A00">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+          </span>Multas y descuentos
+        </button>
+      </div>
+
+      <h2>Alertas activas <small id="alertas-cuenta"></small></h2>
+      <div class="pila" id="lista-alertas"></div>
+
+      <p class="aviso-demo">Demo con datos simulados · App no oficial, sin relación con ninguna municipalidad.</p>
+    </section>
+
+    <!-- ============ 2. MAPA ============ -->
+    <section class="pantalla" id="pantalla-mapa" data-tab="mapa">
+      <div id="mapa" role="region" aria-label="Mapa de incidentes"></div>
+      <div class="filtros" id="filtros"></div>
+      <div class="contador-mapa" id="contador-mapa"></div>
+    </section>
+
+    <!-- ============ 3. ASISTENTE ============ -->
+    <section class="pantalla" id="pantalla-asistente" data-tab="asistente">
+      <div class="chat-cab">
+        <div class="avatar-viva">V</div>
+        <div>
+          <b>Viva</b><br>
+          <small id="viva-estado">● En línea</small>
+        </div>
+      </div>
+      <div class="mensajes" id="mensajes" aria-live="polite"></div>
+      <div class="sugerencias" id="sugerencias"></div>
+      <form class="chat-entrada" id="form-chat" autocomplete="off">
+        <input id="chat-input" type="text" placeholder="Escribí tu pregunta…" aria-label="Mensaje para Viva">
+        <button type="submit" aria-label="Enviar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </form>
+    </section>
+
+    <!-- ============ 4. REPORTAR ============ -->
+    <section class="pantalla" id="pantalla-reportar" data-tab="reportar">
+      <h1>Reportar</h1>
+      <p class="sub">Ayudanos a mantener la ciudad en movimiento. Tu reporte aparece en el mapa.</p>
+
+      <form class="tarjeta" id="form-reporte" style="margin-top:14px" novalidate>
+        <div class="campo" id="c-tipo">
+          <label class="etq" for="r-tipo">Tipo de reporte</label>
+          <select id="r-tipo"></select>
+          <div class="msg-error">Seleccioná un tipo de reporte.</div>
+        </div>
+
+        <div class="campo" id="c-ubic">
+          <label class="etq" for="r-ubic">Ubicación</label>
+          <div class="ubic">
+            <input type="text" id="r-ubic" placeholder="Ej.: 6a. avenida y 12 calle, zona 1">
+            <button type="button" id="btn-geo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>
+              Usar mi ubicación
+            </button>
+          </div>
+          <div class="ubic-estado" id="geo-estado"></div>
+          <div class="msg-error">Indicá la ubicación (mínimo 5 caracteres) o usá tu ubicación.</div>
+        </div>
+
+        <div class="campo" id="c-desc">
+          <label class="etq" for="r-desc">Descripción</label>
+          <textarea id="r-desc" maxlength="400" placeholder="Contanos qué está pasando…"></textarea>
+          <div class="msg-error">Describí el incidente (mínimo 10 caracteres).</div>
+        </div>
+
+        <div class="campo" id="c-archivo">
+          <span class="etq" style="display:block;font-size:13.5px;font-weight:700;margin-bottom:6px">Foto o video (opcional)</span>
+          <label class="adjunto" id="zona-adjunto">
+            <input type="file" id="r-archivo" accept="image/*,video/*">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <span>Tocá para tomar o adjuntar una foto o video<br><small>Máximo 25 MB</small></span>
+          </label>
+          <div class="vista-previa" id="vista-previa"></div>
+          <div class="msg-error" id="error-archivo">El archivo supera los 25 MB.</div>
+        </div>
+
+        <div class="campo">
+          <label class="check"><input type="checkbox" id="r-anonimo"> Reporte anónimo</label>
+        </div>
+
+        <button type="submit" class="boton" id="btn-enviar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          Enviar reporte
+        </button>
+      </form>
+
+      <h2>Mis reportes <small id="mis-cuenta"></small></h2>
+      <div class="pila" id="mis-reportes"></div>
+    </section>
+
+    <!-- ============ 5. PERFIL ============ -->
+    <section class="pantalla" id="pantalla-perfil" data-tab="perfil">
+      <div class="tarjeta perfil-cab">
+        <div class="avatar" id="perfil-iniciales"></div>
+        <div>
+          <b style="font-size:17px" id="perfil-nombre"></b><br>
+          <small class="sub" id="perfil-resumen"></small>
+        </div>
+      </div>
+
+      <h2>Rutas favoritas</h2>
+      <div class="tarjeta pila">
+        <div class="favorita">
+          <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span>
+          <input type="text" id="fav-casa" aria-label="Casa">
+        </div>
+        <div class="favorita">
+          <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+          <input type="text" id="fav-trabajo" aria-label="Trabajo">
+        </div>
+      </div>
+
+      <h2>Preferencias</h2>
+      <div class="tarjeta" style="padding:4px 14px">
+        <div class="fila-opcion">
+          <div><b>Notificaciones</b><small>Avisos de incidentes en tus rutas</small></div>
+          <label class="switch"><input type="checkbox" id="pref-notif"><span class="riel"></span></label>
+        </div>
+        <div class="fila-opcion">
+          <div><b>Modo oscuro</b><small>Más cómodo de noche</small></div>
+          <label class="switch"><input type="checkbox" id="pref-oscuro"><span class="riel"></span></label>
+        </div>
+      </div>
+
+      <h2 id="titulo-multas">Mis multas <small>Ejemplo</small></h2>
+      <div class="pila" id="lista-multas"></div>
+
+      <p class="aviso-demo">RutaViva v1.0 · Demo con datos simulados.<br>App no oficial, sin relación con ninguna municipalidad ni autoridad de tránsito.</p>
+    </section>
+  </main>
+
+  <!-- ============ NAVEGACIÓN INFERIOR ============ -->
+  <nav class="nav" id="nav" aria-label="Navegación principal">
+    <button data-tab="inicio" class="activo">
+      <span class="pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span>Inicio
+    </button>
+    <button data-tab="mapa">
+      <span class="pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg></span>Mapa
+    </button>
+    <button data-tab="asistente">
+      <span class="pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span>Asistente
+    </button>
+    <button data-tab="reportar">
+      <span class="pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span>Reportar
+    </button>
+    <button data-tab="perfil">
+      <span class="pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>Perfil
+    </button>
+  </nav>
+
+  <!-- ============ MODAL DE CONFIRMACIÓN ============ -->
+  <div class="modal-fondo" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <div class="modal">
+      <div class="ok"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3 id="modal-titulo">¡Reporte enviado!</h3>
+      <p class="sub">Gracias por ayudar. Guardá tu número de folio para darle seguimiento.</p>
+      <div class="folio" id="modal-folio"></div>
+      <div class="acciones">
+        <button class="boton secundario" id="modal-mapa">Ver en mapa</button>
+        <button class="boton" id="modal-cerrar">Listo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   RutaViva — asistente de movilidad urbana (DEMO)
+   --------------------------------------------------------------------------
+   Todos los datos son SIMULADOS. La app no se conecta a ningún servicio real
+   (salvo los mosaicos del mapa de OpenStreetMap que carga Leaflet).
+
+   ÍNDICE DEL SCRIPT
+     A. DATOS DE EJEMPLO (editá aquí)
+     B. Utilidades
+     C. Tema claro / oscuro
+     D. Navegación por pestañas
+     E. Inicio
+     F. Mapa
+     G. Asistente "Viva"
+     H. Reportar
+     I. Perfil
+     J. Notificaciones simuladas
+     K. Arranque
+   ========================================================================== */
+
+/* ==========================================================================
+   A. DATOS DE EJEMPLO — editalos libremente
+   ========================================================================== */
+
+/** Configuración general */
+const CONFIG = {
+  centroMapa: [14.6349, -90.5069],   // Ciudad de Guatemala
+  zoomInicial: 13,
+  intervaloNotificacionesMs: 45000,  // cada 45 segundos
+  maxArchivoMB: 25,
+  usuario: { nombre: 'Ana López', zona: 'Zona 11' }
+};
+
+/** Resumen de tráfico que se muestra en Inicio */
+const TRAFICO_RESUMEN = {
+  titulo: 'Tráfico moderado en Calzada Roosevelt',
+  detalle: 'Sentido al Trébol · demora aprox. 15 min'
+};
+
+/** Catálogo de tipos de incidente para el mapa (color + ícono SVG) */
+const TIPOS_INCIDENTE = {
+  choque:   { nombre: 'Choque',          color: '#E5484D', icono: '<path d="M5 17h14M6 17l1.5-5h9L18 17M7 17v2M17 17v2"/><path d="M9 8l1-3M14 8l1-3M12 4v3"/>' },
+  cierre:   { nombre: 'Cierre',          color: '#8B3DFF', icono: '<rect x="3" y="8" width="18" height="6" rx="1"/><path d="M7 8l-3 6M13 8l-3 6M19 8l-3 6M6 14v5M18 14v5"/>' },
+  evento:   { nombre: 'Evento',          color: '#1E5EFF', icono: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>' },
+  falla:    { nombre: 'Falla mecánica',  color: '#F08C00', icono: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/>' },
+  semaforo: { nombre: 'Semáforo dañado', color: '#C99A00', icono: '<rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="17" r="1.5"/>' },
+  reporte:  { nombre: 'Reporte ciudadano', color: '#2BA84A', icono: '<path d="M4 22V4a1 1 0 0 1 1-1h11l-2 4 2 4H5"/>' }
+};
+
+/** Incidentes de ejemplo en vías reales (coordenadas aproximadas) */
+const INCIDENTES = [
+  { id: 1,  tipo: 'choque',   titulo: 'Choque entre dos vehículos',      via: 'Anillo Periférico',         zona: 'Zona 7',  lat: 14.6402, lng: -90.5532, hora: '07:10', nivel: 'alto',  desc: 'Carril izquierdo bloqueado a la altura de la Calzada San Juan.' },
+  { id: 2,  tipo: 'cierre',   titulo: 'Cierre por trabajos de bacheo',   via: 'Bulevar Liberación',        zona: 'Zona 9',  lat: 14.5947, lng: -90.5205, hora: '05:30', nivel: 'alto',  desc: 'Cierre total sentido al aeropuerto hasta las 14:00 h.' },
+  { id: 3,  tipo: 'evento',   titulo: 'Carrera recreativa',              via: 'Avenida Las Américas',      zona: 'Zona 13', lat: 14.5865, lng: -90.5150, hora: '06:00', nivel: 'medio', desc: 'Cierre parcial hasta las 11:00 h. Usá la Avenida La Aurora.' },
+  { id: 4,  tipo: 'falla',    titulo: 'Bus con falla mecánica',          via: 'Calzada Aguilar Batres',    zona: 'Zona 11', lat: 14.6045, lng: -90.5418, hora: '07:35', nivel: 'medio', desc: 'Unidad detenida en carril derecho, sentido al sur.' },
+  { id: 5,  tipo: 'semaforo', titulo: 'Semáforo intermitente',           via: 'Calzada Roosevelt',         zona: 'Zona 11', lat: 14.6268, lng: -90.5560, hora: '06:50', nivel: 'medio', desc: 'Semáforo en amarillo intermitente frente a centro comercial.' },
+  { id: 6,  tipo: 'evento',   titulo: 'Pasos y Pedales',                 via: 'Avenida Reforma',           zona: 'Zona 10', lat: 14.6010, lng: -90.5115, hora: '08:00', nivel: 'bajo',  desc: 'Vía cerrada a vehículos de 8:00 a 13:00 h los domingos.' },
+  { id: 7,  tipo: 'choque',   titulo: 'Motorista accidentado',           via: 'Bulevar Los Próceres',      zona: 'Zona 10', lat: 14.5925, lng: -90.5048, hora: '07:52', nivel: 'alto',  desc: 'Ambulancia en el lugar. Tránsito lento en ambos sentidos.' },
+  { id: 8,  tipo: 'cierre',   titulo: 'Cierre por manifestación',        via: 'Sexta Avenida',             zona: 'Zona 1',  lat: 14.6415, lng: -90.5133, hora: '09:00', nivel: 'alto',  desc: 'Concentración frente a la Plaza de la Constitución.' },
+  { id: 9,  tipo: 'falla',    titulo: 'Tráiler varado',                  via: 'Trébol',                    zona: 'Zona 8',  lat: 14.6225, lng: -90.5325, hora: '06:40', nivel: 'alto',  desc: 'Transporte pesado sin poder avanzar en el paso a desnivel.' },
+  { id: 10, tipo: 'semaforo', titulo: 'Semáforo apagado',                via: 'Calzada Atanasio Tzul',     zona: 'Zona 12', lat: 14.6000, lng: -90.5300, hora: '07:20', nivel: 'bajo',  desc: 'Agentes de tránsito dirigen el paso manualmente.' },
+  { id: 11, tipo: 'choque',   titulo: 'Alcance entre picop y sedán',     via: 'Carretera a El Salvador',   zona: 'Km 12',   lat: 14.5800, lng: -90.4680, hora: '07:05', nivel: 'medio', desc: 'Carril central afectado, sentido a la ciudad.' },
+  { id: 12, tipo: 'falla',    titulo: 'Vehículo sin combustible',        via: 'Avenida Petapa',            zona: 'Zona 12', lat: 14.5835, lng: -90.5370, hora: '08:15', nivel: 'bajo',  desc: 'Carril derecho a la altura de la 40 calle.' }
+];
+
+/** Tipos de reporte del formulario */
+const TIPOS_REPORTE = [
+  'Bloqueo de intersección',
+  'Parqueo en línea roja',
+  'Transporte pesado en horario restringido',
+  'Bus extraurbano',
+  'Choque',
+  'Falla mecánica',
+  'Otro'
+];
+
+/** Multas de ejemplo (montos en quetzales, ficticios) */
+const MULTAS = [
+  { id: 'M-20931', motivo: 'Estacionarse en línea roja',     fecha: '02/11/2026', lugar: '7a. avenida, zona 4',     monto: 500, descuento: 50, vence: '30/11/2026' },
+  { id: 'M-20488', motivo: 'Bloqueo de intersección',        fecha: '18/10/2026', lugar: 'Diagonal 6, zona 10',     monto: 300, descuento: 25, vence: '15/12/2026' },
+  { id: 'M-19902', motivo: 'Exceso de velocidad',            fecha: '25/09/2026', lugar: 'Periférico, zona 7',      monto: 750, descuento: 0,  vence: '—' }
+];
+
+/** Texto con la política de descuentos (simulada) */
+const DESCUENTOS_TEXTO =
+  'Descuentos vigentes (ejemplo):\n' +
+  '• 50 % si pagás dentro de los primeros 5 días hábiles.\n' +
+  '• 25 % si pagás antes de 30 días.\n' +
+  '• Sin descuento después de 30 días.\n' +
+  'Podés revisar tus multas en la pestaña Perfil.';
+
+/** Rutas alternas por palabra clave (vía o zona). La clave se busca sin tildes. */
+const RUTAS_ALTERNAS = {
+  'periferico':    'Para evitar el Periférico, tomá la Calzada San Juan hasta la Calzada Roosevelt y luego el Trébol. Ahorrás unos 10 min.',
+  'roosevelt':     'La Roosevelt está cargada. Probá la Calzada San Juan y bajá por el Periférico hacia el Trébol.',
+  'liberacion':    'El Bulevar Liberación tiene cierre. Usá la Avenida Las Américas o la Avenida Hincapié para llegar a zona 13.',
+  'americas':      'Hay un evento en Las Américas. Desviá por la Avenida La Aurora y la 7a. avenida de zona 13.',
+  'aguilar batres':'En la Aguilar Batres hay un bus varado. Tomá la Avenida Petapa o la Calzada Atanasio Tzul.',
+  'reforma':       'La Reforma está cerrada por Pasos y Pedales. Usá la 6a. avenida de zona 10 o la Avenida La Castellana.',
+  'trebol':        'El Trébol está congestionado. Si venís del sur, usá la Atanasio Tzul y subí por la Avenida Bolívar.',
+  'petapa':        'Para la Avenida Petapa, considerá la Calzada Atanasio Tzul como alterna.',
+  'salvador':      'En la Carretera a El Salvador hay un choque. Si podés, salí después de las 9:00 o usá la ruta por Muxbal.',
+  'proceres':      'En Los Próceres hay un accidente. Tomá la 20 calle de zona 10 y conectá con la Reforma (abierta después de las 13:00).',
+  'zona 1':        'Para el Centro Histórico evitá la 6a. avenida (cierre). Entrá por la 10a. avenida o la Avenida Elena.',
+  'zona 4':        'Para zona 4 usá la 7a. avenida o la Avenida Bolívar, evitando el Trébol.',
+  'zona 7':        'Para zona 7 tomá la Calzada San Juan; el Periférico tiene un choque en carril izquierdo.',
+  'zona 9':        'Para zona 9 usá la 7a. avenida; el Bulevar Liberación tiene cierre.',
+  'zona 10':       'Ruta alterna a zona 10: tomá la Avenida Las Américas hasta la 20 calle y entrá por la 6a. avenida, evitando Los Próceres y la Reforma. Tiempo estimado: 22 min.',
+  'zona 11':       'Para zona 11, usá la Calzada Aguilar Batres solo hasta la 2a. calle; luego la Avenida Las Charcas.',
+  'zona 12':       'Para zona 12 tomá la Avenida Petapa; la Atanasio Tzul tiene semáforo apagado.',
+  'zona 13':       'Para zona 13 usá la Avenida Hincapié; Las Américas y el Liberación tienen restricciones.',
+  'zona 15':       'Para zona 15 tomá el Bulevar Vista Hermosa desde la Avenida Reforma (después de las 13:00) o por la 18 calle.',
+  'zona 18':       'Para zona 18 usá la Calzada José Milla y Vidaurre; el Periférico norte está lento.'
+};
+
+/** Sugerencias rápidas del chat */
+const SUGERENCIAS_CHAT = ['Ruta alterna a zona 10', '¿Hay cierres hoy?', 'Descuentos de multas', '¿Cómo está el Periférico?'];
+
+/** Plantillas de notificaciones simuladas (se usan las rutas favoritas del perfil) */
+const NOTIF_PLANTILLAS = [
+  { tipo: 'choque',   texto: 'Nuevo choque reportado en tu ruta a {destino}. Considerá salir 10 min antes.', via: 'Calzada Roosevelt',  lat: 14.6255, lng: -90.5480 },
+  { tipo: 'cierre',   texto: 'Cierre temporal en tu ruta a {destino} por trabajos de drenaje.',              via: 'Avenida Bolívar',    lat: 14.6195, lng: -90.5230 },
+  { tipo: 'falla',    texto: 'Vehículo con falla mecánica en tu ruta a {destino}. Carril derecho afectado.', via: 'Diagonal 6',         lat: 14.6000, lng: -90.5050 },
+  { tipo: 'semaforo', texto: 'Semáforo dañado en tu ruta a {destino}. Pasá con precaución.',                 via: '20 calle, zona 10',  lat: 14.5970, lng: -90.5100 },
+  { tipo: 'evento',   texto: 'Evento masivo cerca de tu ruta a {destino}. Se espera tránsito lento.',        via: 'Estadio Nacional',   lat: 14.6260, lng: -90.5150 }
+];
+
+/** Rutas favoritas por defecto */
+const FAVORITAS_DEFECTO = { casa: 'Casa · Mariscal, zona 11', trabajo: 'Trabajo · Avenida Reforma, zona 10' };
+
+/* ==========================================================================
+   B. UTILIDADES
+   ========================================================================== */
+const $  = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+/** Escapa texto del usuario antes de insertarlo como HTML */
+function escaparHTML(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+/** Minúsculas y sin tildes para comparar palabras clave */
+function normalizar(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+function horaActual() {
+  return new Date().toLocaleTimeString('es-GT', { hour: '2-digit', minute: '2-digit', hour12: false });
+}
+function quetzales(n) {
+  return 'Q' + n.toLocaleString('es-GT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+/** Almacenamiento local protegido (puede fallar en modo privado) */
+const almacen = {
+  leer(k, def) { try { const v = localStorage.getItem('rutaviva:' + k); return v === null ? def : JSON.parse(v); } catch { return def; } },
+  guardar(k, v) { try { localStorage.setItem('rutaviva:' + k, JSON.stringify(v)); } catch { /* sin almacenamiento */ } }
+};
+/** Ícono SVG genérico */
+function svg(contenido, tam = 18, grosor = 2.2) {
+  return `<svg width="${tam}" height="${tam}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${grosor}" stroke-linecap="round" stroke-linejoin="round">${contenido}</svg>`;
+}
+const ICONO_RELOJ = '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>';
+const ICONO_PIN   = '<path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>';
+const NIVEL_TXT   = { alto: 'Alto', medio: 'Medio', bajo: 'Bajo' };
+
+/* ==========================================================================
+   C. TEMA CLARO / OSCURO
+   ========================================================================== */
+const ICONO_SOL  = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+const ICONO_LUNA = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+
+function aplicarTema(oscuro) {
+  document.documentElement.dataset.theme = oscuro ? 'dark' : 'light';
+  $('#btn-tema').innerHTML = svg(oscuro ? ICONO_SOL : ICONO_LUNA, 20);
+  $('#pref-oscuro').checked = oscuro;
+  $('meta[name="theme-color"]').content = oscuro ? '#161B24' : '#1E5EFF';
+  almacen.guardar('oscuro', oscuro);
+}
+
+/* ==========================================================================
+   D. NAVEGACIÓN POR PESTAÑAS
+   ========================================================================== */
+const ORDEN_TABS = ['inicio', 'mapa', 'asistente', 'reportar', 'perfil'];
+let tabActual = 'inicio';
+
+function irA(tab) {
+  if (tab === tabActual && $('#pantalla-' + tab).classList.contains('activa')) return;
+  const haciaIzq = ORDEN_TABS.indexOf(tab) < ORDEN_TABS.indexOf(tabActual);
+  $$('.pantalla').forEach(p => p.classList.remove('activa', 'desde-izq'));
+  const destino = $('#pantalla-' + tab);
+  destino.classList.add('activa');
+  if (haciaIzq) destino.classList.add('desde-izq');
+  $$('.nav button').forEach(b => b.classList.toggle('activo', b.dataset.tab === tab));
+  tabActual = tab;
+
+  if (tab === 'mapa') iniciarMapa();
+  if (tab === 'asistente') setTimeout(() => $('#mensajes').scrollTop = 1e6, 50);
+}
+
+/* ==========================================================================
+   E. INICIO
+   ========================================================================== */
+function renderInicio() {
+  const h = new Date().getHours();
+  $('#saludo').textContent = (h < 12 ? 'Buenos días' : h < 19 ? 'Buenas tardes' : 'Buenas noches') + ', ' + CONFIG.usuario.nombre.split(' ')[0];
+  $('#trafico-titulo').textContent = TRAFICO_RESUMEN.titulo;
+  $('#trafico-detalle').textContent = TRAFICO_RESUMEN.detalle;
+
+  // Alertas: cierres, accidentes y eventos ordenados por nivel
+  const peso = { alto: 0, medio: 1, bajo: 2 };
+  const alertas = INCIDENTES
+    .filter(i => ['cierre', 'choque', 'evento'].includes(i.tipo))
+    .sort((a, b) => peso[a.nivel] - peso[b.nivel]);
+
+  $('#alertas-cuenta').textContent = alertas.length + ' activas';
+  $('#lista-alertas').innerHTML = alertas.map(i => {
+    const t = TIPOS_INCIDENTE[i.tipo];
+    return `
+      <button class="tarjeta alerta" style="width:100%;text-align:left" data-incidente="${i.id}">
+        <span class="ico" style="background:${t.color}">${svg(t.icono, 20)}</span>
+        <span class="cuerpo">
+          <span class="fila"><b>${t.nombre}</b><span class="chip nivel-${i.nivel}">${NIVEL_TXT[i.nivel]}</span></span>
+          <p>${escaparHTML(i.titulo)} · ${escaparHTML(i.via)}</p>
+          <span class="meta">
+            <span>${svg(ICONO_PIN, 13)}${escaparHTML(i.zona)}</span>
+            <span>${svg(ICONO_RELOJ, 13)}${i.hora} h</span>
+          </span>
+        </span>
+      </button>`;
+  }).join('');
+}
+
+/* ==========================================================================
+   F. MAPA (Leaflet)
+   ========================================================================== */
+let mapa = null;
+const marcadores = [];                         // { datos, marker }
+const filtrosActivos = new Set(Object.keys(TIPOS_INCIDENTE));
+
+function iconoIncidente(tipo, nuevo = false) {
+  const t = TIPOS_INCIDENTE[tipo];
+  return L.divIcon({
+    className: '',
+    html: `<div class="marcador${nuevo ? ' nuevo' : ''}" style="background:${t.color}">${svg(t.icono, 16, 2.4)}</div>`,
+    iconSize: [34, 34],
+    iconAnchor: [17, 34],
+    popupAnchor: [0, -34]
+  });
+}
+
+function popupHTML(i) {
+  const t = TIPOS_INCIDENTE[i.tipo];
+  return `
+    <div class="pop-tipo" style="color:${t.color}">${t.nombre}</div>
+    <div class="pop-titulo">${escaparHTML(i.titulo)}</div>
+    <div class="pop-desc">${escaparHTML(i.desc)}</div>
+    <div class="meta" style="margin-top:0">
+      <span>${svg(ICONO_PIN, 13)}${escaparHTML(i.via)}, ${escaparHTML(i.zona)}</span>
+      <span>${svg(ICONO_RELOJ, 13)}${i.hora} h</span>
+      <span class="chip nivel-${i.nivel}">Nivel ${NIVEL_TXT[i.nivel].toLowerCase()}</span>
+    </div>`;
+}
+
+function agregarMarcador(i, nuevo = false) {
+  if (!mapa) return;
+  const marker = L.marker([i.lat, i.lng], { icon: iconoIncidente(i.tipo, nuevo) }).bindPopup(popupHTML(i));
+  if (filtrosActivos.has(i.tipo)) marker.addTo(mapa);
+  marcadores.push({ datos: i, marker });
+  actualizarContador();
+}
+
+function iniciarMapa() {
+  if (typeof L === 'undefined') {
+    $('#mapa').innerHTML = '<p class="vacio" style="padding-top:120px">No se pudo cargar el mapa. Revisá tu conexión.</p>';
+    return;
+  }
+  if (mapa) { setTimeout(() => mapa.invalidateSize(), 60); return; }
+
+  mapa = L.map('mapa', { zoomControl: false, attributionControl: true }).setView(CONFIG.centroMapa, CONFIG.zoomInicial);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(mapa);
+  L.control.zoom({ position: 'bottomright' }).addTo(mapa);
+
+  INCIDENTES.forEach(i => agregarMarcador(i));
+  reportes.forEach(r => agregarMarcador(r.incidente));
+  renderFiltros();
+  // Encuadra todas las incidencias (deja espacio para los filtros de arriba)
+  setTimeout(() => {
+    mapa.invalidateSize();
+    mapa.fitBounds(L.latLngBounds(marcadores.map(m => m.marker.getLatLng())), { paddingTopLeft: [20, 60], paddingBottomRight: [20, 50] });
+  }, 60);
+}
+
+function renderFiltros() {
+  $('#filtros').innerHTML = Object.entries(TIPOS_INCIDENTE).map(([k, t]) => `
+    <button class="filtro${filtrosActivos.has(k) ? '' : ' off'}" data-filtro="${k}" aria-pressed="${filtrosActivos.has(k)}">
+      <span class="dot" style="background:${t.color}"></span>${t.nombre}
+    </button>`).join('');
+}
+
+function alternarFiltro(tipo) {
+  filtrosActivos.has(tipo) ? filtrosActivos.delete(tipo) : filtrosActivos.add(tipo);
+  marcadores.forEach(({ datos, marker }) => {
+    if (datos.tipo !== tipo) return;
+    filtrosActivos.has(tipo) ? marker.addTo(mapa) : marker.remove();
+  });
+  renderFiltros();
+  actualizarContador();
+}
+
+function actualizarContador() {
+  const visibles = marcadores.filter(m => filtrosActivos.has(m.datos.tipo)).length;
+  $('#contador-mapa').textContent = `${visibles} incidente${visibles === 1 ? '' : 's'} visible${visibles === 1 ? '' : 's'}`;
+}
+
+/** Abre el mapa centrado en un incidente y muestra su ventana emergente */
+function verEnMapa(id) {
+  irA('mapa');
+  setTimeout(() => {
+    const m = marcadores.find(x => x.datos.id === id);
+    if (!m) return;
+    if (!filtrosActivos.has(m.datos.tipo)) alternarFiltro(m.datos.tipo);
+    mapa.setView(m.marker.getLatLng(), 15, { animate: true });
+    m.marker.openPopup();
+  }, 120);
+}
+
+/* ==========================================================================
+   G. ASISTENTE "VIVA" (respuestas simuladas por palabras clave)
+   ========================================================================== */
+let vivaOcupada = false;
+
+function agregarMensaje(texto, quien) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + quien;
+  div.innerHTML = escaparHTML(texto) + `<span class="hora">${horaActual()}</span>`;
+  $('#mensajes').appendChild(div);
+  $('#mensajes').scrollTop = 1e6;
+}
+
+/** Decide la respuesta de Viva según palabras clave */
+function responderViva(pregunta) {
+  const q = normalizar(pregunta);
+
+  // 1. Multas y descuentos
+  if (/(multa|descuento|infraccion|pagar|remision)/.test(q)) return DESCUENTOS_TEXTO;
+
+  // 2. Cierres activos
+  if (/(cierre|cerrad|bloque|cerrar)/.test(q)) {
+    const cierres = INCIDENTES.filter(i => i.tipo === 'cierre' || (i.tipo === 'evento' && /cierre|cerrad/i.test(i.desc)));
+    return 'Cierres activos hoy:\n' + cierres.map(i => `• ${i.via} (${i.zona}): ${i.titulo.toLowerCase()} desde las ${i.hora} h.`).join('\n') +
+      '\n¿Querés que te sugiera una ruta alterna para alguna?';
+  }
+
+  // 3. Zona o vía → ruta alterna. Primero zonas con número exacto ("zona 1" ≠ "zona 10").
+  const zona = q.match(/zona\s*(\d{1,2})/);
+  if (zona) {
+    const clave = 'zona ' + parseInt(zona[1], 10);
+    return RUTAS_ALTERNAS[clave] ||
+      `Para ${clave} te recomiendo evitar el Periférico y la Roosevelt en hora pico. Por ahora no veo incidentes graves en esa zona.`;
+  }
+  const via = Object.keys(RUTAS_ALTERNAS).find(k => !k.startsWith('zona') && q.includes(k));
+  if (via) {
+    const incid = INCIDENTES.find(i => normalizar(i.via).includes(via));
+    return (incid ? `En ${incid.via} hay: ${incid.titulo.toLowerCase()} (nivel ${incid.nivel}).\n` : '') + RUTAS_ALTERNAS[via];
+  }
+
+  // 4. Tráfico general
+  if (/(trafico|transito|como esta|como llego|ruta)/.test(q)) {
+    return `${TRAFICO_RESUMEN.titulo}. Hay ${INCIDENTES.filter(i => i.nivel === 'alto').length} incidentes de nivel alto en la ciudad.\nDecime una zona o vía (por ejemplo "zona 10" o "Periférico") y te doy una ruta alterna.`;
+  }
+
+  // 5. Saludo y agradecimiento
+  if (/^(hola|buenas|buenos|que tal|hey)/.test(q)) return '¡Hola! Soy Viva 👋 ¿Para dónde vas? Puedo sugerirte rutas alternas, contarte de cierres o explicarte los descuentos de multas.';
+  if (/(gracias|muy amable|ok|va pues|dale)/.test(q)) return '¡Con gusto! Manejá con cuidado. 🚗';
+
+  // 6. Respuesta por defecto
+  return 'No te entendí bien 🤔. Probá preguntarme por una zona ("zona 10"), una vía ("Periférico", "Roosevelt"), los cierres de hoy o los descuentos de multas.';
+}
+
+function enviarAViva(texto) {
+  texto = texto.trim();
+  if (!texto || vivaOcupada) return;
+  agregarMensaje(texto, 'yo');
+  vivaOcupada = true;
+  $('#viva-estado').textContent = 'escribiendo…';
+
+  // Indicador de "escribiendo…"
+  const ind = document.createElement('div');
+  ind.className = 'msg viva escribiendo';
+  ind.innerHTML = '<i></i><i></i><i></i>';
+  $('#mensajes').appendChild(ind);
+  $('#mensajes').scrollTop = 1e6;
+
+  const respuesta = responderViva(texto);
+  setTimeout(() => {
+    ind.remove();
+    agregarMensaje(respuesta, 'viva');
+    $('#viva-estado').textContent = '● En línea';
+    vivaOcupada = false;
+  }, 700 + Math.min(respuesta.length * 8, 1300));
+}
+
+function iniciarChat() {
+  agregarMensaje(`¡Hola, ${CONFIG.usuario.nombre.split(' ')[0]}! Soy Viva, tu asistente de movilidad. Preguntame por rutas alternas, cierres o multas.`, 'viva');
+  $('#sugerencias').innerHTML = SUGERENCIAS_CHAT.map(s => `<button class="sugerencia">${escaparHTML(s)}</button>`).join('');
+}
+
+/* ==========================================================================
+   H. REPORTAR
+   ========================================================================== */
+const reportes = [];          // arreglo en memoria con los reportes del usuario
+let coordsReporte = null;     // coordenadas obtenidas con geolocalización
+let archivoURL = null;        // URL temporal de la vista previa
+
+const ESTADOS = ['Recibido', 'En revisión', 'Atendido'];
+
+/** Relaciona el tipo de reporte con un tipo de marcador del mapa */
+function tipoMapaDeReporte(tipo) {
+  if (tipo === 'Choque') return 'choque';
+  if (tipo === 'Falla mecánica') return 'falla';
+  return 'reporte';
+}
+
+function generarFolio() {
+  const n = String(Math.floor(Math.random() * 90000) + 10000);
+  return `RV-${new Date().getFullYear()}-${n}`;
+}
+
+function usarUbicacion() {
+  const estado = $('#geo-estado');
+  if (!('geolocation' in navigator)) { estado.textContent = 'Tu navegador no permite obtener la ubicación.'; return; }
+  estado.textContent = 'Obteniendo ubicación…';
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      coordsReporte = [pos.coords.latitude, pos.coords.longitude];
+      $('#r-ubic').value = `Mi ubicación (${coordsReporte[0].toFixed(5)}, ${coordsReporte[1].toFixed(5)})`;
+      estado.textContent = `✓ Ubicación obtenida (precisión ±${Math.round(pos.coords.accuracy)} m)`;
+      $('#c-ubic').classList.remove('error');
+    },
+    err => {
+      estado.textContent = err.code === 1
+        ? 'Permiso denegado. Escribí la ubicación manualmente.'
+        : 'No se pudo obtener la ubicación. Escribila manualmente.';
+    },
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+  );
+}
+
+function mostrarVistaPrevia(file) {
+  const cont = $('#vista-previa');
+  if (archivoURL) URL.revokeObjectURL(archivoURL);
+  archivoURL = null;
+  cont.innerHTML = '';
+  cont.classList.remove('visible');
+  $('#c-archivo').classList.remove('error');
+  if (!file) return;
+
+  if (file.size > CONFIG.maxArchivoMB * 1024 * 1024) {
+    $('#c-archivo').classList.add('error');
+    $('#r-archivo').value = '';
+    return;
+  }
+  archivoURL = URL.createObjectURL(file);
+  const esVideo = file.type.startsWith('video/');
+  cont.innerHTML = (esVideo
+      ? `<video src="${archivoURL}" controls playsinline muted></video>`
+      : `<img src="${archivoURL}" alt="Vista previa del adjunto">`) +
+    `<button type="button" id="quitar-adjunto" aria-label="Quitar adjunto">${svg('<path d="M18 6 6 18M6 6l12 12"/>', 16, 2.6)}</button>`;
+  cont.classList.add('visible');
+}
+
+function validarReporte() {
+  const tipo = $('#r-tipo').value;
+  const ubic = $('#r-ubic').value.trim();
+  const desc = $('#r-desc').value.trim();
+  const errores = {
+    'c-tipo': !tipo,
+    'c-ubic': ubic.length < 5 && !coordsReporte,
+    'c-desc': desc.length < 10
+  };
+  Object.entries(errores).forEach(([id, mal]) => $('#' + id).classList.toggle('error', mal));
+  const primero = Object.keys(errores).find(k => errores[k]);
+  if (primero) $('#' + primero).scrollIntoView({ behavior: 'smooth', block: 'center' });
+  return !primero;
+}
+
+function enviarReporte(e) {
+  e.preventDefault();
+  if (!validarReporte()) return;
+
+  const btn = $('#btn-enviar');
+  btn.disabled = true;
+  btn.lastChild.textContent = ' Enviando…';
+
+  // Simula el tiempo de envío a un servidor
+  setTimeout(() => {
+    const tipo = $('#r-tipo').value;
+    const folio = generarFolio();
+    // Si no hay geolocalización, se ubica cerca del centro (dato simulado)
+    const [lat, lng] = coordsReporte || [
+      CONFIG.centroMapa[0] + (Math.random() - .5) * .03,
+      CONFIG.centroMapa[1] + (Math.random() - .5) * .03
+    ];
+    const reporte = {
+      folio,
+      tipo,
+      ubicacion: $('#r-ubic').value.trim(),
+      descripcion: $('#r-desc').value.trim(),
+      anonimo: $('#r-anonimo').checked,
+      adjunto: $('#r-archivo').files[0]?.name || null,
+      fecha: new Date(),
+      estado: 0,
+      incidente: {
+        id: folio,
+        tipo: tipoMapaDeReporte(tipo),
+        titulo: `${tipo} (reporte ${folio})`,
+        via: $('#r-ubic').value.trim(),
+        zona: $('#r-anonimo').checked ? 'Anónimo' : CONFIG.usuario.nombre,
+        lat, lng,
+        hora: horaActual(),
+        nivel: 'medio',
+        desc: $('#r-desc').value.trim()
+      }
+    };
+    reportes.unshift(reporte);
+    agregarMarcador(reporte.incidente, true);
+    simularAvanceEstado(reporte);
+    renderMisReportes();
+    renderPerfil();
+
+    // Limpia el formulario
+    $('#form-reporte').reset();
+    coordsReporte = null;
+    $('#geo-estado').textContent = '';
+    mostrarVistaPrevia(null);
+    btn.disabled = false;
+    btn.lastChild.textContent = ' Enviar reporte';
+
+    // Confirmación
+    $('#modal-folio').textContent = folio;
+    $('#modal').dataset.folio = folio;
+    $('#modal').classList.add('visible');
+    $('#modal-cerrar').focus();
+  }, 900);
+}
+
+/** Simula que el reporte avanza de estado con el tiempo */
+function simularAvanceEstado(r) {
+  const avanzar = () => {
+    if (r.estado >= ESTADOS.length - 1) return;
+    r.estado++;
+    renderMisReportes();
+    if (r.estado < ESTADOS.length - 1) setTimeout(avanzar, 40000);
+  };
+  setTimeout(avanzar, 20000);
+}
+
+function renderMisReportes() {
+  $('#mis-cuenta').textContent = reportes.length ? reportes.length + ' en total' : '';
+  if (!reportes.length) {
+    $('#mis-reportes').innerHTML = '<div class="tarjeta vacio">Todavía no has enviado reportes.</div>';
+    return;
+  }
+  $('#mis-reportes').innerHTML = reportes.map(r => {
+    const t = TIPOS_INCIDENTE[r.incidente.tipo];
+    const estado = ESTADOS[r.estado];
+    return `
+      <button class="tarjeta reporte-item" style="width:100%;text-align:left" data-incidente="${r.folio}">
+        <span class="ico" style="width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;background:${t.color}">${svg(t.icono, 18)}</span>
+        <span class="cuerpo">
+          <b>${escaparHTML(r.tipo)}</b>
+          <p>${r.folio} · ${escaparHTML(r.ubicacion)}</p>
+          <p>${r.fecha.toLocaleDateString('es-GT')} ${r.fecha.toLocaleTimeString('es-GT', { hour: '2-digit', minute: '2-digit' })}${r.anonimo ? ' · Anónimo' : ''}${r.adjunto ? ' · 📎' : ''}</p>
+        </span>
+        <span class="chip estado-${estado.replace(' ', '-')}">${estado}</span>
+      </button>`;
+  }).join('');
+}
+
+/* ==========================================================================
+   I. PERFIL
+   ========================================================================== */
+let favoritas = almacen.leer('favoritas', FAVORITAS_DEFECTO);
+let notificacionesOn = almacen.leer('notif', true);
+
+function renderPerfil() {
+  const nombre = CONFIG.usuario.nombre;
+  $('#perfil-iniciales').textContent = nombre.split(' ').map(p => p[0]).join('').slice(0, 2);
+  $('#perfil-nombre').textContent = nombre;
+  $('#perfil-resumen').textContent = `${CONFIG.usuario.zona} · ${reportes.length} reporte${reportes.length === 1 ? '' : 's'} enviado${reportes.length === 1 ? '' : 's'}`;
+}
+
+function renderMultas() {
+  $('#lista-multas').innerHTML = MULTAS.map(m => {
+    const final = m.monto * (1 - m.descuento / 100);
+    return `
+      <div class="tarjeta multa">
+        <div class="fila">
+          <div>
+            <b>${escaparHTML(m.motivo)}</b>
+            <div class="meta" style="margin-top:3px">
+              <span>${svg(ICONO_PIN, 13)}${escaparHTML(m.lugar)}</span>
+              <span>${svg(ICONO_RELOJ, 13)}${m.fecha}</span>
+            </div>
+          </div>
+          <div class="montos">
+            ${m.descuento ? `<div class="antes">${quetzales(m.monto)}</div>` : ''}
+            <div class="ahora">${quetzales(final)}</div>
+          </div>
+        </div>
+        <div class="meta" style="justify-content:space-between">
+          <span>Boleta ${m.id}</span>
+          ${m.descuento
+            ? `<span class="chip nivel-medio">−${m.descuento} % hasta ${m.vence}</span>`
+            : '<span class="chip nivel-alto">Sin descuento</span>'}
+        </div>
+        <div class="barra"><i style="width:${m.descuento * 2}%"></i></div>
+      </div>`;
+  }).join('');
+}
+
+function iniciarPerfil() {
+  $('#fav-casa').value = favoritas.casa;
+  $('#fav-trabajo').value = favoritas.trabajo;
+  $('#pref-notif').checked = notificacionesOn;
+
+  ['casa', 'trabajo'].forEach(k => {
+    $('#fav-' + k).addEventListener('change', e => {
+      favoritas[k] = e.target.value.trim() || FAVORITAS_DEFECTO[k];
+      e.target.value = favoritas[k];
+      almacen.guardar('favoritas', favoritas);
+      mostrarToast({ titulo: 'Ruta guardada', texto: `Te avisaremos de incidentes en: ${favoritas[k]}`, color: 'var(--verde)' });
+    });
+  });
+  $('#pref-notif').addEventListener('change', e => {
+    notificacionesOn = e.target.checked;
+    almacen.guardar('notif', notificacionesOn);
+    programarNotificaciones();
+  });
+  $('#pref-oscuro').addEventListener('change', e => aplicarTema(e.target.checked));
+  renderPerfil();
+  renderMultas();
+}
+
+/* ==========================================================================
+   J. NOTIFICACIONES SIMULADAS
+   ========================================================================== */
+let temporizadorNotif = null;
+let contadorNotif = 0;
+
+function mostrarToast({ titulo, texto, color = 'var(--rojo)', icono = null, alTocar = null }) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.style.borderLeftColor = color;
+  t.setAttribute('role', 'status');
+  t.innerHTML = `
+    ${icono ? `<span style="color:${color}">${svg(icono, 22)}</span>` : ''}
+    <div class="cuerpo"><b>${escaparHTML(titulo)}</b>${escaparHTML(texto)}</div>
+    <button class="cerrar" aria-label="Cerrar aviso">${svg('<path d="M18 6 6 18M6 6l12 12"/>', 16)}</button>`;
+  const cerrar = () => { t.classList.add('saliendo'); setTimeout(() => t.remove(), 300); };
+  t.querySelector('.cerrar').addEventListener('click', ev => { ev.stopPropagation(); cerrar(); });
+  if (alTocar) { t.style.cursor = 'pointer'; t.addEventListener('click', () => { alTocar(); cerrar(); }); }
+  $('#toasts').appendChild(t);
+  setTimeout(cerrar, 7000);
+}
+
+/** Genera un incidente nuevo en una ruta favorita y lo agrega al mapa */
+function notificacionSimulada() {
+  const p = NOTIF_PLANTILLAS[contadorNotif % NOTIF_PLANTILLAS.length];
+  const destino = contadorNotif % 2 === 0 ? favoritas.trabajo : favoritas.casa;
+  contadorNotif++;
+
+  const nuevo = {
+    id: 'N' + Date.now(),
+    tipo: p.tipo,
+    titulo: TIPOS_INCIDENTE[p.tipo].nombre + ' reciente',
+    via: p.via,
+    zona: destino.split('·').pop().trim(),
+    lat: p.lat + (Math.random() - .5) * .004,
+    lng: p.lng + (Math.random() - .5) * .004,
+    hora: horaActual(),
+    nivel: p.tipo === 'choque' || p.tipo === 'cierre' ? 'alto' : 'medio',
+    desc: p.texto.replace('{destino}', destino)
+  };
+  INCIDENTES.push(nuevo);
+  agregarMarcador(nuevo, true);
+  renderInicio();
+  actualizarBadge(1);
+
+  mostrarToast({
+    titulo: `${TIPOS_INCIDENTE[p.tipo].nombre} en ${p.via}`,
+    texto: nuevo.desc,
+    color: TIPOS_INCIDENTE[p.tipo].color,
+    icono: TIPOS_INCIDENTE[p.tipo].icono,
+    alTocar: () => { actualizarBadge(-Infinity); verEnMapa(nuevo.id); }
+  });
+}
+
+function programarNotificaciones() {
+  clearInterval(temporizadorNotif);
+  temporizadorNotif = notificacionesOn ? setInterval(notificacionSimulada, CONFIG.intervaloNotificacionesMs) : null;
+}
+
+let pendientes = 0;
+function actualizarBadge(delta) {
+  pendientes = Math.max(0, pendientes + delta);
+  const btn = $('.nav button[data-tab="mapa"]');
+  let b = btn.querySelector('.badge');
+  if (!pendientes) { b?.remove(); return; }
+  if (!b) { b = document.createElement('span'); b.className = 'badge'; btn.appendChild(b); }
+  b.textContent = pendientes > 9 ? '9+' : pendientes;
+}
+
+/* ==========================================================================
+   K. ARRANQUE Y EVENTOS
+   ========================================================================== */
+function iniciar() {
+  // Tema: preferencia guardada o la del sistema
+  const prefSistema = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+  aplicarTema(almacen.leer('oscuro', !!prefSistema));
+  $('#btn-tema').addEventListener('click', () => aplicarTema(document.documentElement.dataset.theme !== 'dark'));
+
+  // Navegación inferior
+  $('#nav').addEventListener('click', e => {
+    const b = e.target.closest('button[data-tab]');
+    if (!b) return;
+    if (b.dataset.tab === 'mapa') actualizarBadge(-Infinity);
+    irA(b.dataset.tab);
+  });
+
+  // Inicio: accesos rápidos y alertas
+  $('.accesos').addEventListener('click', e => {
+    const a = e.target.closest('[data-accion]')?.dataset.accion;
+    if (a === 'como-llego') { irA('asistente'); setTimeout(() => $('#chat-input').focus(), 300); }
+    if (a === 'reportar') irA('reportar');
+    if (a === 'multas') { irA('perfil'); setTimeout(() => $('#titulo-multas').scrollIntoView({ behavior: 'smooth' }), 350); }
+  });
+  // Abrir incidente o reporte en el mapa
+  document.addEventListener('click', e => {
+    const c = e.target.closest('[data-incidente]');
+    if (!c) return;
+    const id = c.dataset.incidente;
+    verEnMapa(/^\d+$/.test(id) ? Number(id) : id);
+  });
+
+  // Mapa: filtros
+  $('#filtros').addEventListener('click', e => {
+    const f = e.target.closest('[data-filtro]');
+    if (f) alternarFiltro(f.dataset.filtro);
+  });
+
+  // Chat
+  $('#form-chat').addEventListener('submit', e => {
+    e.preventDefault();
+    enviarAViva($('#chat-input').value);
+    $('#chat-input').value = '';
+  });
+  $('#sugerencias').addEventListener('click', e => {
+    const s = e.target.closest('.sugerencia');
+    if (s) enviarAViva(s.textContent);
+  });
+
+  // Reportar
+  $('#r-tipo').innerHTML = '<option value="">Seleccioná una opción…</option>' +
+    TIPOS_REPORTE.map(t => `<option>${escaparHTML(t)}</option>`).join('');
+  $('#btn-geo').addEventListener('click', usarUbicacion);
+  $('#r-ubic').addEventListener('input', () => { coordsReporte = null; $('#geo-estado').textContent = ''; });
+  $('#r-archivo').addEventListener('change', e => mostrarVistaPrevia(e.target.files[0]));
+  $('#vista-previa').addEventListener('click', e => {
+    if (e.target.closest('#quitar-adjunto')) { $('#r-archivo').value = ''; mostrarVistaPrevia(null); }
+  });
+  ['r-tipo', 'r-ubic', 'r-desc'].forEach(id =>
+    $('#' + id).addEventListener('input', () => $('#' + id).closest('.campo').classList.remove('error')));
+  $('#form-reporte').addEventListener('submit', enviarReporte);
+
+  // Modal de confirmación
+  const cerrarModal = () => $('#modal').classList.remove('visible');
+  $('#modal-cerrar').addEventListener('click', cerrarModal);
+  $('#modal-mapa').addEventListener('click', () => { cerrarModal(); verEnMapa($('#modal').dataset.folio); });
+  $('#modal').addEventListener('click', e => { if (e.target.id === 'modal') cerrarModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
+
+  // Render inicial
+  renderInicio();
+  iniciarChat();
+  renderMisReportes();
+  iniciarPerfil();
+  irA('inicio');
+  programarNotificaciones();
+}
+
+document.addEventListener('DOMContentLoaded', iniciar);
+</script>
+</body>
+</html>
