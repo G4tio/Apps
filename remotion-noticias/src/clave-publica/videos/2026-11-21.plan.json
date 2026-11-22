@@ -1,0 +1,31 @@
+{
+ "pantalla": [
+  [["veintiuno","de","noviembre."], "21 de noviembre.", "c"],
+  [["zona","nueve"], "zona 9", "c"],
+  [["cuatro","muertos"], "4 muertos", "c"],
+  [["zona","dieciocho,"], "zona 18,", "c"],
+  [["quince","años"], "15 años", "c"],
+  [["zona","doce."], "zona 12.", "c"],
+  [["treinta","y","cinco","sismos"], "35 sismos", "c"],
+  [["veinticuatro","horas."], "24 horas.", "c"],
+  [["cuatro","punto","cinco"], "4.5", "c"],
+  [["y","cuatro,"], "y 4,", "c"],
+  [["tres","a","uno"], "3-1", "c"],
+  [["dos","a","cero"], "2-0", "c"],
+  [["treinta","y","siete","puntos"], "37 puntos", "c"]
+ ],
+ "claves": ["discoteca", "zona 9", "zona 18", "fusil", "granada",
+            "corte de energía", "villa nueva", "san miguel petapa", "administrador del mercado mayorista",
+            "tráiler", "anillo periférico", "universidad de san carlos", "evaluación técnica", "policía municipal de tránsito",
+            "insivumeh", "35 sismos", "océano pacífico", "escuintla",
+            "liga nacional", "xelajú", "suchitepéquez", "yilton díaz", "mixco", "malacateco", "antigua", "municipal", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"discoteca": "discoteca", "muertos": "muertos", "persiguio": "persiguió", "dieciocho": "dieciocho,", "sicario": "sicario", "adolescente": "adolescente", "fusil": "fusil,", "pistola": "pistola", "granada": "granada."},
+  "2": {"corte": "corte", "capital": "capital,", "villa": "Villa", "petapa": "Petapa.", "mediodia": "mediodía.", "administrador": "Administrador", "proteger": "proteger", "perdida": "pérdida"},
+  "3": {"trailer": "tráiler", "atrapado": "atrapado", "puente": "puente", "usac": "Carlos,", "danos": "daños", "evaluacion": "evaluación", "altura": "altura."},
+  "4": {"insivumeh": "Insivumeh", "sismos": "sismos", "horas": "veinticuatro", "fuertes": "fuertes,", "magnitud": "magnitud", "pacifico": "Pacífico,", "escuintla": "Escuintla.", "danos": "daños."},
+  "5": {"liga": "Liga", "xelaju": "Xelajú", "suchi": "Suchitepéquez", "yilton": "Yilton", "mixco": "Mixco", "malacateco": "Malacateco.", "puntos": "treinta", "semifinales": "semifinales.", "antigua": "Antigua", "municipal": "Municipal."},
+  "6": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}

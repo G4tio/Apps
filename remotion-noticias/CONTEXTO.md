@@ -66,8 +66,10 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Personas: Trump, Putin, Xi, el papa León XIV, Arévalo (`2026-11-17/presidente.png`), Bukele, Haaland, Villeda, Karen Ortiz e Illescas.
   - Edificios: Hospital Roosevelt.
   - Logos: TSE, MP, MAGA, MEM, Mingob, Mindef, BBC, IKEA, Air France y Fedefut.
+  - 21 nov: logos de Xelajú, Suchitepéquez, Deportivo Mixco y Malacateco (Toros), sin fondo (`2026-11-21/logo-*.png`).
   - 19 nov int: Hegseth, Delcy Rodríguez, Trump con las manos abiertas, Rubio, la hipopótamo Fiona y el logo de la COP31 (`2026-11-19-int/`).
   - 19 nov: Baldetti (`2026-11-19/baldetti.png`), góndola del AeroMetro (`aerometro.png`) y mazorcas de maíz (`maiz.png`). Congreso: `2026-11-16/congreso.png`.
+- **Más piezas** en `viz/nacional10.tsx`: local con cinta policial, patrulla con sirena, pines de zona con ruta, armas decomisadas con marcadores de evidencia, ciudad que se apaga, torre de alta tensión, tráiler bajo un puente, sismógrafo, epicentros en el mapa, marcador de fútbol con logos y tabla de posiciones (`Logo` respeta la proporción del archivo).
 - **Más piezas** en `viz/nacional9.tsx`: cilindro de gas de 25 lb en vector (no hay foto), escala de umbrales, barras de rangos de porcentaje, aviones despegando de una pista con torre, rutas aéreas, bus que vuelca a una hondonada, ambulancia y rótulo verde de carretera.
 - **Más piezas** en `viz/nacional8.tsx`: billetes de quetzal (`Billete`), hojas de calendario (`Dia`), hospital, cárcel, mazo, sol, casas, conos y carros sobre un bulevar.
 
@@ -78,6 +80,8 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - 17 nov: Ley de Ciberseguridad, juntas del TSE, minería en Izabal, frío (MAGA), semana renal del Roosevelt.
   - 18 nov: Villeda a la Corte IDH, cámaras corporales, bono de Q5 mil, cárcel El Triunfo, extraditados a Atlanta, Illescas.
   - 19 nov: Presupuesto 2027 sin dictamen, homicidios de octubre (CIEN), Baldetti al San Juan de Dios, sequía y maíz (Oxfam), carriles reducidos en el bulevar Liberación (AeroMetro).
+  - 21 nov: ataque en discoteca de la zona 9 (4 muertos), apagón en la capital, Villa Nueva y Petapa (AMM), tráiler daña el puente del Periférico frente a la USAC, 35 sismos en 24 horas, Liga Nacional: Xelajú 3-1 Suchitepéquez y Mixco 2-0 Malacateco.
+  - Propuestas el 21 nov pero no usadas: fuga de gas en centro comercial de la zona 15, Carlos de la Torre (Oacnudh), procesiones y Festival del Níspero en Antigua.
   - 20 nov: nueva Ley de Contrataciones (umbral de licitación a Q2 millones), salario mínimo 2027 en manos de Arévalo, gas propano caro pese a multas del MEM, La Aurora a 95 vuelos diarios en temporada alta, bus volcado en Tecpán (km 77).
   - Propuestas el 20 nov pero no usadas: 65 compromisos del acuerdo comercial con EE. UU., sismo de 4,5 en Escuintla, Codedes y el año electoral.
   - Propuestas el 19 nov pero no usadas: capturas por fentanilo (Maaz Cruz y García Chacón), extorsiones a la baja (13 226 denuncias), EE. UU. condena el ataque a la fiscal.
@@ -97,6 +101,7 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Nacional 19 nov: `Nacional-2026-11-19` (corregido: final de la nota 5 y gráfica de Baldetti).
   - Internacional 19 nov: `Internacional-2026-11-19`.
   - Nacional 20 nov: `Nacional-2026-11-20`.
+  - Nacional 21 nov: `Nacional-2026-11-21`.
 - La credencial de Fish Audio está guardada en el entorno «Htmls» (no en «Default»): si `api.fish.audio` da 403, se cambia la sesión a ese entorno (`switch_environment`, solo red).
 - `voz_por_bloques.py` repite los bloques que Fish entrega cortados (cola > −24 dB). Si un bloque se corta siempre, cambia el final de la frase (Fish se come una sílaba suelta final como «calle ce»).
 - `timing_cp.py` corta las frases a ~40 caracteres (dos líneas de subtítulo) y solo pega el fragmento final si la frase cabe; una palabra corta suelta («Pública.») siempre se pega. En `pantalla`, evita fundir frases largas en un solo bloque («entre 6 mil y 8 mil pasajeros»): convierte solo los números.
