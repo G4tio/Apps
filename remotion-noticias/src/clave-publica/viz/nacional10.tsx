@@ -277,7 +277,7 @@ export const Sismos35: React.FC<VizProps> = ({ c }) => {
 };
 
 /* ---------- 5. Liga Nacional: ganan Xelajú y Mixco ---------- */
-const AR = { xelaju: 487 / 488, suchi: 484 / 468, mixco: 286 / 398, toros: 348 / 400 };
+const AR = { xelaju: 487 / 488, suchi: 484 / 468, mixco: 574 / 795, toros: 348 / 400, antigua: 500 / 637 };
 const Marcadorf: React.FC<{ y: number; izq: [string, number]; der: [string, number]; gl: number; gv: number; k: number; kg: number }> = ({ y, izq, der, gl, gv, k, kg }) => (
   <g opacity={Math.min(1, k * 1.5)}>
     <rect x="90" y={y - 95} width="900" height="190" rx="30" fill="rgba(14,44,82,0.9)" stroke={C.suave} strokeOpacity="0.5" strokeWidth="2" />
@@ -293,7 +293,7 @@ export const LigaXelajuMixco: React.FC<VizProps> = ({ c }) => {
   const s1 = P(f, c("puntos") - 14, 8);
   const f2 = P(f, c("puntos") - 6, 12, inOut);
   const tabla = [
-    { n: "ANTIGUA", pts: 39, logo: null as null | [string, number] },
+    { n: "ANTIGUA", pts: 39, logo: [FOTOS + "logo-antigua.png", AR.antigua] as [string, number] },
     { n: "XELAJÚ", pts: 37, logo: [FOTOS + "logo-xelaju.png", AR.xelaju] as [string, number] },
     { n: "MIXCO", pts: 37, logo: [FOTOS + "logo-mixco.png", AR.mixco] as [string, number] },
   ];

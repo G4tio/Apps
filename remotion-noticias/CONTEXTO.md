@@ -66,7 +66,7 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Personas: Trump, Putin, Xi, el papa León XIV, Arévalo (`2026-11-17/presidente.png`), Bukele, Haaland, Villeda, Karen Ortiz e Illescas.
   - Edificios: Hospital Roosevelt.
   - Logos: TSE, MP, MAGA, MEM, Mingob, Mindef, BBC, IKEA, Air France y Fedefut.
-  - 21 nov: logos de Xelajú, Suchitepéquez, Deportivo Mixco y Malacateco (Toros), sin fondo (`2026-11-21/logo-*.png`).
+  - 21 nov: logos de Xelajú, Suchitepéquez, Deportivo Mixco, Malacateco (Toros) y Antigua GFC, sin fondo (`2026-11-21/logo-*.png`). En logos con texto, quita también el blanco dentro de las letras (O, D, P, R), no solo el fondo que toca los bordes.
   - 19 nov int: Hegseth, Delcy Rodríguez, Trump con las manos abiertas, Rubio, la hipopótamo Fiona y el logo de la COP31 (`2026-11-19-int/`).
   - 19 nov: Baldetti (`2026-11-19/baldetti.png`), góndola del AeroMetro (`aerometro.png`) y mazorcas de maíz (`maiz.png`). Congreso: `2026-11-16/congreso.png`.
 - **Más piezas** en `viz/nacional10.tsx`: local con cinta policial, patrulla con sirena, pines de zona con ruta, armas decomisadas con marcadores de evidencia, ciudad que se apaga, torre de alta tensión, tráiler bajo un puente, sismógrafo, epicentros en el mapa, marcador de fútbol con logos y tabla de posiciones (`Logo` respeta la proporción del archivo).
