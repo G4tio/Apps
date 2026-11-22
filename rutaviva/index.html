@@ -242,11 +242,6 @@ html[data-theme="dark"] #mapa .leaflet-tile-pane { filter: invert(1) hue-rotate(
 }
 .filtro .dot { width: 10px; height: 10px; border-radius: 50%; }
 .filtro.off { opacity: .5; text-decoration: line-through; }
-.contador-mapa {
-  position: absolute; left: 12px; bottom: calc(var(--nav-alto) + 14px); z-index: 500;
-  background: var(--superficie); padding: 8px 12px; border-radius: 12px;
-  font-size: 13px; font-weight: 600; box-shadow: var(--sombra);
-}
 .marcador {
   width: 34px; height: 34px; border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
@@ -459,6 +454,60 @@ html[data-theme="dark"] .estado-En-revisión { color: var(--amarillo); }
 .modal .folio { display: inline-block; margin: 12px 0 16px; padding: 8px 16px; border-radius: 12px; background: var(--primario-suave); color: var(--primario); font-weight: 800; font-size: 18px; letter-spacing: .5px; }
 .modal .acciones { display: flex; gap: 8px; }
 
+/* =========================================================
+   12. MOSAICO DE INICIO, NOTICIAS, "¿QUÉ OCURRIÓ?" Y BARRA DE TRÁFICO
+   ========================================================= */
+.btn-viva {
+  margin-top: 12px; position: relative; z-index: 1;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 6px 16px 6px 6px; border-radius: 999px;
+  background: #fff; color: var(--primario); font-weight: 800; font-size: 14.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+}
+.btn-viva .avatar-viva { width: 32px; height: 32px; font-size: 14px; }
+.mosaico { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.mosaico .acceso { padding: 16px 10px; font-size: 14px; gap: 10px; }
+.mosaico .acceso .ico { width: 48px; height: 48px; }
+
+.noticia .foto {
+  height: 150px; border-radius: var(--radio-sm); margin: 10px 0 8px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  color: #fff; font-size: 11.5px; font-weight: 600; letter-spacing: .3px;
+}
+.noticia .foto span { opacity: .8; }
+.noticia h3 { font-size: 15.5px; line-height: 1.3; }
+.noticia .lugar { display: flex; gap: 5px; align-items: center; font-size: 13px; color: var(--texto-2); margin-top: 6px; }
+.noticia p { font-size: 14px; margin-top: 6px; }
+.noticia .fecha { text-align: right; font-size: 12px; color: var(--texto-2); }
+
+.tipos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border-radius: 16px; }
+.tipo-op {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  padding: 12px; border-radius: 16px; text-align: left; line-height: 1.2;
+  background: var(--superficie-2); border: 2px solid transparent;
+  font-size: 13.5px; font-weight: 700; transition: all .2s;
+}
+.tipo-op .ico { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: var(--primario-suave); color: var(--primario); transition: all .2s; }
+.tipo-op[aria-pressed="true"] { border-color: var(--primario); background: var(--primario-suave); }
+.tipo-op[aria-pressed="true"] .ico { background: var(--primario); color: #fff; }
+.campo.error .tipos-grid { outline: 2px solid var(--rojo); outline-offset: 4px; }
+
+.barra-trafico {
+  position: absolute; left: 12px; right: 12px; bottom: calc(var(--nav-alto) + 14px); z-index: 500;
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border-radius: 16px;
+  background: #111827; color: #fff; box-shadow: var(--sombra-fuerte);
+}
+html[data-theme="dark"] .barra-trafico { background: var(--superficie-2); }
+.barra-trafico .cuadro { width: 20px; height: 20px; border-radius: 5px; }
+.barra-trafico b { flex: 1; font-size: 15px; }
+.barra-trafico small { font-size: 12.5px; opacity: .75; }
+#mapa .leaflet-bottom { margin-bottom: 66px; }
+.punto-yo {
+  width: 18px; height: 18px; border-radius: 50%; background: var(--primario);
+  border: 3px solid #fff; box-shadow: 0 0 0 6px rgba(30, 94, 255, .25), 0 2px 6px rgba(0, 0, 0, .3);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
@@ -498,28 +547,19 @@ html[data-theme="dark"] .estado-En-revisión { color: var(--amarillo); }
             <small id="trafico-detalle"></small>
           </div>
         </div>
+        <button class="btn-viva" data-accion="como-llego">
+          <span class="avatar-viva">V</span>¿Cómo llego? Preguntale a Viva
+        </button>
       </div>
 
-      <div class="accesos">
-        <button class="acceso" data-accion="como-llego">
-          <span class="ico" style="background:var(--primario-suave);color:var(--primario)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7"/></svg>
-          </span>¿Cómo llego?
-        </button>
-        <button class="acceso" data-accion="reportar">
-          <span class="ico" style="background:var(--rojo-suave);color:var(--rojo)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-          </span>Reportar
-        </button>
-        <button class="acceso" data-accion="multas">
-          <span class="ico" style="background:var(--amarillo-suave);color:#C58A00">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
-          </span>Multas y descuentos
-        </button>
-      </div>
+      <!-- Mosaico de accesos rápidos (se genera desde ACCESOS_INICIO) -->
+      <div class="accesos mosaico" id="mosaico"></div>
 
       <h2>Alertas activas <small id="alertas-cuenta"></small></h2>
       <div class="pila" id="lista-alertas"></div>
+
+      <h2 id="titulo-noticias">Noticias de hoy <small>Simuladas</small></h2>
+      <div class="pila" id="lista-noticias"></div>
 
       <p class="aviso-demo">Demo con datos simulados · App no oficial, sin relación con ninguna municipalidad.</p>
     </section>
@@ -528,7 +568,11 @@ html[data-theme="dark"] .estado-En-revisión { color: var(--amarillo); }
     <section class="pantalla" id="pantalla-mapa" data-tab="mapa">
       <div id="mapa" role="region" aria-label="Mapa de incidentes"></div>
       <div class="filtros" id="filtros"></div>
-      <div class="contador-mapa" id="contador-mapa"></div>
+      <div class="barra-trafico" role="status">
+        <span class="cuadro" id="trafico-cuadro"></span>
+        <b id="trafico-nivel"></b>
+        <small id="contador-mapa"></small>
+      </div>
     </section>
 
     <!-- ============ 3. ASISTENTE ============ -->
@@ -557,9 +601,10 @@ html[data-theme="dark"] .estado-En-revisión { color: var(--amarillo); }
 
       <form class="tarjeta" id="form-reporte" style="margin-top:14px" novalidate>
         <div class="campo" id="c-tipo">
-          <label class="etq" for="r-tipo">Tipo de reporte</label>
-          <select id="r-tipo"></select>
-          <div class="msg-error">Seleccioná un tipo de reporte.</div>
+          <span class="etq" style="display:block;font-size:15px;font-weight:800;margin-bottom:10px">¿Qué ocurrió?</span>
+          <input type="hidden" id="r-tipo" value="">
+          <div class="tipos-grid" id="tipos-grid" role="group" aria-label="Tipo de reporte"></div>
+          <div class="msg-error">Seleccioná qué ocurrió.</div>
         </div>
 
         <div class="campo" id="c-ubic">
@@ -718,8 +763,28 @@ const CONFIG = {
 /** Resumen de tráfico que se muestra en Inicio */
 const TRAFICO_RESUMEN = {
   titulo: 'Tráfico moderado en Calzada Roosevelt',
-  detalle: 'Sentido al Trébol · demora aprox. 15 min'
+  detalle: 'Sentido al Trébol · demora aprox. 15 min',
+  nivelGeneral: 'Tráfico moderado',   // texto de la barra inferior del mapa
+  colorNivel: '#FFC93C'                // verde #2BA84A = leve, amarillo = moderado, rojo #E5484D = pesado
 };
+
+/** Accesos rápidos del mosaico de Inicio (acción → ver manejador en la sección K) */
+const ACCESOS_INICIO = [
+  { accion: 'noticias', texto: 'Noticias hoy',        color: 'var(--primario)', fondo: 'var(--primario-suave)', icono: '<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2M8 8h5M8 12h5M8 16h3"/>' },
+  { accion: 'avisame',  texto: 'Avísame',             color: '#C58A00',         fondo: 'var(--amarillo-suave)', icono: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/>' },
+  { accion: 'reportar', texto: 'Reporte ciudadano',   color: 'var(--rojo)',     fondo: 'var(--rojo-suave)',     icono: '<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/>' },
+  { accion: 'mapa',     texto: 'Mapa interactivo',    color: 'var(--primario)', fondo: 'var(--primario-suave)', icono: '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>' },
+  { accion: 'multas',   texto: 'Multas y descuentos', color: '#C58A00',         fondo: 'var(--amarillo-suave)', icono: '<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/>' },
+  { accion: 'eventos',  texto: 'Eventos',             color: 'var(--primario)', fondo: 'var(--primario-suave)', icono: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>' }
+];
+
+/** Noticias viales de ejemplo (la foto es una ilustración generada con el ícono del tipo) */
+const NOTICIAS = [
+  { tipo: 'choque',   titulo: 'Colisión entre automóvil y bus extraurbano', lugar: '1a. avenida y 7a. calle, zona 7',      texto: 'Solo daños materiales. Agentes de tránsito ordenan el paso en el sector.', hora: '14:53' },
+  { tipo: 'choque',   titulo: 'Colisionan dos automóviles',                 lugar: 'Km 7.2 de la CA-9 Sur, zona 18',        texto: 'Solo daños materiales, a la espera de la aseguradora. Un carril habilitado.', hora: '13:20' },
+  { tipo: 'cierre',   titulo: 'Cierre por trabajos de bacheo',              lugar: 'Bulevar Liberación, zona 9',            texto: 'Cierre total sentido al aeropuerto hasta las 14:00 h. Usá Las Américas o la Hincapié.', hora: '05:30' },
+  { tipo: 'semaforo', titulo: 'Semáforos apagados por corte de energía',    lugar: 'Calzada Atanasio Tzul, zona 12',        texto: 'Se recomienda cruzar con precaución. El servicio se restablecerá durante la tarde.', hora: '07:20' }
+];
 
 /** Catálogo de tipos de incidente para el mapa (color + ícono SVG) */
 const TIPOS_INCIDENTE = {
@@ -747,15 +812,18 @@ const INCIDENTES = [
   { id: 12, tipo: 'falla',    titulo: 'Vehículo sin combustible',        via: 'Avenida Petapa',            zona: 'Zona 12', lat: 14.5835, lng: -90.5370, hora: '08:15', nivel: 'bajo',  desc: 'Carril derecho a la altura de la 40 calle.' }
 ];
 
-/** Tipos de reporte del formulario */
+/** Tipos de reporte de la cuadrícula "¿Qué ocurrió?" (mapa = tipo de marcador que se usa) */
 const TIPOS_REPORTE = [
-  'Bloqueo de intersección',
-  'Parqueo en línea roja',
-  'Transporte pesado en horario restringido',
-  'Bus extraurbano',
-  'Choque',
-  'Falla mecánica',
-  'Otro'
+  { nombre: 'Bloqueo de intersección', mapa: 'reporte',  icono: '<path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>' },
+  { nombre: 'Parqueo en línea roja',   mapa: 'reporte',  icono: '<rect x="4" y="3" width="16" height="18" rx="3"/><path d="M10 17V7h3a3 3 0 0 1 0 6h-3"/>' },
+  { nombre: 'Transporte pesado',       mapa: 'reporte',  icono: '<path d="M1 6h13v10H1zM14 10h4l3 3v3h-7z"/><circle cx="5" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>' },
+  { nombre: 'Bus extraurbano',         mapa: 'reporte',  icono: '<rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3M8 14.5h.01M16 14.5h.01"/>' },
+  { nombre: 'Choque',                  mapa: 'choque',   icono: '<path d="M5 17h14M6 17l1.5-5h9L18 17M7 17v2M17 17v2"/><path d="M9 8l1-3M14 8l1-3M12 4v3"/>' },
+  { nombre: 'Falla mecánica',          mapa: 'falla',    icono: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/>' },
+  { nombre: 'Semáforo dañado',         mapa: 'semaforo', icono: '<rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="17" r="1.5"/>' },
+  { nombre: 'Obstáculo en la vía',     mapa: 'reporte',  icono: '<path d="M9.5 4h5l4 16h-13z"/><path d="M3 20h18M8 12h8"/>' },
+  { nombre: 'Accidente peatonal',      mapa: 'choque',   icono: '<circle cx="12" cy="4.5" r="2"/><path d="M9 21l2-6-2-3 1-4h3l3 4M13 15l3 6M8 9l-3 3"/>' },
+  { nombre: 'Otro',                    mapa: 'reporte',  icono: '<circle cx="12" cy="12" r="9"/><path d="M8 12h.01M12 12h.01M16 12h.01"/>' }
 ];
 
 /** Multas de ejemplo (montos en quetzales, ficticios) */
@@ -888,6 +956,28 @@ function renderInicio() {
   $('#trafico-titulo').textContent = TRAFICO_RESUMEN.titulo;
   $('#trafico-detalle').textContent = TRAFICO_RESUMEN.detalle;
 
+  // Mosaico de accesos rápidos
+  $('#mosaico').innerHTML = ACCESOS_INICIO.map(a => `
+    <button class="acceso" data-accion="${a.accion}">
+      <span class="ico" style="background:${a.fondo};color:${a.color}">${svg(a.icono, 24)}</span>${a.texto}
+    </button>`).join('');
+
+  // Noticias del día
+  const hoy = new Date().toLocaleDateString('es-GT');
+  $('#lista-noticias').innerHTML = NOTICIAS.map(n => {
+    const t = TIPOS_INCIDENTE[n.tipo];
+    return `
+      <article class="tarjeta noticia">
+        <h3>${escaparHTML(n.titulo)}</h3>
+        <div class="lugar">${svg(ICONO_PIN, 14)}${escaparHTML(n.lugar)}</div>
+        <p>${escaparHTML(n.texto)}</p>
+        <div class="foto" style="background:linear-gradient(135deg, ${t.color}, ${t.color}99)">
+          ${svg(t.icono, 44, 1.8)}<span>Imagen ilustrativa</span>
+        </div>
+        <div class="fecha">${hoy} ${n.hora}</div>
+      </article>`;
+  }).join('');
+
   // Alertas: cierres, accidentes y eventos ordenados por nivel
   const peso = { alto: 0, medio: 1, bajo: 2 };
   const alertas = INCIDENTES
@@ -968,11 +1058,40 @@ function iniciarMapa() {
   INCIDENTES.forEach(i => agregarMarcador(i));
   reportes.forEach(r => agregarMarcador(r.incidente));
   renderFiltros();
+
+  // Barra de nivel de tráfico
+  $('#trafico-cuadro').style.background = TRAFICO_RESUMEN.colorNivel;
+  $('#trafico-nivel').textContent = TRAFICO_RESUMEN.nivelGeneral;
+
+  // Punto azul "tu ubicación": la real si el navegador la da; si no, una simulada en zona 11
+  marcadorYo = L.marker([14.6195, -90.5470], {
+    icon: L.divIcon({ className: '', html: '<div class="punto-yo"></div>', iconSize: [18, 18], iconAnchor: [9, 9] }),
+    interactive: false, zIndexOffset: 1000
+  }).addTo(mapa);
+  navigator.geolocation?.getCurrentPosition(
+    p => moverYo([p.coords.latitude, p.coords.longitude]),
+    () => {}, { timeout: 8000, maximumAge: 300000 });
   // Encuadra todas las incidencias (deja espacio para los filtros de arriba)
   setTimeout(() => {
     mapa.invalidateSize();
     mapa.fitBounds(L.latLngBounds(marcadores.map(m => m.marker.getLatLng())), { paddingTopLeft: [20, 60], paddingBottomRight: [20, 50] });
   }, 60);
+}
+
+let marcadorYo = null;
+/** Mueve el punto azul a la ubicación real del usuario */
+function moverYo(coords) {
+  if (marcadorYo) marcadorYo.setLatLng(coords);
+}
+
+/** Muestra en el mapa solo un tipo de incidente (lo usa el acceso "Eventos") */
+function soloTipo(tipo) {
+  irA('mapa');
+  setTimeout(() => {
+    Object.keys(TIPOS_INCIDENTE).forEach(k => {
+      if ((k === tipo) !== filtrosActivos.has(k)) alternarFiltro(k);
+    });
+  }, 150);
 }
 
 function renderFiltros() {
@@ -994,7 +1113,7 @@ function alternarFiltro(tipo) {
 
 function actualizarContador() {
   const visibles = marcadores.filter(m => filtrosActivos.has(m.datos.tipo)).length;
-  $('#contador-mapa').textContent = `${visibles} incidente${visibles === 1 ? '' : 's'} visible${visibles === 1 ? '' : 's'}`;
+  $('#contador-mapa').textContent = `${visibles} incidente${visibles === 1 ? '' : 's'}`;
 }
 
 /** Abre el mapa centrado en un incidente y muestra su ventana emergente */
@@ -1101,9 +1220,21 @@ const ESTADOS = ['Recibido', 'En revisión', 'Atendido'];
 
 /** Relaciona el tipo de reporte con un tipo de marcador del mapa */
 function tipoMapaDeReporte(tipo) {
-  if (tipo === 'Choque') return 'choque';
-  if (tipo === 'Falla mecánica') return 'falla';
-  return 'reporte';
+  return TIPOS_REPORTE.find(t => t.nombre === tipo)?.mapa || 'reporte';
+}
+
+/** Dibuja la cuadrícula "¿Qué ocurrió?" */
+function renderTiposReporte() {
+  const sel = $('#r-tipo').value;
+  $('#tipos-grid').innerHTML = TIPOS_REPORTE.map(t => `
+    <button type="button" class="tipo-op" data-tipo="${escaparHTML(t.nombre)}" aria-pressed="${t.nombre === sel}">
+      <span class="ico">${svg(t.icono, 22)}</span>${escaparHTML(t.nombre)}
+    </button>`).join('');
+}
+function elegirTipo(nombre) {
+  $('#r-tipo').value = nombre;
+  $('#c-tipo').classList.remove('error');
+  renderTiposReporte();
 }
 
 function generarFolio() {
@@ -1120,6 +1251,7 @@ function usarUbicacion() {
       coordsReporte = [pos.coords.latitude, pos.coords.longitude];
       $('#r-ubic').value = `Mi ubicación (${coordsReporte[0].toFixed(5)}, ${coordsReporte[1].toFixed(5)})`;
       estado.textContent = `✓ Ubicación obtenida (precisión ±${Math.round(pos.coords.accuracy)} m)`;
+      moverYo(coordsReporte);
       $('#c-ubic').classList.remove('error');
     },
     err => {
@@ -1215,6 +1347,7 @@ function enviarReporte(e) {
 
     // Limpia el formulario
     $('#form-reporte').reset();
+    elegirTipo('');            // los campos ocultos no se limpian con reset()
     coordsReporte = null;
     $('#geo-estado').textContent = '';
     mostrarVistaPrevia(null);
@@ -1413,12 +1546,17 @@ function iniciar() {
     irA(b.dataset.tab);
   });
 
-  // Inicio: accesos rápidos y alertas
-  $('.accesos').addEventListener('click', e => {
+  // Inicio: botón de Viva y mosaico de accesos rápidos
+  $('#pantalla-inicio').addEventListener('click', e => {
     const a = e.target.closest('[data-accion]')?.dataset.accion;
+    const desplazarA = sel => setTimeout(() => $(sel).scrollIntoView({ behavior: 'smooth', block: 'start' }), 350);
     if (a === 'como-llego') { irA('asistente'); setTimeout(() => $('#chat-input').focus(), 300); }
+    if (a === 'noticias') $('#titulo-noticias').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (a === 'avisame') { irA('perfil'); desplazarA('#pref-notif'); }
     if (a === 'reportar') irA('reportar');
-    if (a === 'multas') { irA('perfil'); setTimeout(() => $('#titulo-multas').scrollIntoView({ behavior: 'smooth' }), 350); }
+    if (a === 'mapa') irA('mapa');
+    if (a === 'multas') { irA('perfil'); desplazarA('#titulo-multas'); }
+    if (a === 'eventos') soloTipo('evento');
   });
   // Abrir incidente o reporte en el mapa
   document.addEventListener('click', e => {
@@ -1446,15 +1584,18 @@ function iniciar() {
   });
 
   // Reportar
-  $('#r-tipo').innerHTML = '<option value="">Seleccioná una opción…</option>' +
-    TIPOS_REPORTE.map(t => `<option>${escaparHTML(t)}</option>`).join('');
+  renderTiposReporte();
+  $('#tipos-grid').addEventListener('click', e => {
+    const b = e.target.closest('[data-tipo]');
+    if (b) elegirTipo(b.dataset.tipo);
+  });
   $('#btn-geo').addEventListener('click', usarUbicacion);
   $('#r-ubic').addEventListener('input', () => { coordsReporte = null; $('#geo-estado').textContent = ''; });
   $('#r-archivo').addEventListener('change', e => mostrarVistaPrevia(e.target.files[0]));
   $('#vista-previa').addEventListener('click', e => {
     if (e.target.closest('#quitar-adjunto')) { $('#r-archivo').value = ''; mostrarVistaPrevia(null); }
   });
-  ['r-tipo', 'r-ubic', 'r-desc'].forEach(id =>
+  ['r-ubic', 'r-desc'].forEach(id =>
     $('#' + id).addEventListener('input', () => $('#' + id).closest('.campo').classList.remove('error')));
   $('#form-reporte').addEventListener('submit', enviarReporte);
 
