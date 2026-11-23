@@ -399,7 +399,14 @@ export const MunicipalAntigua: React.FC<VizProps> = ({ c }) => {
         <text y="28" textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="70" fill={C.suave}>–</text>
         <text x="80" y="40" textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="130" fill={C.blanco}>0</text>
       </g>
-      <Logo src={FOTOS + "logo-municipal.png"} x={240} y={170} w={190} h={190} ar={735 / 1037} k={pop(f, c("municipal") - 6)} />
+      {/* escudo genérico con los colores de Municipal (sustituir por el logo cuando llegue: logo-municipal.png, 735×1037) */}
+      <g transform={`translate(240 160) scale(${pop(f, c("municipal") - 6)})`}>
+        <path d="M-70 -86 H70 V10 Q70 70 0 96 Q-70 70 -70 10 Z" fill="#C8102E" stroke={C.blanco} strokeWidth="6" />
+        {[-36, 0, 36].map((x) => <rect key={x} x={x - 9} y="-86" width="18" height="120" fill="#1D2D6B" />)}
+        <rect x="-70" y="-86" width="140" height="44" fill="#1D2D6B" />
+        <text y="-56" textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="26" fill={C.blanco}>CSD</text>
+        <circle cy="54" r="20" fill={C.blanco} stroke="#1D2D6B" strokeWidth="4" />
+      </g>
       <Logo src={FOTOS + "logo-antigua.png"} x={840} y={170} w={190} h={190} ar={500 / 637} k={pop(f, c("municipal") + 2)} />
       {/* expulsados */}
       {[0, 1, 2].map((i) => (
