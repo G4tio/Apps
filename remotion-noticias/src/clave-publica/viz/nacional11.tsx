@@ -91,7 +91,7 @@ export const FinSemanaViolento: React.FC<VizProps> = ({ c }) => {
           return (
             <g key={t} transform={`translate(${tx + x * S} ${ty + y * S})`}>
               <Pin k={k} color={z9 ? ROJO : "#C9363B"} r={z9 ? 18 : 13} />
-              <text x="20" y={-16} fontFamily={F.mono} fontWeight={800} fontSize={z9 ? 22 : 17} fill={C.blanco} letterSpacing="1" opacity={k}>{t}</text>
+              <text x={x > 278 ? -20 : 20} y={-16} textAnchor={x > 278 ? "end" : "start"} fontFamily={F.mono} fontWeight={800} fontSize={z9 ? 22 : 17} fill={C.blanco} letterSpacing="1" opacity={k}>{t}</text>
               {z9 && <text x="20" y={8} fontFamily={F.mono} fontWeight={800} fontSize="17" fill={AMARILLO} letterSpacing="1" opacity={P(f, c("discoteca") - 4, 10)}>{extra}</text>}
             </g>
           );
@@ -370,9 +370,9 @@ export const FrenteFrio: React.FC<VizProps> = ({ c }) => {
           <circle cy="100" r="42" fill={FRIO} />
           <rect x="-11" y={lerp(-120, 0, P(f, c("minimas"), 30, inOut))} width="22" height={lerp(220, 100, P(f, c("minimas"), 30, inOut))} rx="11" fill={FRIO} />
         </g>
-        <text x="820" y="540" textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="64" fill={C.claro} opacity={fade(f, c("minimas"))}>3 a 5 °C</text>
-        <text x="820" y="576" textAnchor="middle" fontFamily={F.mono} fontWeight={700} fontSize="20" fill={C.suave} letterSpacing="2" opacity={fade(f, c("altiplano") - 4)}>MÍNIMAS EN EL ALTIPLANO</text>
-        <Chip x={820} y={690} texto="16 FRENTES EN LA TEMPORADA" k={pop(f, c("dieciseis") - 6)} color={FRIO} size={19} />
+        <text x="820" y="600" textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="64" fill={C.claro} opacity={fade(f, c("minimas"))}>3 a 5 °C</text>
+        <text x="820" y="636" textAnchor="middle" fontFamily={F.mono} fontWeight={700} fontSize="20" fill={C.suave} letterSpacing="2" opacity={fade(f, c("altiplano") - 4)}>MÍNIMAS EN EL ALTIPLANO</text>
+        <Chip x={820} y={720} texto="16 FRENTES EN LA TEMPORADA" k={pop(f, c("dieciseis") - 6)} color={FRIO} size={19} />
         <Chip x={700} y={110} texto="LLUVIAS: PETÉN, VERAPACES, CARIBE" k={pop(f, c("caribe") - 4)} size={18} />
       </g>
     </Lienzo>
@@ -399,14 +399,7 @@ export const MunicipalAntigua: React.FC<VizProps> = ({ c }) => {
         <text y="28" textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="70" fill={C.suave}>–</text>
         <text x="80" y="40" textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="130" fill={C.blanco}>0</text>
       </g>
-      {/* escudo genérico con los colores de Municipal (sustituir por el logo cuando llegue: logo-municipal.png, 735×1037) */}
-      <g transform={`translate(240 160) scale(${pop(f, c("municipal") - 6)})`}>
-        <path d="M-70 -86 H70 V10 Q70 70 0 96 Q-70 70 -70 10 Z" fill="#C8102E" stroke={C.blanco} strokeWidth="6" />
-        {[-36, 0, 36].map((x) => <rect key={x} x={x - 9} y="-86" width="18" height="120" fill="#1D2D6B" />)}
-        <rect x="-70" y="-86" width="140" height="44" fill="#1D2D6B" />
-        <text y="-56" textAnchor="middle" fontFamily={F.exo} fontWeight={900} fontSize="26" fill={C.blanco}>CSD</text>
-        <circle cy="54" r="20" fill={C.blanco} stroke="#1D2D6B" strokeWidth="4" />
-      </g>
+      <Logo src={FOTOS + "logo-municipal.png"} x={240} y={170} w={190} h={190} ar={735 / 1036} k={pop(f, c("municipal") - 6)} />
       <Logo src={FOTOS + "logo-antigua.png"} x={840} y={170} w={190} h={190} ar={500 / 637} k={pop(f, c("municipal") + 2)} />
       {/* expulsados */}
       {[0, 1, 2].map((i) => (

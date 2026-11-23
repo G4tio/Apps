@@ -66,6 +66,8 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Personas: Trump, Putin, Xi, el papa León XIV, Arévalo (`2026-11-17/presidente.png`), Bukele, Haaland, Villeda, Karen Ortiz e Illescas.
   - Edificios: Hospital Roosevelt.
   - Logos: TSE, MP, MAGA, MEM, Mingob, Mindef, BBC, IKEA, Air France y Fedefut.
+  - 23 nov: fin de semana violento (16 muertos, conteo de Bomberos), turba ataca a policías en San Pedro Soloma, Presupuesto 2027 fuera de la agenda del martes, Línea Morada 120, primer frente frío (miércoles 25), Municipal 0-0 Antigua.
+  - Propuestas el 23 nov pero no usadas: choque en el Periférico zona 11, sismo de 3.5 en el Pacífico, Banguat proyecta 4.3 % de crecimiento.
   - 21 nov: logos de Xelajú, Suchitepéquez, Deportivo Mixco, Malacateco (Toros) y Antigua GFC, sin fondo (`2026-11-21/logo-*.png`). En logos con texto, quita también el blanco dentro de las letras (O, D, P, R), no solo el fondo que toca los bordes.
   - 19 nov int: Hegseth, Delcy Rodríguez, Trump con las manos abiertas, Rubio, la hipopótamo Fiona y el logo de la COP31 (`2026-11-19-int/`).
   - 19 nov: Baldetti (`2026-11-19/baldetti.png`), góndola del AeroMetro (`aerometro.png`) y mazorcas de maíz (`maiz.png`). Congreso: `2026-11-16/congreso.png`.
@@ -93,6 +95,8 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - 17 nov: sarampión (OPS), ciberataque a BBC, IKEA y Air France, Haití y Bukele, choque de trenes en Praga, Noruega y Haaland.
 
 ## Último estado
+
+- Último video: `Nacional-2026-11-23` (6 noticias). Nuevo: mapa de Centroamérica y el Caribe en `viz/mapa-centroamerica.json` (Natural Earth 1:50m; uso en `viz/nacional11.tsx`, `FrenteFrio`), logo de Municipal en `public/fotos/2026-11-23/logo-municipal.png`.
 
 - Videos entregados:
   - Nacional 17 nov: `Nacional-2026-11-17`.
