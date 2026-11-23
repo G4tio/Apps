@@ -1,0 +1,1509 @@
+{
+ "palabras": [
+  {
+   "w": "6",
+   "t": 0.0,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "noticias",
+   "t": 0.32,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 0.72,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "cine",
+   "t": 0.8,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 1.2,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "series",
+   "t": 1.36,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 1.76,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 1.92,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "Ya",
+   "t": 2.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "salió",
+   "t": 2.96,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 3.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "tráiler",
+   "t": 3.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "final",
+   "t": 3.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 4.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Avengers",
+   "t": 4.16,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Doomsday",
+   "t": 4.72,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Los",
+   "t": 5.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Cuatro",
+   "t": 5.76,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Fantásticos",
+   "t": 5.92,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "traen",
+   "t": 6.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 6.8,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "vuelta",
+   "t": 6.88,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 7.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Steve",
+   "t": 7.28,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Rogers",
+   "t": 7.6,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "para",
+   "t": 8.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "liderar",
+   "t": 8.16,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 8.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 8.64,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Vengadores",
+   "t": 8.72,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "contra",
+   "t": 9.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 9.36,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Doctor",
+   "t": 9.44,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Doom",
+   "t": 9.76,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 10.24,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Cíclope",
+   "t": 10.32,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "reúne",
+   "t": 10.88,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 11.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 11.36,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "X-Men",
+   "t": 11.84,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Se",
+   "t": 12.24,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "estrena",
+   "t": 12.32,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 12.64,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "16",
+   "t": 12.96,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 13.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "diciembre",
+   "t": 13.44,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Y",
+   "t": 14.16,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "es",
+   "t": 14.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "oficial",
+   "t": 14.56,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Hailee",
+   "t": 15.04,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Steinfeld",
+   "t": 15.52,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "regresa",
+   "t": 16.24,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "como",
+   "t": 16.56,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Kate",
+   "t": 16.64,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Bishop",
+   "t": 17.04,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 17.6,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Avengers",
+   "t": 17.68,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Doomsday",
+   "t": 18.32,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Marvel",
+   "t": 19.12,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "lo",
+   "t": 19.6,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "confirmó",
+   "t": 19.68,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 20.16,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "una",
+   "t": 20.32,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "silla",
+   "t": 20.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 20.72,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "director",
+   "t": 20.8,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 21.36,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 21.44,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "nombre",
+   "t": 21.6,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Ted",
+   "t": 22.0,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Lasso",
+   "t": 22.48,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "tendrá",
+   "t": 22.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "quinta",
+   "t": 23.2,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "temporada",
+   "t": 23.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 23.76,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Apple",
+   "t": 23.92,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "TV",
+   "t": 24.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 24.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Jason",
+   "t": 24.8,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Sudeikis",
+   "t": 25.2,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "vuelve",
+   "t": 25.92,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "como",
+   "t": 26.24,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "protagonista",
+   "t": 26.4,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "El",
+   "t": 27.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "rodaje",
+   "t": 27.12,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "empezaría",
+   "t": 27.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 28.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "abril",
+   "t": 28.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Los",
+   "t": 28.96,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Juegos",
+   "t": 29.28,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "del",
+   "t": 29.68,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Hambre",
+   "t": 29.84,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Amanecer",
+   "t": 30.24,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "en",
+   "t": 30.8,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 30.88,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "cosecha",
+   "t": 30.96,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "debutó",
+   "t": 31.44,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 31.84,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "120",
+   "t": 32.0,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 32.32,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "millones",
+   "t": 32.56,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 32.96,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "dólares",
+   "t": 33.04,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 33.6,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Estados",
+   "t": 33.76,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Unidos",
+   "t": 34.0,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 34.32,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "225",
+   "t": 34.48,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 34.96,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "millones",
+   "t": 35.6,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 36.08,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "todo",
+   "t": 36.24,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 36.4,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "mundo",
+   "t": 36.56,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 37.04,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "serie",
+   "t": 37.36,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 37.68,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "God",
+   "t": 37.84,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "of",
+   "t": 38.133,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "War",
+   "t": 38.427,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "ya",
+   "t": 38.72,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "tiene",
+   "t": 38.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 38.96,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 39.12,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Faye",
+   "t": 39.2,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Deborah",
+   "t": 39.52,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Ann",
+   "t": 39.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Woll",
+   "t": 40.08,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "la",
+   "t": 40.56,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "misma",
+   "t": 40.64,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "actriz",
+   "t": 40.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "del",
+   "t": 41.2,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "videojuego",
+   "t": 41.28,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Dave",
+   "t": 42.0,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Bautista",
+   "t": 42.4,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "será",
+   "t": 42.68,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Kratos",
+   "t": 42.96,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 43.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Prime",
+   "t": 43.72,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Video",
+   "t": 43.92,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "ya",
+   "t": 44.32,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "ordenó",
+   "t": 44.48,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "2",
+   "t": 44.96,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "temporadas",
+   "t": 45.12,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Y",
+   "t": 45.92,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 46.16,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "nueva",
+   "t": 46.24,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Focker",
+   "t": 46.56,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "llega",
+   "t": 47.2,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 47.36,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 47.44,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "este",
+   "t": 47.84,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "jueves",
+   "t": 48.0,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "26",
+   "t": 48.52,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 49.04,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "noviembre",
+   "t": 49.12,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 49.52,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Ben",
+   "t": 49.68,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Stiller",
+   "t": 49.92,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Robert",
+   "t": 50.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "De",
+   "t": 50.8,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Niro",
+   "t": 50.96,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 51.28,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Ariana",
+   "t": 51.36,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Grande",
+   "t": 51.76,
+   "b": 6,
+   "clave": true
+  }
+ ],
+ "bloques": [
+  {
+   "bloque": 0,
+   "inicio": 0.0,
+   "primera": 0,
+   "ultima": 7,
+   "fin": 2.6
+  },
+  {
+   "bloque": 1,
+   "inicio": 2.6,
+   "primera": 8,
+   "ultima": 45,
+   "fin": 14.2
+  },
+  {
+   "bloque": 2,
+   "inicio": 14.2,
+   "primera": 46,
+   "ultima": 68,
+   "fin": 22.04
+  },
+  {
+   "bloque": 3,
+   "inicio": 22.04,
+   "primera": 69,
+   "ultima": 87,
+   "fin": 29.0
+  },
+  {
+   "bloque": 4,
+   "inicio": 29.0,
+   "primera": 88,
+   "ultima": 113,
+   "fin": 37.08
+  },
+  {
+   "bloque": 5,
+   "inicio": 37.08,
+   "primera": 114,
+   "ultima": 143,
+   "fin": 45.96
+  },
+  {
+   "bloque": 6,
+   "inicio": 45.96,
+   "primera": 144,
+   "ultima": 164,
+   "fin": 52.64
+  }
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "inicio": 2.6,
+   "fin": 14.2,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 105.0,
+     "hasta": 107.0,
+     "toma": "batalla en la ciudad",
+     "en": null,
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 2.6,
+     "archivo": "media/2026-11-23/frag/n1_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 65.1,
+     "hasta": 67.3,
+     "toma": "Cuatro Fantásticos",
+     "en": "Cuatro",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 5.8,
+     "archivo": "media/2026-11-23/frag/n1_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 7.7,
+     "hasta": 9.1,
+     "toma": "Steve Rogers",
+     "en": "Steve",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 7.32,
+     "archivo": "media/2026-11-23/frag/n1_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 85.0,
+     "hasta": 86.0,
+     "toma": "Doctor Doom",
+     "en": "Doctor",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 9.48,
+     "archivo": "media/2026-11-23/frag/n1_3.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 142.0,
+     "hasta": 143.2,
+     "toma": "Cíclope",
+     "en": "Cíclope",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 10.36,
+     "archivo": "media/2026-11-23/frag/n1_4.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 166.7,
+     "hasta": 168.6,
+     "toma": "título",
+     "en": "estrena",
+     "ajuste": "contain",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 12.36,
+     "archivo": "media/2026-11-23/frag/n1_5.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "TRÁILER FINAL",
+     "categoria": "MARVEL STUDIOS",
+     "en": "tráiler",
+     "t": 3.28
+    },
+    {
+     "tipo": "nombre",
+     "texto": "STEVE ROGERS",
+     "sub": "REGRESA",
+     "en": "Steve",
+     "t": 7.28
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "16",
+     "texto": "EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "dieciséis",
+     "t": 12.96
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "inicio": 14.2,
+   "fin": 22.04,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n2_steinfeld_retrato.jpg",
+     "en": null,
+     "foco": "center 30%",
+     "t": 14.2
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n2_kate_bishop.jpg",
+     "en": "Kate",
+     "foco": "center 25%",
+     "t": 16.68
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n2_steinfeld_alfombra.jpg",
+     "en": "Marvel",
+     "foco": "center 30%",
+     "t": 19.16
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "HAILEE STEINFELD",
+     "sub": "ES KATE BISHOP",
+     "en": "Hailee",
+     "t": 15.04
+    },
+    {
+     "tipo": "titulo",
+     "texto": "\"ES OFICIAL\"",
+     "categoria": "LO CONFIRMÓ MARVEL",
+     "en": "Marvel",
+     "t": 19.12
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "inicio": 22.04,
+   "fin": 29.0,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n3_lasso_te.jpg",
+     "en": null,
+     "foco": "30% 30%",
+     "t": 22.04
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n3_lasso_estadio.jpg",
+     "en": "Jason",
+     "foco": "40% 30%",
+     "t": 24.84
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n3_lasso_oficina.jpg",
+     "en": "rodaje",
+     "foco": "center 30%",
+     "t": 27.16
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "bloques",
+     "valor": 5,
+     "etiquetaBloque": "T",
+     "texto": "TEMPORADA 5",
+     "sub": "RENOVADA EN APPLE TV",
+     "en": "quinta",
+     "t": 23.2
+    },
+    {
+     "tipo": "nombre",
+     "texto": "JASON SUDEIKIS",
+     "sub": "VUELVE COMO TED",
+     "en": "Jason",
+     "t": 24.8
+    },
+    {
+     "tipo": "titulo",
+     "texto": "RODAJE: ABRIL",
+     "categoria": "SEGÚN DEADLINE",
+     "en": "rodaje",
+     "t": 27.12
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "inicio": 29.0,
+   "fin": 37.08,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n4_jh_spot_latam.mp4",
+     "desde": 4.0,
+     "hasta": 6.0,
+     "toma": "campo en llamas",
+     "en": null,
+     "t": 29.0,
+     "archivo": "media/2026-11-23/frag/n4_0.mp4"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n4_jh_poster_latam.jpg",
+     "en": "debutó",
+     "ajuste": "contain",
+     "t": 31.48
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n4_jh_spot_latam.mp4",
+     "desde": 9.6,
+     "hasta": 11.6,
+     "toma": "escenario del Capitolio",
+     "en": "ciento",
+     "t": 32.04,
+     "archivo": "media/2026-11-23/frag/n4_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n4_jh_spot_latam.mp4",
+     "desde": 23.2,
+     "hasta": 25.8,
+     "toma": "título",
+     "en": "doscientos",
+     "zoom": 1.0,
+     "t": 34.52,
+     "archivo": "media/2026-11-23/frag/n4_3.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 120,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$120M",
+     "sub": "ESTADOS UNIDOS",
+     "en": "ciento",
+     "t": 32.0
+    },
+    {
+     "tipo": "contador",
+     "valor": 225,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$225M",
+     "sub": "TODO EL MUNDO",
+     "en": "doscientos",
+     "t": 34.48
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "inicio": 37.08,
+   "fin": 45.96,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n5_faye_juego.jpg",
+     "en": null,
+     "foco": "center 30%",
+     "t": 37.08
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n5_woll_retrato.jpg",
+     "en": "Deborah",
+     "foco": "center 30%",
+     "t": 39.56
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n5_bautista.jpg",
+     "en": "Dave",
+     "foco": "center 35%",
+     "t": 42.04
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n5_woll_alfombra.jpg",
+     "en": "Prime",
+     "foco": "center 25%",
+     "t": 43.76
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "DEBORAH ANN WOLL",
+     "sub": "ES FAYE",
+     "en": "Deborah",
+     "t": 39.52
+    },
+    {
+     "tipo": "nombre",
+     "texto": "DAVE BAUTISTA",
+     "sub": "ES KRATOS",
+     "en": "Dave",
+     "t": 42.0
+    },
+    {
+     "tipo": "bloques",
+     "valor": 2,
+     "etiquetaBloque": "T",
+     "texto": "2 TEMPORADAS",
+     "sub": "ORDENADAS",
+     "en": "dos",
+     "t": 44.96
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "inicio": 45.96,
+   "fin": 52.64,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n6_focker_trailer.mp4",
+     "desde": 147.4,
+     "hasta": 149.4,
+     "toma": "título",
+     "en": null,
+     "ajuste": "contain",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 45.96,
+     "archivo": "media/2026-11-23/frag/n6_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n6_focker_trailer.mp4",
+     "desde": 39.9,
+     "hasta": 41.6,
+     "toma": "Ben Stiller en el auto",
+     "en": "Ben",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 49.72,
+     "archivo": "media/2026-11-23/frag/n6_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n6_focker_trailer.mp4",
+     "desde": 21.0,
+     "hasta": 22.4,
+     "toma": "De Niro",
+     "en": "Robert",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 50.52,
+     "archivo": "media/2026-11-23/frag/n6_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n6_focker_trailer.mp4",
+     "desde": 8.0,
+     "hasta": 9.1,
+     "toma": "Ariana Grande",
+     "en": "Ariana",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 51.4,
+     "archivo": "media/2026-11-23/frag/n6_3.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "26",
+     "texto": "EN CINES",
+     "sub": "ESTE JUEVES",
+     "en": "jueves",
+     "t": 48.0
+    },
+    {
+     "tipo": "titulo",
+     "texto": "STILLER · DE NIRO · GRANDE",
+     "categoria": "LA FAMILIA DE MI NOVIA 4",
+     "en": "Ben",
+     "t": 49.68
+    }
+   ]
+  }
+ ],
+ "duracionVoz": 52.84,
+ "montaje": {
+  "fps": 30,
+  "intro": 76,
+  "vozOffset": 2.4,
+  "cierreInicio": 1678,
+  "cierre": 96,
+  "total": 1774
+ }
+}

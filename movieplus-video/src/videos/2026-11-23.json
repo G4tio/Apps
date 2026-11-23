@@ -1,0 +1,483 @@
+{
+ "fecha": "2026-11-23",
+ "fechaTexto": "LUNES 23 DE NOVIEMBRE",
+ "voz": "media/2026-11-23/voz/voz_limpia.wav",
+ "pantalla": [
+  {
+   "bloque": 0,
+   "frase": "Seis",
+   "texto": "6"
+  },
+  {
+   "bloque": 1,
+   "frase": "dieciséis",
+   "texto": "16"
+  },
+  {
+   "bloque": 4,
+   "frase": "ciento veinte",
+   "texto": "120"
+  },
+  {
+   "bloque": 4,
+   "frase": "doscientos veinticinco",
+   "texto": "225"
+  },
+  {
+   "bloque": 5,
+   "frase": "dos",
+   "texto": "2"
+  },
+  {
+   "bloque": 6,
+   "frase": "veintiséis",
+   "texto": "26"
+  }
+ ],
+ "claves": [
+  "Avengers",
+  "Doomsday",
+  "Fantásticos",
+  "Steve",
+  "Rogers",
+  "Doom",
+  "Cíclope",
+  "X-Men",
+  "Hailee",
+  "Steinfeld",
+  "Kate",
+  "Bishop",
+  "Marvel",
+  "Ted",
+  "Lasso",
+  "Apple",
+  "Jason",
+  "Sudeikis",
+  "Juegos",
+  "Hambre",
+  "Amanecer",
+  "cosecha",
+  "God",
+  "War",
+  "Faye",
+  "Deborah",
+  "Woll",
+  "Dave",
+  "Bautista",
+  "Kratos",
+  "Focker",
+  "Stiller",
+  "Niro",
+  "Ariana",
+  "Grande"
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "titulo": "AVENGERS: DOOMSDAY",
+   "categoria": "TRÁILER FINAL",
+   "fondo": "media/2026-11-23/n1_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 105.0,
+     "hasta": 107.0,
+     "toma": "batalla en la ciudad",
+     "en": null,
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 65.1,
+     "hasta": 67.3,
+     "toma": "Cuatro Fantásticos",
+     "en": "Cuatro",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 7.7,
+     "hasta": 9.1,
+     "toma": "Steve Rogers",
+     "en": "Steve",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 85.0,
+     "hasta": 86.0,
+     "toma": "Doctor Doom",
+     "en": "Doctor",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 142.0,
+     "hasta": 143.2,
+     "toma": "Cíclope",
+     "en": "Cíclope",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n1_doomsday_trailer.mp4",
+     "desde": 166.7,
+     "hasta": 168.6,
+     "toma": "título",
+     "en": "estrena",
+     "ajuste": "contain",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "TRÁILER FINAL",
+     "categoria": "MARVEL STUDIOS",
+     "en": "tráiler"
+    },
+    {
+     "tipo": "nombre",
+     "texto": "STEVE ROGERS",
+     "sub": "REGRESA",
+     "en": "Steve"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "16",
+     "texto": "EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "dieciséis"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titulo": "HAILEE STEINFELD",
+   "categoria": "AVENGERS: DOOMSDAY",
+   "fondo": "media/2026-11-23/n2_kate_bishop.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n2_steinfeld_retrato.jpg",
+     "en": null,
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n2_kate_bishop.jpg",
+     "en": "Kate",
+     "foco": "center 25%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n2_steinfeld_alfombra.jpg",
+     "en": "Marvel",
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "HAILEE STEINFELD",
+     "sub": "ES KATE BISHOP",
+     "en": "Hailee"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "\"ES OFICIAL\"",
+     "categoria": "LO CONFIRMÓ MARVEL",
+     "en": "Marvel"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titulo": "TED LASSO",
+   "categoria": "RENOVADA · T5",
+   "fondo": "media/2026-11-23/n3_lasso_estadio.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n3_lasso_te.jpg",
+     "en": null,
+     "foco": "30% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n3_lasso_estadio.jpg",
+     "en": "Jason",
+     "foco": "40% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n3_lasso_oficina.jpg",
+     "en": "rodaje",
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "bloques",
+     "valor": 5,
+     "etiquetaBloque": "T",
+     "texto": "TEMPORADA 5",
+     "sub": "RENOVADA EN APPLE TV",
+     "en": "quinta"
+    },
+    {
+     "tipo": "nombre",
+     "texto": "JASON SUDEIKIS",
+     "sub": "VUELVE COMO TED",
+     "en": "Jason"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "RODAJE: ABRIL",
+     "categoria": "SEGÚN DEADLINE",
+     "en": "rodaje"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "LOS JUEGOS DEL HAMBRE",
+   "categoria": "AMANECER EN LA COSECHA",
+   "fondo": "media/2026-11-23/n4_jh_haymitch.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n4_jh_spot_latam.mp4",
+     "desde": 4.0,
+     "hasta": 6.0,
+     "toma": "campo en llamas",
+     "en": null
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n4_jh_poster_latam.jpg",
+     "en": "debutó",
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n4_jh_spot_latam.mp4",
+     "desde": 9.6,
+     "hasta": 11.6,
+     "toma": "escenario del Capitolio",
+     "en": "ciento"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n4_jh_spot_latam.mp4",
+     "desde": 23.2,
+     "hasta": 25.8,
+     "toma": "título",
+     "en": "doscientos",
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 120,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$120M",
+     "sub": "ESTADOS UNIDOS",
+     "en": "ciento"
+    },
+    {
+     "tipo": "contador",
+     "valor": 225,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$225M",
+     "sub": "TODO EL MUNDO",
+     "en": "doscientos"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titulo": "GOD OF WAR",
+   "categoria": "SERIE · PRIME VIDEO",
+   "fondo": "media/2026-11-23/n5_faye_juego.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n5_faye_juego.jpg",
+     "en": null,
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n5_woll_retrato.jpg",
+     "en": "Deborah",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n5_bautista.jpg",
+     "en": "Dave",
+     "foco": "center 35%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-23/n5_woll_alfombra.jpg",
+     "en": "Prime",
+     "foco": "center 25%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "DEBORAH ANN WOLL",
+     "sub": "ES FAYE",
+     "en": "Deborah"
+    },
+    {
+     "tipo": "nombre",
+     "texto": "DAVE BAUTISTA",
+     "sub": "ES KRATOS",
+     "en": "Dave"
+    },
+    {
+     "tipo": "bloques",
+     "valor": 2,
+     "etiquetaBloque": "T",
+     "texto": "2 TEMPORADAS",
+     "sub": "ORDENADAS",
+     "en": "dos"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "titulo": "LA NUEVA FOCKER",
+   "categoria": "ESTRENO",
+   "fondo": "media/2026-11-23/n6_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n6_focker_trailer.mp4",
+     "desde": 147.4,
+     "hasta": 149.4,
+     "toma": "título",
+     "en": null,
+     "ajuste": "contain",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n6_focker_trailer.mp4",
+     "desde": 39.9,
+     "hasta": 41.6,
+     "toma": "Ben Stiller en el auto",
+     "en": "Ben",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n6_focker_trailer.mp4",
+     "desde": 21.0,
+     "hasta": 22.4,
+     "toma": "De Niro",
+     "en": "Robert",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-23/n6_focker_trailer.mp4",
+     "desde": 8.0,
+     "hasta": 9.1,
+     "toma": "Ariana Grande",
+     "en": "Ariana",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "26",
+     "texto": "EN CINES",
+     "sub": "ESTE JUEVES",
+     "en": "jueves"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "STILLER · DE NIRO · GRANDE",
+     "categoria": "LA FAMILIA DE MI NOVIA 4",
+     "en": "Ben"
+    }
+   ]
+  }
+ ]
+}
