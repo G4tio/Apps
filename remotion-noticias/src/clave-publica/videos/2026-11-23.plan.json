@@ -1,0 +1,35 @@
+{
+ "pantalla": [
+  [["seis"], "6", "c"],
+  [["veintitrés","de","noviembre."], "23 de noviembre.", "c"],
+  [["dieciséis","personas"], "16 personas", "c"],
+  [["quince","de","ellas"], "15 de ellas", "c"],
+  [["diez","de","esas"], "10 de esas", "c"],
+  [["zona","nueve."], "zona 9.", "c"],
+  [["quinientas","personas"], "500 personas", "c"],
+  [["presupuesto","dos","mil","veintisiete"], "Presupuesto 2027", "c"],
+  [["ciento","noventa","y","dos","mil","millones","de","quetzales,"], "Q192 mil millones,", "c"],
+  [["treinta","de","noviembre"], "30 de noviembre", "c"],
+  [["ciento","veinte,"], "120,", "c"],
+  [["veinticuatro","horas,"], "24 horas,", "c"],
+  [["veinticinco","de","noviembre"], "25 de noviembre", "c"],
+  [["tres","y","cinco","grados"], "3 y 5 grados", "c"],
+  [["dieciséis","frentes"], "16 frentes", "c"],
+  [["tres","expulsados."], "3 expulsados.", "c"],
+  [["cuarenta","puntos,"], "40 puntos,", "c"]
+ ],
+ "claves": ["guatemala", "bomberos", "arma de fuego", "discoteca", "san pedro soloma", "huehuetenango", "pnc", "turba",
+            "capturados", "presupuesto", "congreso", "comisión de finanzas", "dictamen", "ministerio de gobernación",
+            "línea morada", "gratuita", "intérpretes", "frente frío", "insivumeh", "petén", "las verapaces", "caribe",
+            "altiplano", "municipal", "antigua", "apertura", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "seis"},
+  "1": {"violento": "violento", "bomberos": "Bomberos,", "dieciseis": "dieciséis", "fuego": "fuego.", "diez": "Diez", "depto": "Guatemala,", "discoteca": "discoteca"},
+  "2": {"soloma": "Soloma,", "huehue": "Huehuetenango,", "quinientas": "quinientas", "turba": "turba", "quemo": "quemó", "capturados": "capturados,", "calma": "calma."},
+  "3": {"presupuesto": "Presupuesto", "agenda": "agenda", "comision": "Comisión", "dictamen": "dictamen.", "millones": "ciento", "treinta": "treinta"},
+  "4": {"mingob": "Gobernación", "linea": "Línea", "numero": "ciento", "gratuita": "gratuita,", "horas": "veinticuatro", "saldo": "saldo,", "interpretes": "intérpretes"},
+  "5": {"frente": "frente", "insivumeh": "Insivumeh", "miercoles": "miércoles", "peten": "Petén,", "caribe": "Caribe,", "minimas": "mínimas", "altiplano": "altiplano.", "dieciseis": "dieciséis"},
+  "6": {"municipal": "Municipal", "empataron": "empataron", "expulsados": "expulsados.", "antigua": "Antigua#2", "cuarenta": "cuarenta", "fecha": "fecha"},
+  "7": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}
