@@ -4,6 +4,7 @@ import {FUENTES_CSS} from './fuentes';
 import {Intro, INTRO_DUR} from './Intro';
 import {Cierre, CIERRE_DUR} from './Cierre';
 import {MoviePlusNews, NEWS_DUR} from './MoviePlusNews';
+import {MoviePlusHistoria, HISTORIA_DUR} from './MoviePlusHistoria';
 import {W, H, FPS} from './marca';
 
 // Fuentes incrustadas como data URI: cargan al instante, sin peticiones al servidor.
@@ -24,5 +25,6 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="Intro" component={Intro} durationInFrames={INTRO_DUR} fps={FPS} width={W} height={H} />
     <Composition id="Cierre" component={Cierre} durationInFrames={CIERRE_DUR} fps={FPS} width={W} height={H} />
     <Composition id="MoviePlusNews" component={MoviePlusNews} durationInFrames={NEWS_DUR} fps={FPS} width={W} height={H} />
+    <Composition id="MoviePlusHistoria" component={MoviePlusHistoria} durationInFrames={HISTORIA_DUR} fps={FPS} width={W} height={H} />
   </>
 );

@@ -1,0 +1,520 @@
+{
+ "formato": "historia",
+ "titulo": "RDJ: DE IRON MAN A DOCTOR DOOM",
+ "fecha": "2026-11-24",
+ "fechaTexto": "MARTES 24 DE NOVIEMBRE",
+ "voz": "media/2026-11-24/voz/voz_limpia.wav",
+ "pantalla": [
+  {
+   "bloque": 1,
+   "frase": "dos mil ocho",
+   "texto": "2008"
+  },
+  {
+   "bloque": 3,
+   "frase": "dos mil veintitrés",
+   "texto": "2023"
+  },
+  {
+   "bloque": 3,
+   "frase": "dos mil veinticuatro",
+   "texto": "2024"
+  },
+  {
+   "bloque": 7,
+   "frase": "diecisiete",
+   "texto": "17"
+  }
+ ],
+ "claves": [
+  "Robert",
+  "Downey",
+  "Jr.",
+  "Iron",
+  "Man",
+  "Marvel",
+  "Endgame",
+  "Tony",
+  "Stark",
+  "Ariana",
+  "Grande",
+  "Kang",
+  "Jonathan",
+  "Majors",
+  "Comic-Con",
+  "Doom",
+  "Steve",
+  "Rogers",
+  "Chris",
+  "Evans",
+  "Thor",
+  "Fantásticos",
+  "X-Men",
+  "Avengers:",
+  "Doomsday",
+  "Focker",
+  "genio",
+  "error"
+ ],
+ "noticias": [
+  {
+   "n": 0,
+   "titulo": "ROBERT DOWNEY JR.",
+   "categoria": "DE IRON MAN A DOCTOR DOOM",
+   "fondo": "media/2026-11-24/empire_doom.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/tony_steve.jpg",
+     "en": null,
+     "foco": "25% 30%"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 85.0,
+     "hasta": 86.2,
+     "toma": "Doctor Doom",
+     "en": "vuelve",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/empire_doom.jpg",
+     "en": "explico",
+     "foco": "35% 32%"
+    }
+   ],
+   "rotulos": []
+  },
+  {
+   "n": 1,
+   "titulo": "IRON MAN",
+   "categoria": "ASÍ EMPEZÓ TODO",
+   "fondo": "media/2026-11-24/ironman.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/encore_promo.mp4",
+     "desde": 35.4,
+     "hasta": 36.1,
+     "toma": "Iron Man",
+     "en": null
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ironman.jpg",
+     "en": "arrancó",
+     "foco": "center 40%"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/encore_promo.mp4",
+     "desde": 86.0,
+     "hasta": 89.0,
+     "toma": "logo Endgame",
+     "en": "Once"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/tony_steve.jpg",
+     "en": "Tony",
+     "foco": "25% 30%"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 48.6,
+     "hasta": 50.0,
+     "toma": "logo Marvel Studios",
+     "en": "necesitaba",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ariana.jpg",
+     "en": "Ariana",
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "hito",
+     "a": "2008",
+     "texto": "IRON MAN",
+     "sub": "ARRANCA EL UNIVERSO MARVEL",
+     "en": "dos"
+    },
+    {
+     "tipo": "hito",
+     "a": "2019",
+     "texto": "ENDGAME",
+     "sub": "TONY STARK MUERE COMO HÉROE",
+     "en": "Once"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "chiste": true,
+   "titulo": "",
+   "categoria": "",
+   "fondo": "media/2026-11-24/ironman.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ariana.jpg",
+     "en": null,
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": []
+  },
+  {
+   "n": 3,
+   "titulo": "EL VILLANO QUE NO FUE",
+   "categoria": "KANG",
+   "fondo": "media/2026-11-24/empire_doom.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/marcador_kang.jpg",
+     "en": null
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/marcador_sdcc.jpg",
+     "en": "Entonces"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 85.0,
+     "hasta": 86.4,
+     "toma": "Doom enmascarado",
+     "en": "Doctor",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/empire_doom.jpg",
+     "en": "era",
+     "foco": "35% 32%"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 138.2,
+     "hasta": 140.4,
+     "toma": "Doom en batalla",
+     "en": "Nueva",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "hito",
+     "a": "2023",
+     "texto": "MARVEL DESPIDE A MAJORS",
+     "sub": "KANG SE QUEDA SIN VILLANO",
+     "en": "dos"
+    },
+    {
+     "tipo": "hito",
+     "a": "2024",
+     "texto": "COMIC-CON",
+     "sub": "RDJ ES DOCTOR DOOM",
+     "en": "dos#2"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "«NUEVA MÁSCARA, MISMA MISIÓN»",
+     "categoria": "ROBERT DOWNEY JR.",
+     "en": "Nueva"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "¿QUIÉN LO ENFRENTA?",
+   "categoria": "AVENGERS: DOOMSDAY",
+   "fondo": "media/2026-11-24/empire_doom.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 158.0,
+     "hasta": 161.2,
+     "toma": "héroes reunidos",
+     "en": null,
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ariana.jpg",
+     "en": "Ariana",
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": []
+  },
+  {
+   "n": 5,
+   "chiste": true,
+   "titulo": "",
+   "categoria": "",
+   "fondo": "media/2026-11-24/empire_doom.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ariana.jpg",
+     "en": null,
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": []
+  },
+  {
+   "n": 6,
+   "titulo": "STEVE ROGERS",
+   "categoria": "CHRIS EVANS REGRESA",
+   "fondo": "media/2026-11-24/fondo_steve.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 7.3,
+     "hasta": 9.2,
+     "toma": "Steve Rogers",
+     "en": null,
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 16.0,
+     "hasta": 17.4,
+     "toma": "el bebé",
+     "en": "bebé",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 133.5,
+     "hasta": 135.0,
+     "toma": "el martillo de Thor",
+     "en": "martillo",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 65.1,
+     "hasta": 67.3,
+     "toma": "Cuatro Fantásticos",
+     "en": "Cuatro",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 142.0,
+     "hasta": 143.2,
+     "toma": "Cíclope",
+     "en": "X-Men",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 138.3,
+     "hasta": 139.6,
+     "toma": "Doom",
+     "en": "Doom",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "CHRIS EVANS",
+     "sub": "ES STEVE ROGERS",
+     "en": "Chris"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "4 FANTÁSTICOS + X-MEN",
+     "categoria": "TODOS CONTRA DOOM",
+     "en": "Cuatro"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "titulo": "AVENGERS: DOOMSDAY",
+   "categoria": "ESTRENO",
+   "fondo": "media/2026-11-24/empire_doom.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 165.0,
+     "hasta": 168.6,
+     "toma": "título",
+     "en": null,
+     "ajuste": "contain",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/focker_trailer.mp4",
+     "desde": 8.0,
+     "hasta": 9.6,
+     "toma": "Ariana Grande",
+     "en": "Ariana",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/focker_trailer.mp4",
+     "desde": 147.4,
+     "hasta": 149.4,
+     "toma": "título La nueva Focker",
+     "en": "este",
+     "ajuste": "contain",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "hito",
+     "a": "17 DIC",
+     "texto": "EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "diecisiete"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "26",
+     "texto": "LA NUEVA FOCKER",
+     "sub": "AQUÍ SÍ SALE ARIANA GRANDE",
+     "en": "jueves"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "titulo": "¿GENIO O ERROR?",
+   "categoria": "TONY STARK COMO VILLANO",
+   "fondo": "media/2026-11-24/empire_doom.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ironman.jpg",
+     "en": null,
+     "foco": "center 40%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/empire_doom.jpg",
+     "en": "genio",
+     "foco": "35% 32%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "TE LEO EN COMENTARIOS",
+     "categoria": "TU OPINIÓN",
+     "en": "Te"
+    }
+   ]
+  }
+ ]
+}

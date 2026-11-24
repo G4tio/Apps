@@ -1,0 +1,1759 @@
+{
+ "palabras": [
+  {
+   "w": "Robert",
+   "t": 0.16,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "Downey",
+   "t": 0.4,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "Jr",
+   "t": 0.64,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "murió",
+   "t": 1.12,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "salvando",
+   "t": 1.36,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 1.68,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "universo…",
+   "t": 1.84,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 2.32,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "ahora",
+   "t": 2.48,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "vuelve",
+   "t": 2.72,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "para",
+   "t": 3.12,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "destruirlo",
+   "t": 3.2,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "Te",
+   "t": 4.16,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "explico",
+   "t": 4.32,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "cómo",
+   "t": 4.8,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "pasó",
+   "t": 5.04,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "En",
+   "t": 5.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "2008",
+   "t": 5.76,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 6.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 6.24,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Iron",
+   "t": 6.48,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Man",
+   "t": 6.8,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "arrancó",
+   "t": 7.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 7.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Universo",
+   "t": 7.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Marvel",
+   "t": 8.08,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Once",
+   "t": 8.72,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "años",
+   "t": 9.04,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "después",
+   "t": 9.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 9.68,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Endgame",
+   "t": 9.76,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Tony",
+   "t": 10.32,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Stark",
+   "t": 10.72,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "chasqueó",
+   "t": 11.04,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 11.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "dedos",
+   "t": 11.68,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 12.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "murió",
+   "t": 12.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "como",
+   "t": 12.32,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "héroe",
+   "t": 12.4,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Marvel",
+   "t": 12.88,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "necesitaba",
+   "t": 13.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 14.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "nuevo",
+   "t": 14.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "gran",
+   "t": 14.32,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "villano",
+   "t": 14.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 15.04,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "eligió",
+   "t": 15.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 15.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Ariana",
+   "t": 15.6,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Grande",
+   "t": 16.16,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "No",
+   "t": 16.72,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Eso",
+   "t": 17.12,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "no",
+   "t": 17.44,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "pasó",
+   "t": 17.6,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Eligió",
+   "t": 18.4,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 18.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Kang",
+   "t": 18.96,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "con",
+   "t": 19.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Jonathan",
+   "t": 19.52,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Majors",
+   "t": 20.08,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Pero",
+   "t": 20.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 20.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "2023",
+   "t": 20.88,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 21.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 21.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Marvel",
+   "t": 21.84,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "lo",
+   "t": 22.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "despidió",
+   "t": 22.4,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 22.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 22.96,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "película",
+   "t": 23.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 23.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Kang",
+   "t": 23.52,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "se",
+   "t": 23.92,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "quedó",
+   "t": 24.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "sin",
+   "t": 24.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "villano",
+   "t": 24.48,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Entonces",
+   "t": 25.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 25.52,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 25.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Comic-Con",
+   "t": 25.76,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 26.24,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "2024",
+   "t": 26.4,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 26.56,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 27.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "subió",
+   "t": 27.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "al",
+   "t": 27.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "escenario",
+   "t": 27.84,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 28.24,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Doctor",
+   "t": 28.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Doom",
+   "t": 28.44,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "enmascarado",
+   "t": 28.56,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 29.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "quitó",
+   "t": 29.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 30.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "máscara…",
+   "t": 30.08,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 30.56,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "era",
+   "t": 30.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Robert",
+   "t": 30.8,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Downey",
+   "t": 31.12,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Jr",
+   "t": 31.68,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "Nueva",
+   "t": 32.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "máscara",
+   "t": 32.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "misma",
+   "t": 33.28,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "misión",
+   "t": 33.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "dijo",
+   "t": 34.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Para",
+   "t": 34.56,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "enfrentarlo",
+   "t": 34.88,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Marvel",
+   "t": 35.52,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "trajo",
+   "t": 36.08,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 36.32,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "vuelta",
+   "t": 36.4,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 36.72,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "alguien",
+   "t": 36.88,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "que",
+   "t": 37.12,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "ya",
+   "t": 37.28,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 37.36,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "había",
+   "t": 37.52,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "retirado",
+   "t": 37.76,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Ariana",
+   "t": 38.24,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Grande",
+   "t": 38.88,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Que",
+   "t": 39.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "no",
+   "t": 39.76,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Steve",
+   "t": 40.08,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Rogers",
+   "t": 40.56,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Chris",
+   "t": 41.28,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Evans",
+   "t": 41.68,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "regresa",
+   "t": 42.16,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "como",
+   "t": 42.56,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Steve",
+   "t": 42.72,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Rogers",
+   "t": 43.04,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "ahora",
+   "t": 43.68,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 43.92,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 44.0,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "bebé",
+   "t": 44.08,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 44.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 44.56,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 44.64,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "tráiler",
+   "t": 44.8,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "vuelve",
+   "t": 45.28,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 45.6,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "levantar",
+   "t": 45.68,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 46.08,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "martillo",
+   "t": 46.16,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 46.56,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Thor",
+   "t": 46.64,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "También",
+   "t": 47.04,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "llegan",
+   "t": 47.44,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 47.76,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Cuatro",
+   "t": 47.84,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Fantásticos",
+   "t": 48.16,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 48.8,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 48.96,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "X-Men",
+   "t": 49.36,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 49.6,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Fox",
+   "t": 49.76,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "todos",
+   "t": 50.24,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "contra",
+   "t": 50.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Doom",
+   "t": 50.64,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Avengers",
+   "t": 51.44,
+   "b": 7,
+   "clave": true
+  },
+  {
+   "w": "Doomsday",
+   "t": 51.76,
+   "b": 7,
+   "clave": true
+  },
+  {
+   "w": "llega",
+   "t": 52.4,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 52.56,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 52.64,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 52.96,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "Latinoamérica",
+   "t": 53.04,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 53.84,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "17",
+   "t": 54.2,
+   "b": 7,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 54.56,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "diciembre",
+   "t": 54.64,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "Y",
+   "t": 55.2,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "Ariana",
+   "t": 55.36,
+   "b": 7,
+   "clave": true
+  },
+  {
+   "w": "Grande",
+   "t": 55.84,
+   "b": 7,
+   "clave": true
+  },
+  {
+   "w": "Ella",
+   "t": 56.24,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "sí",
+   "t": 56.56,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "está",
+   "t": 56.8,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 56.96,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "cines…",
+   "t": 57.12,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "este",
+   "t": 57.68,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "jueves",
+   "t": 58.0,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 58.56,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 58.72,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "nueva",
+   "t": 58.8,
+   "b": 7,
+   "clave": false
+  },
+  {
+   "w": "Focker",
+   "t": 59.12,
+   "b": 7,
+   "clave": true
+  },
+  {
+   "w": "Tony",
+   "t": 59.84,
+   "b": 8,
+   "clave": true
+  },
+  {
+   "w": "Stark",
+   "t": 60.32,
+   "b": 8,
+   "clave": true
+  },
+  {
+   "w": "como",
+   "t": 60.72,
+   "b": 8,
+   "clave": false
+  },
+  {
+   "w": "villano",
+   "t": 60.88,
+   "b": 8,
+   "clave": false
+  },
+  {
+   "w": "genio",
+   "t": 61.36,
+   "b": 8,
+   "clave": true
+  },
+  {
+   "w": "o",
+   "t": 61.76,
+   "b": 8,
+   "clave": false
+  },
+  {
+   "w": "error",
+   "t": 61.92,
+   "b": 8,
+   "clave": true
+  },
+  {
+   "w": "Te",
+   "t": 62.32,
+   "b": 8,
+   "clave": false
+  },
+  {
+   "w": "leo",
+   "t": 62.48,
+   "b": 8,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 62.68,
+   "b": 8,
+   "clave": false
+  },
+  {
+   "w": "comentarios",
+   "t": 62.88,
+   "b": 8,
+   "clave": false
+  }
+ ],
+ "bloques": [
+  {
+   "bloque": 0,
+   "inicio": 0.0,
+   "primera": 0,
+   "ultima": 15,
+   "fin": 5.56
+  },
+  {
+   "bloque": 1,
+   "inicio": 5.56,
+   "primera": 16,
+   "ultima": 50,
+   "fin": 16.76
+  },
+  {
+   "bloque": 2,
+   "inicio": 16.76,
+   "primera": 51,
+   "ultima": 54,
+   "fin": 18.44
+  },
+  {
+   "bloque": 3,
+   "inicio": 18.44,
+   "primera": 55,
+   "ultima": 106,
+   "fin": 34.6
+  },
+  {
+   "bloque": 4,
+   "inicio": 34.6,
+   "primera": 107,
+   "ultima": 121,
+   "fin": 39.56
+  },
+  {
+   "bloque": 5,
+   "inicio": 39.56,
+   "primera": 122,
+   "ultima": 125,
+   "fin": 41.32
+  },
+  {
+   "bloque": 6,
+   "inicio": 41.32,
+   "primera": 126,
+   "ultima": 159,
+   "fin": 51.48
+  },
+  {
+   "bloque": 7,
+   "inicio": 51.48,
+   "primera": 160,
+   "ultima": 184,
+   "fin": 59.88
+  },
+  {
+   "bloque": 8,
+   "inicio": 59.88,
+   "primera": 185,
+   "ultima": 195,
+   "fin": 63.76
+  }
+ ],
+ "noticias": [
+  {
+   "n": 0,
+   "inicio": 0.0,
+   "fin": 5.56,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/tony_steve.jpg",
+     "en": null,
+     "foco": "25% 30%",
+     "t": 0.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 85.0,
+     "hasta": 86.2,
+     "toma": "Doctor Doom",
+     "en": "vuelve",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 2.76,
+     "archivo": "media/2026-11-24/frag/n0_1.mp4"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/empire_doom.jpg",
+     "en": "explico",
+     "foco": "35% 32%",
+     "t": 4.36
+    }
+   ],
+   "rotulos": []
+  },
+  {
+   "n": 1,
+   "inicio": 5.56,
+   "fin": 16.76,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/encore_promo.mp4",
+     "desde": 35.4,
+     "hasta": 36.1,
+     "toma": "Iron Man",
+     "en": null,
+     "t": 5.56,
+     "archivo": "media/2026-11-24/frag/n1_0.mp4"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ironman.jpg",
+     "en": "arrancó",
+     "foco": "center 40%",
+     "t": 7.16
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/encore_promo.mp4",
+     "desde": 86.0,
+     "hasta": 89.0,
+     "toma": "logo Endgame",
+     "en": "Once",
+     "t": 8.76,
+     "archivo": "media/2026-11-24/frag/n1_2.mp4"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/tony_steve.jpg",
+     "en": "Tony",
+     "foco": "25% 30%",
+     "t": 10.36
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 48.6,
+     "hasta": 50.0,
+     "toma": "logo Marvel Studios",
+     "en": "necesitaba",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 13.56,
+     "archivo": "media/2026-11-24/frag/n1_4.mp4"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ariana.jpg",
+     "en": "Ariana",
+     "foco": "center 30%",
+     "t": 15.64
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "hito",
+     "a": "2008",
+     "texto": "IRON MAN",
+     "sub": "ARRANCA EL UNIVERSO MARVEL",
+     "en": "dos",
+     "t": 5.76
+    },
+    {
+     "tipo": "hito",
+     "a": "2019",
+     "texto": "ENDGAME",
+     "sub": "TONY STARK MUERE COMO HÉROE",
+     "en": "Once",
+     "t": 8.72
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "inicio": 16.76,
+   "fin": 18.44,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ariana.jpg",
+     "en": null,
+     "foco": "center 30%",
+     "t": 16.76
+    }
+   ],
+   "rotulos": []
+  },
+  {
+   "n": 3,
+   "inicio": 18.44,
+   "fin": 34.6,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/marcador_kang.jpg",
+     "en": null,
+     "t": 18.44
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/marcador_sdcc.jpg",
+     "en": "Entonces",
+     "t": 25.08
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 85.0,
+     "hasta": 86.4,
+     "toma": "Doom enmascarado",
+     "en": "Doctor",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 28.36,
+     "archivo": "media/2026-11-24/frag/n3_2.mp4"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/empire_doom.jpg",
+     "en": "era",
+     "foco": "35% 32%",
+     "t": 30.68
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 138.2,
+     "hasta": 140.4,
+     "toma": "Doom en batalla",
+     "en": "Nueva",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 32.36,
+     "archivo": "media/2026-11-24/frag/n3_4.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "hito",
+     "a": "2023",
+     "texto": "MARVEL DESPIDE A MAJORS",
+     "sub": "KANG SE QUEDA SIN VILLANO",
+     "en": "dos",
+     "t": 20.88
+    },
+    {
+     "tipo": "hito",
+     "a": "2024",
+     "texto": "COMIC-CON",
+     "sub": "RDJ ES DOCTOR DOOM",
+     "en": "dos#2",
+     "t": 26.4
+    },
+    {
+     "tipo": "titulo",
+     "texto": "«NUEVA MÁSCARA, MISMA MISIÓN»",
+     "categoria": "ROBERT DOWNEY JR.",
+     "en": "Nueva",
+     "t": 32.32
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "inicio": 34.6,
+   "fin": 39.56,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 158.0,
+     "hasta": 161.2,
+     "toma": "héroes reunidos",
+     "en": null,
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 34.6,
+     "archivo": "media/2026-11-24/frag/n4_0.mp4"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ariana.jpg",
+     "en": "Ariana",
+     "foco": "center 30%",
+     "t": 38.28
+    }
+   ],
+   "rotulos": []
+  },
+  {
+   "n": 5,
+   "inicio": 39.56,
+   "fin": 41.32,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ariana.jpg",
+     "en": null,
+     "foco": "center 30%",
+     "t": 39.56
+    }
+   ],
+   "rotulos": []
+  },
+  {
+   "n": 6,
+   "inicio": 41.32,
+   "fin": 51.48,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 7.3,
+     "hasta": 9.2,
+     "toma": "Steve Rogers",
+     "en": null,
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 41.32,
+     "archivo": "media/2026-11-24/frag/n6_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 16.0,
+     "hasta": 17.4,
+     "toma": "el bebé",
+     "en": "bebé",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 44.12,
+     "archivo": "media/2026-11-24/frag/n6_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 133.5,
+     "hasta": 135.0,
+     "toma": "el martillo de Thor",
+     "en": "martillo",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 46.2,
+     "archivo": "media/2026-11-24/frag/n6_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 65.1,
+     "hasta": 67.3,
+     "toma": "Cuatro Fantásticos",
+     "en": "Cuatro",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 47.88,
+     "archivo": "media/2026-11-24/frag/n6_3.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 142.0,
+     "hasta": 143.2,
+     "toma": "Cíclope",
+     "en": "X-Men",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 49.4,
+     "archivo": "media/2026-11-24/frag/n6_4.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 138.3,
+     "hasta": 139.6,
+     "toma": "Doom",
+     "en": "Doom",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 50.68,
+     "archivo": "media/2026-11-24/frag/n6_5.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "CHRIS EVANS",
+     "sub": "ES STEVE ROGERS",
+     "en": "Chris",
+     "t": 41.28
+    },
+    {
+     "tipo": "titulo",
+     "texto": "4 FANTÁSTICOS + X-MEN",
+     "categoria": "TODOS CONTRA DOOM",
+     "en": "Cuatro",
+     "t": 47.84
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "inicio": 51.48,
+   "fin": 59.88,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/doomsday_trailer.mp4",
+     "desde": 165.0,
+     "hasta": 168.6,
+     "toma": "título",
+     "en": null,
+     "ajuste": "contain",
+     "recorte": [
+      640,
+      222,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 51.48,
+     "archivo": "media/2026-11-24/frag/n7_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/focker_trailer.mp4",
+     "desde": 8.0,
+     "hasta": 9.6,
+     "toma": "Ariana Grande",
+     "en": "Ariana",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 55.4,
+     "archivo": "media/2026-11-24/frag/n7_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-24/focker_trailer.mp4",
+     "desde": 147.4,
+     "hasta": 149.4,
+     "toma": "título La nueva Focker",
+     "en": "este",
+     "ajuste": "contain",
+     "recorte": [
+      640,
+      256,
+      0,
+      52
+     ],
+     "zoom": 1.0,
+     "t": 57.72,
+     "archivo": "media/2026-11-24/frag/n7_2.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "hito",
+     "a": "17 DIC",
+     "texto": "EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "diecisiete",
+     "t": 54.2
+    },
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "26",
+     "texto": "LA NUEVA FOCKER",
+     "sub": "AQUÍ SÍ SALE ARIANA GRANDE",
+     "en": "jueves",
+     "t": 58.0
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "inicio": 59.88,
+   "fin": 63.76,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/ironman.jpg",
+     "en": null,
+     "foco": "center 40%",
+     "t": 59.88
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-24/empire_doom.jpg",
+     "en": "genio",
+     "foco": "35% 32%",
+     "t": 61.4
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "titulo",
+     "texto": "TE LEO EN COMENTARIOS",
+     "categoria": "TU OPINIÓN",
+     "en": "Te",
+     "t": 62.32
+    }
+   ]
+  }
+ ],
+ "duracionVoz": 63.96,
+ "montaje": {
+  "fps": 30,
+  "intro": 16,
+  "vozOffset": 0.35,
+  "cierreInicio": 1920,
+  "cierre": 96,
+  "total": 2016
+ }
+}

@@ -3,7 +3,7 @@ import {MARCA, prog, lerp, outBack, outCubic, outExpo, clamp} from './marca';
 
 // Panel de datos con motion graphics, debajo de la imagen de cada noticia.
 export type Dato = {
-  tipo: 'titulo' | 'nombre' | 'fecha' | 'contador' | 'insignia' | 'comparacion' | 'salto' | 'bloques' | 'lista';
+  tipo: 'titulo' | 'nombre' | 'fecha' | 'contador' | 'insignia' | 'comparacion' | 'salto' | 'bloques' | 'lista' | 'hito';
   texto: string; sub?: string; t: number;
   valor?: number; prefijo?: string; sufijo?: string; mes?: string; dia?: string; a?: string; b?: string;
   categoria?: string;
@@ -258,9 +258,26 @@ const Lista: React.FC<{d: Dato; f: number}> = ({d, f}) => {
   );
 };
 
+// Hito de una historia: año (o fecha corta) grande a la izquierda y qué pasó a la derecha.
+// {"tipo": "hito", "a": "2008", "texto": "IRON MAN", "sub": "EMPIEZA EL UNIVERSO MARVEL"}
+const Hito: React.FC<{d: Dato; f: number}> = ({d, f}) => {
+  const p = outBack(prog(f, 0, 12), 1.8);
+  return (
+    <div style={{display: 'flex', alignItems: 'center', gap: 34, height: '100%'}}>
+      <div style={{...SAIRA, fontSize: 150, lineHeight: 0.9, color: ROJO, whiteSpace: 'nowrap', flex: 'none',
+        transform: `scale(${lerp(0.6, 1, p)})`, transformOrigin: 'left center', opacity: Math.min(1, prog(f, 0, 4))}}>
+        {d.a}
+      </div>
+      <div style={{width: 4, alignSelf: 'stretch', margin: '34px 0', background: 'rgba(255,255,255,0.18)', borderRadius: 2,
+        transform: `scaleY(${outCubic(prog(f, 3, 12))})`}} />
+      <Titular f={f} texto={d.texto} sub={d.sub} size={64} />
+    </div>
+  );
+};
+
 const VISTAS: Record<Dato['tipo'], React.FC<{d: Dato; f: number}>> = {
   titulo: Titulo, nombre: Nombre, fecha: Fecha, contador: Contador, insignia: Insignia,
-  comparacion: Comparacion, salto: Salto, bloques: Bloques, lista: Lista,
+  comparacion: Comparacion, salto: Salto, bloques: Bloques, lista: Lista, hito: Hito,
 };
 
 /** Panel completo: caja + dato actual (entra desde la derecha, el anterior sale a la izquierda). */

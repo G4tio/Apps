@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Renderiza MoviePlusNews en tramos (si uno falla, se reintenta solo ese) y une con la mezcla.
+# Renderiza MoviePlusNews (o la composición en $COMP, p. ej. MoviePlusHistoria) en tramos (si uno falla, se reintenta solo ese) y une con la mezcla.
 # Uso: bash scripts/render_por_partes.sh <total_cuadros> <mezcla.wav> <salida.mp4>
 set -u
 TOTAL=$1; MEZCLA=$2; SALIDA=$3; TRAMO=${TRAMO:-90}
@@ -14,7 +14,7 @@ for ((a=0; a<TOTAL; a+=TRAMO)); do
     [ -s "$f" ] && break
     conc=$([ $intento -eq 1 ] && echo 3 || echo 1)  # si falla, reintenta con una sola pestaña
     echo "tramo $a-$b (intento $intento, concurrencia $conc)"
-    npx remotion render out/bundle MoviePlusNews "$f" --frames=$a-$b --muted --codec=h264 --crf=17 \
+    npx remotion render out/bundle "${COMP:-MoviePlusNews}" "$f" --frames=$a-$b --muted --codec=h264 --crf=17 \
       --concurrency=$conc --timeout=180000 --browser-executable=/opt/pw-browsers/chromium --log=error || rm -f "$f"
   done
   [ -s "$f" ] || { echo "FALLÓ tramo $a-$b"; exit 1; }

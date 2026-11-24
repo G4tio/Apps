@@ -42,6 +42,17 @@ def pop(d=0.12):
     n = int(d * SR); t = np.arange(n) / SR
     return np.sin(2 * np.pi * (300 + 500 * np.exp(-t * 40)) * t) * np.exp(-t * 30) * 0.45
 
+def rayado(d=0.42):
+    """Disco rayado (scratch): ruido filtrado con un barrido de tono rápido arriba-abajo-arriba."""
+    n = int(d * SR); t = np.arange(n) / SR
+    vel = np.interp(t, [0, 0.07, 0.17, 0.27, d], [0.2, 1.6, -1.1, 1.3, 0.1])  # velocidad del plato
+    fase = np.cumsum(np.abs(vel)) / SR
+    tono = np.sin(2 * np.pi * 900 * fase) * 0.5 + np.sin(2 * np.pi * 1780 * fase) * 0.2
+    ruido = bandpass(rng.standard_normal(n), 500, 6000) * (0.4 + 0.6 * np.abs(vel) / 1.6)
+    env = np.minimum(1, t / 0.01) * np.minimum(1, (d - t) / 0.06)
+    golpe = np.sin(2 * np.pi * 60 * t) * np.exp(-t * 25) * 0.8
+    return (tono * np.abs(vel) / 1.6 * 0.8 + ruido * 0.5) * env + golpe
+
 def mezcla(dur, eventos, nombre):
     buf = np.zeros(int(dur * SR) + SR)
     for cuadro, s, g in eventos:
