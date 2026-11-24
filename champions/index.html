@@ -376,6 +376,14 @@ table.st{width:100%;border-collapse:collapse;font-size:.86rem;min-width:560px;fo
 .vbars small{font-size:.64rem;color:var(--muted);white-space:nowrap}
 @keyframes growY{from{transform:scaleY(0)}}
 
+.srow{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)}
+.srow:first-child{border-top:0}
+.srow b{display:block;font-weight:600;font-size:.9rem}.srow small{display:block;color:var(--muted);font-size:.78rem;margin-top:2px}
+.sdot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:none;background:var(--dim)}
+.sdot.on{background:var(--win);box-shadow:0 0 0 4px rgba(34,197,139,.18)}.sdot.err{background:var(--loss)}.sdot.wait{background:var(--gold)}
+#srcPill{cursor:pointer}
+.st .club .dot{flex:none}
+
 /* timeline */
 .tl{position:relative;padding:6px 0}
 .tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line2);transform:translateX(-50%)}
@@ -454,6 +462,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:.76rem;text-align:center;b
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
   <symbol id="i-card" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v13c0 1.7 3.6 3 8 3s8-1.3 8-3v-13M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
   <symbol id="i-ucl" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="2.5"/><g fill="currentColor"><path d="M32 9l2.6 5.3 5.8.8-4.2 4.1 1 5.8L32 22.3 26.8 25l1-5.8-4.2-4.1 5.8-.8z"/><path d="M32 39.7l2.6 5.3 5.8.8-4.2 4.1 1 5.8L32 53 26.8 55.7l1-5.8-4.2-4.1 5.8-.8z"/><path d="M15.4 21.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/><path d="M48.6 21.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></g></symbol>
 </svg>
@@ -467,6 +476,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:.76rem;text-align:center;b
       </a>
       <span class="sp"></span>
       <span class="pill" id="srcPill"><span class="dot" id="srcDot"></span><span id="srcTxt">Conectando…</span></span>
+      <button class="iconbtn" id="srcBtn" aria-label="Fuentes de datos" title="Fuentes de datos"><svg class="i"><use href="#i-db"/></svg></button>
       <button class="iconbtn" id="refreshBtn" aria-label="Actualizar datos" title="Actualizar"><svg class="i"><use href="#i-refresh"/></svg></button>
     </div>
     <nav class="tabs" role="tablist" aria-label="Secciones">
@@ -485,7 +495,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:.76rem;text-align:center;b
 </header>
 
 <main class="wrap">
-  <div id="demoBanner" class="banner" hidden><svg class="i"><use href="#i-alert"/></svg><span>No se pudo conectar con la fuente de datos en vivo (ESPN). Se muestran <b>datos de ejemplo</b> que no son reales. Pulsa actualizar para reintentar.</span></div>
+  <div id="demoBanner" class="banner" hidden><svg class="i"><use href="#i-alert"/></svg><span id="bannerTxt">No se pudo conectar con la fuente de datos en vivo (ESPN). Se muestran <b>datos de ejemplo</b> que no son reales. Pulsa actualizar para reintentar.</span></div>
 
   <!-- INICIO -->
   <section class="panel active" id="p-inicio" role="tabpanel">
@@ -610,7 +620,7 @@ function hashColor(s){let h=0;for(const c of String(s))h=(h*31+c.charCodeAt(0))|
 function rng(seed){let a=0;for(const c of String(seed))a=(a*31+c.charCodeAt(0))|0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 
 /* ================= State ================= */
-const S={demo:false,teams:new Map(),matches:[],standings:[],leaders:{},news:[],videos:[],summaries:new Map(),rosters:new Map(),calDay:null,calF:'all',calTeam:'',leadCat:null,tab:'inicio'};
+const S={demo:false,teams:new Map(),matches:[],standings:[],leaders:{},news:[],videos:[],summaries:new Map(),rosters:new Map(),calDay:null,calF:'all',calTeam:'',leadCat:null,tab:'inicio',source:'espn',espnStandings:[],srcStatus:{espn:'',fd:''},ps:new Map(),psProgress:null};
 let favTeam=store.get('ucl-fav','');
 
 function regTeam(t){
@@ -709,7 +719,7 @@ function parseGoals(c,m){
   if(m.state==='pre')return[];
   const list=(c.details||[]).filter(d=>{const t=String(d.type?.text||'');return !d.shootout&&(d.scoringPlay===true||(/^(goal|penalty - scored|own goal)/i.test(t)&&!/kick/i.test(t)))}).map(d=>{
     const a=d.athletesInvolved?.[0]||d.participants?.[0]?.athlete||{};const t=String(d.type?.text||'');
-    return{min:d.clock?.displayValue||'',team:String(d.team?.id||''),name:a.shortName||a.displayName||'',full:a.displayName||a.shortName||'',og:!!d.ownGoal||/own/i.test(t),pen:!!d.penaltyKick||/penalty/i.test(t)}}).filter(g=>g.team);
+    return{id:String(a.id||''),min:d.clock?.displayValue||'',team:String(d.team?.id||''),name:a.shortName||a.displayName||'',full:a.displayName||a.shortName||'',og:!!d.ownGoal||/own/i.test(t),pen:!!d.penaltyKick||/penalty/i.test(t)}}).filter(g=>g.team);
   const H=m.home.team?.id,A=m.away.team?.id,cnt=(l,id)=>l.filter(g=>g.team===id).length;
   if(list.some(g=>g.og)&&(cnt(list,H)!==m.home.score||cnt(list,A)!==m.away.score)){
     const fl=list.map(g=>g.og?{...g,team:g.team===H?A:H}:g);
@@ -762,35 +772,128 @@ function normNews(d){
 
 /* ================= Loading ================= */
 async function loadMatches(){
-  let d;try{d=await site(`/scoreboard?dates=${SY}0701-${SY+1}0615&limit=1000`)}catch{d=null}
-  let ev=d?.events||[];
-  const lg=d?.leagues?.[0]?.logos?.find(l=>/dark|default/i.test((l.rel||[]).join(' ')))?.href||d?.leagues?.[0]?.logos?.[0]?.href;if(lg){S.leagueLogo=lg;setLeagueLogo(lg)}
-  if(!ev.length){d=await site('/scoreboard');ev=d.events||[]}
+  // ESPN no acepta rangos de fechas para la Champions: se pide mes a mes toda la temporada (julio a junio).
+  const months=Array.from({length:12},(_,i)=>{const d=new Date(SY,6+i,1);return `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}`});
+  const res=await Promise.allSettled(months.map(mo=>site(`/scoreboard?dates=${mo}&limit=300`)));
+  const ev=[];let lg='';
+  res.forEach(r=>{if(r.status!=='fulfilled')return;const d=r.value;ev.push(...(d.events||[]));lg=lg||d.leagues?.[0]?.logos?.find(l=>/dark|default/i.test((l.rel||[]).join(' ')))?.href||d.leagues?.[0]?.logos?.[0]?.href||''});
+  if(lg){S.leagueLogo=lg;setLeagueLogo(lg)}
+  if(!ev.length){const d=await site('/scoreboard');ev.push(...(d.events||[]))}
   if(!ev.length)throw Error('sin partidos');
-  const map=new Map(S.matches.map(m=>[m.id,m]));
-  ev.map(normEvent).filter(Boolean).forEach(m=>map.set(m.id,m));
+  const map=new Map();ev.map(normEvent).filter(Boolean).forEach(m=>map.set(m.id,m));
   S.matches=[...map.values()].sort((a,b)=>new Date(a.date)-new Date(b.date));
 }
 async function loadLive(){const d=await site('/scoreboard');(d.events||[]).map(normEvent).filter(Boolean).forEach(m=>{const i=S.matches.findIndex(x=>x.id===m.id);if(i>=0)S.matches[i]=m;else S.matches.push(m)});S.matches.sort((a,b)=>new Date(a.date)-new Date(b.date))}
-async function loadStandings(){const d=await firstOK(STAND);const s=normStandings(d);if(!s.length)throw Error('sin tabla');S.standings=s}
+async function loadStandings(){const d=await firstOK(STAND);const s=normStandings(d);if(!s.length)throw Error('sin tabla');S.espnStandings=s}
 async function loadTeams(){const d=await site('/teams');(d.sports?.[0]?.leagues?.[0]?.teams||[]).forEach(x=>regTeam(x.team))}
-async function loadLeaders(){const d=await firstOK(LEAD);S.leaders=normLeaders(d)}
 async function loadNews(){const d=await site('/news?limit=60');S.news=normNews(d)}
 
+/* ---- Clasificación calculada con los resultados (incluye partidos en vivo, como la tabla en vivo de UEFA) ---- */
+function computeStandings(){
+  const lp=S.matches.filter(m=>/Fase de liga/.test(m.round));
+  const played=lp.filter(m=>m.state!=='pre'&&m.home.score!=null&&m.away.score!=null);
+  if(!played.length)return null;
+  const T=new Map();const row=t=>{if(!t)return null;if(!T.has(t.id))T.set(t.id,{team:t,gp:0,w:0,d:0,l:0,gf:0,ga:0,agf:0,aw:0,live:false});return T.get(t.id)};
+  lp.forEach(m=>{row(m.home.team);row(m.away.team)});
+  played.forEach(m=>[[m.home,m.away,0],[m.away,m.home,1]].forEach(([me,op,away])=>{const r=row(me.team);if(!r)return;r.gp++;r.gf+=me.score;r.ga+=op.score;if(away)r.agf+=me.score;
+    if(me.score>op.score){r.w++;if(away)r.aw++}else if(me.score<op.score)r.l++;else r.d++;if(m.state==='in')r.live=true}));
+  const out=[...T.values()].map(r=>({...r,gd:r.gf-r.ga,pts:r.w*3+r.d}));
+  out.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf||b.agf-a.agf||b.w-a.w||b.aw-a.aw||a.team.name.localeCompare(b.team.name));
+  out.forEach((r,i)=>r.rank=i+1);return out;
+}
+function applyStandings(){
+  const comp=computeStandings(),es=S.espnStandings||[];
+  if(comp&&comp.length){
+    const same=es.length&&!comp.some(r=>r.live)&&comp.every(r=>{const e=es.find(x=>x.team?.id===r.team.id);return e&&e.gp===r.gp&&e.pts===r.pts});
+    if(same){S.standings=es;S.stSrc='Clasificación oficial publicada por la fuente.'}
+    else{S.standings=comp;S.stSrc=comp.some(r=>r.live)?'Clasificación en vivo calculada con los resultados; incluye los partidos que se están jugando.':'Clasificación calculada con todos los resultados de la fase de liga.'}
+  }else if(es.length){S.standings=es;S.stSrc='Clasificación publicada por la fuente.'}
+}
+
+/* ---- Estadísticas de jugadores: se calculan con el resumen de cada partido de ESPN y se guardan en el navegador ---- */
+const PS_KEY='ucl-ps-'+SY;let PSC=store.get(PS_KEY,{});
+function summaryRows(sum){
+  const rows=[];
+  (sum?.rosters||[]).forEach(t=>{const tid=String(t.team?.id||'');(t.roster||[]).forEach(x=>{
+    const st={};(x.stats||[]).forEach(v=>st[v.name]=Number(v.value)||0);if(!st.appearances&&!x.starter)return;const a=x.athlete||{};
+    rows.push([String(a.id||''),a.displayName||'',tid,x.position?.abbreviation||'',x.starter?1:0,st.totalGoals||0,st.goalAssists||0,st.saves||0,st.goalsConceded||0,st.shotsOnTarget||0,st.yellowCards||0,st.redCards||0])})});
+  return rows;
+}
+async function loadPlayerStats(){
+  if(S.source!=='espn'||loadPlayerStats.busy)return;loadPlayerStats.busy=true;
+  try{
+    const ids=new Set(S.matches.filter(m=>m.state!=='pre').map(m=>m.id));
+    Object.keys(PSC).forEach(k=>{if(!ids.has(k))delete PSC[k]});
+    const todo=S.matches.filter(m=>m.state==='in'||(m.state==='post'&&!PSC[m.id]));
+    S.psProgress={done:ids.size-todo.length,total:ids.size};
+    let i=0,n=0;
+    const worker=async()=>{while(i<todo.length){const m=todo[i++];try{const sum=await site('/summary?event='+encodeURIComponent(m.id));const rows=summaryRows(sum);if(rows.length){S.ps.set(m.id,rows);if(m.state==='post')PSC[m.id]=rows}}catch{}
+      S.psProgress.done++;if(++n%15===0){store.set(PS_KEY,PSC);if(S.tab==='lideres')renderLeaders()}}};
+    await Promise.all(Array.from({length:6},worker));
+    store.set(PS_KEY,PSC);
+  }finally{loadPlayerStats.busy=false}
+  renderLeaders();renderHome();renderGallery();
+}
+
+/* ---- Copia guardada (se usa si ninguna fuente responde) ---- */
+const SNAP_KEY='ucl-snap-'+SY;
+function saveSnap(){try{localStorage.setItem(SNAP_KEY,JSON.stringify({t:Date.now(),teams:[...S.teams.values()],news:S.news.slice(0,30),
+  matches:S.matches.map(m=>({...m,home:{...m.home,team:m.home.team?.id},away:{...m.away,team:m.away.team?.id}})),st:(S.espnStandings||[]).map(r=>({...r,team:r.team?.id}))}))}catch{}}
+function loadSnap(){try{const s=JSON.parse(localStorage.getItem(SNAP_KEY)||'null');if(!s?.matches?.length)return false;S.teams.clear();s.teams.forEach(t=>S.teams.set(t.id,t));const T=id=>S.teams.get(id);
+  S.matches=s.matches.map(m=>({...m,home:{...m.home,team:T(m.home.team)},away:{...m.away,team:T(m.away.team)}}));S.espnStandings=(s.st||[]).map(r=>({...r,team:T(r.team)}));S.news=s.news||[];S.snapT=s.t;return true}catch{return false}}
+
+/* ---- Respaldo opcional: football-data.org (requiere una clave gratuita del usuario) ---- */
+const FD='https://api.football-data.org/v4';
+async function fdGet(path){const key=store.get('ucl-fd-key','');if(!key)throw Error('sin clave');const c=new AbortController(),t=setTimeout(()=>c.abort(),15000);
+  try{const r=await fetch(FD+path,{headers:{'X-Auth-Token':key},signal:c.signal});if(!r.ok)throw Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}}
+const FD_STATE={FINISHED:'post',AWARDED:'post',IN_PLAY:'in',PAUSED:'in',LIVE:'in'};
+const FD_STAGE={LEAGUE_STAGE:'Fase de liga',PLAYOFFS:'Playoffs',KNOCKOUT_ROUND_PLAY_OFFS:'Playoffs',LAST_16:'Octavos de final',QUARTER_FINALS:'Cuartos de final',SEMI_FINALS:'Semifinales',FINAL:'Final'};
+const FD_POS={Goalkeeper:'G',Defence:'D',Midfield:'M',Offence:'F'};
+const fdTeam=t=>t&&t.id?regTeam({id:'fd'+t.id,displayName:t.name,shortDisplayName:t.shortName||t.name,abbreviation:t.tla,logo:t.crest}):null;
+async function loadFootballData(){
+  const [mt,st,sc]=await Promise.all([fdGet(`/competitions/CL/matches?season=${SY}`),fdGet(`/competitions/CL/standings?season=${SY}`).catch(()=>null),fdGet(`/competitions/CL/scorers?season=${SY}&limit=60`).catch(()=>null)]);
+  const ms=(mt.matches||[]).map(m=>{const state=FD_STATE[m.status]||'pre';const ft=m.score?.fullTime||{},pe=m.score?.penalties||{};const h=fdTeam(m.homeTeam),a=fdTeam(m.awayTeam);if(!h||!a)return null;
+    return{id:'fd'+m.id,date:m.utcDate,state,clock:'',detail:m.score?.duration==='PENALTY_SHOOTOUT'?'Pens':m.score?.duration==='EXTRA_TIME'?'AET':'',
+      home:{team:h,score:state==='pre'?null:(ft.home??0),winner:m.score?.winner==='HOME_TEAM',pens:pe.home??null},away:{team:a,score:state==='pre'?null:(ft.away??0),winner:m.score?.winner==='AWAY_TEAM',pens:pe.away??null},
+      venue:m.venue||'',city:'',round:[FD_STAGE[m.stage]||'Champions League',m.stage==='LEAGUE_STAGE'&&m.matchday?'Jornada '+m.matchday:''].filter(Boolean).join(' · '),goals:[]}}).filter(Boolean);
+  if(!ms.length)throw Error('sin partidos');
+  S.matches=ms.sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const tb=(st?.standings||[]).find(x=>x.type==='TOTAL')?.table||[];
+  S.espnStandings=tb.map(r=>({team:fdTeam(r.team),rank:r.position,gp:r.playedGames,w:r.won,d:r.draw,l:r.lost,gf:r.goalsFor,ga:r.goalsAgainst,gd:r.goalDifference,pts:r.points}));
+  const L=(sc?.scorers||[]).map(x=>({name:x.player?.name,team:fdTeam(x.team),photo:'',pos:FD_POS[x.player?.section||x.player?.position]||'',value:0,g:x.goals||0,a:x.assists||0,pens:x.penalties||0,apps:x.playedMatches||0})).filter(x=>x.name);
+  S.leaders={goals:L.filter(x=>x.g).map(x=>({...x,value:x.g})),assists:L.filter(x=>x.a).map(x=>({...x,value:x.a}))};
+  S.news=[];
+}
+
+function showBanner(html){$('#bannerTxt').innerHTML=html||'';$('#demoBanner').hidden=!html}
 async function loadAll(){
   const b=$('#refreshBtn');b.classList.add('spin');setSrc('Cargando…','');
-  if(S.demo){S.demo=false;S.matches=[];S.standings=[];S.leaders={};S.news=[];S.teams.clear();S.summaries.clear();S.rosters.clear()}
+  if(S.demo||S.source!=='espn'){S.matches=[];S.espnStandings=[];S.standings=[];S.news=[];S.teams.clear()}
+  S.demo=false;S.source='espn';S.leaders={};S.summaries.clear();S.rosters.clear();S.ps.clear();
   await Promise.allSettled([loadTeams()]);
   const r=await Promise.allSettled([loadMatches(),loadStandings(),loadNews()]);
-  await Promise.allSettled([loadLeaders()]);
-  if(r[0].status==='rejected'&&r[1].status==='rejected'){useDemo()}
-  else{S.demo=false;$('#demoBanner').hidden=true;setSrc('ESPN · '+hm(new Date()),'ok')}
+  S.srcStatus.espn=r[0].status==='fulfilled'||r[1].status==='fulfilled'?'ok':'error';
+  let ok=S.srcStatus.espn==='ok';
+  if(!ok&&store.get('ucl-fd-key','')){try{await loadFootballData();ok=true;S.source='fd';S.srcStatus.fd='ok'}catch(e){S.srcStatus.fd='error ('+e.message+')'}}
+  if(!ok&&loadSnap()){ok=true;S.source='snap'}
+  if(!ok)useDemo();
+  else{
+    applyStandings();
+    if(S.source==='espn'){saveSnap();showBanner('');setSrc('ESPN · '+hm(new Date()),'ok')}
+    else if(S.source==='fd'){showBanner('ESPN no respondió. Se muestran datos de <b>football-data.org</b> (respaldo). Los goles con minuto, alineaciones y videos no están disponibles en esta fuente.');setSrc('football-data.org · '+hm(new Date()),'ok')}
+    else{showBanner(`No hay conexión con las fuentes de datos. Se muestra la <b>última copia guardada</b> (${esc(fmt(S.snapT,{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'}))}). Pulsa actualizar para reintentar.`);setSrc('Copia guardada','demo')}
+  }
   b.classList.remove('spin');
   renderAll();
-  if(!S.demo)collectVideos();
+  if(S.source==='espn'){collectVideos();loadPlayerStats()}
 }
 function setSrc(t,cls){$('#srcTxt').textContent=t;$('#srcPill').className='pill '+cls;$('#srcDot').className='dot'+(liveMatches().length?' live':'')}
-let liveTimer;function schedule(){clearTimeout(liveTimer);const ms=liveMatches().length?30000:120000;liveTimer=setTimeout(async()=>{if(!S.demo){try{await loadLive();if(liveMatches().length||Math.random()<.2)await loadStandings().catch(()=>{});setSrc('ESPN · '+hm(new Date()),'ok')}catch{}renderAll(true)}schedule()},ms)}
+let liveTimer;function schedule(){clearTimeout(liveTimer);const ms=liveMatches().length?30000:120000;liveTimer=setTimeout(async()=>{
+  try{const hadLive=liveMatches().length>0;
+    if(S.source==='espn'){await loadLive();applyStandings();setSrc('ESPN · '+hm(new Date()),'ok');if(hadLive||liveMatches().length)loadPlayerStats()}
+    else if(S.source==='fd'){await loadFootballData();applyStandings();setSrc('football-data.org · '+hm(new Date()),'ok')}
+  }catch{}
+  if(S.source==='espn'||S.source==='fd')renderAll(true);schedule()},ms)}
 
 /* ================= Derived ================= */
 const liveMatches=()=>S.matches.filter(m=>m.state==='in');
@@ -892,7 +995,8 @@ function renderResults(){
 }
 function renderStandings(){
   const st=S.standings;const max=Math.max(1,...st.map(r=>r.pts));
-  $('#stBody').innerHTML=st.length?st.map(r=>{const z=zone(r.rank,r.note);return `<tr class="r" data-team="${esc(r.team?.id)}" title="${esc(z.t)}"><td class="pos" style="--zc:${z.c}">${r.rank}</td><td><div class="club">${crest(r.team)}<span>${esc(r.team?.name)}</span>${r.team?.id===favTeam?' <span style="color:var(--gold)">★</span>':''}</div></td><td>${r.gp}</td><td class="hide-s">${r.w}</td><td class="hide-s">${r.d}</td><td class="hide-s">${r.l}</td><td class="hide-m">${r.gf}</td><td class="hide-m">${r.ga}</td><td>${r.gd>0?'+':''}${r.gd}</td><td class="pts"><div class="ptsbar"><i style="width:${(r.pts/max*100).toFixed(1)}%"></i><b>${r.pts}</b></div></td><td class="hide-m">${formHTML(formOf(r.team?.id))}</td></tr>`}).join(''):`<tr><td colspan="11">${empty('trophy','Clasificación no disponible.')}</td></tr>`;
+  $('#stBody').innerHTML=st.length?st.map(r=>{const z=zone(r.rank,r.note);return `<tr class="r" data-team="${esc(r.team?.id)}" title="${esc(z.t)}"><td class="pos" style="--zc:${z.c}">${r.rank}</td><td><div class="club">${crest(r.team)}<span>${esc(r.team?.name)}</span>${r.live?'<span class="dot live" title="Jugando ahora"></span>':''}${r.team?.id===favTeam?' <span style="color:var(--gold)">★</span>':''}</div></td><td>${r.gp}</td><td class="hide-s">${r.w}</td><td class="hide-s">${r.d}</td><td class="hide-s">${r.l}</td><td class="hide-m">${r.gf}</td><td class="hide-m">${r.ga}</td><td>${r.gd>0?'+':''}${r.gd}</td><td class="pts"><div class="ptsbar"><i style="width:${(r.pts/max*100).toFixed(1)}%"></i><b>${r.pts}</b></div></td><td class="hide-m">${formHTML(formOf(r.team?.id))}</td></tr>`}).join(''):`<tr><td colspan="11">${empty('trophy','Clasificación no disponible.')}</td></tr>`;
+  $('#stSub').textContent=(S.stSrc||'')+' Toca un club para abrir su ficha.';
   const zs=new Map();st.forEach(r=>{const z=zone(r.rank,r.note);if(z.t&&!zs.has(z.t))zs.set(z.t,z.c)});
   $('#stLegend').innerHTML=[...zs].map(([t,c])=>`<span><i style="background:${c}"></i>${esc(t)}</span>`).join('');
 }
@@ -911,36 +1015,67 @@ function scorerStats(){
   const players=new Map(),buckets=[0,0,0,0,0,0,0];let pens=0,ogs=0,withDetail=0;
   S.matches.filter(m=>m.state!=='pre'&&m.goals?.length).forEach(m=>{withDetail++;m.goals.forEach(g=>{
     buckets[minuteBucket(g.min)]++;if(g.pen)pens++;if(g.og){ogs++;return}
-    const k=norm(g.full||g.name)+'|'+g.team;const o=players.get(k)||{name:g.full||g.name,team:S.teams.get(g.team),goals:0,pens:0,matches:new Set(),last:null};
+    const k=g.id?'i'+g.id:norm(g.full||g.name)+'|'+g.team;const o=players.get(k)||{id:g.id||'',name:g.full||g.name,team:S.teams.get(g.team),goals:0,pens:0,matches:new Set(),last:null};
     o.goals++;if(g.pen)o.pens++;o.matches.add(m.id);if(!o.last||new Date(m.date)>new Date(o.last))o.last=m.date;players.set(k,o)})});
   const played=S.matches.filter(m=>m.state==='post');
   const total=played.reduce((s,m)=>s+(m.home.score||0)+(m.away.score||0),0);
   return{players,buckets,pens,ogs,total,played:played.length,withDetail};
 }
-function findStat(st,p){const k=norm(p.name);for(const s of st.players.values())if(norm(s.name)===k)return s;
-  const last=k.split(' ').pop();for(const s of st.players.values())if(s.team?.id===p.team?.id&&norm(s.name).split(' ').pop()===last)return s;return null}
-function mergedScorers(){
-  const st=scorerStats();
-  const base=(S.leaders.goals||[]).length?S.leaders.goals.map(p=>({...p})):[...st.players.values()].map(p=>({name:p.name,team:p.team,photo:'',value:p.goals,pos:''}));
-  const asg=new Map((S.leaders.assists||[]).map(p=>[norm(p.name),p.value]));
-  return base.map(p=>{const s=findStat(st,p);const a=asg.get(norm(p.name))||0,pens=s?.pens||0,mt=s?.matches.size||0;
-    return{...p,a,pens,mt,last:s?.last||null,extra:[a?`${a} asist.`:'',pens?`${pens} de penal`:''].filter(Boolean).join(' · ')}}).sort((x,y)=>y.value-x.value||y.a-x.a);
+// Suma de las estadísticas de cada jugador en todos los partidos procesados
+function playerAgg(){
+  const P=new Map(),all=new Map(Object.entries(PSC));S.ps.forEach((v,k)=>all.set(k,v));
+  const byId=new Map(S.matches.map(m=>[m.id,m]));
+  all.forEach((rows,mid)=>{const m=byId.get(mid);if(!m||m.state==='pre')return;rows.forEach(r=>{
+    const [id,name,tid,pos,starter,g,a,sv,gc,sot,yc,rc]=r;const k=id?'i'+id:'n'+norm(name);
+    const o=P.get(k)||{id,name,team:S.teams.get(tid),posC:{},apps:0,starts:0,g:0,a:0,sv:0,gc:0,sot:0,yc:0,rc:0,cs:0,gkApps:0};
+    o.apps++;o.starts+=starter;o.g+=g;o.a+=a;o.sv+=sv;o.sot+=sot;o.yc+=yc;o.rc+=rc;if(S.teams.get(tid))o.team=S.teams.get(tid);
+    if(pos&&pos!=='SUB')o.posC[pos]=(o.posC[pos]||0)+1;
+    if(pos==='G'&&starter){o.gkApps++;o.gc+=gc;if(gc===0&&m.state==='post')o.cs++}
+    P.set(k,o)})});
+  P.forEach(o=>{const p=Object.entries(o.posC).sort((a,b)=>b[1]-a[1])[0];o.line=p?lineClass(p[0]):null;o.photo=o.id?HEAD(o.id):''});
+  return P;
 }
-function mergeGA(){
-  const m=new Map();
-  mergedScorers().forEach(p=>m.set(norm(p.name),{...p,g:p.value,a:0}));
-  (S.leaders.assists||[]).forEach(p=>{const k=norm(p.name);const o=m.get(k)||{...p,g:0,a:0};o.a=p.value;if(!o.pos&&p.pos)o.pos=p.pos;if(!o.team)o.team=p.team;if(!o.photo)o.photo=p.photo;m.set(k,o)});
-  return[...m.values()].map(o=>({...o,value:o.g+o.a,extra:`${o.g} G · ${o.a} A`})).filter(o=>o.value>0).sort((x,y)=>y.value-x.value||y.g-x.g);
+function playersAll(){
+  const agg=playerAgg(),st=scorerStats(),out=new Map();
+  const blank=x=>({name:x.name,id:x.id||'',team:x.team||null,photo:x.photo||(x.id?HEAD(x.id):''),line:x.line??null,g:0,a:0,apps:0,sv:0,cs:0,gc:0,gkApps:0,sot:0,yc:0,rc:0,pens:0,mt:0});
+  agg.forEach((o,k)=>out.set(k,{...blank(o),g:o.g,a:o.a,apps:o.apps,sv:o.sv,cs:o.cs,gc:o.gc,gkApps:o.gkApps,sot:o.sot,yc:o.yc,rc:o.rc}));
+  const find=(id,name,team)=>(id&&out.get('i'+id))||out.get('n'+norm(name))||[...out.values()].find(x=>norm(x.name)===norm(name)&&(!team||x.team?.id===team?.id));
+  if(st.players.size){
+    // Los goles salen del detalle de cada partido (incluye partidos en vivo): coinciden con el conteo oficial
+    out.forEach(p=>p.g=0);
+    st.players.forEach(s=>{let p=find(s.id,s.name,s.team);if(!p){p=blank(s);out.set(s.id?'i'+s.id:'n'+norm(s.name),p)}p.g=s.goals;p.pens=s.pens;p.mt=s.matches.size});
+  }
+  if(!agg.size){
+    // Sin estadísticas por partido (modo demo o football-data.org): se usan las listas de líderes de la fuente
+    const L=S.leaders,add=(list,f)=>(list||[]).forEach(l=>{let p=find('',l.name,l.team);if(!p){p=blank({...l,line:l.pos?lineClass(l.pos):null});out.set('n'+norm(l.name),p)}
+      if(!p.photo&&l.photo)p.photo=l.photo;if(p.line==null&&l.pos)p.line=lineClass(l.pos);f(p,l.value,l)});
+    if(!st.players.size)add(L.goals,(p,v,l)=>{p.g=v;p.pens=l.pens||0});
+    add(L.goals,(p,v,l)=>{if(l.apps)p.apps=l.apps});add(L.assists,(p,v)=>p.a=v);add(L.saves,(p,v)=>{p.sv=v;p.line=0});
+  }
+  return[...out.values()];
+}
+function leaderList(k,P=playersAll()){
+  const j=a=>a.filter(Boolean).join(' · ');const by=(...fs)=>(a,b)=>{for(const f of fs){const d=f(b)-f(a);if(d)return d}return 0};
+  switch(k){
+    case 'goals':return P.filter(p=>p.g>0).sort(by(p=>p.g,p=>p.a)).map(p=>({...p,value:p.g,extra:j([p.a&&`${p.a} asist.`,p.pens&&`${p.pens} de penal`])}));
+    case 'assists':return P.filter(p=>p.a>0).sort(by(p=>p.a,p=>p.g)).map(p=>({...p,value:p.a,extra:j([p.g&&`${p.g} goles`,p.apps&&`${p.apps} PJ`])}));
+    case 'ga':return P.filter(p=>p.g+p.a>0).sort(by(p=>p.g+p.a,p=>p.g)).map(p=>({...p,value:p.g+p.a,extra:`${p.g} G · ${p.a} A`}));
+    case 'gk':return P.filter(p=>p.gkApps>0).sort(by(p=>p.cs,p=>p.sv,p=>-p.gc)).map(p=>({...p,value:p.cs,extra:j([`${p.sv} atajadas`,`${p.gc} GC`,`${p.gkApps} PJ`])}));
+    case 'saves':return P.filter(p=>p.sv>0).sort(by(p=>p.sv,p=>p.cs)).map(p=>({...p,value:p.sv,extra:j([p.gkApps&&`${p.cs} sin recibir gol`,p.gkApps&&`${p.gkApps} PJ`])}));
+    case 'shotsOT':return P.filter(p=>p.sot>0).sort(by(p=>p.sot,p=>p.g)).map(p=>({...p,value:p.sot,extra:j([`${p.g} goles`,p.apps&&`${p.apps} PJ`])}));
+    case 'yellow':return P.filter(p=>p.yc>0).sort(by(p=>p.yc,p=>p.rc)).map(p=>({...p,value:p.yc,extra:j([p.rc&&`${p.rc} rojas`,p.apps&&`${p.apps} PJ`])}));
+  }
+  return[];
 }
 async function withLines(list){
-  const need=[...new Set(list.filter(p=>!p.pos&&p.team).map(p=>p.team.id))];
+  const need=[...new Set(list.filter(p=>p.line==null&&p.team).map(p=>p.team.id))];
   await Promise.all(need.map(id=>getRoster(id).catch(()=>[])));
-  list.forEach(p=>{if(p.pos){p.line=lineClass(p.pos);return}const ro=S.rosters.get(p.team?.id)||[];const k=norm(p.name),last=k.split(' ').pop();
+  list.forEach(p=>{if(p.line!=null)return;const ro=S.rosters.get(p.team?.id)||[];const k=norm(p.name),last=k.split(' ').pop();
     const hit=ro.find(r=>norm(r.name)===k)||ro.find(r=>norm(r.name).split(' ').pop()===last);p.line=hit?hit.line:null;if(hit&&!p.photo)p.photo=hit.photo||''});
   return list;
 }
 function homeScorersHTML(){
-  const list=mergedScorers().slice(0,6);if(!list.length)return empty('ball','Goleadores no disponibles.');
+  const list=leaderList('goals').slice(0,6);if(!list.length)return empty('ball','Goleadores no disponibles.');
   const t=list[0];const chips=[t.a?`${t.a} asistencias`:'',t.pens?`${t.pens} de penal`:'',t.mt?`Marcó en ${t.mt} ${t.mt===1?'partido':'partidos'}`:''].filter(Boolean);
   return `<div class="topsc" style="--c:${esc(tCol(t.team))}"${t.team?` data-team="${esc(t.team.id)}"`:''}>${avatar(t.name,t.photo,tCol(t.team))}<div class="who"><span class="eyebrow">Máximo goleador</span><b>${esc(t.name)}</b><span>${crest(t.team)}${esc(t.team?.name||'')}</span>${chips.length?`<div class="chips">${chips.map(c=>`<span class="chip">${esc(c)}</span>`).join('')}</div>`:''}</div><div class="big">${esc(t.value)}<small>goles</small></div></div>`
     +list.slice(1).map((p,i)=>leaderRow(p,i+1,t.value,'goles')).join('');
@@ -954,23 +1089,23 @@ function goalsOverviewHTML(){
   <div class="kpis stagger">${kpis.map(([l,v])=>`<div class="kpi"><small>${l}</small><b>${esc(v)}</b></div>`).join('')}</div>
   ${st.withDetail?`<div class="card" style="margin-top:14px"><h3><span class="ttl">${ic('clock')}¿En qué minuto se marcan los goles?</span></h3><div class="vbars">${idx.map(i=>`<div title="${st.buckets[i]} goles entre los minutos ${labels[i]}"><b>${st.buckets[i]}</b><i style="height:${Math.max(2,st.buckets[i]/mx*100)}%;animation-delay:${i*.06}s"></i><small>${labels[i]}</small></div>`).join('')}</div></div>`:''}`;
 }
-const POS_TABS={def:[1,'Defensas','shield'],mid:[2,'Mediocampistas','assist'],fwd:[3,'Delanteros','target']};
-function catLabel(k){return k==='gk'?['Porteros','glove']:k==='ga'?['Goles + asistencias','chart']:POS_TABS[k]?POS_TABS[k].slice(1):(CATS.find(c=>c[0]===k)||[k,k,'chart']).slice(1,3)}
+const LCAT={goals:{l:'Goles',i:'ball',u:'goles'},assists:{l:'Asistencias',i:'assist',u:'asistencias'},ga:{l:'Goles + asistencias',i:'chart',u:'G + A'},gk:{l:'Porteros',i:'glove',u:'sin recibir gol'},
+  def:{l:'Defensas',i:'shield',u:'G + A',line:1},mid:{l:'Mediocampistas',i:'assist',u:'G + A',line:2},fwd:{l:'Delanteros',i:'target',u:'G + A',line:3},saves:{l:'Atajadas',i:'glove',u:'atajadas'},shotsOT:{l:'Tiros a puerta',i:'target',u:'tiros a puerta'},yellow:{l:'Tarjetas',i:'card',u:'amarillas'}};
 async function renderLeaders(){
   const tok=renderLeaders.tok=(renderLeaders.tok||0)+1;
-  const L=S.leaders;const hasG=!!(L.goals?.length||S.matches.some(m=>m.goals?.length));
-  const cats=[];if(hasG)cats.push('goals');if(L.assists?.length)cats.push('assists');if(hasG)cats.push('ga');
-  cats.push('gk');if(hasG)cats.push('def','mid','fwd');
-  CATS.forEach(c=>{if(!['goals','assists'].includes(c[0])&&L[c[0]]?.length)cats.push(c[0])});
+  const P=playersAll(),has=f=>P.some(f);
+  const cats=[];if(has(p=>p.g))cats.push('goals');if(has(p=>p.a))cats.push('assists');if(has(p=>p.g||p.a))cats.push('ga');cats.push('gk');
+  if(has(p=>p.g||p.a))cats.push('def','mid','fwd');if(has(p=>p.sv))cats.push('saves');if(has(p=>p.sot))cats.push('shotsOT');if(has(p=>p.yc))cats.push('yellow');
   if(!S.leadCat||!cats.includes(S.leadCat))S.leadCat=cats[0];
-  $('#leadCats').innerHTML=cats.map(k=>{const [l,i]=catLabel(k);return `<button data-cat="${k}" aria-pressed="${k===S.leadCat}">${ic(i)}${esc(l)}</button>`}).join('');
-  const body=$('#leadBody');const k=S.leadCat;
-  let list=[],unit=catLabel(k)[0].toLowerCase(),note='',after='';
-  if(k==='goals'){list=mergedScorers();unit='goles';after=goalsOverviewHTML()}
-  else if(k==='ga'){list=mergeGA();unit='G + A';note='<p class="muted small">Participación en goles: goles + asistencias de cada jugador.</p>'}
-  else if(k==='gk'){body.innerHTML=skel(4);list=await goalkeeperRanking();unit='porterías a cero';note='<p class="muted small">Ranking calculado a partir de los partidos jugados: porterías a cero del equipo y goles recibidos por partido, con el portero de la plantilla.</p>'}
-  else if(POS_TABS[k]){body.innerHTML=skel(4);const all=await withLines(mergeGA());list=all.filter(p=>p.line===POS_TABS[k][0]);unit='G + A';note=`<p class="muted small">Los ${POS_TABS[k][1].toLowerCase()} con más participación en goles (goles + asistencias).</p>`}
-  else list=L[k]||[];
+  $('#leadCats').innerHTML=cats.map(k=>`<button data-cat="${k}" aria-pressed="${k===S.leadCat}">${ic(LCAT[k].i)}${esc(LCAT[k].l)}</button>`).join('');
+  const body=$('#leadBody'),k=S.leadCat,C=LCAT[k];let list,unit=C.u,note='',after='';
+  if(k==='gk'){list=leaderList('gk',P);
+    if(list.length)note='<p class="muted small">Porteros titulares ordenados por partidos sin recibir gol, después por atajadas.</p>';
+    else{body.innerHTML=skel(4);list=await goalkeeperRanking();unit='porterías a cero';note='<p class="muted small">Ranking provisional: porterías a cero del equipo y goles recibidos por partido, con el portero de la plantilla.</p>'}}
+  else if(C.line!=null){list=leaderList('ga',P);if(list.some(p=>p.line==null)){body.innerHTML=skel(4);await withLines(list)}list=list.filter(p=>p.line===C.line);note=`<p class="muted small">Los ${C.l.toLowerCase()} con más participación en goles (goles + asistencias).</p>`}
+  else list=leaderList(k,P);
+  if(k==='goals')after=goalsOverviewHTML();
+  const pr=S.psProgress;if(pr&&pr.done<pr.total&&k!=='goals')note+=`<p class="muted small">Calculando estadísticas de jugadores: ${pr.done}/${pr.total} partidos procesados…</p>`;
   if(tok!==renderLeaders.tok)return;
   if(!list.length){body.innerHTML=note+empty('chart','Sin datos para esta categoría por ahora.')+after;}
   else{
@@ -978,7 +1113,7 @@ async function renderLeaders(){
     const pod=(p,i)=>p?`<div class="pod p${i+1}" style="--c:${esc(tCol(p.team))}"${p.team?` data-team="${esc(p.team.id)}"`:''}><span class="rk">${i+1}</span>${avatar(p.name,p.photo,tCol(p.team))}<b>${esc(p.name)}</b><span class="tm">${crest(p.team)}${esc(p.team?.short||'')}</span><div class="val">${esc(p.value)}<small>${esc(unit)}</small></div>${p.extra?`<small class="muted">${esc(p.extra)}</small>`:''}</div>`:'<div></div>';
     body.innerHTML=note+`<div class="podium">${pod(top[1],1)}${pod(top[0],0)}${pod(top[2],2)}</div><div class="card"><div class="stagger">${list.slice(0,20).map((p,i)=>leaderRow(p,i,max,unit)).join('')}</div></div>`+after;
   }
-  $('#leadSub').textContent=S.demo?'Datos de ejemplo (sin conexión).':'Fuente: ESPN. Se actualiza con cada jornada.';
+  $('#leadSub').textContent=S.demo?'Datos de ejemplo (sin conexión).':S.source==='fd'?'Fuente: football-data.org (respaldo).':'Calculado partido a partido con los datos de ESPN.';
   // team records
   const st=S.standings.filter(r=>r.gp);
   if(!st.length){$('#teamRecords').innerHTML='';return}
@@ -1004,7 +1139,7 @@ function renderGallery(){
   const imgs=S.news.filter(n=>n.img).map(n=>({src:n.img,cap:n.cap||n.title,web:n.web}));
   S._gal=imgs;
   const seen=new Set();
-  const players=[...(S.leaders.goals||[]),...(S.leaders.assists||[]),...(S.leaders.saves||[]),...(S.leaders.cleanSheets||[])].filter(p=>p&&!seen.has(p.name)&&seen.add(p.name)).slice(0,16);
+  const P=playersAll();const players=[...leaderList('goals',P).slice(0,10),...leaderList('assists',P).slice(0,6),...leaderList('gk',P).slice(0,3),...leaderList('saves',P).slice(0,2)].filter(p=>p&&!seen.has(p.name)&&seen.add(p.name)).slice(0,16);
   S._players=players;
   const pl=players.length?`<div class="dayhead" style="margin-top:0">Protagonistas</div><div class="grid g4 stagger">${players.map((p,i)=>`<button class="gitem" data-player="${i}" style="margin:0"><div class="gart ph" style="--c:${esc(tCol(p.team))}">${avatar(p.name,p.photo,tCol(p.team))}</div><figcaption style="opacity:1;transform:none"><b>${esc(p.name)}</b><br><span class="muted">${esc(p.team?.name||'')}</span></figcaption></button>`).join('')}</div>`:'';
   const news=imgs.length?`<div class="dayhead">Fotos de la competición</div><div class="gallery">${imgs.map((g,i)=>`<button class="gitem" data-gal="${i}"><img src="${esc(g.src)}" alt="${esc(g.cap)}" loading="lazy" onerror="this.closest('.gitem').remove()"><figcaption>${esc(g.cap)}</figcaption></button>`).join('')}</div>`
@@ -1048,8 +1183,8 @@ function parseEvents(sum,m){
 function lineClass(abbr,name){
   const a=String(abbr||'').toUpperCase(),n=String(name||'').toLowerCase();
   if(/^G/.test(a)||/goalkeeper|portero/.test(n))return 0;
-  if(/^(CB|CD|LB|RB|LWB|RWB|SW|WB|D$|D-)/.test(a)||/defen/.test(n))return 1;
-  if(/^(F|CF|ST|LW|RW|FW|S$)/.test(a)||/forward|striker|wing/.test(n))return 3;
+  if(/^(CB|CD|LB|RB|LWB|RWB|SW|WB|D$|D-)/.test(a)||/defen|back/.test(n))return 1;
+  if(/^(F|CF|ST|LW|RW|FW|S$)/.test(a)||/forward|striker|wing|offen|attack/.test(n))return 3;
   return 2;
 }
 const lateral=a=>{a=String(a||'').toUpperCase();return /^L/.test(a)?0:/-L$/.test(a)?1:/^R/.test(a)?4:/-R$/.test(a)?3:2};
@@ -1135,6 +1270,7 @@ async function getRoster(id){
   if(S.rosters.has(id))return S.rosters.get(id);
   let list;
   if(S.demo)list=demoRoster(id);
+  else if(String(id).startsWith('fd')){const d=await fdGet('/teams/'+String(id).slice(2));list=(d.squad||[]).map(a=>({id:'',name:a.name,num:a.shirtNumber?String(a.shirtNumber):'',pos:'',posName:a.position||'',line:lineClass('',a.position),photo:'',age:a.dateOfBirth?Math.floor((Date.now()-new Date(a.dateOfBirth))/31557600000):null,nat:a.nationality||''}))}
   else{const d=await site(`/teams/${encodeURIComponent(id)}/roster`);const arr=(d.athletes||[]).flatMap(x=>x.items||[x]);
     list=arr.map(a=>({id:a.id,name:a.displayName||a.fullName,num:a.jersey||'',pos:a.position?.abbreviation||'',posName:a.position?.displayName||a.position?.name||'',line:lineClass(a.position?.abbreviation,a.position?.name||a.position?.displayName),photo:a.headshot?.href||'',age:a.age,nat:a.citizenship||a.birthPlace?.country||'',flag:a.flag?.href||''}))}
   S.rosters.set(id,list);return list;
@@ -1204,6 +1340,25 @@ function playVideo(v){
 function openLightbox(i){S._lb=i;const g=S._gal[i];if(!g)return;$$('.lb .nav').forEach(b=>b.hidden=false);$('#lbFig').innerHTML=`<img src="${esc(g.src)}" alt="${esc(g.cap)}"><figcaption>${esc(g.cap)} <span class="muted">· ${i+1}/${S._gal.length}</span>${g.web?` · <a href="${esc(g.web)}" target="_blank" rel="noopener">Ver noticia</a>`:''}</figcaption>`;$('#lb').classList.add('open')}
 function closeLb(){$('#lb').classList.remove('open');$('#lbFig').innerHTML=''}
 
+/* ================= Fuentes de datos ================= */
+function openSources(){
+  const st=S.srcStatus,key=store.get('ucl-fd-key',''),pr=S.psProgress;
+  let snap=null;try{snap=JSON.parse(localStorage.getItem(SNAP_KEY)||'null')?.t}catch{}
+  const row=(name,state,desc)=>`<div class="srow"><span class="sdot ${state}"></span><div><b>${name}</b><small>${desc}</small></div></div>`;
+  openModal(`<div class="mhead"><span class="eyebrow">Configuración</span><h2 style="margin:0">Fuentes de datos</h2><p class="muted small" style="margin:6px 0 0">La app usa la primera fuente que responda, en este orden.</p></div><div class="mbody">
+   ${row('1. ESPN (principal)',S.source==='espn'?'on':st.espn==='error'?'err':'',`Calendario, resultados en vivo, goles con minuto, alineaciones, plantillas, noticias y videos. Se consulta en dos servidores (site.api.espn.com y site.web.api.espn.com).${st.espn==='error'?' <b>No respondió en el último intento.</b>':''}`)}
+   ${row('Estadísticas de jugadores',pr&&pr.total?(pr.done>=pr.total?'on':'wait'):'',pr&&pr.total?`Calculadas partido a partido con los datos de ESPN: ${Math.min(pr.done,pr.total)} de ${pr.total} partidos procesados. Se guardan en este navegador para cargar más rápido.`:'Se calculan partido a partido cuando ESPN responde.')}
+   ${row('2. football-data.org (respaldo opcional)',S.source==='fd'?'on':String(st.fd).startsWith('error')?'err':'',`Se usa si ESPN no responde. Necesita una clave personal gratuita. ${key?'Hay una clave guardada en este navegador.':'Sin clave configurada.'}${String(st.fd).startsWith('error')?' Último intento: '+esc(st.fd)+'.':''}`)}
+   <div class="tools" style="margin:4px 0 14px 22px"><input class="inp" id="fdKey" type="password" autocomplete="off" placeholder="Tu clave de football-data.org" value="${esc(key)}" style="flex:1;min-width:200px"><button class="btn sm" id="fdSave">Guardar y probar</button>${key?'<button class="btn ghost sm" id="fdDel">Quitar</button>':''}<a class="btn ghost sm" href="https://www.football-data.org/client/register" target="_blank" rel="noopener">Obtener clave gratis</a></div>
+   ${row('3. Copia guardada en este navegador',S.source==='snap'?'on':'',snap?`Última copia: ${esc(fmt(snap,{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'}))}. Se muestra si ninguna fuente responde.`:'Todavía no hay copia guardada.')}
+   ${row('4. Datos de ejemplo',S.demo?'on':'','Solo si no responde ninguna fuente y no hay copia guardada. Siempre se indica con un aviso.')}
+   <div class="card" style="margin-top:16px"><b>Comparar con los datos oficiales</b><p class="muted small" style="margin:6px 0 10px">Puedes contrastar goleadores, asistencias y clasificación con las páginas oficiales de UEFA.</p><a class="btn ghost sm" href="https://www.uefa.com/uefachampionsleague/statistics/" target="_blank" rel="noopener">Estadísticas UEFA</a> <a class="btn ghost sm" href="https://www.uefa.com/uefachampionsleague/standings/" target="_blank" rel="noopener">Clasificación UEFA</a></div>
+  </div>`);
+  $('#fdSave').onclick=async()=>{store.set('ucl-fd-key',$('#fdKey').value.trim());if(!$('#fdKey').value.trim()){toast('Escribe una clave');return}
+    toast('Probando football-data.org…');try{const d=await fdGet(`/competitions/CL/standings?season=${SY}`);S.srcStatus.fd='ok';toast(`football-data.org respondió: ${(d.standings?.[0]?.table||[]).length} equipos en la tabla`)}catch(e){S.srcStatus.fd='error ('+e.message+')';toast('football-data.org no respondió: '+e.message)}};
+  const del=$('#fdDel');if(del)del.onclick=()=>{store.set('ucl-fd-key','');S.srcStatus.fd='';toast('Clave eliminada');openSources()};
+}
+
 /* ================= Modal & navigation ================= */
 function openModal(html){$('#modalBody').innerHTML=html;const m=$('#modal');m.classList.add('open');m.scrollTop=0;document.body.style.overflow='hidden';$('.sheet .x').focus({preventScroll:true})}
 function closeModal(){$('#modal').classList.remove('open');document.body.style.overflow=''}
@@ -1236,6 +1391,7 @@ document.addEventListener('click',e=>{
 // Efecto ripple en botones
 document.addEventListener('pointerdown',e=>{const b=e.target.closest('.btn,.tab,.seg button,.day,.mcard,.tcard,.iconbtn');if(!b)return;const r=b.getBoundingClientRect(),s=Math.max(r.width,r.height);const sp=document.createElement('span');sp.className='ripple';sp.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;if(getComputedStyle(b).position==='static')b.style.position='relative';b.appendChild(sp);setTimeout(()=>sp.remove(),650)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#lb').classList.contains('open'))closeLb();else closeModal()}if($('#lb').classList.contains('open')&&S._lb!=null&&/Arrow(Left|Right)/.test(e.key))openLightbox((S._lb+(e.key==='ArrowRight'?1:-1)+S._gal.length)%S._gal.length)});
+$('#srcBtn').addEventListener('click',openSources);$('#srcPill').addEventListener('click',openSources);
 $('#refreshBtn').addEventListener('click',()=>{toast('Actualizando datos…');loadAll()});
 $('#calTeam').addEventListener('change',e=>{S.calTeam=e.target.value;S.calDay=null;renderCalendar()});
 $('#teamSel').addEventListener('change',e=>{if(e.target.value)openTeam(e.target.value)});
@@ -1250,7 +1406,7 @@ function demoName(seed,i){const r=rng(seed+':'+i);return 'ABCDEFGHJKLMNPRST'[Mat
 function demoRoster(id){const t=S.teams.get(id);const lines=[0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,0,1,2];const nm=['POR','DEF','MED','DEL'];
   return lines.map((l,i)=>({id:'',name:demoName(id,i),num:String(i+1),pos:nm[l],posName:['Portero','Defensa','Mediocampista','Delantero'][l],line:l,photo:'',age:19+((i*7+Number(id))%15),nat:''}))}
 function useDemo(){
-  S.demo=true;$('#demoBanner').hidden=false;setSrc('Modo demo','demo');
+  S.demo=true;S.source='demo';showBanner('No se pudo conectar con ninguna fuente de datos. Se muestran <b>datos de ejemplo</b> que no son reales. Pulsa actualizar para reintentar.');setSrc('Modo demo','demo');
   S.teams.clear();DEMO_TEAMS.forEach(([id,n,a,c])=>regTeam({id:String(id),displayName:n,shortDisplayName:n.replace('Paris Saint-Germain','PSG').replace('Borussia Dortmund','Dortmund').replace('Atlético de Madrid','Atlético').replace('Manchester City','Man City').replace('Bayer Leverkusen','Leverkusen'),abbreviation:a,color:c}));
   const ids=DEMO_TEAMS.map(x=>String(x[0]));const r=rng('ucl-demo');const ms=[];let n=1;
   const day=(off,h,mi)=>{const d=new Date();d.setDate(d.getDate()+off);d.setHours(h,mi,0,0);return d.toISOString()};
