@@ -141,7 +141,7 @@ select.inp option{background:#0a1446}
 .vs .side .crest,.vs .side .crest-fb{width:clamp(60px,11vw,96px);height:clamp(60px,11vw,96px);font-size:1rem;transition:transform .4s var(--ease)}
 .vs .side:hover .crest,.vs .side:hover .crest-fb{transform:translateY(-4px) scale(1.04)}
 .vs .side b{font-size:clamp(.92rem,2vw,1.15rem);font-weight:600;letter-spacing:-.01em}
-.vs .mid{text-align:center}
+.vs{align-items:start}.vs .mid{text-align:center;align-self:center}
 .score{font-size:clamp(2.4rem,6.5vw,3.8rem);font-weight:300;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
 .score .sep{opacity:.35;margin:0 .15em}
 .countdown{display:flex;gap:6px;justify-content:center}
@@ -153,18 +153,19 @@ select.inp option{background:#0a1446}
 .hero .acts{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;position:relative;z-index:1}
 
 /* ---------- Match cards ---------- */
-.mcard{position:relative;overflow:hidden;display:block;width:100%;text-align:left;border-radius:var(--r);padding:14px 16px;background:var(--card);border:1px solid var(--line);transition:transform .25s var(--ease),border-color .25s,background .25s}
+.mcard{position:relative;overflow:hidden;display:flex;flex-direction:column;width:100%;text-align:left;border-radius:var(--r);padding:14px 16px;background:var(--card);border:1px solid var(--line);transition:transform .25s var(--ease),border-color .25s,background .25s}
 .mcard:hover{transform:translateY(-3px);border-color:var(--line2);background:var(--card2)}
 .mcard.in{border-color:rgba(255,61,87,.4)}
 .mc-top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.7rem;color:var(--muted);margin-bottom:10px;font-weight:500}
 .mc-top .lv{color:var(--live);display:flex;align-items:center;gap:6px;font-weight:600}
+.mc-sc+.mc-row,.mc-row+.mc-row{margin-top:0}.mc-row+.mc-sc+.mc-row{margin-top:2px}.mcard .mc-row:last-of-type+.mc-sc,.mcard .mc-row:last-of-type{margin-bottom:10px}
 .mc-row{display:flex;align-items:center;gap:10px;padding:4px 0}
 .mc-row .crest,.mc-row .crest-fb{width:24px;height:24px;font-size:.45rem}
 .mc-row .nm{flex:1;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mc-row .sc{font-size:1.05rem;font-weight:600;min-width:22px;text-align:right;font-variant-numeric:tabular-nums}
 .mc-row.lose{opacity:.5}
 .mc-row.win .nm{font-weight:600}
-.mc-foot{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:.72rem;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.mc-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);font-size:.72rem;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
 .mc-foot span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .list{display:flex;flex-direction:column;gap:6px}
 .row-m{display:grid;grid-template-columns:64px 1fr auto 1fr;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);cursor:pointer;transition:background .2s,border-color .2s;width:100%;text-align:left}
@@ -342,6 +343,38 @@ table.st{width:100%;border-collapse:collapse;font-size:.86rem;min-width:560px;fo
 .ico-card{display:inline-block;width:9px;height:12px;border-radius:2px;vertical-align:-1px}
 .ico-card.y{background:#ffd23f}.ico-card.r{background:#ff3d57}
 .ico-sub{color:var(--win);font-weight:700}
+
+/* goleadores en marcadores */
+.mc-sc{display:flex;flex-wrap:wrap;gap:2px 10px;padding:0 0 4px 34px;margin-top:-2px;font-size:.72rem;color:var(--muted)}
+.gl{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.gl .ico-goal{width:10px;height:10px}.gl .ico-goal::after{width:4px;height:4px}
+.gl em{font-style:normal;color:#c3cae3;font-variant-numeric:tabular-nums}
+.rsc{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:.7rem;color:var(--muted);margin-top:-4px}
+.rsc.h{grid-column:2;justify-content:flex-end;text-align:right}.rsc.a{grid-column:4}
+@media (max-width:560px){.rsc.h{grid-column:1}.rsc.a{grid-column:3}}
+.vs .side .hs{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.76rem;color:var(--muted);margin-top:-4px}
+/* módulo goleadores */
+.topsc{display:flex;align-items:center;gap:16px;padding:16px;border-radius:14px;margin-bottom:10px;background:linear-gradient(120deg,color-mix(in srgb,var(--c,#3355aa) 32%,transparent),transparent 85%);border:1px solid var(--line);cursor:pointer;transition:border-color .3s,transform .3s var(--ease)}
+.topsc:hover{border-color:var(--line2);transform:translateY(-2px)}
+.topsc .ava{width:86px;height:86px;font-size:1.2rem;box-shadow:0 0 0 2px var(--gold),0 10px 26px rgba(0,0,0,.35)}
+.topsc .who{min-width:0}
+.topsc .who b{display:block;font-size:1.08rem;font-weight:600;letter-spacing:-.01em}
+.topsc .who>span{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted)}
+.topsc .who .crest,.topsc .who .crest-fb{width:16px;height:16px;font-size:.36rem}
+.topsc .big{margin-left:auto;text-align:right;font-size:2.8rem;font-weight:300;line-height:1;font-variant-numeric:tabular-nums}
+.topsc .big small{display:block;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-top:4px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chip{font-size:.7rem;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#d7dcef;white-space:nowrap}
+@media (max-width:420px){.topsc{gap:12px;padding:12px}.topsc .ava{width:64px;height:64px}.topsc .big{font-size:2.1rem}}
+.lrow .who>span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lrow .who>span .crest{display:inline-block;vertical-align:-3px;margin-right:5px}
+.lrow .who>span .crest-fb{display:inline-grid;vertical-align:-3px;margin-right:5px}
+.vbars{display:flex;align-items:flex-end;gap:10px;height:170px;padding-top:8px}
+.vbars>div{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.vbars i{display:block;width:100%;max-width:44px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--acc2),var(--acc));transform-origin:bottom;animation:growY .9s var(--ease) both}
+.vbars b{font-size:.8rem;font-weight:600;font-variant-numeric:tabular-nums}
+.vbars small{font-size:.64rem;color:var(--muted);white-space:nowrap}
+@keyframes growY{from{transform:scaleY(0)}}
 
 /* timeline */
 .tl{position:relative;padding:6px 0}
@@ -665,11 +698,31 @@ function normEvent(e){
   if(!h||!a)return null;
   const st=e.status||c.status||{},ty=st.type||{};
   const state=ty.state||(ty.completed?'post':'pre');
-  return{id:String(e.id),date:e.date||c.date,state,clock:st.displayClock,detail:ty.shortDetail||ty.detail||ty.description||'',
+  const m={id:String(e.id),date:e.date||c.date,state,clock:st.displayClock,detail:ty.shortDetail||ty.detail||ty.description||'',
     home:{team:regTeam(h.team),score:state==='pre'?null:num(h.score),winner:h.winner,pens:num(h.shootoutScore)},
     away:{team:regTeam(a.team),score:state==='pre'?null:num(a.score),winner:a.winner,pens:num(a.shootoutScore)},
     venue:c.venue?.fullName||'',city:c.venue?.address?.city||'',round:roundName(e,c)};
+  m.goals=parseGoals(c,m);return m;
 }
+// Goles del partido (autor y minuto) a partir de los detalles del marcador de ESPN
+function parseGoals(c,m){
+  if(m.state==='pre')return[];
+  const list=(c.details||[]).filter(d=>{const t=String(d.type?.text||'');return !d.shootout&&(d.scoringPlay===true||(/^(goal|penalty - scored|own goal)/i.test(t)&&!/kick/i.test(t)))}).map(d=>{
+    const a=d.athletesInvolved?.[0]||d.participants?.[0]?.athlete||{};const t=String(d.type?.text||'');
+    return{min:d.clock?.displayValue||'',team:String(d.team?.id||''),name:a.shortName||a.displayName||'',full:a.displayName||a.shortName||'',og:!!d.ownGoal||/own/i.test(t),pen:!!d.penaltyKick||/penalty/i.test(t)}}).filter(g=>g.team);
+  const H=m.home.team?.id,A=m.away.team?.id,cnt=(l,id)=>l.filter(g=>g.team===id).length;
+  if(list.some(g=>g.og)&&(cnt(list,H)!==m.home.score||cnt(list,A)!==m.away.score)){
+    const fl=list.map(g=>g.og?{...g,team:g.team===H?A:H}:g);
+    if(cnt(fl,H)===m.home.score&&cnt(fl,A)===m.away.score)return fl;
+  }
+  return list;
+}
+function goalGroups(m,side){
+  const tid=(side==='h'?m.home:m.away).team?.id;const map=new Map();
+  (m.goals||[]).filter(g=>g.team===tid).forEach(g=>{const k=g.name||'Gol';if(!map.has(k))map.set(k,[]);map.get(k).push(g.min+(g.pen?' (p)':g.og?' (pp)':''))});
+  return [...map].map(([n,ms])=>`<span class="gl"><i class="ico-goal"></i>${esc(n)} <em>${esc(ms.join(', '))}</em></span>`).join('');
+}
+const scLine=(m,side)=>{const g=goalGroups(m,side);return g?`<div class="mc-sc">${g}</div>`:''};
 function normStandings(d){
   const groups=d.children?.length?d.children:[d];
   const out=[];
@@ -759,12 +812,12 @@ function matchCard(m){
   const w=x=>m.state==='post'?(x.winner?'win':(m.home.winner||m.away.winner)?'lose':''):'';
   const row=x=>`<div class="mc-row ${w(x)}">${crest(x.team)}<span class="nm">${esc(x.team?.short||x.team?.name)}</span><span class="sc">${m.state==='pre'?'':esc(x.score??0)}</span></div>`;
   const st=m.state==='in'?`<span class="lv"><span class="dot live"></span>${esc(statusTxt(m))}</span>`:`<span>${esc(m.state==='pre'?fmt(m.date,{weekday:'short',day:'numeric',month:'short'})+' · '+hm(m.date):statusTxt(m))}</span>`;
-  return `<button class="mcard ${m.state}" data-match="${esc(m.id)}"><div class="mc-top"><span>${esc(m.round)}</span>${st}</div>${row(m.home)}${row(m.away)}<div class="mc-foot"><span>${esc(fmt(m.date,{day:'numeric',month:'short'}))}</span><span>${esc(m.venue||'')}</span></div></button>`;
+  return `<button class="mcard ${m.state}" data-match="${esc(m.id)}"><div class="mc-top"><span>${esc(m.round)}</span>${st}</div>${row(m.home)}${scLine(m,'h')}${row(m.away)}${scLine(m,'a')}<div class="mc-foot"><span>${esc(fmt(m.date,{day:'numeric',month:'short'}))}</span><span>${esc(m.venue||'')}</span></div></button>`;
 }
 function matchRow(m){
   const mid=m.state==='pre'?`<span class="mid">${hm(m.date)}</span>`:`<span class="mid ${m.state}">${scoreStr(m)}</span>`;
   const when=m.state==='in'?`<span class="when"><b style="color:var(--live)">● ${esc(statusTxt(m))}</b>En vivo</span>`:`<span class="when"><b>${esc(fmt(m.date,{day:'numeric',month:'short'}))}</b>${esc(m.state==='pre'?cap(fmt(m.date,{weekday:'long'})):statusTxt(m))}</span>`;
-  return `<button class="row-m" data-match="${esc(m.id)}">${when}<span class="t r"><span>${esc(m.home.team?.short)}</span>${crest(m.home.team)}</span>${mid}<span class="t">${crest(m.away.team)}<span>${esc(m.away.team?.short)}</span></span></button>`;
+  return `<button class="row-m" data-match="${esc(m.id)}">${when}<span class="t r"><span>${esc(m.home.team?.short)}</span>${crest(m.home.team)}</span>${mid}<span class="t">${crest(m.away.team)}<span>${esc(m.away.team?.short)}</span></span>${goalGroups(m,'h')?`<span class="rsc h">${goalGroups(m,'h')}</span>`:''}${goalGroups(m,'a')?`<span class="rsc a">${goalGroups(m,'a')}</span>`:''}</button>`;
 }
 function donut(parts,center,size=130){
   const tot=parts.reduce((s,p)=>s+p.v,0)||1;let off=25;
@@ -795,7 +848,7 @@ function renderHero(){
   const label=m.state==='in'?'<span class="status in"><span class="dot live"></span>En vivo · '+esc(statusTxt(m))+'</span>':m.state==='pre'?'<span class="status">Próximo partido</span>':'<span class="status">Último resultado</span>';
   const mid=m.state==='pre'?`<div class="countdown" data-countdown="${esc(m.date)}"></div><div class="muted small" style="margin-top:8px">${esc(cap(fmt(m.date,{weekday:'long',day:'numeric',month:'long'})))} · ${hm(m.date)}</div>`:`<div class="score">${esc(m.home.score??0)}<span class="sep">:</span>${esc(m.away.score??0)}</div>${m.home.pens!=null&&m.state==='post'?`<div class="muted small">Penales ${m.home.pens}-${m.away.pens}</div>`:''}`;
   el.innerHTML=`<img class="wm ucl-logo" src="${esc(S.leagueLogo||'https://a.espncdn.com/i/leaguelogos/soccer/500/2.png')}" alt="" onerror="this.remove()"><div class="hero-top"><span class="eyebrow">${esc(m.round)}</span>${label}</div>
-  <div class="vs"><div class="side" data-team="${esc(m.home.team?.id)}">${crest(m.home.team)}<b>${esc(m.home.team?.name)}</b></div><div class="mid">${mid}</div><div class="side" data-team="${esc(m.away.team?.id)}">${crest(m.away.team)}<b>${esc(m.away.team?.name)}</b></div></div>
+  <div class="vs"><div class="side" data-team="${esc(m.home.team?.id)}">${crest(m.home.team)}<b>${esc(m.home.team?.name)}</b>${goalGroups(m,'h')?`<div class="hs">${goalGroups(m,'h')}</div>`:''}</div><div class="mid">${mid}</div><div class="side" data-team="${esc(m.away.team?.id)}">${crest(m.away.team)}<b>${esc(m.away.team?.name)}</b>${goalGroups(m,'a')?`<div class="hs">${goalGroups(m,'a')}</div>`:''}</div></div>
   <div class="meta">${esc([m.venue,m.city].filter(Boolean).join(', '))}</div>
   <div class="acts"><button class="btn" data-match="${esc(m.id)}">${m.state==='pre'?'Previa del partido':'Ver estadísticas'}</button>${m.state==='post'?`<button class="btn ghost" data-match="${esc(m.id)}" data-mtab="video">Highlights</button>`:''}</div>`;
   tickCountdowns();
@@ -810,8 +863,7 @@ function renderHome(){
   const up=upcoming().filter(m=>dayKey(m.date)!==today).slice(0,5);
   $('#homeNext').innerHTML=up.length?up.map(matchRow).join(''):empty('cal','Sin partidos programados.');
   const rs=finished().slice(0,5);$('#homeRes').innerHTML=rs.length?rs.map(matchRow).join(''):empty('clock','Aún no hay resultados.');
-  const sc=(S.leaders.goals||[]).slice(0,5);
-  $('#homeScorers').innerHTML=sc.length?sc.map((p,i)=>leaderRow(p,i,sc[0].value,'goles')).join(''):empty('ball','Goleadores no disponibles.');
+  $('#homeScorers').innerHTML=homeScorersHTML();
   const st=S.standings.slice(0,8);
   $('#homeTable').innerHTML=st.length?`<div class="list">${st.map(r=>`<button class="row-m" style="grid-template-columns:28px 1fr auto" data-team="${esc(r.team?.id)}"><b style="color:${zone(r.rank,r.note).c}">${r.rank}</b><span class="t">${crest(r.team)}<span>${esc(r.team?.name)}</span></span><b>${r.pts} <small class="muted">pts</small></b></button>`).join('')}</div>`:empty('trophy','Clasificación no disponible.');
 }
@@ -845,7 +897,7 @@ function renderStandings(){
   $('#stLegend').innerHTML=[...zs].map(([t,c])=>`<span><i style="background:${c}"></i>${esc(t)}</span>`).join('');
 }
 function leaderRow(p,i,max,unit){
-  return `<div class="lrow"><span class="rk">${i+1}</span>${avatar(p.name,p.photo,tCol(p.team))}<span class="who"><b>${esc(p.name)}</b><span${p.team?` data-team="${esc(p.team.id)}" style="cursor:pointer"`:''}>${crest(p.team)}${esc(p.team?.name||'')}</span></span><span class="hbar"><i style="width:${(p.value/(max||1)*100).toFixed(1)}%"></i></span><span class="v" title="${esc(unit)}">${esc(p.value)}</span></div>`;
+  return `<div class="lrow"><span class="rk">${i+1}</span>${avatar(p.name,p.photo,tCol(p.team))}<span class="who"><b>${esc(p.name)}</b><span${p.team?` data-team="${esc(p.team.id)}" style="cursor:pointer"`:''}>${crest(p.team)}${esc(p.team?.name||'')}${p.extra?' · '+esc(p.extra):''}</span></span><span class="hbar"><i style="width:${(p.value/(max||1)*100).toFixed(1)}%"></i></span><span class="v" title="${esc(unit)}">${esc(p.value)}</span></div>`;
 }
 async function goalkeeperRanking(){
   // Ranking derivado: porterías a cero del equipo + goles recibidos, con el portero titular de la plantilla.
@@ -853,21 +905,78 @@ async function goalkeeperRanking(){
   const out=await Promise.all(rows.map(async r=>{const ro=await getRoster(r.t.id).catch(()=>[]);const gk=ro.find(p=>p.line===0);return{name:gk?.name||('Portero de '+r.t.name),photo:gk?.photo||'',team:r.t,value:r.cs,extra:`${r.ga} GC en ${r.gp} PJ`}}));
   return out;
 }
+/* ---- Goleadores: estadísticas a partir de los goles de cada partido ---- */
+function minuteBucket(min){const m=String(min).match(/(\d+)/);const v=m?+m[1]:0;return v<=15?0:v<=30?1:v<=45?2:v<=60?3:v<=75?4:v<=90?5:6}
+function scorerStats(){
+  const players=new Map(),buckets=[0,0,0,0,0,0,0];let pens=0,ogs=0,withDetail=0;
+  S.matches.filter(m=>m.state!=='pre'&&m.goals?.length).forEach(m=>{withDetail++;m.goals.forEach(g=>{
+    buckets[minuteBucket(g.min)]++;if(g.pen)pens++;if(g.og){ogs++;return}
+    const k=norm(g.full||g.name)+'|'+g.team;const o=players.get(k)||{name:g.full||g.name,team:S.teams.get(g.team),goals:0,pens:0,matches:new Set(),last:null};
+    o.goals++;if(g.pen)o.pens++;o.matches.add(m.id);if(!o.last||new Date(m.date)>new Date(o.last))o.last=m.date;players.set(k,o)})});
+  const played=S.matches.filter(m=>m.state==='post');
+  const total=played.reduce((s,m)=>s+(m.home.score||0)+(m.away.score||0),0);
+  return{players,buckets,pens,ogs,total,played:played.length,withDetail};
+}
+function findStat(st,p){const k=norm(p.name);for(const s of st.players.values())if(norm(s.name)===k)return s;
+  const last=k.split(' ').pop();for(const s of st.players.values())if(s.team?.id===p.team?.id&&norm(s.name).split(' ').pop()===last)return s;return null}
+function mergedScorers(){
+  const st=scorerStats();
+  const base=(S.leaders.goals||[]).length?S.leaders.goals.map(p=>({...p})):[...st.players.values()].map(p=>({name:p.name,team:p.team,photo:'',value:p.goals,pos:''}));
+  const asg=new Map((S.leaders.assists||[]).map(p=>[norm(p.name),p.value]));
+  return base.map(p=>{const s=findStat(st,p);const a=asg.get(norm(p.name))||0,pens=s?.pens||0,mt=s?.matches.size||0;
+    return{...p,a,pens,mt,last:s?.last||null,extra:[a?`${a} asist.`:'',pens?`${pens} de penal`:''].filter(Boolean).join(' · ')}}).sort((x,y)=>y.value-x.value||y.a-x.a);
+}
+function mergeGA(){
+  const m=new Map();
+  mergedScorers().forEach(p=>m.set(norm(p.name),{...p,g:p.value,a:0}));
+  (S.leaders.assists||[]).forEach(p=>{const k=norm(p.name);const o=m.get(k)||{...p,g:0,a:0};o.a=p.value;if(!o.pos&&p.pos)o.pos=p.pos;if(!o.team)o.team=p.team;if(!o.photo)o.photo=p.photo;m.set(k,o)});
+  return[...m.values()].map(o=>({...o,value:o.g+o.a,extra:`${o.g} G · ${o.a} A`})).filter(o=>o.value>0).sort((x,y)=>y.value-x.value||y.g-x.g);
+}
+async function withLines(list){
+  const need=[...new Set(list.filter(p=>!p.pos&&p.team).map(p=>p.team.id))];
+  await Promise.all(need.map(id=>getRoster(id).catch(()=>[])));
+  list.forEach(p=>{if(p.pos){p.line=lineClass(p.pos);return}const ro=S.rosters.get(p.team?.id)||[];const k=norm(p.name),last=k.split(' ').pop();
+    const hit=ro.find(r=>norm(r.name)===k)||ro.find(r=>norm(r.name).split(' ').pop()===last);p.line=hit?hit.line:null;if(hit&&!p.photo)p.photo=hit.photo||''});
+  return list;
+}
+function homeScorersHTML(){
+  const list=mergedScorers().slice(0,6);if(!list.length)return empty('ball','Goleadores no disponibles.');
+  const t=list[0];const chips=[t.a?`${t.a} asistencias`:'',t.pens?`${t.pens} de penal`:'',t.mt?`Marcó en ${t.mt} ${t.mt===1?'partido':'partidos'}`:''].filter(Boolean);
+  return `<div class="topsc" style="--c:${esc(tCol(t.team))}"${t.team?` data-team="${esc(t.team.id)}"`:''}>${avatar(t.name,t.photo,tCol(t.team))}<div class="who"><span class="eyebrow">Máximo goleador</span><b>${esc(t.name)}</b><span>${crest(t.team)}${esc(t.team?.name||'')}</span>${chips.length?`<div class="chips">${chips.map(c=>`<span class="chip">${esc(c)}</span>`).join('')}</div>`:''}</div><div class="big">${esc(t.value)}<small>goles</small></div></div>`
+    +list.slice(1).map((p,i)=>leaderRow(p,i+1,t.value,'goles')).join('');
+}
+function goalsOverviewHTML(){
+  const st=scorerStats();if(!st.played)return '';
+  const labels=['1-15','16-30','31-45+','46-60','61-75','76-90+','Prórroga'];
+  const idx=labels.map((_,i)=>i).filter(i=>i<6||st.buckets[i]>0);const mx=Math.max(1,...st.buckets);
+  const kpis=[['Goles totales',st.total],['Promedio por partido',(st.total/st.played).toFixed(2)],['Goles de penal',st.pens],['En propia puerta',st.ogs]];
+  return `<div class="h2" style="margin-top:30px"><div><span class="eyebrow">Toda la competición</span><h2 style="font-size:1.2rem">Los goles en números</h2><p>${st.played} partidos jugados${st.withDetail<st.played?` · detalle de minutos disponible en ${st.withDetail}`:''}.</p></div></div>
+  <div class="kpis stagger">${kpis.map(([l,v])=>`<div class="kpi"><small>${l}</small><b>${esc(v)}</b></div>`).join('')}</div>
+  ${st.withDetail?`<div class="card" style="margin-top:14px"><h3><span class="ttl">${ic('clock')}¿En qué minuto se marcan los goles?</span></h3><div class="vbars">${idx.map(i=>`<div title="${st.buckets[i]} goles entre los minutos ${labels[i]}"><b>${st.buckets[i]}</b><i style="height:${Math.max(2,st.buckets[i]/mx*100)}%;animation-delay:${i*.06}s"></i><small>${labels[i]}</small></div>`).join('')}</div></div>`:''}`;
+}
+const POS_TABS={def:[1,'Defensas','shield'],mid:[2,'Mediocampistas','assist'],fwd:[3,'Delanteros','target']};
+function catLabel(k){return k==='gk'?['Porteros','glove']:k==='ga'?['Goles + asistencias','chart']:POS_TABS[k]?POS_TABS[k].slice(1):(CATS.find(c=>c[0]===k)||[k,k,'chart']).slice(1,3)}
 async function renderLeaders(){
-  const L=S.leaders;const avail=CATS.filter(c=>L[c[0]]?.length);
-  const cats=[...avail.map(c=>c[0])];if(!L.saves&&!L.cleanSheets)cats.push('gk');
-  if(!S.leadCat||!cats.includes(S.leadCat))S.leadCat=cats[0]||'gk';
-  const label=k=>k==='gk'?['Mejor portero','glove']:(CATS.find(c=>c[0]===k)||[k,k,'chart']).slice(1,3);
-  $('#leadCats').innerHTML=cats.map(k=>{const [l,i]=label(k);return `<button data-cat="${k}" aria-pressed="${k===S.leadCat}">${ic(i)}${esc(l)}</button>`}).join('');
-  const body=$('#leadBody');
-  let list,unit=label(S.leadCat)[0].toLowerCase(),note='';
-  if(S.leadCat==='gk'){body.innerHTML=skel(4);list=await goalkeeperRanking();unit='porterías a cero';note='<p class="muted small">Ranking calculado a partir de los partidos jugados: porterías a cero del equipo y goles recibidos por partido, con el portero de la plantilla.</p>'}
-  else list=L[S.leadCat]||[];
-  if(!list.length){body.innerHTML=empty('chart','Sin datos de líderes por ahora.');}
+  const tok=renderLeaders.tok=(renderLeaders.tok||0)+1;
+  const L=S.leaders;const hasG=!!(L.goals?.length||S.matches.some(m=>m.goals?.length));
+  const cats=[];if(hasG)cats.push('goals');if(L.assists?.length)cats.push('assists');if(hasG)cats.push('ga');
+  cats.push('gk');if(hasG)cats.push('def','mid','fwd');
+  CATS.forEach(c=>{if(!['goals','assists'].includes(c[0])&&L[c[0]]?.length)cats.push(c[0])});
+  if(!S.leadCat||!cats.includes(S.leadCat))S.leadCat=cats[0];
+  $('#leadCats').innerHTML=cats.map(k=>{const [l,i]=catLabel(k);return `<button data-cat="${k}" aria-pressed="${k===S.leadCat}">${ic(i)}${esc(l)}</button>`}).join('');
+  const body=$('#leadBody');const k=S.leadCat;
+  let list=[],unit=catLabel(k)[0].toLowerCase(),note='',after='';
+  if(k==='goals'){list=mergedScorers();unit='goles';after=goalsOverviewHTML()}
+  else if(k==='ga'){list=mergeGA();unit='G + A';note='<p class="muted small">Participación en goles: goles + asistencias de cada jugador.</p>'}
+  else if(k==='gk'){body.innerHTML=skel(4);list=await goalkeeperRanking();unit='porterías a cero';note='<p class="muted small">Ranking calculado a partir de los partidos jugados: porterías a cero del equipo y goles recibidos por partido, con el portero de la plantilla.</p>'}
+  else if(POS_TABS[k]){body.innerHTML=skel(4);const all=await withLines(mergeGA());list=all.filter(p=>p.line===POS_TABS[k][0]);unit='G + A';note=`<p class="muted small">Los ${POS_TABS[k][1].toLowerCase()} con más participación en goles (goles + asistencias).</p>`}
+  else list=L[k]||[];
+  if(tok!==renderLeaders.tok)return;
+  if(!list.length){body.innerHTML=note+empty('chart','Sin datos para esta categoría por ahora.')+after;}
   else{
     const top=list.slice(0,3),max=list[0].value;
     const pod=(p,i)=>p?`<div class="pod p${i+1}" style="--c:${esc(tCol(p.team))}"${p.team?` data-team="${esc(p.team.id)}"`:''}><span class="rk">${i+1}</span>${avatar(p.name,p.photo,tCol(p.team))}<b>${esc(p.name)}</b><span class="tm">${crest(p.team)}${esc(p.team?.short||'')}</span><div class="val">${esc(p.value)}<small>${esc(unit)}</small></div>${p.extra?`<small class="muted">${esc(p.extra)}</small>`:''}</div>`:'<div></div>';
-    body.innerHTML=note+`<div class="podium">${pod(top[1],1)}${pod(top[0],0)}${pod(top[2],2)}</div><div class="card"><div class="stagger">${list.slice(0,20).map((p,i)=>leaderRow(p,i,max,unit)).join('')}</div></div>`;
+    body.innerHTML=note+`<div class="podium">${pod(top[1],1)}${pod(top[0],0)}${pod(top[2],2)}</div><div class="card"><div class="stagger">${list.slice(0,20).map((p,i)=>leaderRow(p,i,max,unit)).join('')}</div></div>`+after;
   }
   $('#leadSub').textContent=S.demo?'Datos de ejemplo (sin conexión).':'Fuente: ESPN. Se actualiza con cada jornada.';
   // team records
@@ -974,7 +1083,7 @@ async function openMatch(id,tab){
   const st=m.state==='in'?`<span class="status in"><span class="dot live"></span>En vivo · ${esc(statusTxt(m))}</span>`:`<span class="status">${esc(m.state==='pre'?'Programado':statusTxt(m))}</span>`;
   const mid=m.state==='pre'?`<div class="countdown" data-countdown="${esc(m.date)}"></div>`:`<div class="score">${esc(m.home.score??0)}<span class="sep">:</span>${esc(m.away.score??0)}</div>${m.home.pens!=null&&m.state==='post'?`<div class="muted small">Penales ${m.home.pens}-${m.away.pens}</div>`:''}`;
   openModal(`<div class="mhead" style="--hc1:${esc(tCol(m.home.team))};--hc2:${esc(tCol(m.away.team))}"><div class="hero-top"><span class="eyebrow">${esc(m.round)}</span>${st}</div>
-   <div class="vs"><div class="side" data-team="${esc(m.home.team?.id)}">${crest(m.home.team)}<b>${esc(m.home.team?.name)}</b></div><div class="mid">${mid}</div><div class="side" data-team="${esc(m.away.team?.id)}">${crest(m.away.team)}<b>${esc(m.away.team?.name)}</b></div></div>
+   <div class="vs"><div class="side" data-team="${esc(m.home.team?.id)}">${crest(m.home.team)}<b>${esc(m.home.team?.name)}</b>${goalGroups(m,'h')?`<div class="hs">${goalGroups(m,'h')}</div>`:''}</div><div class="mid">${mid}</div><div class="side" data-team="${esc(m.away.team?.id)}">${crest(m.away.team)}<b>${esc(m.away.team?.name)}</b>${goalGroups(m,'a')?`<div class="hs">${goalGroups(m,'a')}</div>`:''}</div></div>
    <div class="meta" style="text-align:center;color:var(--muted);font-size:.85rem">${esc(cap(fmt(m.date,{weekday:'long',day:'numeric',month:'long',year:'numeric'})))} · ${hm(m.date)}${m.venue?' · '+esc(m.venue):''}</div></div>
    <div class="mbody"><div class="seg mtabs" id="mTabs">${[['stats','Estadísticas'],['lineups','Alineaciones'],['events','Eventos'],['video','Video']].map(([k,l])=>`<button data-mt="${k}" aria-pressed="false">${l}</button>`).join('')}</div><div id="mContent">${skel(5,40)}</div></div>`);
   tickCountdowns();
@@ -1135,7 +1244,7 @@ window.addEventListener('hashchange',()=>go(location.hash.slice(1)));
 
 /* ================= Demo data (solo si la fuente no responde) ================= */
 const DEMO_TEAMS=[[86,'Real Madrid','RMA','1d3f8f'],[83,'Barcelona','BAR','a50044'],[132,'Bayern Múnich','BAY','dc052d'],[382,'Manchester City','MCI','6cabdd'],[364,'Liverpool','LIV','c8102e'],[359,'Arsenal','ARS','ef0107'],[160,'Paris Saint-Germain','PSG','004170'],[110,'Inter','INT','0068a8'],[1068,'Atlético de Madrid','ATM','cb3524'],[124,'Borussia Dortmund','BVB','e0c400'],[363,'Chelsea','CHE','034694'],[111,'Juventus','JUV','333333'],[114,'Napoli','NAP','12a0d7'],[131,'Bayer Leverkusen','B04','e32221'],[1929,'Benfica','BEN','e83030'],[2250,'Sporting CP','SCP','008057'],[103,'AC Milan','MIL','fb090b'],[361,'Newcastle','NEW','241f20']];
-const DEMO_P=[['Kylian Mbappé',86,9,2],['Harry Kane',132,8,3],['Erling Haaland',382,8,1],['Lamine Yamal',83,5,6],['Raphinha',83,6,4],['Mohamed Salah',364,5,4],['Vinícius Júnior',86,4,5],['Lautaro Martínez',110,5,2],['Ousmane Dembélé',160,4,3],['Viktor Gyökeres',359,4,1],['Michael Olise',132,3,5],['Bukayo Saka',359,3,4],['Julián Álvarez',1068,4,2],['Jude Bellingham',86,2,3],['Cole Palmer',363,3,3]];
+const DEMO_P=[['Kylian Mbappé',86,9,2,'F'],['Harry Kane',132,8,3,'F'],['Erling Haaland',382,8,1,'F'],['Lamine Yamal',83,5,6,'F'],['Raphinha',83,6,4,'F'],['Mohamed Salah',364,5,4,'F'],['Vinícius Júnior',86,4,5,'F'],['Lautaro Martínez',110,5,2,'F'],['Ousmane Dembélé',160,4,3,'F'],['Viktor Gyökeres',359,4,1,'F'],['Michael Olise',132,3,5,'F'],['Bukayo Saka',359,3,4,'F'],['Julián Álvarez',1068,4,2,'F'],['Jude Bellingham',86,2,3,'M'],['Cole Palmer',363,3,3,'M'],['Pedri',83,1,4,'M'],['Declan Rice',359,2,2,'M'],['Vitinha',160,1,3,'M'],['Federico Valverde',86,2,1,'M'],['Achraf Hakimi',160,1,4,'D'],['Federico Dimarco',110,1,3,'D'],['Virgil van Dijk',364,2,0,'D'],['Jules Koundé',83,1,2,'D']];
 const SURN=['García','Silva','Müller','Rossi','Martin','Novak','Jensen','Costa','Dubois','Kovač','Smith','Fernández','Santos','Weber','Bianchi','López','Moreau','Ivanov','Pereira','Schmidt','Romero','Lindqvist','Okafor','Torres','Vidal','Hansen'];
 function demoName(seed,i){const r=rng(seed+':'+i);return 'ABCDEFGHJKLMNPRST'[Math.floor(r()*17)]+'. '+SURN[Math.floor(r()*SURN.length)]}
 function demoRoster(id){const t=S.teams.get(id);const lines=[0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,0,1,2];const nm=['POR','DEF','MED','DEL'];
@@ -1155,12 +1264,21 @@ function useDemo(){
   for(let i=6;i<sh.length;i+=2)ms.push({id:'d'+n++,date:day(1,i<12?12:14,i<12?45:0),state:'pre',home:{team:S.teams.get(sh[i])},away:{team:S.teams.get(sh[i+1])},venue:venue(sh[i]),round:'Fase de liga · Jornada 5'});
   round(21,6);round(49,7);
   S.matches=ms.sort((a,b)=>new Date(a.date)-new Date(b.date));
+  demoGoals(S.matches);
   const tab=ids.map(id=>{const t=S.teams.get(id);const row={team:t,gp:0,w:0,d:0,l:0,gf:0,ga:0};S.matches.filter(m=>m.state==='post'&&(m.home.team.id===id||m.away.team.id===id)).forEach(m=>{const me=m.home.team.id===id?m.home:m.away,op=me===m.home?m.away:m.home;row.gp++;row.gf+=me.score;row.ga+=op.score;if(me.score>op.score)row.w++;else if(me.score<op.score)row.l++;else row.d++});row.gd=row.gf-row.ga;row.pts=row.w*3+row.d;return row});
   tab.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);tab.forEach((x,i)=>x.rank=i+1);S.standings=tab;
-  const P=DEMO_P.map(([nm,t,g,a])=>({name:nm,team:S.teams.get(String(t)),photo:'',g,a}));
-  S.leaders={goals:P.map(p=>({...p,value:p.g})).sort((a,b)=>b.value-a.value),assists:P.map(p=>({...p,value:p.a})).sort((a,b)=>b.value-a.value),
+  const P=DEMO_P.map(([nm,t,g,a,pos])=>({name:nm,team:S.teams.get(String(t)),photo:'',g,a,pos}));
+  S.leaders={goals:P.map(p=>({...p,value:p.g})).filter(p=>p.value>0).sort((a,b)=>b.value-a.value),assists:P.map(p=>({...p,value:p.a})).filter(p=>p.value>0).sort((a,b)=>b.value-a.value),
     saves:[['Thibaut Courtois',86,18],['Gianluigi Donnarumma',382,16],['Joan García',83,15],['David Raya',359,14],['Alisson',364,13],['Yann Sommer',110,12],['Manuel Neuer',132,11]].map(([nm,t,v])=>({name:nm,team:S.teams.get(String(t)),photo:'',value:v}))};
   S.news=[];S.videos=[];
+}
+function demoGoals(ms){
+  ms.forEach(m=>{if(m.state==='pre')return;const r=rng('g'+m.id);const lim=m.state==='in'?parseInt(m.clock)||60:90;const out=[];
+    [m.home,m.away].forEach(x=>{const tid=x.team.id;const st=DEMO_P.filter(p=>String(p[1])===tid);const ro=demoRoster(tid).filter(p=>p.line>=2);
+      for(let i=0;i<(x.score||0);i++){let full;if(st.length&&r()<.75){const w=st.flatMap(p=>Array(p[2]+1).fill(p[0]));full=w[Math.floor(r()*w.length)]}else full=ro[Math.floor(r()*ro.length)].name;
+        const short=/^[A-Z]\. /.test(full)||!/\s/.test(full)?full:full.split(' ')[0][0]+'. '+full.split(' ').slice(1).join(' ');
+        const mn=1+Math.floor(r()*lim);out.push({mn,min:mn+"'",team:tid,name:short,full,pen:r()<.12,og:false})}});
+    m.goals=out.sort((a,b)=>a.mn-b.mn)});
 }
 function demoSummary(m){
   if(m.state==='pre')return{};
@@ -1176,7 +1294,7 @@ function demoSummary(m){
   const fw=(ro)=>ro.roster.filter(p=>p.starter&&p.position.abbreviation!=='G');
   const ev=[];const lim=m.state==='in'?parseInt(m.clock)||60:90;
   const add=(n,side,kind)=>{for(let i=0;i<n;i++){const ro=rosters[side==='h'?0:1];const pl=fw(ro);ev.push({type:{text:kind},scoringPlay:kind==='Goal',clock:{displayValue:(3+Math.floor(r()*(lim-3)))+"'"},team:{id:side==='h'?m.home.team.id:m.away.team.id},participants:[{athlete:{displayName:pl[Math.floor(r()*pl.length)].athlete.displayName}}]})}};
-  add(H,'h','Goal');add(A,'a','Goal');add(Math.floor(r()*3),'h','Yellow Card');add(Math.floor(r()*3),'a','Yellow Card');
+  (m.goals||[]).forEach(g=>ev.push({type:{text:g.pen?'Penalty - Scored':'Goal'},scoringPlay:true,clock:{displayValue:g.min},team:{id:g.team},participants:[{athlete:{displayName:g.full}}]}));add(Math.floor(r()*3),'h','Yellow Card');add(Math.floor(r()*3),'a','Yellow Card');
   ev.sort((a,b)=>parseInt(a.clock.displayValue)-parseInt(b.clock.displayValue));
   return{boxscore:{teams},keyEvents:ev,rosters,videos:[]};
 }
