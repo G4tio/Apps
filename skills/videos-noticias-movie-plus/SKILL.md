@@ -251,17 +251,3 @@ Si el usuario ya trae guion o imágenes, salta los pasos correspondientes.
 - Entrega con `SendUserFile` y resume en pocas líneas: noticias y fuentes usadas, diferencias guion/audio, imágenes pendientes (marcadores) y que la sincronía viene de la transcripción real.
 - Ofrece también una descripción para TikTok (1–2 líneas + 5 hashtags: #MoviePlus #NoticiasDeCine #Cine #Series + uno del tema principal).
 
-## 9. Formato HISTORIA (una sola historia con chiste recurrente) · aprobado 24/11/2026
-Para videos tipo «historia de marca»: una historia cronológica con un chiste falso que el narrador corrige en un corte en blanco y negro (referencia: videos de @aheviadesign). Primer video: RDJ, de Iron Man a Doctor Doom; el chiste era meter a Ariana Grande donde no va y cerrar con *La nueva Focker*, donde sí sale.
-- **Guion:** un bloque por línea; bloque 0 = gancho. Los bloques de chiste son cortos («No. Eso no pasó.») y llevan `"chiste": true` en el plan. Cierra con una pregunta hablada; no lleva cierre de «sigue a Movie Plus».
-- **Voz:** `voz_por_bloques.py <voz> <asr> 0.45 0.45`, con pausas cortas porque es una sola narración. Revisa la transcripción de cada bloque y, si sale una sílaba repetida («Grande-rande»), genera otra toma de ese bloque.
-- **Plan** (`src/videos/AAAA-MM-DD.json`): `"formato": "historia"`, y las noticias van de `n` = 0 al último bloque, gancho incluido.
-  - **Chiste:** sus medios son la misma imagen fija con la que termina el bloque anterior, y lleva el mismo `fondo` que ese bloque. Así el corte parece un congelado.
-  - **Hitos:** son rótulos `{"tipo": "hito", "a": "2008", "texto": …, "sub": …, "en": …}`. Arman la línea de tiempo del encabezado, en lugar de «NOTICIA 0n/0N», y se ven grandes en el panel.
-- **Composición:** `MoviePlusHistoria`, en `src/MoviePlusHistoria.tsx`, que lee `src/videos/historia.ts`.
-  - La intro va acortada a sus cuadros 60–75 (logo y barrido) y la voz entra a los 0,35 s.
-  - En los chistes, la imagen se congela y pasa a blanco y negro, con un destello y el sello rojo «FALSO».
-  - No hay barra de transición entre bloques.
-- **Audio:** `scripts/mezcla_historia.py <carpeta> <timing> <plan>`. Pone el disco rayado (`sfx.rayado`), corta la música durante los chistes y mete el cierre animado tras la pregunta.
-- **Render:** `COMP=MoviePlusHistoria bash scripts/render_por_partes.sh <total> <mezcla> <salida>`.
-- **Material faltante:** si falta una imagen, usa una tarjeta de marcador (fondo oscuro, borde rojo, «IMAGEN PENDIENTE») y avísale al usuario.
