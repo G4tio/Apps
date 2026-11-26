@@ -1,0 +1,547 @@
+{
+ "fecha": "2026-11-26",
+ "fechaTexto": "JUEVES 26 DE NOVIEMBRE",
+ "voz": "media/2026-11-26/voz/voz_limpia.wav",
+ "pantalla": [
+  {
+   "bloque": 0,
+   "frase": "Seis",
+   "texto": "6"
+  },
+  {
+   "bloque": 1,
+   "frase": "cien millones",
+   "texto": "$100 millones"
+  },
+  {
+   "bloque": 1,
+   "frase": "doscientos setenta millones",
+   "texto": "$270 millones"
+  },
+  {
+   "bloque": 1,
+   "frase": "diecisiete",
+   "texto": "17"
+  },
+  {
+   "bloque": 2,
+   "frase": "cinco punto tres millones",
+   "texto": "$5.3 millones"
+  },
+  {
+   "bloque": 2,
+   "frase": "veintinueve por ciento",
+   "texto": "29%"
+  },
+  {
+   "bloque": 3,
+   "frase": "siete punto seis millones",
+   "texto": "$7.6 millones"
+  },
+  {
+   "bloque": 3,
+   "frase": "treinta y cinco millones",
+   "texto": "$35 millones"
+  },
+  {
+   "bloque": 3,
+   "frase": "A menos",
+   "texto": "A-"
+  },
+  {
+   "bloque": 4,
+   "frase": "tres",
+   "texto": "3"
+  },
+  {
+   "bloque": 4,
+   "frase": "diez",
+   "texto": "10"
+  },
+  {
+   "bloque": 5,
+   "frase": "treinta y tres millones",
+   "texto": "33 millones"
+  },
+  {
+   "bloque": 5,
+   "frase": "doce",
+   "texto": "12"
+  },
+  {
+   "bloque": 5,
+   "frase": "dos mil veintisiete",
+   "texto": "2027"
+  },
+  {
+   "bloque": 6,
+   "frase": "cinco",
+   "texto": "5"
+  },
+  {
+   "bloque": 6,
+   "frase": "dos mil veintisiete",
+   "texto": "2027"
+  }
+ ],
+ "claves": [
+  "Avengers:",
+  "Doomsday:",
+  "Magneto",
+  "Doom",
+  "Steve",
+  "Rogers",
+  "Thor",
+  "Focker",
+  "Latinoamérica",
+  "Rotten",
+  "Tomatoes",
+  "Hechizo",
+  "Disney",
+  "Netflix",
+  "Hawk",
+  "Will",
+  "Ferrell",
+  "Anillos",
+  "Poder",
+  "Prime",
+  "Video",
+  "Pixar",
+  "Gatto",
+  "Mark",
+  "Ruffalo",
+  "Venecia"
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "titulo": "AVENGERS: DOOMSDAY",
+   "categoria": "NUEVO AVANCE",
+   "fondo": "media/2026-11-26/n1_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 14.0,
+     "hasta": 16.1,
+     "toma": "Doom en su castillo",
+     "en": null,
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 18.8,
+     "hasta": 20.5,
+     "toma": "Magneto y Doom",
+     "en": "Magneto",
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 4.0,
+     "hasta": 6.2,
+     "toma": "Steve y Thor entran",
+     "en": "Steve",
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 22.2,
+     "hasta": 24.1,
+     "toma": "Doom y Cíclope",
+     "en": "preventa",
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 24.2,
+     "hasta": 25.9,
+     "toma": "Cíclope y Thor",
+     "en": "proyecta",
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 26.4,
+     "hasta": 28.3,
+     "toma": "logo",
+     "en": "Llega",
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 100,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$100M",
+     "sub": "PREVENTA EN EE. UU.",
+     "en": "cien"
+    },
+    {
+     "tipo": "contador",
+     "valor": 270,
+     "prefijo": "+$",
+     "sufijo": "M",
+     "texto": "+$270M",
+     "sub": "ESTRENO PROYECTADO",
+     "en": "doscientos"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "17",
+     "texto": "EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "diecisiete"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titulo": "LA NUEVA FOCKER",
+   "categoria": "ESTRENO HOY",
+   "fondo": "media/2026-11-26/n2_focker_poligrafo.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n2_focker_poster.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n2_focker_cena.jpg",
+     "en": "Estados",
+     "foco": "40% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n2_focker_poligrafo.jpg",
+     "en": "veintinueve",
+     "foco": "60% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n2_focker_trio.jpg",
+     "en": "Rotten",
+     "foco": "center 25%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "26",
+     "texto": "HOY EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "hoy"
+    },
+    {
+     "tipo": "contador",
+     "valor": 5.3,
+     "decimales": 1,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$5.3M",
+     "sub": "PRIMER DÍA EN EE. UU.",
+     "en": "cinco"
+    },
+    {
+     "tipo": "contador",
+     "valor": 29,
+     "prefijo": "",
+     "sufijo": "%",
+     "texto": "29%",
+     "sub": "CRÍTICA · ROTTEN TOMATOES",
+     "en": "veintinueve"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titulo": "HECHIZO: BIENVENIDOS A HEXE",
+   "categoria": "DISNEY ANIMATION",
+   "fondo": "media/2026-11-26/n3_hexe_manos.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n3_hexe_poster.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n3_hexe_manos.jpg",
+     "en": "siete",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n3_hexe_libro.jpg",
+     "en": "treinta",
+     "foco": "40% 40%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n3_hexe_magia.jpg",
+     "en": "público",
+     "foco": "center 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 7.6,
+     "decimales": 1,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$7.6M",
+     "sub": "PRIMER DÍA",
+     "en": "siete"
+    },
+    {
+     "tipo": "contador",
+     "valor": 35,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$35M",
+     "sub": "EN 5 DÍAS · BAJO LO ESPERADO",
+     "en": "treinta"
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "A-",
+     "sub": "CALIFICACIÓN DEL PÚBLICO",
+     "en": "público"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titulo": "THE HAWK",
+   "categoria": "NETFLIX",
+   "fondo": "media/2026-11-26/n4_hawk_palo.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n4_hawk_palo.jpg",
+     "en": null,
+     "foco": "40% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n4_hawk_poster.jpg",
+     "en": "Will",
+     "foco": "center 20%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n4_hawk_auto.jpg",
+     "en": "Estuvo",
+     "foco": "60% 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n4_hawk_poster_elenco.jpg",
+     "en": "caras",
+     "ajuste": "contain"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "WILL FERRELL",
+     "sub": "PROTAGONISTA Y COCREADOR",
+     "en": "Will"
+    },
+    {
+     "tipo": "insignia",
+     "icono": "prohibido",
+     "texto": "CANCELADA",
+     "sub": "TRAS 1 TEMPORADA",
+     "en": "después"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titulo": "LOS ANILLOS DE PODER",
+   "categoria": "PRIME VIDEO",
+   "fondo": "media/2026-11-26/n5_anillos_sauron.jpg",
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n5_anillos_poster.jpg",
+     "en": null,
+     "ajuste": "contain"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n5_anillos_elfos.jpg",
+     "en": "tercera",
+     "foco": "center 30%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n5_anillos_extra.jpg",
+     "en": "doce",
+     "foco": "center 40%"
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n5_anillos_sauron.jpg",
+     "en": "nueva",
+     "foco": "40% 30%"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "bloques",
+     "valor": 4,
+     "etiquetaBloque": "T",
+     "texto": "TEMPORADA 4",
+     "sub": "RENOVADA",
+     "en": "cuarta"
+    },
+    {
+     "tipo": "contador",
+     "valor": 33,
+     "prefijo": "",
+     "sufijo": "M",
+     "texto": "33M",
+     "sub": "ESPECTADORES EN 12 DÍAS",
+     "en": "treinta"
+    },
+    {
+     "tipo": "titulo",
+     "texto": "RODAJE EN 2027",
+     "categoria": "TEMPORADA 4",
+     "en": "nueva"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "titulo": "GATTO",
+   "categoria": "PIXAR · NUEVO AVANCE",
+   "fondo": "media/2026-11-26/n6_fondo.jpg",
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 10.4,
+     "hasta": 12.3,
+     "toma": "Nero en Venecia",
+     "en": null,
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 4.6,
+     "hasta": 5.5,
+     "toma": "Nero",
+     "en": "Mark",
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 20.4,
+     "hasta": 21.1,
+     "toma": "puente de Venecia",
+     "en": "Venecia",
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 18.8,
+     "hasta": 20.3,
+     "toma": "gatos mafiosos",
+     "en": "última",
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 24.2,
+     "hasta": 25.6,
+     "toma": "persecución",
+     "en": "Llega",
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 26.8,
+     "hasta": 27.9,
+     "toma": "logo",
+     "en": "marzo",
+     "ajuste": "contain",
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "MARK RUFFALO",
+     "sub": "ES NERO, UN GATO NEGRO",
+     "en": "Mark"
+    },
+    {
+     "tipo": "fecha",
+     "mes": "MAR",
+     "dia": "5",
+     "texto": "EN CINES",
+     "sub": "2027",
+     "en": "cinco"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1884 @@
+{
+ "palabras": [
+  {
+   "w": "6",
+   "t": 0.12,
+   "b": 0,
+   "clave": true
+  },
+  {
+   "w": "noticias",
+   "t": 0.32,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 0.72,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "cine",
+   "t": 0.8,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 1.2,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "series",
+   "t": 1.36,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 1.76,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 1.84,
+   "b": 0,
+   "clave": false
+  },
+  {
+   "w": "Hay",
+   "t": 2.48,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "nuevo",
+   "t": 2.88,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "avance",
+   "t": 3.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 3.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Avengers",
+   "t": 3.68,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Doomsday",
+   "t": 4.08,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Magneto",
+   "t": 4.8,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "encara",
+   "t": 5.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "al",
+   "t": 5.44,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Doctor",
+   "t": 5.6,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Doom",
+   "t": 5.92,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 6.32,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Steve",
+   "t": 6.4,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "Rogers",
+   "t": 6.72,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "y",
+   "t": 7.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Thor",
+   "t": 7.2,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "entran",
+   "t": 7.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 7.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 7.92,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "castillo",
+   "t": 8.0,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 8.48,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "preventa",
+   "t": 8.64,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 9.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Estados",
+   "t": 9.28,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Unidos",
+   "t": 9.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "ya",
+   "t": 9.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "supera",
+   "t": 10.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 10.4,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "$100 millones",
+   "t": 10.48,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 10.8,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 11.12,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "dólares",
+   "t": 11.2,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 11.68,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 11.84,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "proyecta",
+   "t": 11.92,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 12.32,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "estreno",
+   "t": 12.48,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 12.8,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "más",
+   "t": 12.96,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 13.04,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "$270 millones",
+   "t": 13.2,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 13.68,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 14.08,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "Llega",
+   "t": 14.56,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 14.88,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "17",
+   "t": 15.2,
+   "b": 1,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 15.52,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "diciembre",
+   "t": 15.68,
+   "b": 1,
+   "clave": false
+  },
+  {
+   "w": "La",
+   "t": 16.32,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "nueva",
+   "t": 16.56,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Focker",
+   "t": 16.88,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "llega",
+   "t": 17.52,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "hoy",
+   "t": 17.76,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 17.92,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "los",
+   "t": 18.0,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 18.08,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 18.4,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Latinoamérica",
+   "t": 18.48,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "En",
+   "t": 19.28,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Estados",
+   "t": 19.52,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Unidos",
+   "t": 19.76,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "debutó",
+   "t": 20.08,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "con",
+   "t": 20.48,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "$5.3 millones",
+   "t": 20.72,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 20.96,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 21.2,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 21.44,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 21.76,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "dólares",
+   "t": 21.84,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 22.32,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "solo",
+   "t": 22.48,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "29%",
+   "t": 22.64,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 23.36,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 23.52,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 23.68,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 23.84,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "crítica",
+   "t": 23.92,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 24.32,
+   "b": 2,
+   "clave": false
+  },
+  {
+   "w": "Rotten",
+   "t": 24.48,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Tomatoes",
+   "t": 24.88,
+   "b": 2,
+   "clave": true
+  },
+  {
+   "w": "Hechizo",
+   "t": 25.76,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "lo",
+   "t": 26.48,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "nuevo",
+   "t": 26.56,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 26.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Disney",
+   "t": 26.96,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "arrancó",
+   "t": 27.52,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "lento",
+   "t": 28.0,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "$7.6 millones",
+   "t": 28.32,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 28.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 28.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 29.12,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 29.6,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 29.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "primer",
+   "t": 29.76,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "día",
+   "t": 30.08,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 30.32,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "unos",
+   "t": 30.4,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "$35 millones",
+   "t": 30.56,
+   "b": 3,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 30.96,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 31.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 31.28,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 31.76,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "cinco",
+   "t": 31.84,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "días",
+   "t": 32.08,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "por",
+   "t": 32.48,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "debajo",
+   "t": 32.64,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 32.88,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "lo",
+   "t": 33.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "esperado",
+   "t": 33.12,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Eso",
+   "t": 33.68,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "sí",
+   "t": 33.92,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 34.16,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "público",
+   "t": 34.24,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "le",
+   "t": 34.72,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "dio",
+   "t": 34.8,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "una",
+   "t": 35.04,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "A-",
+   "t": 35.2,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 35.44,
+   "b": 3,
+   "clave": false
+  },
+  {
+   "w": "Netflix",
+   "t": 36.0,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "canceló",
+   "t": 36.8,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "The",
+   "t": 37.04,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Hawk",
+   "t": 37.28,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "la",
+   "t": 37.52,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "comedia",
+   "t": 37.76,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 38.08,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "golf",
+   "t": 38.16,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 38.48,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Will",
+   "t": 38.56,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "Ferrell",
+   "t": 38.96,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "después",
+   "t": 39.44,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 39.84,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "una",
+   "t": 39.92,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "sola",
+   "t": 40.08,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "temporada",
+   "t": 40.32,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Estuvo",
+   "t": 40.88,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "3",
+   "t": 41.28,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "semanas",
+   "t": 41.44,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 41.84,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 41.92,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "top",
+   "t": 42.0,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "10",
+   "t": 42.32,
+   "b": 4,
+   "clave": true
+  },
+  {
+   "w": "pero",
+   "t": 42.72,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "era",
+   "t": 42.88,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 43.12,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "sus",
+   "t": 43.2,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "comedias",
+   "t": 43.36,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "más",
+   "t": 43.84,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "caras",
+   "t": 44.0,
+   "b": 4,
+   "clave": false
+  },
+  {
+   "w": "Los",
+   "t": 44.64,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Anillos",
+   "t": 44.96,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 45.44,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Poder",
+   "t": 45.52,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "tendrá",
+   "t": 45.84,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "cuarta",
+   "t": 46.24,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "temporada",
+   "t": 46.56,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 46.96,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Prime",
+   "t": 47.12,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "Video",
+   "t": 47.28,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "La",
+   "t": 47.92,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "tercera",
+   "t": 48.0,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "llegó",
+   "t": 48.4,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 48.72,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "33 millones",
+   "t": 48.8,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 49.2,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 49.28,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 49.52,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 49.84,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "espectadores",
+   "t": 49.92,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 50.56,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "sus",
+   "t": 50.64,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "primeros",
+   "t": 50.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "12",
+   "t": 51.2,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "días",
+   "t": 51.44,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "y",
+   "t": 51.76,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "la",
+   "t": 51.84,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "nueva",
+   "t": 52.0,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "se",
+   "t": 52.32,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "filma",
+   "t": 52.4,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 52.8,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "2027",
+   "t": 52.88,
+   "b": 5,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 53.04,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 53.64,
+   "b": 5,
+   "clave": false
+  },
+  {
+   "w": "Y",
+   "t": 54.24,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Pixar",
+   "t": 54.48,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "estrenó",
+   "t": 55.04,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 55.44,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "nuevo",
+   "t": 55.52,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "avance",
+   "t": 55.84,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 56.16,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Gatto",
+   "t": 56.24,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Mark",
+   "t": 56.56,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "Ruffalo",
+   "t": 56.8,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "es",
+   "t": 57.44,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "un",
+   "t": 57.52,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "gato",
+   "t": 57.6,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "negro",
+   "t": 57.84,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 58.16,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Venecia",
+   "t": 58.24,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "que",
+   "t": 58.72,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "está",
+   "t": 58.8,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "en",
+   "t": 58.96,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "su",
+   "t": 59.04,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "última",
+   "t": 59.12,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "vida",
+   "t": 59.44,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "Llega",
+   "t": 59.72,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "a",
+   "t": 60.0,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "cines",
+   "t": 60.08,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "el",
+   "t": 60.48,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "5",
+   "t": 60.56,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "de",
+   "t": 60.8,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "marzo",
+   "t": 60.88,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "de",
+   "t": 61.12,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "2027",
+   "t": 61.28,
+   "b": 6,
+   "clave": true
+  },
+  {
+   "w": "",
+   "t": 61.38,
+   "b": 6,
+   "clave": false
+  },
+  {
+   "w": "",
+   "t": 61.53,
+   "b": 6,
+   "clave": false
+  }
+ ],
+ "bloques": [
+  {
+   "bloque": 0,
+   "inicio": 0.0,
+   "primera": 0,
+   "ultima": 7,
+   "fin": 2.52
+  },
+  {
+   "bloque": 1,
+   "inicio": 2.52,
+   "primera": 8,
+   "ultima": 55,
+   "fin": 16.36
+  },
+  {
+   "bloque": 2,
+   "inicio": 16.36,
+   "primera": 56,
+   "ultima": 87,
+   "fin": 25.8
+  },
+  {
+   "bloque": 3,
+   "inicio": 25.8,
+   "primera": 88,
+   "ultima": 125,
+   "fin": 36.04
+  },
+  {
+   "bloque": 4,
+   "inicio": 36.04,
+   "primera": 126,
+   "ultima": 155,
+   "fin": 44.68
+  },
+  {
+   "bloque": 5,
+   "inicio": 44.68,
+   "primera": 156,
+   "ultima": 189,
+   "fin": 54.28
+  },
+  {
+   "bloque": 6,
+   "inicio": 54.28,
+   "primera": 190,
+   "ultima": 222,
+   "fin": 62.41
+  }
+ ],
+ "noticias": [
+  {
+   "n": 1,
+   "inicio": 2.52,
+   "fin": 16.36,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 14.0,
+     "hasta": 16.1,
+     "toma": "Doom en su castillo",
+     "en": null,
+     "zoom": 1.0,
+     "t": 2.52,
+     "archivo": "media/2026-11-26/frag/n1_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 18.8,
+     "hasta": 20.5,
+     "toma": "Magneto y Doom",
+     "en": "Magneto",
+     "zoom": 1.0,
+     "t": 4.84,
+     "archivo": "media/2026-11-26/frag/n1_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 4.0,
+     "hasta": 6.2,
+     "toma": "Steve y Thor entran",
+     "en": "Steve",
+     "zoom": 1.0,
+     "t": 6.44,
+     "archivo": "media/2026-11-26/frag/n1_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 22.2,
+     "hasta": 24.1,
+     "toma": "Doom y Cíclope",
+     "en": "preventa",
+     "zoom": 1.0,
+     "t": 8.68,
+     "archivo": "media/2026-11-26/frag/n1_3.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 24.2,
+     "hasta": 25.9,
+     "toma": "Cíclope y Thor",
+     "en": "proyecta",
+     "zoom": 1.0,
+     "t": 11.96,
+     "archivo": "media/2026-11-26/frag/n1_4.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n1_doomsday_spot.mp4",
+     "desde": 26.4,
+     "hasta": 28.3,
+     "toma": "logo",
+     "en": "Llega",
+     "zoom": 1.0,
+     "t": 14.6,
+     "archivo": "media/2026-11-26/frag/n1_5.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 100,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$100M",
+     "sub": "PREVENTA EN EE. UU.",
+     "en": "cien",
+     "t": 10.48
+    },
+    {
+     "tipo": "contador",
+     "valor": 270,
+     "prefijo": "+$",
+     "sufijo": "M",
+     "texto": "+$270M",
+     "sub": "ESTRENO PROYECTADO",
+     "en": "doscientos",
+     "t": 13.2
+    },
+    {
+     "tipo": "fecha",
+     "mes": "DIC",
+     "dia": "17",
+     "texto": "EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "diecisiete",
+     "t": 15.2
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "inicio": 16.36,
+   "fin": 25.8,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n2_focker_poster.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 16.36
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n2_focker_cena.jpg",
+     "en": "Estados",
+     "foco": "40% 30%",
+     "t": 19.56
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n2_focker_poligrafo.jpg",
+     "en": "veintinueve",
+     "foco": "60% 30%",
+     "t": 22.68
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n2_focker_trio.jpg",
+     "en": "Rotten",
+     "foco": "center 25%",
+     "t": 24.52
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "fecha",
+     "mes": "NOV",
+     "dia": "26",
+     "texto": "HOY EN CINES",
+     "sub": "LATINOAMÉRICA",
+     "en": "hoy",
+     "t": 17.76
+    },
+    {
+     "tipo": "contador",
+     "valor": 5.3,
+     "decimales": 1,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$5.3M",
+     "sub": "PRIMER DÍA EN EE. UU.",
+     "en": "cinco",
+     "t": 20.72
+    },
+    {
+     "tipo": "contador",
+     "valor": 29,
+     "prefijo": "",
+     "sufijo": "%",
+     "texto": "29%",
+     "sub": "CRÍTICA · ROTTEN TOMATOES",
+     "en": "veintinueve",
+     "t": 22.64
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "inicio": 25.8,
+   "fin": 36.04,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n3_hexe_poster.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 25.8
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n3_hexe_manos.jpg",
+     "en": "siete",
+     "foco": "center 30%",
+     "t": 28.36
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n3_hexe_libro.jpg",
+     "en": "treinta",
+     "foco": "40% 40%",
+     "t": 30.6
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n3_hexe_magia.jpg",
+     "en": "público",
+     "foco": "center 30%",
+     "t": 34.28
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "contador",
+     "valor": 7.6,
+     "decimales": 1,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$7.6M",
+     "sub": "PRIMER DÍA",
+     "en": "siete",
+     "t": 28.32
+    },
+    {
+     "tipo": "contador",
+     "valor": 35,
+     "prefijo": "$",
+     "sufijo": "M",
+     "texto": "$35M",
+     "sub": "EN 5 DÍAS · BAJO LO ESPERADO",
+     "en": "treinta",
+     "t": 30.56
+    },
+    {
+     "tipo": "insignia",
+     "icono": "trofeo",
+     "texto": "A-",
+     "sub": "CALIFICACIÓN DEL PÚBLICO",
+     "en": "público",
+     "t": 34.24
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "inicio": 36.04,
+   "fin": 44.68,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n4_hawk_palo.jpg",
+     "en": null,
+     "foco": "40% 30%",
+     "t": 36.04
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n4_hawk_poster.jpg",
+     "en": "Will",
+     "foco": "center 20%",
+     "t": 38.6
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n4_hawk_auto.jpg",
+     "en": "Estuvo",
+     "foco": "60% 30%",
+     "t": 40.92
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n4_hawk_poster_elenco.jpg",
+     "en": "caras",
+     "ajuste": "contain",
+     "t": 44.04
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "WILL FERRELL",
+     "sub": "PROTAGONISTA Y COCREADOR",
+     "en": "Will",
+     "t": 38.56
+    },
+    {
+     "tipo": "insignia",
+     "icono": "prohibido",
+     "texto": "CANCELADA",
+     "sub": "TRAS 1 TEMPORADA",
+     "en": "después",
+     "t": 39.44
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "inicio": 44.68,
+   "fin": 54.28,
+   "medios": [
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n5_anillos_poster.jpg",
+     "en": null,
+     "ajuste": "contain",
+     "t": 44.68
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n5_anillos_elfos.jpg",
+     "en": "tercera",
+     "foco": "center 30%",
+     "t": 48.04
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n5_anillos_extra.jpg",
+     "en": "doce",
+     "foco": "center 40%",
+     "t": 51.24
+    },
+    {
+     "tipo": "imagen",
+     "src": "media/2026-11-26/n5_anillos_sauron.jpg",
+     "en": "nueva",
+     "foco": "40% 30%",
+     "t": 52.04
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "bloques",
+     "valor": 4,
+     "etiquetaBloque": "T",
+     "texto": "TEMPORADA 4",
+     "sub": "RENOVADA",
+     "en": "cuarta",
+     "t": 46.24
+    },
+    {
+     "tipo": "contador",
+     "valor": 33,
+     "prefijo": "",
+     "sufijo": "M",
+     "texto": "33M",
+     "sub": "ESPECTADORES EN 12 DÍAS",
+     "en": "treinta",
+     "t": 48.8
+    },
+    {
+     "tipo": "titulo",
+     "texto": "RODAJE EN 2027",
+     "categoria": "TEMPORADA 4",
+     "en": "nueva",
+     "t": 52.0
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "inicio": 54.28,
+   "fin": 62.41,
+   "medios": [
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 10.4,
+     "hasta": 12.3,
+     "toma": "Nero en Venecia",
+     "en": null,
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0,
+     "t": 54.28,
+     "archivo": "media/2026-11-26/frag/n6_0.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 4.6,
+     "hasta": 5.5,
+     "toma": "Nero",
+     "en": "Mark",
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0,
+     "t": 56.6,
+     "archivo": "media/2026-11-26/frag/n6_1.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 20.4,
+     "hasta": 21.1,
+     "toma": "puente de Venecia",
+     "en": "Venecia",
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0,
+     "t": 58.28,
+     "archivo": "media/2026-11-26/frag/n6_2.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 18.8,
+     "hasta": 20.3,
+     "toma": "gatos mafiosos",
+     "en": "última",
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0,
+     "t": 59.16,
+     "archivo": "media/2026-11-26/frag/n6_3.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 24.2,
+     "hasta": 25.6,
+     "toma": "persecución",
+     "en": "Llega",
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0,
+     "t": 59.76,
+     "archivo": "media/2026-11-26/frag/n6_4.mp4"
+    },
+    {
+     "tipo": "video",
+     "src": "media/2026-11-26/n6_gatto_teaser.mp4",
+     "desde": 26.8,
+     "hasta": 27.9,
+     "toma": "logo",
+     "en": "marzo",
+     "ajuste": "contain",
+     "recorte": [
+      1280,
+      528,
+      0,
+      98
+     ],
+     "zoom": 1.0,
+     "t": 60.92,
+     "archivo": "media/2026-11-26/frag/n6_5.mp4"
+    }
+   ],
+   "rotulos": [
+    {
+     "tipo": "nombre",
+     "texto": "MARK RUFFALO",
+     "sub": "ES NERO, UN GATO NEGRO",
+     "en": "Mark",
+     "t": 56.56
+    },
+    {
+     "tipo": "fecha",
+     "mes": "MAR",
+     "dia": "5",
+     "texto": "EN CINES",
+     "sub": "2027",
+     "en": "cinco",
+     "t": 60.56
+    }
+   ]
+  }
+ ],
+ "duracionVoz": 62.61,
+ "montaje": {
+  "fps": 30,
+  "intro": 76,
+  "vozOffset": 2.4,
+  "cierreInicio": 1971,
+  "cierre": 96,
+  "total": 2067
+ }
+}
