@@ -6,6 +6,11 @@
 <meta name="theme-color" content="#040b30">
 <title>Champions Hub</title>
 <meta name="description" content="Resultados, partidos en vivo, calendario, posiciones, líderes, equipos, highlights y galería de la UEFA Champions League.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1544,6 +1549,11 @@ function demoSummary(m){
   ev.sort((a,b)=>parseInt(a.clock.displayValue)-parseInt(b.clock.displayValue));
   return{boxscore:{teams},keyEvents:ev,rosters,videos:[]};
 }
+
+/* ================= App instalada ================= */
+// Botón "atrás" de Android: cierra el visor, luego la ventana abierta, luego vuelve a Inicio
+window.__appBack=()=>{if($('#lb').classList.contains('open')){closeLb();return true}if($('#modal').classList.contains('open')){closeModal();return true}if(S.tab!=='inicio'){go('inicio');return true}return false};
+if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
 
 /* ================= Start ================= */
 go(location.hash.slice(1)||'inicio');

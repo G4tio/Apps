@@ -1,0 +1,42 @@
+plugins { id 'com.android.application' }
+
+// Copia la app web (champions/index.html) dentro del APK antes de compilar
+def webDir = file("$buildDir/generated/web")
+tasks.register('copyWebApp', Copy) {
+    from(rootProject.file('../index.html'))
+    into(webDir)
+}
+preBuild.dependsOn copyWebApp
+
+android {
+    namespace 'com.g4tio.champions'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.g4tio.champions'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+    }
+    signingConfigs {
+        // Llave propia de la app (no es secreta): permite instalar versiones nuevas encima de la anterior
+        app {
+            storeFile file('champions.keystore')
+            storePassword 'championshub'
+            keyAlias 'champions'
+            keyPassword 'championshub'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.app
+        }
+        debug { signingConfig signingConfigs.app }
+    }
+    sourceSets { main { assets.srcDirs += [webDir] } }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
