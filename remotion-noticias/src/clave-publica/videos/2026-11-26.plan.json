@@ -1,0 +1,30 @@
+{
+ "pantalla": [
+  [["cinco"], "5", "c"],
+  [["veintiséis","de","noviembre."], "26 de noviembre.", "c"],
+  [["presupuesto","dos","mil","veintisiete."], "Presupuesto 2027.", "c"],
+  [["ciento","diecisiete","votos"], "117 votos", "c"],
+  [["ciento","setenta","y","dos","mil","millones","de","quetzales,"], "Q172 mil millones,", "c"],
+  [["veinte","mil","millones"], "20 mil millones", "c"],
+  [["treinta","allanamientos,"], "30 allanamientos,", "c"],
+  [["quince","personas,"], "15 personas,", "c"],
+  [["cuarenta","ataques"], "40 ataques", "c"],
+  [["dos","mil","veintisiete."], "2027.", "c"],
+  [["diez","meses"], "10 meses", "c"],
+  [["veintitrés","partidos"], "23 partidos", "c"],
+  [["cuatro","goles."], "4 goles.", "c"]
+ ],
+ "claves": ["guatemala", "bernardo arévalo", "presupuesto", "congreso", "salud", "educación", "comunicaciones", "codedes",
+            "ministerio público", "limpieza humana", "petén", "pnc", "canadá", "consuelo porras", "rafael curruchiche",
+            "cinthia monterroso", "jimi bremer", "corrupción", "ministerio de finanzas", "unión europea",
+            "banco europeo de inversiones", "alejandro cabeza", "municipal", "síguenos", "clave pública"],
+ "cues": {
+  "0": {"cinco": "cinco"},
+  "1": {"arevalo": "Arévalo", "veto": "vetará", "votos": "diecisiete", "millones": "setenta", "menos": "menos", "recortes": "recortes", "codedes": "Codedes"},
+  "2": {"mp": "Ministerio", "estructura": "Limpieza", "peten": "Petén.", "allanamientos": "treinta", "capturo": "quince", "pnc": "PNC", "cuarenta": "cuarenta"},
+  "3": {"canada": "Canadá", "porras": "Porras,", "curruchiche": "Curruchiche", "monterroso": "Monterroso,", "bremer": "Bremer,", "bienes": "bienes", "prohibicion": "prohibición"},
+  "4": {"finanzas": "Finanzas", "ue": "Unión", "bei": "Banco", "embajadora": "embajadora", "anio": "veintisiete."},
+  "5": {"cabeza": "Cabeza", "municipal": "Municipal", "meses": "diez", "partidos": "veintitrés", "goles": "cuatro"},
+  "6": {"informate": "Infórmate,", "comparte": "comparte", "siguenos": "síguenos"}
+ }
+}

@@ -27,7 +27,7 @@ const LogoCard: React.FC<{ src: string; x: number; y: number; w: number; h: numb
     <image href={staticFile(src)} x={-w / 2} y={-h / 2} width={w} height={h} />
   </g>
 );
-const BanderaGT: React.FC<{ w: number }> = ({ w }) => {
+export const BanderaGT: React.FC<{ w: number }> = ({ w }) => {
   const h = (w * 5) / 8;
   return (
     <g filter="drop-shadow(0 8px 16px rgba(0,0,0,0.35))">

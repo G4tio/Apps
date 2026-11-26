@@ -66,6 +66,8 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
   - Personas: Trump, Putin, Xi, el papa León XIV, Arévalo (`2026-11-17/presidente.png`), Bukele, Haaland, Villeda, Karen Ortiz e Illescas.
   - Edificios: Hospital Roosevelt.
   - Logos: TSE, MP, MAGA, MEM, Mingob, Mindef, BBC, IKEA, Air France y Fedefut.
+  - 26 nov: Arévalo vetará el Presupuesto 2027 (Decreto 32-2026, Q172 mil millones, 117 votos), MP desarticula «Limpieza Humana» en Petén, Canadá mantiene sanciones a Porras, Curruchiche, Monterroso y Bremer, primer préstamo del BEI, Alejandro Cabeza deja Municipal.
+  - Propuestas el 24 nov pero no usadas: CC mantiene IUSI en cero para viviendas, bonos por USD 800 millones, sismo de 5.3, órdenes de captura del caso COG (Gerardo Aguirre).
   - 23 nov: fin de semana violento (16 muertos, conteo de Bomberos), turba ataca a policías en San Pedro Soloma, Presupuesto 2027 fuera de la agenda del martes, Línea Morada 120, primer frente frío (miércoles 25), Municipal 0-0 Antigua.
   - Propuestas el 23 nov pero no usadas: choque en el Periférico zona 11, sismo de 3.5 en el Pacífico, Banguat proyecta 4.3 % de crecimiento.
   - 21 nov: logos de Xelajú, Suchitepéquez, Deportivo Mixco, Malacateco (Toros) y Antigua GFC, sin fondo (`2026-11-21/logo-*.png`). En logos con texto, quita también el blanco dentro de las letras (O, D, P, R), no solo el fondo que toca los bordes.
@@ -96,7 +98,7 @@ Videos verticales 9:16 de noticias para TikTok de **Clave Pública** (medio de G
 
 ## Último estado
 
-- Último video: `Nacional-2026-11-23` (6 noticias). Nuevo: mapa de Centroamérica y el Caribe en `viz/mapa-centroamerica.json` (Natural Earth 1:50m; uso en `viz/nacional11.tsx`, `FrenteFrio`), logo de Municipal en `public/fotos/2026-11-23/logo-municipal.png`.
+- Último video: `Nacional-2026-11-26` (5 noticias; fotos reales en tarjeta con `FotoCard` de `viz/nacional12.tsx`). Anterior: `Nacional-2026-11-23` (6 noticias). Nuevo: mapa de Centroamérica y el Caribe en `viz/mapa-centroamerica.json` (Natural Earth 1:50m; uso en `viz/nacional11.tsx`, `FrenteFrio`), logo de Municipal en `public/fotos/2026-11-23/logo-municipal.png`.
 
 - Videos entregados:
   - Nacional 17 nov: `Nacional-2026-11-17`.
