@@ -796,13 +796,53 @@ function initialsAvatar(name){
  const ini=((parts[0]?.[0]||'')+(parts.length>1?parts[parts.length-1][0]:'')).replace(/[^A-Z0-9]/g,'')||'?';
  return 'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#111"/><text x="50" y="50" dy=".35em" text-anchor="middle" font-family="Oswald,Arial,sans-serif" font-weight="700" font-size="40" fill="#ff5b24">${ini}</text></svg>`);
 }
+const PAGES_FOTOS='https://g4tio.github.io/Apps/liga/';
+// Foto en Wikipedia: busca el artículo del futbolista y usa su imagen principal.
+// Resultados guardados en el navegador 14 días (también los que no tienen foto) para no repetir consultas.
+const PHOTO_KEY='ligaFotosWiki1',PHOTO_TTL=14*864e5;
+let wikiCache={};try{wikiCache=JSON.parse(localStorage.getItem(PHOTO_KEY)||'{}')}catch{}
+let wikiSaveTimer=0;
+function saveWikiCache(){clearTimeout(wikiSaveTimer);wikiSaveTimer=setTimeout(()=>{try{localStorage.setItem(PHOTO_KEY,JSON.stringify(wikiCache))}catch{}},500)}
+const wikiPending=new Map();let wikiActive=0;const wikiWaiting=[];
+function wikiSlot(){return new Promise(r=>{if(wikiActive<4){wikiActive++;r()}else wikiWaiting.push(r)})}
+function wikiDone(){const n=wikiWaiting.shift();if(n)n();else wikiActive--}
+async function wikiSearch(lang,name){
+ const q=name+(lang==='es'?' futbolista':' footballer');
+ const url=`https://${lang}.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=0&gsrlimit=4&gsrsearch=${encodeURIComponent(q)}&prop=pageimages&piprop=thumbnail&pithumbsize=320`;
+ const d=await json(url,10000);
+ const pages=Object.values(d?.query?.pages||{}).sort((a,b)=>(a.index||0)-(b.index||0));
+ const toks=normName(name).split(' ').filter(t=>t.length>2);
+ const surname=toks[toks.length-1]||normName(name);
+ // El título del artículo debe contener el apellido (o el apodo) para evitar fotos de otra persona.
+ const hit=pages.find(p=>p.thumbnail?.source&&normName(p.title).split(' ').includes(surname)&&!/desambig|disambig/i.test(p.title));
+ return hit?.thumbnail?.source||'';
+}
+function wikiPhoto(name){
+ const key=normName(name);if(!key)return Promise.resolve('');
+ const c=wikiCache[key];if(c&&Date.now()-c.t<PHOTO_TTL)return Promise.resolve(c.u);
+ if(wikiPending.has(key))return wikiPending.get(key);
+ const p=(async()=>{await wikiSlot();try{let u='';for(const lang of ['es','en']){try{u=await wikiSearch(lang,name)}catch{}if(u)break}wikiCache[key]={u,t:Date.now()};saveWikiCache();return u}finally{wikiDone();wikiPending.delete(key)}})();
+ wikiPending.set(key,p);return p;
+}
+// Orden: 1) foto propia (carpeta fotos/ junto a la página y GitHub Pages), 2) foto que trae ESPN,
+// 3) foto oficial de ESPN por id, 4) Wikipedia, 5) avatar con iniciales. Nunca queda vacío.
 function setPlayerPhoto(img,{name,id,headshot}){
  const href=typeof headshot==='string'?headshot:headshot?.href;
- const chain=[...new Set([localPlayerPhoto(name),href,id?ESPN_HEADSHOT(id):''].filter(Boolean))];
- let i=0;img.alt='Fotografía de '+(name||'jugador');
+ const local=localPlayerPhoto(name);
+ const chain=[...new Set([local,local?PAGES_FOTOS+local:'',href,id?ESPN_HEADSHOT(id):''].filter(Boolean))];
+ img._photoRun=(img._photoRun||0)+1;const run=img._photoRun;
+ let i=0,triedWiki=false;
+ img.alt='Fotografía de '+(name||'jugador');
  img.onload=()=>img.classList.remove('photo-missing');
+ const finish=()=>{img.onerror=null;img.classList.remove('photo-missing');img.src=initialsAvatar(name)};
+ const next=()=>{
+  if(img._photoRun!==run)return;
+  if(i<chain.length){img.src=chain[i++];return}
+  if(!triedWiki&&name){triedWiki=true;wikiPhoto(name).then(u=>{if(img._photoRun!==run)return;if(u){chain.push(u);next()}else finish()}).catch(finish);return}
+  finish();
+ };
  img.onerror=()=>next();
- const next=()=>{if(i<chain.length)img.src=chain[i++];else{img.onerror=null;img.src=initialsAvatar(name)}};
+ if(!chain.length)img.src=initialsAvatar(name);
  next();return img;
 }
 function avatar(name,id,headshot){const im=h('img',{class:'avatar',width:30,height:30,loading:'lazy',decoding:'async',alt:''});setPlayerPhoto(im,{name,id,headshot});im.alt='';return im}
@@ -817,7 +857,7 @@ async function completePhoto(img,name,teamName,teamId){
 function localPlayerPhoto(name){
  const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/\([^)]*\)/g,' ').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
  const n=norm(name);if(!n)return '';
- const base='https://g4tio.github.io/Apps/liga/fotos/';
+ const base='fotos/';
  const entries=[
   [['raphinha','raphael dias belloli','raphinha dias','rafael dias belloli'],'raphinha.jpg'],
   [['lamine yamal','lamine yamal nasraoui ebana','yamal'],'lamine-yamal.jpg'],
