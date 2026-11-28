@@ -233,6 +233,11 @@ button.scorer-photo-wrap:hover .scorer-photo{box-shadow:0 0 0 3px #fff,0 0 0 6px
 .next-hero .logos .team-link img{width:58px;height:58px;object-fit:contain;padding:6px;border-radius:12px;background:#fff}
 .tip{margin:-8px 0 16px;color:var(--muted);font:12px/1.4 var(--f-mono)}
 
+.avatar{flex:0 0 30px;width:30px;height:30px;border-radius:50%;object-fit:cover;object-position:center top;background:#eee;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--rule)}
+.scorers-list .avatar{width:32px;height:32px;flex-basis:32px}
+.roster .avatar{width:38px;height:38px;flex-basis:38px}
+.roster .jersey{color:var(--orange-ink);font:700 12px var(--f-mono)}
+
 /* ---------- Fichas (ventana emergente) ---------- */
 html.sheet-open,html.sheet-open body{overflow:hidden}
 .sheet-backdrop{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;background:#000b;animation:fade .18s ease-out}
@@ -754,7 +759,8 @@ function normalizeLeaders(data){
    const key=name.trim().toLowerCase();
    const prior=found.find(p=>p.name.trim().toLowerCase()===key);
    const id=athlete.id!=null?String(athlete.id):'',teamId=team.id!=null?String(team.id):'';
-   if(!prior)found.push({name,goals,id,teamId,teamName:team.displayName||team.name||team.shortDisplayName||'',teamLogo});
+   const photo=typeof athlete.headshot==='string'?athlete.headshot:(athlete.headshot?.href||'');
+   if(!prior)found.push({name,goals,id,teamId,photo,teamName:team.displayName||team.name||team.shortDisplayName||'',teamLogo});
    else if(goals>prior.goals){prior.goals=goals;if(id)prior.id=id;if(teamId)prior.teamId=teamId;if(teamLogo)prior.teamLogo=teamLogo;if(team.displayName||team.name)prior.teamName=team.displayName||team.name}
   }
  };
@@ -782,7 +788,32 @@ function teamLogoFromStandings(name){
  return '';
 }
 
-// Fotografías: únicamente archivos estáticos publicados en Apps/liga/fotos/.
+// Fotografías, en este orden: 1) archivo propio en Apps/liga/fotos/, 2) foto que trae la fuente,
+// 3) foto oficial de ESPN por id del jugador, 4) avatar con las iniciales (nunca queda vacío).
+const ESPN_HEADSHOT=id=>`https://a.espncdn.com/i/headshots/soccer/players/full/${encodeURIComponent(id)}.png`;
+function initialsAvatar(name){
+ const parts=String(name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9 ]+/g,' ').trim().split(/\s+/).filter(Boolean);
+ const ini=((parts[0]?.[0]||'')+(parts.length>1?parts[parts.length-1][0]:'')).replace(/[^A-Z0-9]/g,'')||'?';
+ return 'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#111"/><text x="50" y="50" dy=".35em" text-anchor="middle" font-family="Oswald,Arial,sans-serif" font-weight="700" font-size="40" fill="#ff5b24">${ini}</text></svg>`);
+}
+function setPlayerPhoto(img,{name,id,headshot}){
+ const href=typeof headshot==='string'?headshot:headshot?.href;
+ const chain=[...new Set([localPlayerPhoto(name),href,id?ESPN_HEADSHOT(id):''].filter(Boolean))];
+ let i=0;img.alt='Fotografía de '+(name||'jugador');
+ img.onload=()=>img.classList.remove('photo-missing');
+ img.onerror=()=>next();
+ const next=()=>{if(i<chain.length)img.src=chain[i++];else{img.onerror=null;img.src=initialsAvatar(name)}};
+ next();return img;
+}
+function avatar(name,id,headshot){const im=h('img',{class:'avatar',width:30,height:30,loading:'lazy',decoding:'async',alt:''});setPlayerPhoto(im,{name,id,headshot});im.alt='';return im}
+// Para jugadores sin id (p. ej. datos de MARCA) se busca el id en la plantilla de su club y se completa la foto.
+let standingsReady=Promise.resolve();
+async function completePhoto(img,name,teamName,teamId){
+ if(localPlayerPhoto(name))return;
+ await standingsReady;
+ const id=await findPlayerId(name,teamId||teamIdFromName(teamName||''));
+ if(id&&img.isConnected)setPlayerPhoto(img,{name,id});
+}
 function localPlayerPhoto(name){
  const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/\([^)]*\)/g,' ').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
  const n=norm(name);if(!n)return '';
@@ -830,11 +861,9 @@ function renderScorers(players,source){
  players.slice(0,6).forEach((p,index)=>{
   const {display,team}=splitName(p);
   const card=el('article','scorer-card');
-  const img=el('img','scorer-photo photo-missing');img.alt='';img.loading='lazy';img.width=96;img.height=96;
-  const localPhoto=localPlayerPhoto(display);
-  img.onload=()=>img.classList.remove('photo-missing');
-  img.onerror=()=>{img.removeAttribute('src');img.alt='';img.classList.add('photo-missing')};
-  if(localPhoto){img.alt='Fotografía de '+display;img.src=localPhoto}
+  const img=el('img','scorer-photo photo-missing');img.loading='lazy';img.width=96;img.height=96;
+  setPlayerPhoto(img,{name:display,id:p.id,headshot:p.photo});
+  if(!p.id)completePhoto(img,display,team,p.teamId);
   const ref={...p,name:display,teamName:team,rank:index+1};
   const photoBtn=el('button','scorer-photo-wrap player-link');photoBtn.type='button';photoBtn.setAttribute('aria-label','Ficha de '+display);
   photoBtn.addEventListener('click',()=>openPlayer(ref));
@@ -851,10 +880,10 @@ function renderScorers(players,source){
  });
  const rest=players.slice(6,14);
  if(rest.length){
-  rest.forEach((p,i)=>{const {display,team}=splitName(p);const li=el('li');li.append(el('span','list-rank',String(i+7)));const nm=el('button','list-name player-link',display);nm.type='button';nm.addEventListener('click',()=>openPlayer({...p,name:display,teamName:team,rank:i+7}));if(team)nm.append(el('span','list-team',' · '+team));li.append(nm,el('span','list-goals',String(p.goals)));list.append(li)});
+  rest.forEach((p,i)=>{const {display,team}=splitName(p);const li=el('li');const av=avatar(display,p.id,p.photo);if(!p.id)completePhoto(av,display,team,p.teamId);li.append(el('span','list-rank',String(i+7)),av);const nm=el('button','list-name player-link',display);nm.type='button';nm.addEventListener('click',()=>openPlayer({...p,name:display,teamName:team,rank:i+7}));if(team)nm.append(el('span','list-team',' · '+team));li.append(nm,el('span','list-goals',String(p.goals)));list.append(li)});
   wrap.hidden=false;
  }
- $('scorersSource').textContent='Fuente de estadísticas: '+(source||'fuente consultada')+'. Fotografías: exclusivamente archivos de la carpeta /Apps/liga/fotos/; si no hay coincidencia local se muestra un marcador.';
+ $('scorersSource').textContent='Fuente de estadísticas: '+(source||'fuente consultada')+'. Fotografías: carpeta /Apps/liga/fotos/ y, para el resto, fotos oficiales de ESPN.';
 }
 
 function parseLaLigaScorers(doc){
@@ -1121,7 +1150,7 @@ function lineups(rosters,homeId,awayId){
  const col=r=>{
   if(!r)return h('div');
   const list=r.roster||[],extra={teamId:r.team?.id?String(r.team.id):'',teamName:r.team?.displayName||''};
-  const item=p=>h('li',{},h('span',{class:'num',text:p.jersey??''}),playerButton(p.athlete,extra),didSub(p.subbedOut)?h('span',{class:'sub out',title:'Sustituido',text:'↓'}):null,didSub(p.subbedIn)?h('span',{class:'sub in',title:'Entró de cambio',text:'↑'}):null,h('span',{class:'pos',text:posAbbr(p.position)}));
+  const item=p=>h('li',{},h('span',{class:'num',text:p.jersey??''}),avatar(p.athlete?.displayName,p.athlete?.id,p.athlete?.headshot),playerButton(p.athlete,extra),didSub(p.subbedOut)?h('span',{class:'sub out',title:'Sustituido',text:'↓'}):null,didSub(p.subbedIn)?h('span',{class:'sub in',title:'Entró de cambio',text:'↑'}):null,h('span',{class:'pos',text:posAbbr(p.position)}));
   const starters=list.filter(p=>p.starter),subs=list.filter(p=>!p.starter);
   return h('div',{class:'lineup'},
    h('div',{class:'lineup-head'},teamButton(r.team,28),h('span',{text:r.team?.shortDisplayName||r.team?.displayName||''}),r.formation?h('span',{class:'badge alt',text:r.formation}):null),
@@ -1236,7 +1265,7 @@ async function renderTeamSheet(v,fill){
   const groups=new Map();for(const p of roster){const g=posGroup(p.position);if(!groups.has(g))groups.set(g,[]);groups.get(g).push(p)}
   const order=['Porteros','Defensas','Centrocampistas','Delanteros','Plantilla'];
   nodes.push(section(`Plantilla (${roster.length})`,order.filter(g=>groups.has(g)).map(g=>h('div',{class:'roster-group'},h('h4',{text:g}),h('div',{class:'roster'},groups.get(g).map(p=>{
-   const b=h('button',{type:'button','aria-label':'Ficha de '+(p.displayName||p.fullName)},h('span',{class:'num',text:p.jersey??'–'}),h('span',{class:'who'},p.displayName||p.fullName,h('small',{text:[p.age?p.age+' años':'',p.citizenship||p.flag?.alt||''].filter(Boolean).join(' · ')})));
+   const b=h('button',{type:'button','aria-label':'Ficha de '+(p.displayName||p.fullName)},avatar(p.displayName||p.fullName,p.id,p.headshot),h('span',{class:'who'},h('b',{class:'jersey',text:p.jersey?p.jersey+' · ':''}),p.displayName||p.fullName,h('small',{text:[p.age?p.age+' años':'',p.citizenship||p.flag?.alt||''].filter(Boolean).join(' · ')})));
    b.addEventListener('click',()=>openPlayer({id:p.id!=null?String(p.id):'',name:p.displayName||p.fullName,teamId:v.id,teamName:name}));return b;
   }))))));
  }
@@ -1277,10 +1306,8 @@ async function renderPlayerSheet(v,fill){
  const tLogo=logo(a.team)||teamLogoById(teamId)||(tName?teamLogoFromStandings(tName):'');
 
  const img=h('img',{class:'scorer-photo photo-missing',alt:'',width:120,height:120});
- const local=localPlayerPhoto(name)||localPlayerPhoto(v.name);
- img.onload=()=>img.classList.remove('photo-missing');img.onerror=()=>{img.removeAttribute('src');img.classList.add('photo-missing')};
- if(local){img.alt='Fotografía de '+name;img.src=local}
- const teamBtn=tName?h('button',{class:'p-team',type:'button','aria-label':'Ficha de '+tName},tLogo?h('img',{src:tLogo,alt:''}):null,tName):null;
+ setPlayerPhoto(img,{name:localPlayerPhoto(name)?name:(v.name||name),id,headshot:a.headshot||v.photo});
+ const teamBtn=tName?h('button',{class:'p-team',type:'button','aria-label':'Ficha de '+tName},tLogo?h('img',{src:tLogo,alt:'',onerror:e=>e.target.remove()}):null,tName):null;
  if(teamBtn){if(teamId)teamBtn.addEventListener('click',()=>openTeam(teamId));else teamBtn.disabled=true}
  const tags=[posEs(a.position),a.jersey?'Dorsal '+a.jersey:'',a.age?a.age+' años':''].filter(Boolean);
  const nodes=[h('div',{class:'p-head'},img,h('div',{},h('span',{class:'kicker',text:'Ficha del jugador'}),h('h3',{class:'p-name',text:name}),teamBtn,tags.length?h('div',{class:'p-tags'},tags.map(t=>h('span',{class:'badge alt',text:t}))):null))];
@@ -1301,7 +1328,6 @@ async function renderPlayerSheet(v,fill){
  const facts=[['Posición',posEs(a.position)],['Dorsal',a.jersey||''],['Edad',a.age?a.age+' años':''],['Nacimiento',birth],['Lugar de nacimiento',place],['Nacionalidad',a.citizenship||a.citizenshipCountry?.name||a.flag?.alt||''],['Altura',a.displayHeight||''],['Peso',a.displayWeight||''],['Equipo',tName]];
  if(facts.some(([k,x])=>x&&k!=='Equipo'))nodes.push(section('Datos personales',factsGrid(facts)));
  if(!id||(!summary.length&&!os&&!a.position))nodes.push(h('p',{class:'note',text:'La fuente no tiene una ficha detallada de este jugador; se muestran los datos disponibles.'}));
- nodes.push(h('p',{class:'note',text:'Fotografía: solo archivos de la carpeta /Apps/liga/fotos/; si no hay foto se muestra un marcador.'}));
  fill(nodes);
 }
 
@@ -1316,7 +1342,8 @@ async function refresh(force=false){
  if(refreshing)return;refreshing=true;
  const b=$('refreshBtn'),q=$('quickRefresh');b.disabled=q.disabled=true;b.innerHTML='<span aria-hidden="true">↻</span> Actualizando…';
  setStatus('Consultando datos…','busy');$('liveText').textContent='Actualizando…';
- const jobs=[loadScores(),loadStandings()];
+ const standingsJob=loadStandings();standingsReady=standingsJob.catch(()=>{});
+ const jobs=[loadScores(),standingsJob];
  if(force||Date.now()-lastScorers>SCORERS_EVERY){jobs.push(loadScorers().then(()=>{lastScorers=Date.now()}))}
  try{
   const results=await Promise.allSettled(jobs);
